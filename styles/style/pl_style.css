@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+:root {
+    --neon-green: #39ff14;
+    --dark-bg: #121212;
+    --card-bg: #1e1e1e;
+    --border-color: #333;
+    --text-color: #eee;
+    --highlight: #5d00ff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-family: 'VT323', monospace;
+    font-size: 3rem;
+    color: var(--neon-green);
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+    margin-bottom: 1rem;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.h-underline {
+    display: inline-block;
+    position: relative;
+}
+
+.h-underline::after {
+    content: '';
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    bottom: -8px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--highlight), transparent);
+}
+
+.workflow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.workflow-step {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    margin: 0 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.workflow-step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(57, 255, 20, 0.15);
+    border-color: var(--neon-green);
+}
+
+.arrow {
+    color: var(--neon-green);
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    user-select: none;
+}
+
+.step-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.step-text {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: var(--neon-green);
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.1);
+}
+
+.card-title {
+    font-family: 'VT323', monospace;
+    color: var(--neon-green);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.section-icon {
+    margin-right: 0.75rem;
+    font-size: 1.5rem;
+}
+
+.upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.upload-area:hover {
+    border-color: var(--neon-green);
+    background-color: rgba(57, 255, 20, 0.05);
+}
+
+.upload-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--neon-green);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.button {
+    background-color: transparent;
+    color: var(--neon-green);
+    border: 1px solid var(--neon-green);
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.button:hover {
+    background-color: rgba(57, 255, 20, 0.1);
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+}
+
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--neon-green);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #2d2d2d;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-family: 'Roboto Mono', monospace;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--neon-green);
+    outline: none;
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    border-left: 4px solid;
+}
+
+.alert-success {
+    background-color: rgba(57, 255, 20, 0.1);
+    border-left-color: var(--neon-green);
+}
+
+.alert-error {
+    background-color: rgba(255, 76, 76, 0.1);
+    border-left-color: #ff4c4c;
+}
+
+.output-container {
+    background-color: #2d2d2d;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1rem;
+    max-height: 300px;
+    overflow-y: auto;
+    font-family: 'Roboto Mono', monospace;
+    margin-top: 1rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.loading {
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.loading:after {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--neon-green);
+    border-color: var(--neon-green) transparent var(--neon-green) transparent;
+    animation: loading 1.2s linear infinite;
+}
+
+@keyframes loading {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.model-info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.model-info-table th, .model-info-table td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.model-info-table th {
+    color: var(--neon-green);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .workflow {
+        flex-direction: column;
+    }
+    
+    .workflow-step {
+        margin: 0.5rem 0;
+    }
+    
+    .arrow {
+        transform: rotate(90deg);
+        margin: 0.5rem 0;
+    }
+}
+
+.neon-text {
+    color: var(--neon-green);
+}
+
+.badge {
+    background-color: rgba(57, 255, 20, 0.1);
+    color: var(--neon-green);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    opacity: 0.7;
+}

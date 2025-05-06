@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhiteLightning - LLM Distillation Tool</title>
+  <link rel="stylesheet" href="../styles/style/style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="../styles/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
+      <h1>WhiteLightning.ai</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="playground.html">Playground</a></li>
+        <li><a href="#documentation">Docs</a></li>
+        <li><a href="https://github.com/username/whitelightning" target="_blank">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main class="container">
+    <section class="hero">
+      <h1>What the Hell Is This?</h1>
+      <div class="accent-underline"></div>
+      <p class="hero-subtitle">
+        WhiteLightning.ai creates synthetic data and trains classifiers using the power of large language models. Then it distills that into ONNX — a universal model format you can deploy anywhere: Raspberry Pis, phones, edge devices, microwaves (okay maybe not microwaves).
+      </p>
+      
+      <div class="process-flow">
+        <div class="process-step">
+          <div class="emoji">💬</div>
+          <div>Prompt</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="process-step">
+          <div class="emoji">🤖</div>
+          <div>Dummy Data</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="process-step">
+          <div class="emoji">🧠</div>
+          <div>Model</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="process-step">
+          <div class="emoji">📦</div>
+          <div>ONNX</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="process-step">
+          <div class="emoji">🚀</div>
+          <div>Deploy</div>
+        </div>
+      </div>
+      
+      <div>
+        <a href="playground.html" class="button button-primary">Try Playground</a>
+        <a href="#documentation" class="button">Read Docs</a>
+      </div>
+    </section>
+    
+    <section>
+      <h2 class="tagline">Why buy the whole cow when you can distill the good stuff?</h2>
+      <div class="accent-underline"></div>
+      
+      <div class="features" id="features">
+        <div class="feature-card">
+          <div class="icon">💰</div>
+          <h3>Stop Paying for Cloud APIs</h3>
+          <p>Don't rent intelligence by the query. Own your models.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="icon">🏃</div>
+          <h3>Run It Anywhere</h3>
+          <p>Deploy on your old laptop, a Pi Zero, a potato. No GPU required.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="icon">✏️</div>
+          <h3>Create Models Without Real Data</h3>
+          <p>Ask an LLM to make fake-but-good-enough data. Train on it.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="icon">🔒</div>
+          <h3>Control Your Data, Control Your Future</h3>
+          <p>No creepy telemetry. No vendor lock-in.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="demo-section" id="playground">
+      <h2>Terminal Assistant</h2>
+      <div class="accent-underline"></div>
+      <p>Our non-intrusive terminal assistant works alongside you in a tmux window, helping you be more productive.</p>
+      
+      <div class="terminal-demo">
+        <div class="terminal-header">
+          <div class="terminal-circle red"></div>
+          <div class="terminal-circle yellow"></div>
+          <div class="terminal-circle green"></div>
+        </div>
+        <div class="terminal-content">
+          <p>
+            <span class="prompt">$ </span>whitelightning find large files and cleanup some space
+          </p>
+          <p class="response">
+            <span class="prompt">WhiteLightning > </span>I'll help you find large files taking up space in this directory.
+          </p>
+          <p class="response">
+            <span class="prompt">WhiteLightning > </span>find . -type f -size +100M -exec du -h {} \; | sort -rh | head -5
+          </p>
+          <p class="response">
+            Do you want to execute this command? [Yes/No/Edit]:
+          </p>
+          <p class="response">
+            <span class="prompt">WhiteLightning > </span>Found several large files in node_modules and logs directories.
+          </p>
+          <p class="response">
+            <span class="prompt">WhiteLightning > </span>rm -i ./logs/debug-*.log
+          </p>
+          <p class="response">
+            Do you want to execute this command? [Yes/No/Edit]: _
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <section id="documentation">
+      <h2>Documentation</h2>
+      <div class="accent-underline"></div>
+      
+      <div class="features">
+        <div class="feature-card">
+          <h3>CONTEXT-AWARE TERMINAL ASSISTANCE</h3>
+          <p>WhiteLightning reads and understands what's displayed across all your terminal panes in real-time, providing intelligent help based on what you're actually working on.</p>
+        </div>
+        
+        <div class="feature-card">
+          <h3>ZERO-CONFIGURATION SETUP</h3>
+          <p>Works instantly with your existing tmux setup without requiring special shells, wrappers, or terminal emulators. Just install and run.</p>
+        </div>
+        
+        <div class="feature-card">
+          <h3>UNIVERSAL TERMINAL COMPATIBILITY</h3>
+          <p>Works with nested shells, SSH connections, database CLIs, network equipment shells (Cisco IOS, Juniper, etc.), and any other text-based terminal interface.</p>
+        </div>
+        
+        <div class="feature-card">
+          <h3>LLM DISTILLATION</h3>
+          <p>Convert large language models into efficient binary or multiclass classifiers with minimal computational requirements.</p>
+        </div>
+      </div>
+      
+      <div class="cta">
+        <h3>Ready to get started?</h3>
+        <pre><code>curl -fsSL https://get.whitelightning.ai | bash</code></pre>
+        <div>
+          <a href="BINARY_CLASSIFIER_AGENT.MD" class="button">Binary Classifier Docs</a>
+          <a href="MULTICLASS_CLASSIFIER_AGENT.MD" class="button">Multiclass Classifier Docs</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <p>Free. Open Source. Moonshiner-approved.</p>
+    <p>&copy; 2025 WhiteLightning.ai</p>
+  </footer>
+</body>
+</html>

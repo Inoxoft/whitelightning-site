@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhiteLightning - LLM Distillation Tool</title>
+  <link rel="stylesheet" href="../styles/style/style_2.css">
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="../styles/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
+      <h1>White<span>Lightning</span></h1>
+    </div>
+    <nav>
+      <ul>
+
+        <li><a href="#demo">Playground</a></li>
+        <li><a href="#documentation">Documentation</a></li>
+        <li><a href="https://github.com/whitelightning/distill" target="_blank">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-title">
+        <h1>AI-Powered, <span>Non-Intrusive</span> LLM Distillation Tool</h1>
+      </div>
+      <p class="hero-subtitle">
+        WhiteLightning creates synthetic data and trains classifiers using the power of large language models. Then it
+        distills that into ONNX — a universal model format you can deploy anywhere: Raspberry Pis, phones, edge devices,
+        or embedded systems.
+      </p>
+
+      <div class="terminal-demo">
+        <div class="terminal-header">
+          <div class="terminal-circle red"></div>
+          <div class="terminal-circle yellow"></div>
+          <div class="terminal-circle green"></div>
+        </div>
+        <div class="terminal-content">
+          <p><span class="prompt">$ </span><span class="user-input">whitelightning create classifier --type binary
+              --task "spam detection"</span></p>
+          <p><span class="ai-response">WhiteLightning > </span>I'll help you create a binary classifier for spam
+            detection.</p>
+          <p><span class="ai-response">WhiteLightning > </span>First, I'll generate synthetic training data using LLM...
+          </p>
+          <p><span class="ai-response">WhiteLightning > </span>Created 1000 examples (500 spam, 500 ham)</p>
+          <p><span class="ai-response">WhiteLightning > </span>Training lightweight classifier model...</p>
+          <p><span class="ai-response">WhiteLightning > </span>Model trained successfully. Accuracy: 94.2%</p>
+          <p><span class="ai-response">WhiteLightning > </span>Exporting to ONNX format...</p>
+          <p><span class="ai-response">WhiteLightning > </span>Saved model to spam_classifier.onnx (2.1MB)</p>
+          <p><span class="prompt">$ </span><span class="user-input">_</span></p>
+        </div>
+      </div>
+
+      <div>
+        <a href="#playground" class="button button-primary">Try Playground</a>
+        <a href="#documentation" class="button">Read Documentation</a>
+      </div>
+    </section>
+
+    <div class="section-title">
+      <span class="number">01</span>
+      <h2>Features</h2>
+    </div>
+
+    <div class="features" id="features">
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>STOP PAYING FOR CLOUD APIs</h3>
+        <p>Don't rent intelligence by the query. Own your models and run them locally without recurring API costs.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🏃</div>
+        <h3>RUN IT ANYWHERE</h3>
+        <p>Deploy on your old laptop, a Pi Zero, a potato. No GPU required. Optimized for low-resource environments.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">✏️</div>
+        <h3>CREATE MODELS WITHOUT REAL DATA</h3>
+        <p>Ask an LLM to generate synthetic training data. Build models without compromising privacy or when data is
+          scarce.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>CONTROL YOUR DATA</h3>
+        <p>No creepy telemetry. No vendor lock-in. Your data stays on your devices where it belongs.</p>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <span class="number">02</span>
+      <h2>Demo</h2>
+    </div>
+
+    <section class="demo-section" id="demo">
+      <p>Watch WhiteLightning in action. From prompt to deployment in minutes.</p>
+      <div class="terminal-demo">
+        <div class="terminal-header">
+          <div class="terminal-circle red"></div>
+          <div class="terminal-circle yellow"></div>
+          <div class="terminal-circle green"></div>
+        </div>
+        <div class="terminal-content">
+          <p><span class="prompt">$ </span><span class="user-input">pip install -r requirements/dev.txt</span></p>
+          <p><span class="prompt">$ </span><span class="user-input">pre-commit install</span></p>
+          <p><span class="prompt">$ </span><span class="user-input">detect-secrets scan > .secrets.baseline</span></p>
+          <p><span class="prompt">$ </span><span class="user-input">_</span></p>
+        </div>
+      </div>
+      
