@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Model Playground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/style/playground_3.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/onnxruntime-web/1.14.0/ort.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Model Playground</h1>
+    </header>
+    <div class="panel">
+      <div class="select-row">
+        <select id="modelType">
+          <option value="">Choose model type</option>
+          <option value="binary">Binary Classifier</option>
+          <option value="multiclass">Multiclass Classifier</option>
+        </select>
+        <select id="modelName" disabled>
+          <option value="">Choose a model</option>
+        </select>
+        <select id="modelSubclass" style="display:none"></select>
+        <button id="uploadBtn" title="Upload custom model">Upload Custom</button>
+        <span id="modelStatus" class="chip"></span>
+      </div>
+    </div>
+    <div class="chat-card">
+      <div id="chatContainer" class="chat-container"></div>
+      <form id="chatForm" class="chat-form">
+        <input type="text" id="chatInput" placeholder="Enter text to classify..." autocomplete="off" />
+        <button type="submit" id="sendBtn">Classify</button>
+      </form>
+    </div>
+  </div>
+  <script src="../styles/style/playground3.js"></script>
+</body>
+</html>
