@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhiteLightning Documentation</title>
+  <link rel="stylesheet" href="../styles/docs.css">
+</head>
+<body>
+  <header class="wl-header">
+    <div class="logo">
+      <img src="../media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
+      <h1><a href="index.html" style="text-decoration: none;letter-spacing: 0px; color: inherit; ">White<span>Lightning</span></a></h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a  href="../pages/playground.html">Playground</a></li>
+        <li><a id="plgr_btn" href="#documentation">Getting Started</a></li>
+        <li><a href="https://github.com/whitelightning/distill" target="_blank">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="docs-container">
+    <div class="docs-sidebar">
+      <nav class="docs-nav">
+        <ul>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#what-is-llm">What is LLM Distillation?</a></li>
+          <li><a href="#why-onnx">Why ONNX?</a></li>
+          <li><a href="#features">Key Features</a></li>
+          <li><a href="#installation">Installation</a></li>
+          <li><a href="#models">Available Models</a></li>
+          <li><a href="#playground">Try It Yourself</a></li>
+          <li><a href="#contributing">Contributing</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <main class="docs-content">
+      <section id="introduction">
+        <h1>WhiteLightning - LLM Distillation Tool</h1>
+        <p class="lead">A powerful tool designed to distill large language models (LLMs) into lightweight, efficient classifiers.</p>
+        
+        <div class="logo-container">
+          <img src="../media/image/moonshiner_floppy.jpeg" alt="Moonshiner" class="logo-image">
+        </div>
+
+        <div class="demo-container">
+          <img src="../media/gif/cli_usage.gif" alt="CLI Usage" class="demo-gif">
+        </div>
+      </section>
+
+      <section id="what-is-llm">
+        <h2>What is LLM Distillation?</h2>
+        <p>LLM distillation is the process of transforming large, complex language models into smaller, task-specific models. WhiteLightning focuses on binary and multiclass text classification, enabling users to classify text data into categories like "spam vs ham" or multiple classes with ease. This approach ensures high performance while significantly reducing computational requirements.</p>
+      </section>
+
+      <section id="why-onnx">
+        <h2>Why ONNX?</h2>
+        <p>WhiteLightning uses ONNX (Open Neural Network Exchange) to export trained models, making them deployable across a wide range of platforms and programming languages. With ONNX, you can run your models in Python, JavaScript, C++, Rust, and more, ensuring flexibility and scalability for your applications.</p>
+      </section>
+
+      <section id="features">
+        <h2>Key Features</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>LLM Distillation</h3>
+            <p>Converts large language models into efficient binary or multiclass classifiers.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Cross-Platform Deployment</h3>
+            <p>Export models to ONNX for use in diverse environments.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Lightweight and Fast</h3>
+            <p>Optimized for performance with minimal resource usage.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Customizable</h3>
+            <p>Supports multiple machine learning frameworks, including TensorFlow, PyTorch, and Scikit-learn.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="installation">
+        <h2>Installation</h2>
+        <p>To install WhiteLightning dependencies, use the following command:</p>
+        <div class="code-block">
+          <pre><code>pip install -r requirements/base.txt</code></pre>
+        </div>
+        <p>Create .env file, example `.env.example` is provided in the repository.</p>
+      </section>
+
+      <section id="models">
+        <h2>Available Models</h2>
+        <div class="models-grid">
+          <div class="model-card">
+            <h3>Binary Classifier</h3>
+            <p>Classifies text into two categories (e.g., "positive" vs "negative").</p>
+            <a href="BINARY_CLASSIFIER_AGENT.MD" class="button">Read Documentation</a>
+          </div>
+          <div class="model-card">
+            <h3>Multiclass Classifier</h3>
+            <p>Classifies text into multiple categories.</p>
+            <a href="MULTICLASS_CLASSIFIER_AGENT.MD" class="button">Read Documentation</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="playground">
+        <h2>Try It Yourself</h2>
+        <p>Visit our <a href="https://white-lightning-playground.vercel.app/" class="neon-link">Playground</a> to experiment with WhiteLightning and see how it can be useful for you. You can test the available models and find some code snippets in supported languages.</p>
+      </section>
+
+      <section id="contributing">
+        <h2>Contributing</h2>
+        <p>We welcome contributions to WhiteLightning! If you have ideas for improvements, bug fixes, or new features, please submit a pull request or open an issue on our GitHub repository.</p>
+        
+        <h3>Development Setup</h3>
+        <div class="code-block">
+          <pre><code>pip install -r requirements/dev.txt
+
+pre-commit install
+
+detect-secrets scan > .secrets.baseline</code></pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <p>Free. Open Source. <span class="neon-green">Moonshiner-approved.</span></p>
+  </footer>
+</body>
+</html> 

@@ -1,379 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ONNX Model Playground</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/onnxruntime-web/1.14.0/ort.min.js"></script>
-    <link rel="stylesheet" href="..//styles/style/playground.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONNX Model Playground</title>
+  
+  <link rel="stylesheet" href="../styles/playground.css">
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+</head>
 <body>
-    <div class="container">
-        <header>
-            <h1>What the Hell Is This? <span class="h-underline"></span></h1>
-            <p class="tagline">An ONNX Model Playground that lets you run machine learning models directly in your browser</p>
-        </header>
-        
-        <div class="workflow">
-            <div class="workflow-step">
-                <div class="step-icon">📁</div>
-                <div class="step-text">Choose Model</div>
-            </div>
-            <div class="arrow">→</div>
-            <div class="workflow-step">
-                <div class="step-icon">⚙️</div>
-                <div class="step-text">Configure</div>
-            </div>
-            <div class="arrow">→</div>
-            <div class="workflow-step">
-                <div class="step-icon">🚀</div>
-                <div class="step-text">Run</div>
-            </div>
-            <div class="arrow">→</div>
-            <div class="workflow-step">
-                <div class="step-icon">📊</div>
-                <div class="step-text">Results</div>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-title">
-                <span class="section-icon">📁</span> 1. Load ONNX Model
-            </div>
-            
-            <div class="upload-area" id="uploadArea">
-                <div class="upload-icon">⬆️</div>
-                <p>Drag and drop an ONNX model file here, or click to browse</p>
-                <input type="file" id="modelUpload" accept=".onnx">
-            </div>
-            
-            <div id="modelInfo" class="hidden">
-                <div class="alert alert-success">
-                    <span id="modelName"></span> loaded successfully
-                </div>
-            </div>
-            
-            <div id="modelError" class="hidden">
-                <div class="alert alert-error">
-                    <span id="errorMessage"></span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="grid">
-            <div class="card" id="inputSection" style="display: none;">
-                <div class="card-title">
-                    <span class="section-icon">⚙️</span> 2. Configure Input
-                </div>
-                
-                <div class="form-group">
-                    <label for="inputType">Input Type</label>
-                    <select id="inputType">
-                        <option value="random">Random Data</option>
-                        <option value="custom">Custom Input</option>
-                    </select>
-                </div>
-                
-                <div id="randomInputConfig">
-                    <div class="form-group">
-                        <label for="inputShape">Input Shape (comma separated)</label>
-                        <input type="text" id="inputShape" placeholder="1,3,224,224">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="inputDataType">Data Type</label>
-                        <select id="inputDataType">
-                            <option value="float32">Float32</option>
-                            <option value="int32">Int32</option>
-                            <option value="int64">Int64</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div id="customInputConfig" style="display: none;">
-                    <div class="form-group">
-                        <label for="customInputData">Input Data (JSON format)</label>
-                        <textarea id="customInputData" rows="5" placeholder='{"input_name": {"dims": [1, 3, 224, 224], "data": [...]}}' ></textarea>
-                    </div>
-                </div>
-                
-                <button id="runButton" class="button">Run Model</button>
-                
-                <div id="runStatus" class="hidden" style="margin-top: 1rem;">
-                    <div class="loading"></div> Running model...
-                </div>
-            </div>
-            
-            <div class="card" id="resultsSection" style="display: none;">
-                <div class="card-title">
-                    <span class="section-icon">📊</span> Model Output
-                </div>
-                
-                <div id="modelSummary">
-                    <h3 class="neon-text">Model Information</h3>
-                    <table class="model-info-table">
-                        <tr>
-                            <th>Inputs:</th>
-                            <td id="modelInputs"></td>
-                        </tr>
-                        <tr>
-                            <th>Outputs:</th>
-                            <td id="modelOutputs"></td>
-                        </tr>
-                    </table>
-                </div>
-                
-                <div style="margin-top: 1.5rem;">
-                    <h3 class="neon-text">Results</h3>
-                    <div id="outputContainer" class="output-container"></div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>Free. Open Source. <span class="neon-text">Moonshiner-approved.</span></p>
-        </div>
+  <header class="wl-header">
+    <div class="logo">
+      <img src="../media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
+      <h1><a href="index.html" style="text-decoration: none;letter-spacing: 0px; color: inherit; ">White<span>Lightning</span></a></h1>
     </div>
-    
-    <script>
-        let loadedModel = null;
-        let session = null;
-        let modelInputs = null;
-        let modelOutputs = null;
-        
-        // Elements
-        const uploadArea = document.getElementById('uploadArea');
-        const modelUpload = document.getElementById('modelUpload');
-        const modelInfo = document.getElementById('modelInfo');
-        const modelName = document.getElementById('modelName');
-        const modelError = document.getElementById('modelError');
-        const errorMessage = document.getElementById('errorMessage');
-        const inputSection = document.getElementById('inputSection');
-        const resultsSection = document.getElementById('resultsSection');
-        const inputType = document.getElementById('inputType');
-        const randomInputConfig = document.getElementById('randomInputConfig');
-        const customInputConfig = document.getElementById('customInputConfig');
-        const inputShape = document.getElementById('inputShape');
-        const inputDataType = document.getElementById('inputDataType');
-        const customInputData = document.getElementById('customInputData');
-        const runButton = document.getElementById('runButton');
-        const runStatus = document.getElementById('runStatus');
-        const outputContainer = document.getElementById('outputContainer');
-        const modelInputsEl = document.getElementById('modelInputs');
-        const modelOutputsEl = document.getElementById('modelOutputs');
-        
-        // Event listeners
-        uploadArea.addEventListener('click', () => modelUpload.click());
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.style.borderColor = '#39ff14';
-            uploadArea.style.backgroundColor = 'rgba(57, 255, 20, 0.05)';
-        });
-        
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.style.borderColor = '#333';
-            uploadArea.style.backgroundColor = '';
-        });
-        
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.style.borderColor = '#333';
-            uploadArea.style.backgroundColor = '';
-            
-            if (e.dataTransfer.files.length > 0) {
-                handleModelUpload(e.dataTransfer.files[0]);
-            }
-        });
-        
-        modelUpload.addEventListener('change', (e) => {
-            if (e.target.files.length > 0) {
-                handleModelUpload(e.target.files[0]);
-            }
-        });
-        
-        inputType.addEventListener('change', () => {
-            if (inputType.value === 'random') {
-                randomInputConfig.style.display = 'block';
-                customInputConfig.style.display = 'none';
-            } else {
-                randomInputConfig.style.display = 'none';
-                customInputConfig.style.display = 'block';
-            }
-        });
-        
-        runButton.addEventListener('click', runModel);
-        
-        async function handleModelUpload(file) {
-            resetUI();
-            
-            try {
-                // Read file as array buffer
-                const arrayBuffer = await readFileAsArrayBuffer(file);
-                loadedModel = new Uint8Array(arrayBuffer);
-                
-                // Show model info
-                modelName.textContent = file.name;
-                modelInfo.classList.remove('hidden');
-                
-                // Initialize ONNX session
-                try {
-                    // Create ONNX session
-                    session = await ort.InferenceSession.create(loadedModel);
-                    
-                    // Get model inputs and outputs
-                    modelInputs = session.inputNames;
-                    modelOutputs = session.outputNames;
-                    
-                    // Update UI
-                    modelInputsEl.textContent = modelInputs.join(', ');
-                    modelOutputsEl.textContent = modelOutputs.join(', ');
-                    
-                    // Suggest default input shape based on first input
-                    if (modelInputs.length > 0) {
-                        const firstInput = session.inputNames[0];
-                        const inputShape = session._inputs[0].dims;
-                        document.getElementById('inputShape').value = inputShape.join(',');
-                    }
-                    
-                    // Show input section
-                    inputSection.style.display = 'block';
-                    resultsSection.style.display = 'block';
-                    
-                } catch (e) {
-                    showError("Failed to initialize ONNX session: " + e.message);
-                }
-                
-            } catch (e) {
-                showError("Failed to read model file: " + e.message);
-            }
-        }
-        
-        function readFileAsArrayBuffer(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
-                reader.readAsArrayBuffer(file);
-            });
-        }
-        
-        async function runModel() {
-            if (!session) {
-                showError("No model loaded");
-                return;
-            }
-            
-            // Show running status
-            runStatus.classList.remove('hidden');
-            runButton.disabled = true;
-            outputContainer.innerHTML = '';
-            
-            try {
-                let feeds = {};
-                
-                if (inputType.value === 'random') {
-                    // Parse input shape
-                    const shape = inputShape.value.split(',').map(s => parseInt(s.trim()));
-                    if (shape.some(isNaN)) {
-                        throw new Error("Invalid input shape");
-                    }
-                    
-                    // Generate random data
-                    const dataType = inputDataType.value;
-                    const size = shape.reduce((a, b) => a * b, 1);
-                    let data;
-                    
-                    if (dataType === 'float32') {
-                        data = new Float32Array(size);
-                        for (let i = 0; i < size; i++) {
-                            data[i] = Math.random() * 2 - 1; // Random values between -1 and 1
-                        }
-                    } else if (dataType === 'int32') {
-                        data = new Int32Array(size);
-                        for (let i = 0; i < size; i++) {
-                            data[i] = Math.floor(Math.random() * 100) - 50; // Random values between -50 and 49
-                        }
-                    } else if (dataType === 'int64') {
-                        data = new BigInt64Array(size);
-                        for (let i = 0; i < size; i++) {
-                            data[i] = BigInt(Math.floor(Math.random() * 100) - 50); // Random values between -50 and 49
-                        }
-                    }
-                    
-                    // Create tensor
-                    const tensor = new ort.Tensor(dataType, data, shape);
-                    
-                    // Set input feed
-                    feeds[modelInputs[0]] = tensor;
-                } else {
-                    // Parse custom input
-                    try {
-                        const customData = JSON.parse(customInputData.value);
-                        
-                        for (const inputName in customData) {
-                            const input = customData[inputName];
-                            const dims = input.dims;
-                            const data = input.data;
-                            
-                            if (!dims || !data) {
-                                throw new Error(`Missing dims or data for input ${inputName}`);
-                            }
-                            
-                            // Create tensor
-                            const tensor = new ort.Tensor('float32', new Float32Array(data), dims);
-                            feeds[inputName] = tensor;
-                        }
-                    } catch (e) {
-                        throw new Error("Invalid custom input data: " + e.message);
-                    }
-                }
-                
-                // Run model
-                console.log("Running model with inputs:", feeds);
-                const results = await session.run(feeds);
-                
-                // Display results
-                outputContainer.innerHTML = '';
-                
-                for (const outputName in results) {
-                    const output = results[outputName];
-                    const data = output.data;
-                    const dims = output.dims;
-                    
-                    const outputDiv = document.createElement('div');
-                    outputDiv.innerHTML = `<strong class="neon-text">${outputName}</strong> <span class="badge">shape: [${dims.join(', ')}]</span>`;
-                    
-                    // Show preview of data
-                    const dataPreview = Array.from(data.slice(0, 10));
-                    const dataStr = dataPreview.join(', ') + (data.length > 10 ? '...' : '');
-                    
-                    const dataDiv = document.createElement('div');
-                    dataDiv.textContent = dataStr;
-                    dataDiv.style.marginBottom = '10px';
-                    dataDiv.style.marginTop = '5px';
-                    
-                    outputDiv.appendChild(dataDiv);
-                    outputContainer.appendChild(outputDiv);
-                }
-                
-            } catch (e) {
-                showError("Model execution failed: " + e.message);
-                outputContainer.textContent = "Error: " + e.message;
-            } finally {
-                runStatus.classList.add('hidden');
-                runButton.disabled = false;
-            }
-        }
-        
-        function showError(message) {
-            errorMessage.textContent = message;
-            modelError.classList.remove('hidden');
-        }
-        
-        function resetUI() {
-            modelInfo.classList.add('hidden');
-            modelError.classList.add('hidden');
-            runStatus.classList.add('hidden');
-        }
-    </script>
+    <nav>
+      <ul>
+        <li><a id="plgr_btn" href="#playground">Playground</a></li>
+        <li><a href="../pages/docs.html">Getting Started</a></li>
+        <li><a href="https://github.com/whitelightning/distill" target="_blank">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="tmuxai-container">
+    <header>
+      <h1>
+        <span class="neon-green">ONNX</span> Model Playground
+      </h1>
+      <p class="tagline">Run machine learning models directly in your browser</p>
+    </header>
+
+    <div class="workflow-bar">
+      <div class="workflow-step active">📁 Choose Model</div>
+      <div class="arrow">→</div>
+      <div class="workflow-step">⚙️ Configure</div>
+      <div class="arrow">→</div>
+      <div class="workflow-step">🚀 Run</div>
+      <div class="arrow">→</div>
+      <div class="workflow-step">📊 Results</div>
+    </div>
+  </div>
+  <div class="playground-panel">
+    <div class="playground-controls">
+      <select id="modelTypeSelect"></select>
+      <select id="modelSelect"></select>
+      <select id="modelSubclassSelect" style="display:none"></select>
+      <span id="modelStatus" class="chip">No model loaded</span>
+      <button id="uploadCustomBtn" class="button">Upload Custom</button>
+    </div>
+    <div id="chatArea" class="chat-area"></div>
+    <form id="inputForm" class="input-bar">
+      <input id="inputText" type="text" placeholder="Enter text to classify..." autocomplete="off" />
+      <button id="classifyBtn" class="button" type="submit">Classify</button>
+    </form>
+  </div>
+  <footer>
+    <p>Free. Open Source. <span class="neon-green">Moonshiner-approved.</span></p>
+  </footer>
+  <script src="../scripts/playground.js"></script>
 </body>
 </html>

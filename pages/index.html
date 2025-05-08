@@ -1,103 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WhiteLightning - LLM Distillation Tool</title>
-  <link rel="stylesheet" href="../styles/style/style.css">
+  <link rel="stylesheet" href="..//styles/index.css">
 </head>
+
 <body>
-  <header>
+  <header class="wl-header">
     <div class="logo">
-      <img src="../styles/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
-      <h1>WhiteLightning.ai</h1>
+      <img src="../media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
+      <h1><a href="index.html" style="text-decoration: none;letter-spacing: 0px; color: inherit; ">White<span>Lightning</span></a></h1>
     </div>
     <nav>
       <ul>
-        <li><a href="playground.html">Playground</a></li>
-        <li><a href="#documentation">Docs</a></li>
-        <li><a href="https://github.com/username/whitelightning" target="_blank">GitHub</a></li>
+        <li><a id="plgr_btn" href="../pages/playground.html">Playground</a></li>
+        <li><a href="../pages/docs.html">Getting Started</a></li>
+        <li><a href="https://github.com/whitelightning/distill" target="_blank">GitHub</a></li>
       </ul>
     </nav>
   </header>
   
   <main class="container">
     <section class="hero">
-      <h1>What the Hell Is This?</h1>
-      <div class="accent-underline"></div>
+      <div class="hero-title">
+        <h1>AI-Powered, <span>Non-Intrusive</span> LLM Distillation Tool</h1>
+      </div>
       <p class="hero-subtitle">
-        WhiteLightning.ai creates synthetic data and trains classifiers using the power of large language models. Then it distills that into ONNX — a universal model format you can deploy anywhere: Raspberry Pis, phones, edge devices, microwaves (okay maybe not microwaves).
+        WhiteLightning creates synthetic data and trains classifiers using the power of large language models. Then it
+        distills that into ONNX — a universal model format you can deploy anywhere: Raspberry Pis, phones, edge devices,
+        or embedded systems.
       </p>
-      
-      <div class="process-flow">
-        <div class="process-step">
-          <div class="emoji">💬</div>
-          <div>Prompt</div>
-        </div>
-        <div class="arrow">→</div>
-        <div class="process-step">
-          <div class="emoji">🤖</div>
-          <div>Dummy Data</div>
-        </div>
-        <div class="arrow">→</div>
-        <div class="process-step">
-          <div class="emoji">🧠</div>
-          <div>Model</div>
-        </div>
-        <div class="arrow">→</div>
-        <div class="process-step">
-          <div class="emoji">📦</div>
-          <div>ONNX</div>
-        </div>
-        <div class="arrow">→</div>
-        <div class="process-step">
-          <div class="emoji">🚀</div>
-          <div>Deploy</div>
-        </div>
-      </div>
-      
-      <div>
-        <a href="playground.html" class="button button-primary">Try Playground</a>
-        <a href="#documentation" class="button">Read Docs</a>
-      </div>
-    </section>
-    
-    <section>
-      <h2 class="tagline">Why buy the whole cow when you can distill the good stuff?</h2>
-      <div class="accent-underline"></div>
-      
-      <div class="features" id="features">
-        <div class="feature-card">
-          <div class="icon">💰</div>
-          <h3>Stop Paying for Cloud APIs</h3>
-          <p>Don't rent intelligence by the query. Own your models.</p>
-        </div>
+
         
-        <div class="feature-card">
-          <div class="icon">🏃</div>
-          <h3>Run It Anywhere</h3>
-          <p>Deploy on your old laptop, a Pi Zero, a potato. No GPU required.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="icon">✏️</div>
-          <h3>Create Models Without Real Data</h3>
-          <p>Ask an LLM to make fake-but-good-enough data. Train on it.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="icon">🔒</div>
-          <h3>Control Your Data, Control Your Future</h3>
-          <p>No creepy telemetry. No vendor lock-in.</p>
-        </div>
-      </div>
-    </section>
-    
-    <section class="demo-section" id="playground">
-      <h2>Terminal Assistant</h2>
-      <div class="accent-underline"></div>
-      <p>Our non-intrusive terminal assistant works alongside you in a tmux window, helping you be more productive.</p>
       
+   
+
       <div class="terminal-demo">
         <div class="terminal-header">
           <div class="terminal-circle red"></div>
@@ -105,71 +45,145 @@
           <div class="terminal-circle green"></div>
         </div>
         <div class="terminal-content">
-          <p>
-            <span class="prompt">$ </span>whitelightning find large files and cleanup some space
+          <p><span class="prompt">$ </span><span class="user-input">whitelightning create classifier --type binary
+              --task "spam detection"</span></p>
+          <p><span class="ai-response">WhiteLightning > </span>I'll help you create a binary classifier for spam
+            detection.</p>
+          <p><span class="ai-response">WhiteLightning > </span>First, I'll generate synthetic training data using LLM...
           </p>
-          <p class="response">
-            <span class="prompt">WhiteLightning > </span>I'll help you find large files taking up space in this directory.
-          </p>
-          <p class="response">
-            <span class="prompt">WhiteLightning > </span>find . -type f -size +100M -exec du -h {} \; | sort -rh | head -5
-          </p>
-          <p class="response">
-            Do you want to execute this command? [Yes/No/Edit]:
-          </p>
-          <p class="response">
-            <span class="prompt">WhiteLightning > </span>Found several large files in node_modules and logs directories.
-          </p>
-          <p class="response">
-            <span class="prompt">WhiteLightning > </span>rm -i ./logs/debug-*.log
-          </p>
-          <p class="response">
-            Do you want to execute this command? [Yes/No/Edit]: _
-          </p>
+          <p><span class="ai-response">WhiteLightning > </span>Created 1000 examples (500 spam, 500 ham)</p>
+          <p><span class="ai-response">WhiteLightning > </span>Training lightweight classifier model...</p>
+          <p><span class="ai-response">WhiteLightning > </span>Model trained successfully. Accuracy: 94.2%</p>
+          <p><span class="ai-response">WhiteLightning > </span>Exporting to ONNX format...</p>
+          <p><span class="ai-response">WhiteLightning > </span>Saved model to spam_classifier.onnx (2.1MB)</p>
+          <p><span class="prompt">$ </span><span class="user-input">_</span></p>
         </div>
+      </div>
+      <div class="process-flow">
+        <div class="process-step">
+          <div class="emoji">💬</div>
+          <div class="step-name">Prompt</div>
+        </div>
+        <div class="arrow">→</div>
+        <!-- <div class="process-step">ßß
+          <div class="emoji">🤖</div>
+          <div class="step-name">Dummy Data</div>
+        </div> -->
+        <!-- <div class="arrow">→</div> -->
+        <div class="process-step">
+          <div class="emoji">🧠</div>
+          <div class="step-name">Model</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="process-step">
+          <div class="emoji">📦</div>
+          <div class="step-name">ONNX</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="process-step">
+          <div class="emoji">🚀</div>
+          <div class="step-name">Deploy</div>
+        </div>
+      </div>
+
+      <div>
+        <a href="../pages/playground_2.html" class="button button-primary">Try Playground</a>
+        <a href="#documentation" class="button">Getting Started</a>
       </div>
     </section>
     
-    <section id="documentation">
-      <h2>Documentation</h2>
-      <div class="accent-underline"></div>
-      
-      <div class="features">
-        <div class="feature-card">
-          <h3>CONTEXT-AWARE TERMINAL ASSISTANCE</h3>
-          <p>WhiteLightning reads and understands what's displayed across all your terminal panes in real-time, providing intelligent help based on what you're actually working on.</p>
+
+    <div class="section-title">
+      <span class="number">01</span>
+      <h2>Features</h2>
+    </div>
+
+    <div class="features" id="features">
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>STOP PAYING FOR CLOUD APIs</h3>
+        <p>Don't rent intelligence by the query. Own your models and run them locally without recurring API costs.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🏃</div>
+        <h3>RUN IT ANYWHERE</h3>
+        <p>Deploy on your old laptop, a Pi Zero, a potato. No GPU required. Optimized for low-resource environments.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">✏️</div>
+        <h3>CREATE MODELS WITHOUT REAL DATA</h3>
+        <p>Ask an LLM to generate synthetic training data. Build models without compromising privacy or when data is
+          scarce.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>CONTROL YOUR DATA</h3>
+        <p>No creepy telemetry. No vendor lock-in. Your data stays on your devices where it belongs.</p>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <span class="number">02</span>
+      <h2>Demo</h2>
+    </div>
+
+    <section class="demo-section" id="demo">
+      <p>Watch WhiteLightning in action. From prompt to deployment in minutes.</p>
+      <div class="terminal-demo">
+        <div class="terminal-header">
+          <div class="terminal-circle red"></div>
+          <div class="terminal-circle yellow"></div>
+          <div class="terminal-circle green"></div>
         </div>
-        
-        <div class="feature-card">
-          <h3>ZERO-CONFIGURATION SETUP</h3>
-          <p>Works instantly with your existing tmux setup without requiring special shells, wrappers, or terminal emulators. Just install and run.</p>
-        </div>
-        
-        <div class="feature-card">
-          <h3>UNIVERSAL TERMINAL COMPATIBILITY</h3>
-          <p>Works with nested shells, SSH connections, database CLIs, network equipment shells (Cisco IOS, Juniper, etc.), and any other text-based terminal interface.</p>
-        </div>
-        
-        <div class="feature-card">
-          <h3>LLM DISTILLATION</h3>
-          <p>Convert large language models into efficient binary or multiclass classifiers with minimal computational requirements.</p>
+        <div class="terminal-content">
+          <p><span class="prompt">$ </span><span class="user-input">pip install -r requirements/dev.txt</span></p>
+          <p><span class="prompt">$ </span><span class="user-input">pre-commit install</span></p>
+          <p><span class="prompt">$ </span><span class="user-input">detect-secrets scan > .secrets.baseline</span></p>
+          <p><span class="prompt">$ </span><span class="user-input">_</span></p>
         </div>
       </div>
       
-      <div class="cta">
-        <h3>Ready to get started?</h3>
-        <pre><code>curl -fsSL https://get.whitelightning.ai | bash</code></pre>
-        <div>
-          <a href="BINARY_CLASSIFIER_AGENT.MD" class="button">Binary Classifier Docs</a>
-          <a href="MULTICLASS_CLASSIFIER_AGENT.MD" class="button">Multiclass Classifier Docs</a>
-        </div>
-      </div>
     </section>
   </main>
-  
-  <footer>
-    <p>Free. Open Source. Moonshiner-approved.</p>
-    <p>&copy; 2025 WhiteLightning.ai</p>
+
+  <footer class="site-footer">
+    <div class="footer-content container">
+      <div class="footer-brand">
+        <img src="../styles/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo" class="footer-logo">
+        <div>
+          <div class="footer-title">WhiteLightning</div>
+          <div class="footer-desc">AI-Powered, Non-Intrusive LLM Distillation Tool</div>
+        </div>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-col">
+          <div class="footer-col-title">Docs & Links</div>
+          <a href="#documentation">Documentation</a>
+          <a href="../pages/playground_2.html">Playground</a>
+          <a href="https://github.com/whitelightning/distill" target="_blank">GitHub</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Resources</div>
+          <a href="#features">Features</a>
+          <a href="#demo">Demo</a>
+          <a href="#">ONNX Format</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Project</div>
+          <a href="https://github.com/whitelightning/distill/issues" target="_blank">Report Issues</a>
+          <a href="#">License</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <span>2025 WhiteLightning Project</span>
+      <span>Apache License 2.0</span>
+      <span>contact@whitelightning.ai</span>
+    </div>
   </footer>
 </body>
 </html>
+      
