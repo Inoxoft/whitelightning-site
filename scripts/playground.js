@@ -66,7 +66,7 @@ function setStatus(text, loaded) {
   $('modelStatus').style.color = loaded ? '#fff' : '#39ff14';
 }
 
-// Load preprocessing artifacts for binary classifier
+
 async function loadBinaryArtifacts(modelPath) {
   try {
     const tfidfResp = await fetch(`${modelPath}/vocab.json`);
@@ -85,7 +85,7 @@ async function loadBinaryArtifacts(modelPath) {
   }
 }
 
-// Load preprocessing artifacts for multiclass classifier
+
 async function loadMulticlassArtifacts(modelPath) {
   try {
     const tokenizerResp = await fetch(`${modelPath}/vocab.json`);
@@ -100,7 +100,6 @@ async function loadMulticlassArtifacts(modelPath) {
   }
 }
 
-// Text preprocessing for binary models
 async function preprocessBinaryText(text, artifacts) {
   const { vocab, idf, mean, scale } = artifacts;
   const vector = new Float32Array(5000).fill(0);
@@ -112,25 +111,25 @@ async function preprocessBinaryText(text, artifacts) {
       vector[vocab[word]] = wordCounts[word] * idf[vocab[word]];
     }
   }
-  // Scale the vector
+
   for (let i = 0; i < 5000; i++) {
     vector[i] = (vector[i] - mean[i]) / scale[i];
   }
   return vector;
 }
 
-// Text preprocessing for multiclass models
+
 function preprocessMulticlassText(text, tokenizer, maxLen = 30) {
   const oovToken = '<OOV>';
   const words = text.toLowerCase().split(/\s+/);
   let sequence = words.map(word => tokenizer[word] || tokenizer[oovToken] || 1);
-  sequence = sequence.slice(0, maxLen); // Truncate to maxLen
-  const padded = new Array(maxLen).fill(0); // Pad with zeros
+  sequence = sequence.slice(0, maxLen); 
+  const padded = new Array(maxLen).fill(0); 
   sequence.forEach((val, idx) => (padded[idx] = val));
   return padded;
 }
 
-// Run inference for binary classifier
+
 async function runBinaryInference(session, text, artifacts) {
   try {
     const vector = await preprocessBinaryText(text, artifacts);
@@ -147,7 +146,7 @@ async function runBinaryInference(session, text, artifacts) {
   }
 }
 
-// Run inference for multiclass classifier
+
 async function runMulticlassInference(session, text, artifacts) {
   try {
     const { tokenizer, labelMap } = artifacts;
@@ -186,10 +185,10 @@ async function loadModel() {
       modelPath += `(${selectedModelSubclass})`;
     }
 
-    // Load ONNX model
+ 
     session = await ort.InferenceSession.create(`${modelPath}/model.onnx`);
     
-    // Load artifacts based on model type
+
     artifacts = selectedModel.type === 'binary_classifier' 
       ? await loadBinaryArtifacts(modelPath)
       : await loadMulticlassArtifacts(modelPath);
@@ -225,24 +224,24 @@ async function handleClassify(e) {
   renderMessages();
   
   try {
-    // Run inference based on model type
+  
     const result = selectedModel.type === 'binary_classifier'
       ? await runBinaryInference(session, input, artifacts)
       : await runMulticlassInference(session, input, artifacts);
     
-    // Remove the processing message
+   
     messages.pop();
     
-    // Add the result message
+   
     messages.push({ 
       text: `Classification: ${result.label} (Score: ${result.probability.toFixed(4)})`, 
       isUser: false 
     });
   } catch (error) {
-    // Remove the processing message
+   
     messages.pop();
     
-    // Add the error message
+    
     messages.push({ 
       text: `Error processing input: ${error.message}`, 
       isUser: false 
@@ -256,7 +255,7 @@ async function handleClassify(e) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  // Initialize ONNX runtime if available
+ 
   if (!window.ort) {
     console.error('ONNX Runtime Web not available');
     messages.push({ 
