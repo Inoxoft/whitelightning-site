@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Classifier Training Agent - WhiteLightning</title>
+    <link rel="stylesheet" href="styles/docs.css">
+</head>
+<body>
+    <header class="wl-header">
+        <div class="logo">
+            <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
+            <h1><a href="index.html" style="text-decoration: none;letter-spacing: 0px; color: inherit;">White<span>Lightning</span></a></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="playground.html">Playground</a></li>
+                <li><a href="docs.html">Documentation</a></li>
+                <li><a href="https://github.com/whitelightning/distill" target="_blank">GitHub</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="docs-container">
+        <div class="docs-sidebar">
+            <nav class="docs-nav">
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#workflow">Workflow</a></li>
+                    <li><a href="#usage">Command-Line Usage</a></li>
+                    <li><a href="#parameters">Parameters</a></li>
+                    <li><a href="#output">Output Structure</a></li>
+                    <li><a href="#features">Key Features</a></li>
+                    <li><a href="#file-docs">File Documentation</a></li>
+                    <li><a href="#examples">Example Workflow</a></li>
+                    <li><a href="#next-steps">Next Steps</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <main class="docs-content">
+            <section id="overview">
+                <h1>Binary Classifier Training Agent</h1>
+                <p>The Binary Classifier Training Agent is a comprehensive tool for creating and training binary classification models using LLM-generated synthetic data. This document outlines the general workflow, available commands, and parameters.</p>
+            </section>
+
+            <section id="workflow">
+                <h2>Workflow</h2>
+                <ol>
+                    <li><strong>Configuration Generation</strong>: The agent first analyzes your problem description and creates a config with appropriate prompts.</li>
+                    <li><strong>Data Generation & Prompt Refinement</strong>: The agent generates synthetic data and iteratively improves the prompts based on data quality.</li>
+                    <li><strong>Edge Case Generation</strong>: The agent creates challenging test cases to thoroughly evaluate the model.</li>
+                    <li><strong>Model Performance Analysis</strong>: The agent analyzes the model's performance and provides improvement suggestions.</li>
+                    <li><strong>Documentation</strong>: All configurations, prompts, and analysis are saved for future reference.</li>
+                </ol>
+            </section>
+
+            <section id="usage">
+                <h2>Command-Line Usage</h2>
+                <pre><code>python -m agents.binary_classifier_agent -p="Your classification problem description" [options]</code></pre>
+            </section>
+
+            <section id="parameters">
+                <h2>Parameters</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                            <th>Default</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>-p --problem_description</code></td>
+                            <td>Description of your classification problem</td>
+                            <td>(Required)</td>
+                        </tr>
+                        <tr>
+                            <td><code>-m --model</code></td>
+                            <td>LLM to use for training data generation</td>
+                            <td><code>openai/gpt-4o-mini</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>--config-model</code></td>
+                            <td>LLM to use for prompting and config</td>
+                            <td><code>scikit-learn</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>-l --library</code></td>
+                            <td>ML library to use (pytorch/tensorflow/scikit-learn)</td>
+                            <td><code>tensorflow</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>-o --output-path</code></td>
+                            <td>Directory to save model and data</td>
+                            <td><code>./models</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>--refinement-cycles</code></td>
+                            <td>Number of prompt improvement iterations</td>
+                            <td><code>1</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>--edge-cases</code></td>
+                            <td>Use config LLM to generate more sophisticated testing data for feedback</td>
+                            <td>True</td>
+                        </tr>
+                        <tr>
+                            <td><code>--batch-size</code></td>
+                            <td>Number of parallel requests to run when generating training data</td>
+                            <td><code>10</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>--lang</code></td>
+                            <td>Language for training data</td>
+                            <td><code>english</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="output">
+                <h2>Output Structure</h2>
+                <pre><code>./models/[model_prefix]/
+├── config.json                    # Complete configuration and analysis
+├── data/
+│   ├── api_requests/              # Folder with all API requests and responses
+│   └── edge_case_data.csv         # Challenging test cases
+│   └── edge_case_predictions.csv  # Challenging test cases predictions
+│   └── generation_config.json     # Propmts used for data generation and training and final verdict with recommendations
+│   └── model.onnx                 # ONNX model file
+│   └── model_scaler.json          # StandardScaler parameters
+│   └── model_vocab.json           # TF-IDF vocabulary
+│   └── training_data.csv          # Generated training data
+│   * + native model files, depending on the library</code></pre>
+            </section>
+
+            <section id="features">
+                <h2>Key Features</h2>
+                <ol>
+                    <li><strong>Automatic Configuration</strong>: Generates appropriate prompts based on your problem description.</li>
+                    <li><strong>Prompt Evolution</strong>: Iteratively improves prompts based on data quality feedback.</li>
+                    <li><strong>Edge Case Testing</strong>: Identifies challenging scenarios that might cause model failure.</li>
+                    <li><strong>Performance Analysis</strong>: Provides insights on model strengths and weaknesses.</li>
+                    <li><strong>Comprehensive Documentation</strong>: Tracks the entire process from initial configuration to final thoughts.</li>
+                </ol>
+            </section>
+
+            <section id="file-docs">
+                <h2>File Documentation</h2>
+                <p>The <code>generation_config.json</code> file contains:</p>
+                <ul>
+                    <li>Problem summary and description</li>
+                    <li>Data generation prompts (initial and refined versions)</li>
+                    <li>Model configuration</li>
+                    <li>Prompt evolution history with quality evaluations</li>
+                    <li>Training data statistics</li>
+                    <li>Edge case information</li>
+                    <li>Performance analysis and recommendations</li>
+                </ul>
+                <p>This allows you to review the entire development process and understand the strengths and limitations of your model.</p>
+            </section>
+
+            <section id="examples">
+                <h2>Example Workflow</h2>
+                <pre><code># Basic usage with required parameters
+python -m agents.binary_classifier_agent -p="Detect phishing emails that attempt to steal user credentials"
+
+# Advanced usage with custom settings
+python -m agents.binary_classifier_agent -p="Identify toxic comments in online discussions" \
+  --model="anthropic/claude-3.7-sonnet" \
+  --library="pytorch" \
+  --output-path="./customer_models" \
+  --refinement-cycles=3</code></pre>
+            </section>
+
+            <section id="next-steps">
+                <h2>Next Steps After Training</h2>
+                <ol>
+                    <li>Review the configuration file to understand the model's strengths and weaknesses</li>
+                    <li>Examine edge cases to identify potential areas for improvement</li>
+                    <li>Use the generated data for training with your preferred ML library</li>
+                    <li>Deploy the model in your application</li>
+                    <li>Monitor performance and iterate as needed</li>
+                </ol>
+            </section>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content container">
+            <div class="footer-brand">
+                <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo" class="footer-logo">
+                <div>
+                    <div class="footer-title">WhiteLightning</div>
+                    <div class="footer-desc">AI-Powered, Non-Intrusive LLM Distillation Tool</div>
+                </div>
+            </div>
+            <div class="footer-columns">
+                <div class="footer-col">
+                    <div class="footer-col-title">Docs & Links</div>
+                    <a href="docs.html">Documentation</a>
+                    <a href="playground.html">Playground</a>
+                    <a href="https://github.com/whitelightning/distill" target="_blank">GitHub</a>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-col-title">Resources</div>
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#demo">Demo</a>
+                    <a href="#">ONNX Format</a>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-col-title">Project</div>
+                    <a href="https://github.com/whitelightning/distill/issues" target="_blank">Report Issues</a>
+                    <a href="#">License</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <span>2025 WhiteLightning Project</span>
+            <span>Apache License 2.0</span>
+            <span>contact@whitelightning.ai</span>
+        </div>
+    </footer>
+
+    <script src="scripts/mobile-menu.js"></script>
+</body>
+</html> 

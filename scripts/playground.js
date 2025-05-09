@@ -1,4 +1,3 @@
-
 const BINARY_MODELS = [
   { name: 'Spam Classifier', type: 'binary_classifier', prefix: 'spam_classifier', subClasses: [] },
   { name: 'Leading Questions', type: 'binary_classifier', prefix: 'leading_questions', subClasses: [] },
@@ -22,6 +21,14 @@ let artifacts = null;
 let isLoading = false;
 let isProcessing = false;
 let messages = [];
+
+const initialMessages = [
+  { text: 'Welcome to WhiteLightning Model Playground', isUser: false },
+  { text: 'Select a model type and model to begin', isUser: false },
+  { text: 'You can try binary classification or multiclass classification', isUser: false },
+  { text: 'Upload your own model or use our pre-trained models', isUser: false },
+  { text: 'Type your text and click Classify to get started', isUser: false }
+];
 
 function $(id) { return document.getElementById(id); }
 
@@ -52,12 +59,23 @@ function renderModelSubclassOptions() {
     selectedModel.subClasses.map(s => `<option value="${s}">${s}</option>`).join('');
 }
 
-function renderMessages() {
-  const chat = $('chatArea');
-  chat.innerHTML = messages.map(m =>
-    `<div class="message${m.isUser ? ' user' : ''}">${m.text}</div>`
-  ).join('');
-  chat.scrollTop = chat.scrollHeight;
+function updateChat() {
+  const chatArea = document.querySelector('.terminal-content');
+  
+  if (messages.length === 0) {
+    // Keep the initial animated messages
+    return;
+  }
+  
+  // Clear the initial messages and show user messages
+  chatArea.innerHTML = '';
+  messages.forEach(msg => {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${msg.isUser ? 'user' : ''}`;
+    messageDiv.textContent = msg.text;
+    chatArea.appendChild(messageDiv);
+  });
+  chatArea.scrollTop = chatArea.scrollHeight;
 }
 
 function setStatus(text, loaded) {
@@ -65,7 +83,6 @@ function setStatus(text, loaded) {
   $('modelStatus').style.background = loaded ? '#2db30d' : '#222';
   $('modelStatus').style.color = loaded ? '#fff' : '#39ff14';
 }
-
 
 async function loadBinaryArtifacts(modelPath) {
   try {
@@ -84,7 +101,6 @@ async function loadBinaryArtifacts(modelPath) {
     throw new Error(`Failed to load preprocessing artifacts: ${error.message}`);
   }
 }
-
 
 async function loadMulticlassArtifacts(modelPath) {
   try {
@@ -118,7 +134,6 @@ async function preprocessBinaryText(text, artifacts) {
   return vector;
 }
 
-
 function preprocessMulticlassText(text, tokenizer, maxLen = 30) {
   const oovToken = '<OOV>';
   const words = text.toLowerCase().split(/\s+/);
@@ -128,7 +143,6 @@ function preprocessMulticlassText(text, tokenizer, maxLen = 30) {
   sequence.forEach((val, idx) => (padded[idx] = val));
   return padded;
 }
-
 
 async function runBinaryInference(session, text, artifacts) {
   try {
@@ -145,7 +159,6 @@ async function runBinaryInference(session, text, artifacts) {
     throw new Error(`Inference failed: ${error.message}`);
   }
 }
-
 
 async function runMulticlassInference(session, text, artifacts) {
   try {
@@ -177,21 +190,38 @@ async function loadModel() {
   isLoading = true;
   setStatus('Loading...', false);
   messages.push({ text: `Loading model: ${selectedModel.name}...`, isUser: false });
-  renderMessages();
+  updateChat();
   
   try {
-    let modelPath = `../models/${selectedModel.type}/${selectedModel.prefix}`;
-    if (selectedModel.subClasses.length && selectedModelSubclass) {
-      modelPath += `(${selectedModelSubclass})`;
+    // Check if this is a custom uploaded model
+    const modelOption = document.querySelector(`#modelSelect option[value="${selectedModel.name}"]`);
+    if (modelOption && modelOption.dataset.isCustom === 'true') {
+      // Use the custom model data
+      session = window.currentModel.session;
+      artifacts = selectedModel.type === 'binary_classifier' 
+        ? {
+            vocab: window.currentModel.vocab.vocab,
+            idf: window.currentModel.vocab.idf,
+            mean: window.currentModel.scaler.scaler_info.params.mean,
+            scale: window.currentModel.scaler.scaler_info.params.scale
+          }
+        : {
+            tokenizer: window.currentModel.vocab,
+            labelMap: window.currentModel.scaler
+          };
+    } else {
+      // Load pre-trained model
+      let modelPath = `../models/${selectedModel.type}/${selectedModel.prefix}`;
+      if (selectedModel.subClasses.length && selectedModelSubclass) {
+        modelPath += `(${selectedModelSubclass})`;
+      }
+
+      session = await ort.InferenceSession.create(`${modelPath}/model.onnx`);
+
+      artifacts = selectedModel.type === 'binary_classifier' 
+        ? await loadBinaryArtifacts(modelPath)
+        : await loadMulticlassArtifacts(modelPath);
     }
-
- 
-    session = await ort.InferenceSession.create(`${modelPath}/model.onnx`);
-    
-
-    artifacts = selectedModel.type === 'binary_classifier' 
-      ? await loadBinaryArtifacts(modelPath)
-      : await loadMulticlassArtifacts(modelPath);
 
     setStatus('Model loaded', true);
     messages.push({ text: `Model loaded successfully! You can now start classifying text.`, isUser: false });
@@ -201,7 +231,7 @@ async function loadModel() {
   }
   
   isLoading = false;
-  renderMessages();
+  updateChat();
 }
 
 async function handleClassify(e) {
@@ -210,37 +240,32 @@ async function handleClassify(e) {
   if (!input) return;
   
   messages.push({ text: input, isUser: true });
-  renderMessages();
+  updateChat();
   
   if (!session) {
     messages.push({ text: 'Please select a model first', isUser: false });
-    renderMessages();
+    updateChat();
     return;
   }
   
   isProcessing = true;
   setStatus('Processing...', false);
   messages.push({ text: 'Processing input, please wait...', isUser: false });
-  renderMessages();
+  updateChat();
   
   try {
-  
     const result = selectedModel.type === 'binary_classifier'
       ? await runBinaryInference(session, input, artifacts)
       : await runMulticlassInference(session, input, artifacts);
     
-   
     messages.pop();
     
-   
     messages.push({ 
       text: `Classification: ${result.label} (Score: ${result.probability.toFixed(4)})`, 
       isUser: false 
     });
   } catch (error) {
-   
     messages.pop();
-    
     
     messages.push({ 
       text: `Error processing input: ${error.message}`, 
@@ -249,20 +274,19 @@ async function handleClassify(e) {
   } finally {
     isProcessing = false;
     setStatus('Model loaded', true);
-    renderMessages();
+    updateChat();
     $('inputText').value = '';
   }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
- 
   if (!window.ort) {
     console.error('ONNX Runtime Web not available');
     messages.push({ 
       text: 'Error: ONNX Runtime Web not available. Please make sure to include the ONNX Runtime Web library in your HTML.', 
       isUser: false 
     });
-    renderMessages();
+    updateChat();
   }
   
   renderModelTypeOptions();
@@ -277,7 +301,7 @@ window.addEventListener('DOMContentLoaded', () => {
     setStatus('No model loaded', false);
     session = null;
     messages = [];
-    renderMessages();
+    updateChat();
   });
   
   $('modelSelect').addEventListener('change', e => {
@@ -288,7 +312,7 @@ window.addEventListener('DOMContentLoaded', () => {
     setStatus('No model loaded', false);
     session = null;
     messages = [];
-    renderMessages();
+    updateChat();
     loadModel();
   });
   
@@ -297,14 +321,35 @@ window.addEventListener('DOMContentLoaded', () => {
     setStatus('No model loaded', false);
     session = null;
     messages = [];
-    renderMessages();
+    updateChat();
     loadModel();
   });
   
   $('inputForm').addEventListener('submit', handleClassify);
+
+  // Mobile menu functionality
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('nav');
   
-  $('uploadCustomBtn').addEventListener('click', () => {
-    messages.push({ text: 'Custom model upload functionality coming soon!', isUser: false });
-    renderMessages();
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('active');
+    nav.classList.toggle('active');
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function(event) {
+    if (!hamburger.contains(event.target) && !nav.contains(event.target)) {
+      hamburger.classList.remove('active');
+      nav.classList.remove('active');
+    }
+  });
+
+  // Close menu when clicking a link
+  const navLinks = document.querySelectorAll('nav a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      nav.classList.remove('active');
+    });
   });
 });

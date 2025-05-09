@@ -12,10 +12,15 @@
       <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
       <h1><a href="index.html" style="text-decoration: none;letter-spacing: 0px; color: inherit; ">White<span>Lightning</span></a></h1>
     </div>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <nav>
       <ul>
         <li><a  href="playground.html">Playground</a></li>
-        <li><a id="plgr_btn" href="#documentation">Getting Started</a></li>
+        <li><a  id="plgr_btn" href="docs.html">Getting Started</a></li>
         <li><a href="https://github.com/whitelightning/distill" target="_blank">GitHub</a></li>
       </ul>
     </nav>
@@ -42,9 +47,9 @@
         <h1>WhiteLightning - LLM Distillation Tool</h1>
         <p class="lead">A powerful tool designed to distill large language models (LLMs) into lightweight, efficient classifiers.</p>
         
-        <div class="logo-container">
+        <!-- <div class="logo-container">
           <img src="media/image/moonshiner_floppy.jpeg" alt="Moonshiner" class="logo-image">
-        </div>
+        </div> -->
 
         <div class="demo-container">
           <img src="media/gif/cli_usage.gif" alt="CLI Usage" class="demo-gif">
@@ -98,12 +103,12 @@
           <div class="model-card">
             <h3>Binary Classifier</h3>
             <p>Classifies text into two categories (e.g., "positive" vs "negative").</p>
-            <a href="BINARY_CLASSIFIER_AGENT.MD" class="button">Read Documentation</a>
+            <a href="binary-classifier.html" class="button">Read Documentation</a>
           </div>
           <div class="model-card">
             <h3>Multiclass Classifier</h3>
             <p>Classifies text into multiple categories.</p>
-            <a href="MULTICLASS_CLASSIFIER_AGENT.MD" class="button">Read Documentation</a>
+            <a href="multiclass-classifier.html" class="button">Read Documentation</a>
           </div>
         </div>
       </section>
@@ -128,9 +133,41 @@ detect-secrets scan > .secrets.baseline</code></pre>
       </section>
     </main>
   </div>
-
-  <footer>
-    <p>Free. Open Source. <span class="neon-green">Moonshiner-approved.</span></p>
+  <footer class="site-footer">
+    <div class="footer-content container">
+      <div class="footer-brand">
+        <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo" class="footer-logo">
+        <div>
+          <div class="footer-title">WhiteLightning</div>
+          <div class="footer-desc">AI-Powered, Non-Intrusive LLM Distillation Tool</div>
+        </div>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-col">
+          <div class="footer-col-title">Docs & Links</div>
+          <a href="docs.html">Documentation</a>
+          <a href="playground.html">Playground</a>
+          <a href="https://github.com/whitelightning/distill" target="_blank">GitHub</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Resources</div>
+          <a href="index.html#features">Features</a>
+          <a href="index.html#demo">Demo</a>
+          <a href="#">ONNX Format</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Project</div>
+          <a href="https://github.com/whitelightning/distill/issues" target="_blank">Report Issues</a>
+          <a href="#">License</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <span>2025 WhiteLightning Project</span>
+      <span>Apache License 2.0</span>
+      <span>contact@whitelightning.ai</span>
+    </div>
   </footer>
+  <script src="scripts/mobile-menu.js"></script>
 </body>
 </html> 
