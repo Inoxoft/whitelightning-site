@@ -276,9 +276,8 @@ header h1 {
     background-color: #121820;
     border-radius: var(--border-radius);
     overflow: hidden;
-    margin: var(--spacing-md) auto;
+    margin: var(--spacing-md) 0;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    max-width: 800px;
   }
   
   .terminal-header {
@@ -304,8 +303,6 @@ header h1 {
     font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
     font-size: 0.9rem;
     line-height: 1.5;
-    max-width: 100%;
-    overflow-x: auto;
   }
   
   .terminal-content p {

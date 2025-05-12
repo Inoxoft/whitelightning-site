@@ -106,8 +106,6 @@ nav ul {
   display: flex;
   list-style: none;
   gap: var(--spacing-md);
-  margin: 0;
-  padding: 0;
 }
 
 nav a {
@@ -117,12 +115,11 @@ nav a {
   font-weight: 500;
   transition: color 0.2s ease;
 }
-
 #plgr_btn {
   color: var(--main-green);
 }
 
-nav a:hover, nav a.active {
+nav a:hover {
   color: var(--main-green);
 }
 
@@ -742,42 +739,34 @@ footer {
   .footer-content {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.5rem;
+    gap: 2rem;
   }
   
   .footer-columns {
     justify-content: flex-start;
-    gap: 0.5rem;
+    gap: 1rem;
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
   }
   
   .footer-col {
-    min-width: 80px;
+    min-width: 100px;
     flex: 1;
   }
 
   .footer-col-title {
-    font-size: 0.8rem;
-    margin-bottom: 0.2rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
   }
 
   .footer-col a {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
   }
   
   .footer-bottom {
     flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.8rem;
-    text-align: center;
-  }
-
-  .footer-bottom span {
-    display: block;
-    width: 100%;
-    text-align: center;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 } 

@@ -34,9 +34,9 @@
           <li><a href="#what-is-llm">What is LLM Distillation?</a></li>
           <li><a href="#why-onnx">Why ONNX?</a></li>
           <li><a href="#features">Key Features</a></li>
-          <li><a href="#installation">Installation</a></li>
-          <li><a href="#models">Available Models</a></li>
-          <li><a href="#playground">Try It Yourself</a></li>
+          <li><a href="#model-types">Model Types</a></li>
+          <li><a href="#quick-start">Quick Start</a></li>
+          <li><a href="#documentation">Documentation</a></li>
           <li><a href="#contributing">Contributing</a></li>
         </ul>
       </nav>
@@ -45,11 +45,11 @@
     <main class="docs-content">
       <section id="introduction">
         <h1>WhiteLightning - LLM Distillation Tool</h1>
-        <p class="lead">A powerful tool designed to distill large language models (LLMs) into lightweight, efficient classifiers.</p>
+        <p class="lead">WhiteLightning is a powerful tool designed to distill large language models (LLMs) into lightweight, efficient text classifiers. By leveraging advanced techniques, it simplifies the process of creating text classifiers that can run anywhere, from cloud environments to edge devices, using the ONNX format for cross-platform compatibility.</p>
         
-        <!-- <div class="logo-container">
+        <div class="logo-container">
           <img src="media/image/moonshiner_floppy.jpeg" alt="Moonshiner" class="logo-image">
-        </div> -->
+        </div>
 
         <div class="demo-container">
           <img src="media/gif/cli_usage.gif" alt="CLI Usage" class="demo-gif">
@@ -58,7 +58,7 @@
 
       <section id="what-is-llm">
         <h2>What is LLM Distillation?</h2>
-        <p>LLM distillation is the process of transforming large, complex language models into smaller, task-specific models. WhiteLightning focuses on binary and multiclass text classification, enabling users to classify text data into categories like "spam vs ham" or multiple classes with ease. This approach ensures high performance while significantly reducing computational requirements.</p>
+        <p>LLM distillation is the process of transforming large, complex language models into smaller, task-specific models. WhiteLightning focuses on text classification, enabling users to create efficient classifiers for various use cases. This approach ensures high performance while significantly reducing computational requirements.</p>
       </section>
 
       <section id="why-onnx">
@@ -70,69 +70,93 @@
         <h2>Key Features</h2>
         <div class="features-grid">
           <div class="feature-card">
-            <h3>LLM Distillation</h3>
-            <p>Converts large language models into efficient binary or multiclass classifiers.</p>
+            <h3>Multiple Model Types</h3>
+            <p>Support for binary and multiclass classification with different activation types</p>
           </div>
           <div class="feature-card">
             <h3>Cross-Platform Deployment</h3>
-            <p>Export models to ONNX for use in diverse environments.</p>
+            <p>Export models to ONNX for use in diverse environments</p>
           </div>
           <div class="feature-card">
             <h3>Lightweight and Fast</h3>
-            <p>Optimized for performance with minimal resource usage.</p>
+            <p>Optimized for performance with minimal resource usage</p>
           </div>
           <div class="feature-card">
             <h3>Customizable</h3>
-            <p>Supports multiple machine learning frameworks, including TensorFlow, PyTorch, and Scikit-learn.</p>
+            <p>Supports multiple machine learning frameworks (TensorFlow, PyTorch, Scikit-learn)</p>
+          </div>
+          <div class="feature-card">
+            <h3>Multilingual Support</h3>
+            <p>Generate training data in multiple languages</p>
+          </div>
+          <div class="feature-card">
+            <h3>Automatic Configuration</h3>
+            <p>Smart prompt generation and refinement based on your task</p>
           </div>
         </div>
       </section>
 
-      <section id="installation">
-        <h2>Installation</h2>
-        <p>To install WhiteLightning dependencies, use the following command:</p>
-        <div class="code-block">
-          <pre><code>pip install -r requirements/base.txt</code></pre>
-        </div>
-        <p>Create .env file, example `.env.example` is provided in the repository.</p>
-      </section>
-
-      <section id="models">
-        <h2>Available Models</h2>
+      <section id="model-types">
+        <h2>Model Types</h2>
         <div class="models-grid">
           <div class="model-card">
             <h3>Binary Classifier</h3>
-            <p>Classifies text into two categories (e.g., "positive" vs "negative").</p>
-            <a href="binary-classifier.html" class="button">Read Documentation</a>
+            <p>Simple yes/no or true/false classification with probability output for single class. Ideal for sentiment analysis, spam detection, and content moderation.</p>
+            <a href="binary-classifier.html" class="button">Learn More</a>
           </div>
           <div class="model-card">
-            <h3>Multiclass Classifier</h3>
-            <p>Classifies text into multiple categories.</p>
-            <a href="multiclass-classifier.html" class="button">Read Documentation</a>
+            <h3>Multiclass Sigmoid</h3>
+            <p>Multi-label classification with independent class probabilities. Multiple classes can be active simultaneously. Ideal for topic tagging, emotion detection, and content categorization.</p>
+            <a href="multiclass-classifier.html" class="button">Learn More</a>
+          </div>
+          <div class="model-card">
+            <h3>Multiclass Softmax</h3>
+            <p>Single-label classification with mutually exclusive class probabilities. Only one class can be active at a time. Ideal for news categorization, intent classification, and language detection.</p>
+            <a href="multiclass-classifier.html" class="button">Learn More</a>
           </div>
         </div>
       </section>
 
-      <section id="playground">
-        <h2>Try It Yourself</h2>
-        <p>Visit our <a href="https://white-lightning-playground.vercel.app/" class="neon-link">Playground</a> to experiment with WhiteLightning and see how it can be useful for you. You can test the available models and find some code snippets in supported languages.</p>
+      <section id="quick-start">
+        <h2>Quick Start</h2>
+        <ol>
+          <li>Install dependencies:
+            <div class="code-block">
+              <pre><code>pip install -r requirements/base.txt</code></pre>
+            </div>
+          </li>
+          <li>Set up your environment:
+            <div class="code-block">
+              <pre><code>cp .env.example .env
+# Edit .env with your API keys</code></pre>
+            </div>
+          </li>
+          <li>Run the classifier agent:
+            <div class="code-block">
+              <pre><code>python -m text_classifier.agent -p="Your classification task description"</code></pre>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section id="documentation">
+        <h2>Documentation</h2>
+        <ul>
+          <li><a href="binary-classifier.html" class="neon-link">Binary Classification</a></li>
+          <li><a href="multiclass-classifier.html" class="neon-link">Multiclass Classification</a></li>
+          <li><a href="#" class="neon-link">Model Deployment</a></li>
+          <li><a href="#" class="neon-link">API Reference</a></li>
+        </ul>
       </section>
 
       <section id="contributing">
         <h2>Contributing</h2>
-        <p>We welcome contributions to WhiteLightning! If you have ideas for improvements, bug fixes, or new features, please submit a pull request or open an issue on our GitHub repository.</p>
-        
-        <h3>Development Setup</h3>
-        <div class="code-block">
-          <pre><code>pip install -r requirements/dev.txt
-
-pre-commit install
-
-detect-secrets scan > .secrets.baseline</code></pre>
-        </div>
+        <p>We welcome contributions! Please see our <a href="#" class="neon-link">Contributing Guide</a> for details.</p>
+        <p>This project is licensed under the MIT License - see the <a href="#" class="neon-link">LICENSE</a> file for details.</p>
       </section>
     </main>
   </div>
+
   <footer class="site-footer">
     <div class="footer-content container">
       <div class="footer-brand">

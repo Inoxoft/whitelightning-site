@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiclass Classifier Agent - WhiteLightning</title>
-    <link rel="stylesheet" href="styles/docs.css">
+    <title>Multiclass Classifier Training Agent - WhiteLightning</title>
+    <link rel="stylesheet" href="styles/multiclass-docs.css">
 </head>
 <body>
     <header class="wl-header">
@@ -26,186 +26,192 @@
             <nav class="docs-nav">
                 <ul>
                     <li><a href="#overview">Overview</a></li>
-                    <li><a href="#workflow">Workflow</a></li>
-                    <li><a href="#cli-usage">CLI Usage</a></li>
+                    <li><a href="#use-cases">Use Cases</a></li>
+                    <li><a href="#usage">Usage</a></li>
                     <li><a href="#parameters">Parameters</a></li>
-                    <li><a href="#output">Output Structure</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#examples">Examples</a></li>
-                    <li><a href="#deployment">Deployment Tips</a></li>
-                    <li><a href="#demos">ONNX Model Demos</a></li>
+                    <li><a href="#output">Output</a></li>
+                    <li><a href="#model-details">Model Details</a></li>
+                    <li><a href="#example">Example</a></li>
+                    <li><a href="#best-practices">Best Practices</a></li>
                 </ul>
             </nav>
         </div>
 
         <main class="docs-content">
             <section id="overview">
-                <h1>🧠 Multiclass Classifier Agent</h1>
-                <p>The <strong>Multiclass Classifier Agent</strong> is a modular CLI pipeline for generating datasets and training text classification models (multiclass) in multiple frameworks: <strong>PyTorch</strong>, <strong>TensorFlow</strong>, or <strong>sklearn</strong>. It supports multilingual data, ONNX export, and tokenization/label mapping for deployment.</p>
-            </section>
-
-            <section id="workflow">
-                <h2>🚀 Workflow</h2>
+                <h1>Multiclass Classifier</h1>
+                <p class="lead">The Multiclass Classifier supports two types of classification tasks:</p>
                 <ol>
-                    <li><strong>Data Generation</strong> (via LLM)</li>
-                    <li><strong>Model Training</strong> (<code>--platform</code>: <code>torch</code>, <code>tensorflow</code>, or <code>sklearn</code>)</li>
-                    <li><strong>ONNX Export + Artifacts</strong> (tokenizer, label map)</li>
+                    <li><strong>Multi-label</strong> (Sigmoid): When a text can belong to multiple categories simultaneously</li>
+                    <li><strong>Single-label</strong> (Softmax): When a text can only belong to one category</li>
                 </ol>
             </section>
 
-            <section id="cli-usage">
-                <h2>🛠️ CLI Usage</h2>
-                <h3>1. Generate Dataset</h3>
-                <pre><code>python -m agents.multiclass_classifier_agent \
-  -p="Detect news topic in tree types: Sport, Business, Health"</code></pre>
+            <section id="use-cases">
+                <h2>Use Cases</h2>
+                
+                <h3>Multi-label (Sigmoid)</h3>
+                <ul>
+                    <li>Topic tagging (e.g., a text can be both "sports" and "politics")</li>
+                    <li>Emotion detection (e.g., a text can be both "happy" and "excited")</li>
+                    <li>Content categorization (e.g., a text can be both "funny" and "informative")</li>
+                </ul>
 
-                <h3>2. Optional advanced parameters:</h3>
-                <pre><code>python -m agents.multiclass_classifier_agent \
-  --p="Detect news topic in tree types: Sport, Business, Health"\
-  --lang="german" \
-  --platform="torch" \
-  --epochs=10</code></pre>
+                <h3>Single-label (Softmax)</h3>
+                <ul>
+                    <li>News categorization (e.g., a text can only be "sports", "politics", or "entertainment")</li>
+                    <li>Intent classification (e.g., a text can only be "question", "statement", or "command")</li>
+                    <li>Language detection (e.g., a text can only be in one language)</li>
+                </ul>
+            </section>
+
+            <section id="usage">
+                <h2>Usage</h2>
+                <div class="code-block">
+                    <pre><code>python -m text_classifier.agent -p="Your classification task description"</code></pre>
+                </div>
+                <p>The agent will automatically:</p>
+                <ol>
+                    <li>Analyze your task and determine the appropriate model type (sigmoid/softmax)</li>
+                    <li>Generate appropriate training data</li>
+                    <li>Train and evaluate the model</li>
+                    <li>Export the model in ONNX format</li>
+                </ol>
             </section>
 
             <section id="parameters">
-                <h2>🔧 Parameters</h2>
+                <h2>Parameters</h2>
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Parameter</th>
                             <th>Description</th>
-                            <th>Required</th>
                             <th>Default</th>
-                            <th>Example</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>-p, --prompt</code></td>
-                            <td>Task description to extract text type and labels from</td>
-                            <td>✅</td>
-                            <td>-</td>
-                            <td><code>"Detect news topic in tree types: Sport, Business, Health"</code></td>
+                            <td><code>-p --problem_description</code></td>
+                            <td>Description of your classification problem</td>
+                            <td>(Required)</td>
+                        </tr>
+                        <tr>
+                            <td><code>-m --model</code></td>
+                            <td>LLM to use for training data generation</td>
+                            <td><code>openai/gpt-4o-mini</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>-l --library</code></td>
+                            <td>ML library to use (pytorch/tensorflow/scikit-learn)</td>
+                            <td><code>tensorflow</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>-o --output-path</code></td>
+                            <td>Directory to save model and data</td>
+                            <td><code>./models</code></td>
                         </tr>
                         <tr>
                             <td><code>--lang</code></td>
-                            <td>Language of the dataset generation</td>
-                            <td>❌</td>
+                            <td>Language for training data</td>
                             <td><code>english</code></td>
-                            <td><code>english</code>, <code>ukrainian</code>, <code>german</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>--platform</code></td>
-                            <td>Framework for model training</td>
-                            <td>❌</td>
-                            <td><code>tensorflow</code></td>
-                            <td><code>torch</code>, <code>tensorflow</code>, <code>sklearn</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>--batches</code></td>
-                            <td>Total number of batches to generate</td>
-                            <td>❌</td>
-                            <td><code>300</code></td>
-                            <td><code>400</code>, <code>500</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>--batch-size</code></td>
-                            <td>Number of parallel LLM requests per group</td>
-                            <td>❌</td>
-                            <td><code>20</code></td>
-                            <td><code>20</code>, <code>30</code>, <code>50</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>--epochs</code></td>
-                            <td>Number of training epochs</td>
-                            <td>❌</td>
-                            <td><code>10</code></td>
-                            <td><code>5</code>, <code>10</code>, <code>15</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>--model</code></td>
-                            <td>LLM model to use for dataset generation</td>
-                            <td>❌</td>
-                            <td><code>gpt-3.5-turbo</code></td>
-                            <td><code>gpt-3.5-turbo</code>, <code>gpt-4</code>, etc.</td>
                         </tr>
                     </tbody>
                 </table>
             </section>
 
             <section id="output">
-                <h2>📦 Output Structure</h2>
-                <pre><code>training_data/
-  └── {type}_train_{language}.csv
-testing_data/
-  └── {type}_test_{language}.csv
-models/
-├── {type}_classifier({language}).onnx
-├── {type}_classifier({language}).h5              # (TF only)
-├── {type}_classifier({language}).pt              # (Torch only)
-├── {type}_classifier({language})_tokenizer.json
-├── {type}_classifier({language})_scaler.json
-├── {type}_classifier({language})_sklearn_model.joblib (if sklearn)</code></pre>
+                <h2>Output</h2>
+                <p>The trained model and associated files will be saved in the specified output directory:</p>
+                <div class="code-block">
+                    <pre><code>./models/[model_prefix]/
+├── config.json                    # Configuration and analysis
+├── data/
+│   ├── training_data.csv          # Generated training data
+│   └── edge_case_data.csv         # Challenging test cases
+├── model.onnx                     # ONNX model file
+├── model_scaler.json              # StandardScaler parameters
+└── model_vocab.json               # TF-IDF vocabulary</code></pre>
+                </div>
             </section>
 
-            <section id="features">
-                <h2>✨ Features</h2>
+            <section id="model-details">
+                <h2>Model Details</h2>
+                
+                <h3>Multi-label (Sigmoid)</h3>
                 <ul>
-                    <li>✅ Framework-agnostic training: PyTorch, TensorFlow, sklearn</li>
-                    <li>🌐 Language-agnostic (LLM-generated dataset)</li>
-                    <li>📤 Export to ONNX for browser or server inference</li>
-                    <li>🧩 Tokenizer & LabelMap for deployment</li>
-                    <li>🔍 Fast prototyping & plug-and-play CLI</li>
+                    <li><strong>Type</strong>: Multi-label classification</li>
+                    <li><strong>Input</strong>: Text data</li>
+                    <li><strong>Output</strong>: Independent probabilities for each class</li>
+                    <li><strong>Activation</strong>: Sigmoid (for independent class probabilities)</li>
+                    <li><strong>Framework Support</strong>: TensorFlow, PyTorch, Scikit-learn</li>
+                </ul>
+
+                <h3>Single-label (Softmax)</h3>
+                <ul>
+                    <li><strong>Type</strong>: Single-label classification</li>
+                    <li><strong>Input</strong>: Text data</li>
+                    <li><strong>Output</strong>: Mutually exclusive probabilities for each class</li>
+                    <li><strong>Activation</strong>: Softmax (for mutually exclusive probabilities)</li>
+                    <li><strong>Framework Support</strong>: TensorFlow, PyTorch, Scikit-learn</li>
                 </ul>
             </section>
 
-            <section id="examples">
-                <h2>🧪 Examples</h2>
-                <h3>Hate Speech Classifier in Ukrainian (Torch)</h3>
-                <pre><code>python -m agents.multiclass_classifier_agent \
-  -p="Detect hate speech in tree types: Hate, Not_Hate" \
-  --lang ukrainian \
-  --platform torch \
-  --batches 400 \
-  --batch-size 20 \
-  --epochs 10</code></pre>
+            <section id="example">
+                <h2>Example</h2>
+                <div class="code-block">
+                    <pre><code>from text_classifier import TextClassifier, ModelType
 
-                <h3>Review Sentiment Classifier (TensorFlow)</h3>
-                <pre><code>python -m agents.multiclass_classifier_agent \
-  -p="Detect review sentiment in tree types: Positive, Negative, Neutral" \
-  --platform tensorflow</code></pre>
+# Initialize multi-label classifier
+classifier = TextClassifier(
+    strategy=strategy,
+    class_labels=["sports", "politics", "entertainment"],
+    model_type=ModelType.MULTICLASS_SIGMOID
+)
 
-                <h3>Comment Tone Classifier (Sklearn)</h3>
-                <pre><code>python -m agents.multiclass_classifier_agent \
-  -p="Detect comment tone in tree types: Sarcastic, Serious, Playful" \
-  --platform sklearn</code></pre>
+# Initialize single-label classifier
+classifier = TextClassifier(
+    strategy=strategy,
+    class_labels=["sports", "politics", "entertainment"],
+    model_type=ModelType.MULTICLASS_SOFTMAX
+)
+
+# Train model
+classifier.train("path/to/training_data.csv")
+
+# Make predictions
+probabilities = classifier.predict_proba("Your text here")
+predictions = classifier.predict("Your text here")</code></pre>
+                </div>
             </section>
 
-            <section id="deployment">
-                <h2>📤 Deployment Tips</h2>
-                <ol>
-                    <li>Use the exported <code>.onnx</code> model with ONNXRuntime (Python, browser).</li>
-                    <li>Load <code>.json</code> tokenizer + scaler for text preprocessing.</li>
-                    <li>Package model into backend or frontend (e.g., FastAPI, React).</li>
-                    <li>Retrain on real-world or multilingual datasets for better generalization.</li>
-                </ol>
-            </section>
+            <section id="best-practices">
+                <h2>Best Practices</h2>
+                
+                <h3>1. Model Selection</h3>
+                <ul>
+                    <li>Use sigmoid for multi-label tasks where classes are independent</li>
+                    <li>Use softmax for single-label tasks where classes are mutually exclusive</li>
+                </ul>
 
-            <section id="demos">
-                <h2>📱 ONNX Model Deployment Demos</h2>
-                <h3>🤖 Android</h3>
-                <p><strong>Demo: ONNX inference running on Android device</strong></p>
-                <div class="demo-image">
-                    <img src="media/Android runningONNX.gif" width="200" alt="Android Demo">
-                </div>
-                <p><a href="https://www.youtube.com/watch?v=ANDROID_VIDEO_ID" target="_blank">Watch Full Video on YouTube</a></p>
+                <h3>2. Data Quality</h3>
+                <ul>
+                    <li>Ensure balanced representation of all classes</li>
+                    <li>Include examples of class combinations (for sigmoid)</li>
+                    <li>Include clear examples of each class (for softmax)</li>
+                </ul>
 
-                <h3>🍎 iOS</h3>
-                <p><strong>Demo: ONNX model working in an iOS app (Swift + CoreML)</strong></p>
-                <div class="demo-image">
-                    <img src="media/OIS runningONNX.gif" width="700" alt="iOS Demo">
-                </div>
-                <p><a href="https://www.youtube.com/watch?v=IOS_VIDEO_ID" target="_blank">Watch iOS Deployment on YouTube</a></p>
+                <h3>3. Evaluation</h3>
+                <ul>
+                    <li>For sigmoid: Use per-class metrics and micro/macro averages</li>
+                    <li>For softmax: Use accuracy, confusion matrix, and per-class metrics</li>
+                </ul>
+
+                <h3>4. Deployment</h3>
+                <ul>
+                    <li>Export to ONNX for cross-platform compatibility</li>
+                    <li>Consider class thresholds for sigmoid outputs</li>
+                    <li>Use argmax for softmax outputs</li>
+                </ul>
             </section>
         </main>
     </div>
