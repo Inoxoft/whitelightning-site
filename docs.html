@@ -21,7 +21,7 @@
       <ul>
         <li><a  href="playground.html">Playground</a></li>
         <li><a  id="plgr_btn" href="docs.html">Getting Started</a></li>
-        <li><a href="https://github.com/whitelightning/distill" target="_blank">GitHub</a></li>
+        <li><a href="https://github.com/volodymyrparanyak/whitelightning.ai" target="_blank">GitHub</a></li>
       </ul>
     </nav>
   </header>
@@ -30,66 +30,110 @@
     <div class="docs-sidebar">
       <nav class="docs-nav">
         <ul>
-          <li><a href="#introduction">Introduction</a></li>
-          <li><a href="#what-is-llm">What is LLM Distillation?</a></li>
-          <li><a href="#why-onnx">Why ONNX?</a></li>
-          <li><a href="#features">Key Features</a></li>
-          <li><a href="#model-types">Model Types</a></li>
-          <li><a href="#quick-start">Quick Start</a></li>
-          <li><a href="#documentation">Documentation</a></li>
-          <li><a href="#contributing">Contributing</a></li>
+          <li><a href="docs.html">Overview</a>
+            <ul style="margin-left:1.2em;">
+              <li><a href="docs.html#what-is-llm">What is LLM Distillation?</a></li>
+              <li><a href="docs.html#why-onnx">Why ONNX?</a></li>
+              <li><a href="docs.html#features">Key Features</a></li>
+              <li><a href="docs.html#quick-start">Quick Start</a></li>
+              <li><a href="docs.html#documentation">Deployment Guide</a></li>
+            </ul>
+          </li>
+          <li><a href="#model-types">Model Types</a>
+            <ul style="margin-left:1.2em;">
+              <li><a href="binary-classifier.html">Binary Classifier</a></li>
+              <li><a href="multiclass-classifier.html">Multiclass Classifier</a>
+                <ul style="margin-left:1.2em;">
+                  <li><a href="running_mlt.html">Running Multiclass Classifier Models</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <!-- <li><a href="#contributing">Contributing</a></li> -->
         </ul>
       </nav>
     </div>
 
     <main class="docs-content">
       <section id="introduction">
-        <h1>WhiteLightning - LLM Distillation Tool</h1>
-        <p class="lead">WhiteLightning is a powerful tool designed to distill large language models (LLMs) into lightweight, efficient text classifiers. By leveraging advanced techniques, it simplifies the process of creating text classifiers that can run anywhere, from cloud environments to edge devices, using the ONNX format for cross-platform compatibility.</p>
-        
-        <div class="logo-container">
-          <img src="media/image/moonshiner_floppy.jpeg" alt="Moonshiner" class="logo-image">
+        <h1><span>WhiteLightning</span> - LLM Distillation Tool</h1>
+        <div class="features-grid">
+          <div class="feature-card large-text">
+            
+            <p>WhiteLightning is a powerful tool designed to distill large language models (LLMs) into lightweight, efficient text classifiers. By leveraging advanced techniques, it simplifies the process of creating text classifiers that can run anywhere, from cloud environments to edge devices, using the ONNX format for cross-platform compatibility.</p>
+          </div>
         </div>
+        
+        <!-- <div class="logo-container">
+          <img src="media/image/moonshiner_floppy.jpeg" alt="Moonshiner" class="logo-image">
+        </div> -->
 
         <div class="demo-container">
-          <img src="media/gif/cli_usage.gif" alt="CLI Usage" class="demo-gif">
+          <div class="demo-gif">
+            <div class="terminal-header">
+              <div class="terminal-circle red"></div>
+              <div class="terminal-circle yellow"></div>
+              <div class="terminal-circle green"></div>
+            </div>
+            <div class="terminal-content">
+              <img src="media/gif/cli_usage.gif" alt="CLI Usage" style="width:100%; display:block; border-radius: 0 0 var(--border-radius) var(--border-radius);" />
+            </div>
+          </div>
         </div>
       </section>
 
       <section id="what-is-llm">
-        <h2>What is LLM Distillation?</h2>
-        <p>LLM distillation is the process of transforming large, complex language models into smaller, task-specific models. WhiteLightning focuses on text classification, enabling users to create efficient classifiers for various use cases. This approach ensures high performance while significantly reducing computational requirements.</p>
+        <!-- <h2>What is LLM Distillation?</h2> -->
+        <div class="features-grid">
+          <div class="feature-card large-text">
+            <span class="feature-icon">🧠</span>
+            <h3>What is LLM Distillation?</h3>
+            <p>LLM distillation is the process of transforming large, complex language models into smaller, task-specific models. WhiteLightning focuses on text classification, enabling users to create efficient classifiers for various use cases. This approach ensures high performance while significantly reducing computational requirements.</p>
+          </div>
+        </div>
       </section>
 
       <section id="why-onnx">
-        <h2>Why ONNX?</h2>
-        <p>WhiteLightning uses ONNX (Open Neural Network Exchange) to export trained models, making them deployable across a wide range of platforms and programming languages. With ONNX, you can run your models in Python, JavaScript, C++, Rust, and more, ensuring flexibility and scalability for your applications.</p>
+        <!-- <h2>Why ONNX?</h2> -->
+        <div class="features-grid">
+          <div class="feature-card large-text">
+            <span class="feature-icon">🔄</span>
+            <h3>Why ONNX?</h3>
+            <p>WhiteLightning uses ONNX (Open Neural Network Exchange) to export trained models, making them deployable across a wide range of platforms and programming languages. With ONNX, you can run your models in Python, JavaScript, C++, Rust, and more, ensuring flexibility and scalability for your applications.</p>
+          </div>
+        </div>
       </section>
 
       <section id="features">
         <h2>Key Features</h2>
         <div class="features-grid">
           <div class="feature-card">
+            <span class="feature-icon">🔢</span>
             <h3>Multiple Model Types</h3>
             <p>Support for binary and multiclass classification with different activation types</p>
           </div>
           <div class="feature-card">
+            <span class="feature-icon">🌐</span>
             <h3>Cross-Platform Deployment</h3>
             <p>Export models to ONNX for use in diverse environments</p>
           </div>
           <div class="feature-card">
+            <span class="feature-icon">⚡</span>
             <h3>Lightweight and Fast</h3>
             <p>Optimized for performance with minimal resource usage</p>
           </div>
           <div class="feature-card">
+            <span class="feature-icon">🔧</span>
             <h3>Customizable</h3>
             <p>Supports multiple machine learning frameworks (TensorFlow, PyTorch, Scikit-learn)</p>
           </div>
           <div class="feature-card">
+            <span class="feature-icon">🌍</span>
             <h3>Multilingual Support</h3>
             <p>Generate training data in multiple languages</p>
           </div>
           <div class="feature-card">
+            <span class="feature-icon">🤖</span>
             <h3>Automatic Configuration</h3>
             <p>Smart prompt generation and refinement based on your task</p>
           </div>
@@ -99,19 +143,19 @@
       <section id="model-types">
         <h2>Model Types</h2>
         <div class="models-grid">
-          <div class="model-card">
+          <div class="model-card" id="binary-classifier">
             <h3>Binary Classifier</h3>
             <p>Simple yes/no or true/false classification with probability output for single class. Ideal for sentiment analysis, spam detection, and content moderation.</p>
             <a href="binary-classifier.html" class="button">Learn More</a>
           </div>
-          <div class="model-card">
+          <!-- <div class="model-card">
             <h3>Multiclass Sigmoid</h3>
             <p>Multi-label classification with independent class probabilities. Multiple classes can be active simultaneously. Ideal for topic tagging, emotion detection, and content categorization.</p>
             <a href="multiclass-classifier.html" class="button">Learn More</a>
-          </div>
-          <div class="model-card">
-            <h3>Multiclass Softmax</h3>
-            <p>Single-label classification with mutually exclusive class probabilities. Only one class can be active at a time. Ideal for news categorization, intent classification, and language detection.</p>
+          </div> -->
+          <div class="model-card" id="multiclass-classifier">
+            <h3>Multiclass Classifier</h3>
+            <p>Single-label classification with mutually exclusive class probabilities.Ideal for news categorization, intent classification, and language detection.</p>
             <a href="multiclass-classifier.html" class="button">Learn More</a>
           </div>
         </div>
@@ -122,38 +166,65 @@
         <ol>
           <li>Install dependencies:
             <div class="code-block">
-              <pre><code>pip install -r requirements/base.txt</code></pre>
+              <div class="terminal-header">
+                <div class="terminal-circle red"></div>
+                <div class="terminal-circle yellow"></div>
+                <div class="terminal-circle green"></div>
+              </div>
+              <div class="terminal-content">
+                <code>pip install -r requirements/base.txt</code>
+              </div>
             </div>
           </li>
           <li>Set up your environment:
             <div class="code-block">
-              <pre><code>cp .env.example .env
-# Edit .env with your API keys</code></pre>
+              <div class="terminal-header">
+                <div class="terminal-circle red"></div>
+                <div class="terminal-circle yellow"></div>
+                <div class="terminal-circle green"></div>
+              </div>
+              <div class="terminal-content">
+                <code>cp .env.example .env</code>
+                <code># Edit .env with your API keys</code>
+              </div>
             </div>
           </li>
           <li>Run the classifier agent:
             <div class="code-block">
-              <pre><code>python -m text_classifier.agent -p="Your classification task description"</code></pre>
+              <div class="terminal-header">
+                <div class="terminal-circle red"></div>
+                <div class="terminal-circle yellow"></div>
+                <div class="terminal-circle green"></div>
+              </div>
+              <div class="terminal-content">
+                <code>python -m text_classifier.agent -p="Your classification task description"</code>
+              </div>
             </div>
           </li>
         </ol>
       </section>
 
       <section id="documentation">
-        <h2>Documentation</h2>
-        <ul>
-          <li><a href="binary-classifier.html" class="neon-link">Binary Classification</a></li>
-          <li><a href="multiclass-classifier.html" class="neon-link">Multiclass Classification</a></li>
-          <li><a href="#" class="neon-link">Model Deployment</a></li>
-          <li><a href="#" class="neon-link">API Reference</a></li>
-        </ul>
+        <h2>Deployment Guide</h2>
+        <div class="models-grid">
+          <div class="model-card">
+            <h3>Model Deployment</h3>
+            <p>Learn how to deploy your ONNX models across different platforms and environments for maximum flexibility.</p>
+            <a href="#" class="button">Read Guide</a>
+          </div>
+          <div class="model-card">
+            <h3>API Reference</h3>
+            <p>Explore the full API documentation for integrating and extending WhiteLightning in your projects.</p>
+            <a href="#" class="button">View API Docs</a>
+          </div>
+        </div>
       </section>
 
-      <section id="contributing">
+      <!-- <section id="contributing">
         <h2>Contributing</h2>
         <p>We welcome contributions! Please see our <a href="#" class="neon-link">Contributing Guide</a> for details.</p>
         <p>This project is licensed under the MIT License - see the <a href="#" class="neon-link">LICENSE</a> file for details.</p>
-      </section>
+      </section> -->
     </main>
   </div>
 

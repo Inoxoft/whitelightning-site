@@ -9,120 +9,140 @@
 <body>
     <header class="wl-header">
         <div class="logo">
-            <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
-            <h1><a href="index.html" style="text-decoration: none;letter-spacing: 0px; color: inherit;">White<span>Lightning</span></a></h1>
+          <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
+          <h1><a href="index.html" style="text-decoration: none;letter-spacing: 0px; color: inherit; ">White<span>Lightning</span></a></h1>
+        </div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
         <nav>
-            <ul>
-                <li><a href="playground.html">Playground</a></li>
-                <li><a href="docs.html">Documentation</a></li>
-                <li><a href="https://github.com/whitelightning/distill" target="_blank">GitHub</a></li>
-            </ul>
+          <ul>
+            <li><a  href="playground.html">Playground</a></li>
+            <li><a  id="plgr_btn" href="docs.html">Getting Started</a></li>
+            <li><a href="https://github.com/volodymyrparanyak/whitelightning.ai" target="_blank">GitHub</a></li>
+          </ul>
         </nav>
-    </header>
+      </header>
 
     <div class="docs-container">
         <div class="docs-sidebar">
             <nav class="docs-nav">
-                <ul>
-                    <li><a href="#overview">Overview</a></li>
-                    <li><a href="#use-cases">Use Cases</a></li>
-                    <li><a href="#usage">Usage</a></li>
-                    <li><a href="#parameters">Parameters</a></li>
-                    <li><a href="#output">Output</a></li>
-                    <li><a href="#model-details">Model Details</a></li>
-                    <li><a href="#example">Example</a></li>
-                    <li><a href="#best-practices">Best Practices</a></li>
-                </ul>
+              <ul>
+                <li><a href="docs.html">Overview</a>
+                  <ul style="margin-left:1.2em;">
+                    <li><a href="docs.html#what-is-llm">What is LLM Distillation?</a></li>
+                    <li><a href="docs.html#why-onnx">Why ONNX?</a></li>
+                    <li><a href="docs.html#features">Key Features</a></li>
+                    <li><a href="docs.html#quick-start">Quick Start</a></li>
+                    <li><a href="docs.html#documentation">Deployment Guide</a></li>
+                  </ul>
+                </li>
+                <li><a href="#model-types">Model Types</a>
+                  <ul style="margin-left:1.2em;">
+                    <li><a href="binary-classifier.html">Binary Classifier</a></li>
+                    <li><a href="multiclass-classifier.html">Multiclass Classifier</a>
+                      <ul style="margin-left:1.2em;">
+                        <li><a href="running_mlt.html">Running Multiclass Classifier Models</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <!-- <li><a href="#contributing">Contributing</a></li> -->
+              </ul>
             </nav>
-        </div>
+          </div>
 
         <main class="docs-content">
             <section id="overview">
-                <h1>Multiclass Classifier</h1>
-                <p class="lead">The Multiclass Classifier supports two types of classification tasks:</p>
-                <ol>
-                    <li><strong>Multi-label</strong> (Sigmoid): When a text can belong to multiple categories simultaneously</li>
-                    <li><strong>Single-label</strong> (Softmax): When a text can only belong to one category</li>
-                </ol>
+                <h1 class="neon-green" style="text-align:center;"><span style="color:white;">Multiclass</span> Classifier</h1>
+                <h2>Two types</h2>
+                <div class="features-grid">
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🏷️</span>
+                        <h3>Multi-label (Sigmoid)</h3>
+                        <p>When a text can belong to multiple categories simultaneously</p>
+                    </div>
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🎯</span>
+                        <h3>Single-label (Softmax)</h3>
+                        <p>When a text can only belong to one category</p>
+                    </div>
+                </div>
             </section>
 
             <section id="use-cases">
                 <h2>Use Cases</h2>
-                
-                <h3>Multi-label (Sigmoid)</h3>
-                <ul>
-                    <li>Topic tagging (e.g., a text can be both "sports" and "politics")</li>
-                    <li>Emotion detection (e.g., a text can be both "happy" and "excited")</li>
-                    <li>Content categorization (e.g., a text can be both "funny" and "informative")</li>
-                </ul>
-
-                <h3>Single-label (Softmax)</h3>
-                <ul>
-                    <li>News categorization (e.g., a text can only be "sports", "politics", or "entertainment")</li>
-                    <li>Intent classification (e.g., a text can only be "question", "statement", or "command")</li>
-                    <li>Language detection (e.g., a text can only be in one language)</li>
-                </ul>
+                <div class="features-grid">
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🏷️</span>
+                        <h3>Multi-label</h3>
+                        <ul>
+                            <li>Topic tagging (e.g., a text can be both "sports" and "politics")</li>
+                            <li>Emotion detection (e.g., a text can be both "happy" and "excited")</li>
+                            <li>Content categorization (e.g., a text can be both "funny" and "informative")</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🎯</span>
+                        <h3>Single-label</h3>
+                        <ul>
+                            <li>News categorization (e.g., a text can only be "sports", "politics", or "entertainment")</li>
+                            <li>Intent classification (e.g., a text can only be "question", "statement", or "command")</li>
+                            <li>Language detection (e.g., a text can only be in one language)</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
 
             <section id="usage">
                 <h2>Usage</h2>
                 <div class="code-block">
+                    <div class="terminal-header">
+                        <div class="terminal-circle red"></div>
+                        <div class="terminal-circle yellow"></div>
+                        <div class="terminal-circle green"></div>
+                    </div>
                     <pre><code>python -m text_classifier.agent -p="Your classification task description"</code></pre>
                 </div>
                 <p>The agent will automatically:</p>
-                <ol>
-                    <li>Analyze your task and determine the appropriate model type (sigmoid/softmax)</li>
-                    <li>Generate appropriate training data</li>
-                    <li>Train and evaluate the model</li>
-                    <li>Export the model in ONNX format</li>
-                </ol>
+                <ul class="checklist">
+                    <li>✅ <b>Analyze</b> your task and determine the appropriate model type (sigmoid/softmax)</li>
+                    <li>✅ <b>Generate</b> appropriate training data</li>
+                    <li>✅ <b>Train and evaluate</b> the model</li>
+                    <li>✅ <b>Export</b> the model in ONNX format</li>
+                </ul>
             </section>
 
             <section id="parameters">
                 <h2>Parameters</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                            <th>Default</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>-p --problem_description</code></td>
-                            <td>Description of your classification problem</td>
-                            <td>(Required)</td>
-                        </tr>
-                        <tr>
-                            <td><code>-m --model</code></td>
-                            <td>LLM to use for training data generation</td>
-                            <td><code>openai/gpt-4o-mini</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>-l --library</code></td>
-                            <td>ML library to use (pytorch/tensorflow/scikit-learn)</td>
-                            <td><code>tensorflow</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>-o --output-path</code></td>
-                            <td>Directory to save model and data</td>
-                            <td><code>./models</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>--lang</code></td>
-                            <td>Language for training data</td>
-                            <td><code>english</code></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="code-block">
+                    <div class="terminal-header">
+                        <div class="terminal-circle red"></div>
+                        <div class="terminal-circle yellow"></div>
+                        <div class="terminal-circle green"></div>
+                    </div>
+                    <pre><code>Parameter                Description                                 Default
+----------------------  ------------------------------------------  ----------------------
+-p --problem_description  Description of your classification problem  (Required)
+-m --model                LLM to use for training data generation     openai/gpt-4o-mini
+-l --library              ML library  (pytorch/tensorflow/sklearn)    tensorflow
+-o --output-path          Directory to save model and data            ./models
+--lang                    Language for training data                  english
+</code></pre>
+                </div>
             </section>
 
             <section id="output">
                 <h2>Output</h2>
                 <p>The trained model and associated files will be saved in the specified output directory:</p>
                 <div class="code-block">
+                    <div class="terminal-header">
+                        <div class="terminal-circle red"></div>
+                        <div class="terminal-circle yellow"></div>
+                        <div class="terminal-circle green"></div>
+                    </div>
                     <pre><code>./models/[model_prefix]/
 ├── config.json                    # Configuration and analysis
 ├── data/
@@ -130,35 +150,47 @@
 │   └── edge_case_data.csv         # Challenging test cases
 ├── model.onnx                     # ONNX model file
 ├── model_scaler.json              # StandardScaler parameters
-└── model_vocab.json               # TF-IDF vocabulary</code></pre>
+└── model_vocab.json               # TF-IDF vocabulary
+</code></pre>
                 </div>
             </section>
 
             <section id="model-details">
                 <h2>Model Details</h2>
-                
-                <h3>Multi-label (Sigmoid)</h3>
-                <ul>
-                    <li><strong>Type</strong>: Multi-label classification</li>
-                    <li><strong>Input</strong>: Text data</li>
-                    <li><strong>Output</strong>: Independent probabilities for each class</li>
-                    <li><strong>Activation</strong>: Sigmoid (for independent class probabilities)</li>
-                    <li><strong>Framework Support</strong>: TensorFlow, PyTorch, Scikit-learn</li>
-                </ul>
-
-                <h3>Single-label (Softmax)</h3>
-                <ul>
-                    <li><strong>Type</strong>: Single-label classification</li>
-                    <li><strong>Input</strong>: Text data</li>
-                    <li><strong>Output</strong>: Mutually exclusive probabilities for each class</li>
-                    <li><strong>Activation</strong>: Softmax (for mutually exclusive probabilities)</li>
-                    <li><strong>Framework Support</strong>: TensorFlow, PyTorch, Scikit-learn</li>
-                </ul>
+                <div class="features-grid">
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🏷️</span>
+                        <h3>Multi-label (Sigmoid)</h3>
+                        <ul>
+                            <li><b>Type:</b> Multi-label classification</li>
+                            <li><b>Input:</b> Text data</li>
+                            <li><b>Output:</b> Independent probabilities for each class</li>
+                            <li><b>Activation:</b> Sigmoid (for independent class probabilities)</li>
+                            <li><b>Framework Support:</b> TensorFlow, PyTorch, Scikit-learn</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🎯</span>
+                        <h3>Single-label (Softmax)</h3>
+                        <ul>
+                            <li><b>Type:</b> Single-label classification</li>
+                            <li><b>Input:</b> Text data</li>
+                            <li><b>Output:</b> Mutually exclusive probabilities for each class</li>
+                            <li><b>Activation:</b> Softmax (for mutually exclusive probabilities)</li>
+                            <li><b>Framework Support:</b> TensorFlow, PyTorch, Scikit-learn</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
 
             <section id="example">
                 <h2>Example</h2>
                 <div class="code-block">
+                    <div class="terminal-header">
+                        <div class="terminal-circle red"></div>
+                        <div class="terminal-circle yellow"></div>
+                        <div class="terminal-circle green"></div>
+                    </div>
                     <pre><code>from text_classifier import TextClassifier, ModelType
 
 # Initialize multi-label classifier
@@ -180,8 +212,27 @@ classifier.train("path/to/training_data.csv")
 
 # Make predictions
 probabilities = classifier.predict_proba("Your text here")
-predictions = classifier.predict("Your text here")</code></pre>
+predictions = classifier.predict("Your text here")
+</code></pre>
                 </div>
+            </section>
+
+            
+
+            <section id="onnx-demos">
+                <h2 class="neon-green">📱 ONNX Model Deployment Demos</h2>
+                <h3 class="neon-green">🤖 Android</h3>
+                <p>🎬 <strong>Demo: ONNX inference running on Android device</strong></p>
+                <p align="center">
+                   <img src="media/Android runningONNX.gif" width="200" alt="CLI Usage">
+                </p>
+                <p>🔗 <a class="neon-link" href="https://www.youtube.com/watch?v=ANDROID_VIDEO_ID" target="_blank">Watch Full Video on YouTube</a></p>
+                <h3 class="neon-green">🍎 iOS</h3>
+                <p>🎬 <strong>Demo: ONNX model working in an iOS app (Swift + CoreML)</strong></p>
+                <p align="center">
+                   <img src="media/OIS runningONNX.gif" width="700" alt="CLI Usage">
+                </p>
+                <p>🔗 <a class="neon-link" href="https://www.youtube.com/watch?v=IOS_VIDEO_ID" target="_blank">Watch iOS Deployment on YouTube</a></p>
             </section>
 
             <section id="best-practices">

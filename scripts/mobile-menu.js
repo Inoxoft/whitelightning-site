@@ -23,4 +23,26 @@ document.addEventListener('DOMContentLoaded', function() {
       nav.classList.remove('active');
     });
   });
+
+  // Terminal language switching
+  const langButtons = document.querySelectorAll('.lang-btn');
+  const codeBlocks = document.querySelectorAll('.code-block');
+
+  langButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons and code blocks
+      langButtons.forEach(btn => btn.classList.remove('active'));
+      codeBlocks.forEach(block => block.classList.remove('active'));
+
+      // Add active class to clicked button
+      button.classList.add('active');
+
+      // Show corresponding code block
+      const lang = button.getAttribute('data-lang');
+      const codeBlock = document.getElementById(`${lang}-code`);
+      if (codeBlock) {
+        codeBlock.classList.add('active');
+      }
+    });
+  });
 }); 
