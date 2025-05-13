@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiclass Classifier Training Agent - WhiteLightning</title>
+    <link rel="stylesheet" href="styles/demo_mlt.css">
+</head>
+<body>
+    <header class="wl-header">
+        <div class="logo">
+          <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
+          <h1><a href="index.html" style="text-decoration: none;letter-spacing: 0px; color: inherit; ">White<span>Lightning</span></a></h1>
+        </div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <nav>
+          <ul>
+            <li><a  href="playground.html">Playground</a></li>
+            <li><a  id="plgr_btn" href="docs.html">Getting Started</a></li>
+            <li><a href="https://github.com/volodymyrparanyak/whitelightning.ai" target="_blank">GitHub</a></li>
+          </ul>
+        </nav>
+      </header>
+
+    <div class="docs-container">
+        <div class="docs-sidebar">
+            <nav class="docs-nav">
+              <ul>
+                <li><a href="docs.html">Overview</a>
+                  <ul style="margin-left:1.2em;">
+                    <li><a href="docs.html#what-is-llm">What is LLM Distillation?</a></li>
+                    <li><a href="docs.html#why-onnx">Why ONNX?</a></li>
+                    <li><a href="docs.html#features">Key Features</a></li>
+                    <li><a href="docs.html#quick-start">Quick Start</a></li>
+                    <li><a href="docs.html#documentation">Deployment Guide</a></li>
+                  </ul>
+                </li>
+                <li><a href="#model-types">Model Types</a>
+                  <ul style="margin-left:1.2em;">
+                    <li><a href="binary-classifier.html">Binary Classifier</a></li>
+                    <li><a href="multiclass-classifier.html">Multiclass Classifier</a>
+                      <ul style="margin-left:1.2em;">
+                        <li><a href="running_mlt.html">Running</a></li>
+                      </ul>
+                      <ul style="margin-left:1.2em;">
+                        <li><a href="demo_mlt.html">Demos</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <!-- <li><a href="#contributing">Contributing</a></li> -->
+              </ul>
+            </nav>
+          </div>
+
+        <main class="docs-content">
+            
+
+            
+
+            <section id="onnx-demos">
+                <h2 class="neon-green">📱 ONNX Model Deployment Demos</h2>
+                <div class="features-grid">
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🤖</span>
+                        <h3 class="neon-green">Android Demo</h3>
+                        <p>🎬 <strong>ONNX inference running on Android device</strong></p>
+                        <div class="demo-container">
+                            <img src="media/gif/Android runningONNX.gif" alt="Android Demo" class="demo-gif">
+                        </div>
+                        <p class="demo-link">
+                            <a class="neon-link" href="https://www.youtube.com/watch?v=ANDROID_VIDEO_ID" target="_blank">
+                                <span class="icon">▶️</span> Watch Full Video on YouTube
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🍎</span>
+                        <h3 class="neon-green">iOS Demo</h3>
+                        <p>🎬 <strong>ONNX model working in an iOS app (Swift + CoreML)</strong></p>
+                        <div class="demo-container">
+                            <img src="media/gif/OIS runningONNX.gif" alt="iOS Demo" class="demo-gif">
+                        </div>
+                        <p class="demo-link">
+                            <a class="neon-link" href="https://www.youtube.com/watch?v=IOS_VIDEO_ID" target="_blank">
+                                <span class="icon">▶️</span> Watch iOS Deployment on YouTube
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content container">
+            <div class="footer-brand">
+                <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo" class="footer-logo">
+                <div>
+                    <div class="footer-title">WhiteLightning</div>
+                    <div class="footer-desc">AI-Powered, Non-Intrusive LLM Distillation Tool</div>
+                </div>
+            </div>
+            <div class="footer-columns">
+                <div class="footer-col">
+                    <div class="footer-col-title">Docs & Links</div>
+                    <a href="docs.html">Documentation</a>
+                    <a href="playground.html">Playground</a>
+                    <a href="https://github.com/whitelightning/distill" target="_blank">GitHub</a>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-col-title">Resources</div>
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#demo">Demo</a>
+                    <a href="#">ONNX Format</a>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-col-title">Project</div>
+                    <a href="https://github.com/whitelightning/distill/issues" target="_blank">Report Issues</a>
+                    <a href="#">License</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <span>2025 WhiteLightning Project</span>
+            <span>Apache License 2.0</span>
+            <span>contact@whitelightning.ai</span>
+        </div>
+    </footer>
+
+    <script src="scripts/mobile-menu.js"></script>
+</body>
+</html> 
