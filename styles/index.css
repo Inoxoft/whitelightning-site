@@ -39,10 +39,7 @@
   padding: var(--spacing-sm) var(--spacing-md);
   background-color: rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  backdrop-filter: blur(8px);
+  
 }
 .logo {
   display: flex;
@@ -566,12 +563,7 @@ header h1 {
       transform: rotate(90deg);
       margin: 0.5rem 0;
     }
-    .wl-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(8px);
-    }
+    
   }
 
 .site-footer {
@@ -816,16 +808,7 @@ header h1 {
   }
   .full-text { display: none; }
   .short-text { display: inline; color: #fff; }
-  .wl-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    backdrop-filter: blur(8px);
-    width: 100vw;
-    left: 0;
-    box-sizing: border-box;
-    background-color: rgba(0,0,0,0.85);
-  }
+  
 }
 
 .full-text { display: inline; }
