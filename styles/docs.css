@@ -88,12 +88,11 @@
   }
   
   .docs-container {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: var(--spacing-md);
-    max-width: 1400px;
+    display: block;
+  }
+  
+  .docs-content {
     margin: 0 auto;
-    padding: var(--spacing-md);
   }
   
   .docs-sidebar {

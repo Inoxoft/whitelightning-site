@@ -1,10 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
   const hamburger = document.querySelector('.hamburger');
   const nav = document.querySelector('nav');
+  const mobileSidebar = document.querySelector('.docs-sidebar.mobile-sidebar');
   
   hamburger.addEventListener('click', function() {
     hamburger.classList.toggle('active');
     nav.classList.toggle('active');
+    if (mobileSidebar) {
+      mobileSidebar.classList.toggle('active');
+    }
   });
 
   // Close menu when clicking outside
@@ -12,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!hamburger.contains(event.target) && !nav.contains(event.target)) {
       hamburger.classList.remove('active');
       nav.classList.remove('active');
+      if (mobileSidebar && !mobileSidebar.contains(event.target)) {
+        mobileSidebar.classList.remove('active');
+      }
     }
   });
 
@@ -21,8 +28,22 @@ document.addEventListener('DOMContentLoaded', function() {
     link.addEventListener('click', () => {
       hamburger.classList.remove('active');
       nav.classList.remove('active');
+      if (mobileSidebar) {
+        mobileSidebar.classList.remove('active');
+      }
     });
   });
+
+  // Also close mobile sidebar when clicking a sidebar link
+  if (mobileSidebar) {
+    const sidebarLinks = mobileSidebar.querySelectorAll('a');
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileSidebar.classList.remove('active');
+      });
+    });
+  }
 
   // Terminal language switching
   const langButtons = document.querySelectorAll('.lang-btn');
