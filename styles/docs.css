@@ -771,6 +771,12 @@
       max-width: 100%;
       height: auto;
     }
+  
+    /* Add margin below and left to code blocks in lists */
+    ol > li .code-block {
+      margin-bottom: 1.2rem;
+      margin-left: 1.2rem;
+    }
   }
   
   /* Mobile Menu Styles */

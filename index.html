@@ -31,12 +31,10 @@
   <main class="container">
     <section class="hero">
       <div class="hero-title">
-        <h1>AI-Powered, <span>Non-Intrusive</span> LLM Distillation Tool</h1>
+        <h1>Create Edge‑Ready <span>AI in One Line</span> No Data Required</h1>
       </div>
       <p class="hero-subtitle">
-        WhiteLightning creates synthetic data and trains classifiers using the power of large language models. Then it
-        distills that into ONNX — a universal model format you can deploy anywhere: Raspberry Pis, phones, edge devices,
-        or embedded systems.
+        Auto‑generate synthetic training data, fit an ultra‑compact model, and deploy anywhere—from microcontrollers to mobile apps—with a single command..
       </p>
 
         
@@ -50,17 +48,39 @@
           <div class="terminal-circle green"></div>
         </div>
         <div class="terminal-content">
-          <p><span class="prompt">$ </span><span class="user-input">whitelightning create classifier --type binary
-              --task "spam detection"</span></p>
-          <p><span class="ai-response">WhiteLightning > </span>I'll help you create a binary classifier for spam
-            detection.</p>
-          <p><span class="ai-response">WhiteLightning > </span>First, I'll generate synthetic training data using LLM...
+          <p>
+            <span class="prompt">$ </span>
+            <span class="user-input full-text">whitelightning create classifier --type binary --task &quot;spam detection&quot;</span>
+            <span class="user-input short-text"> WL create spam classifier!</span>
           </p>
-          <p><span class="ai-response">WhiteLightning > </span>Created 1000 examples (500 spam, 500 ham)</p>
-          <p><span class="ai-response">WhiteLightning > </span>Training lightweight classifier model...</p>
-          <p><span class="ai-response">WhiteLightning > </span>Model trained successfully. Accuracy: 94.2%</p>
-          <p><span class="ai-response">WhiteLightning > </span>Exporting to ONNX format...</p>
-          <p><span class="ai-response">WhiteLightning > </span>Saved model to spam_classifier.onnx (2.1MB)</p>
+          <p>
+            <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> I'll help you create a binary classifier for spam detection.</span>
+            <span class="ai-response short-text">Creating a binary classifier.</span>
+          </p>
+          <p>
+            <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> First, I'll generate synthetic training data using LLM...</span>
+            <span class="ai-response short-text">Generating synthetic data...</span>
+          </p>
+          <p>
+            <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> Created 1000 examples (500 spam, 500 ham)</span>
+            <span class="ai-response short-text">Created 1000 examples</span>
+          </p>
+          <p>
+            <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> Training lightweight classifier model...</span>
+            <span class="ai-response short-text">Training model...</span>
+          </p>
+          <p>
+            <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> Model trained successfully. Accuracy: 94.2%</span>
+            <span class="ai-response short-text">Model trained. Accuracy: 94.2%</span>
+          </p>
+          <!-- <p>
+            <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> Exporting to ONNX format...</span>
+            <span class="ai-response short-text">Exporting to ONNX...</span>
+          </p> -->
+          <p>
+            <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> Saved model to spam_classifier.onnx (2.1MB)</span>
+            <span class="ai-response short-text">Model saved</span>
+          </p>
           <p><span class="prompt">$ </span><span class="user-input">_</span></p>
         </div>
       </div>
@@ -144,9 +164,9 @@
           <div class="terminal-circle green"></div>
         </div>
         <div class="terminal-content">
-          <p><span class="prompt">$ </span><span class="user-input">pip install -r requirements/dev.txt</span></p>
-          <p><span class="prompt">$ </span><span class="user-input">pre-commit install</span></p>
-          <p><span class="prompt">$ </span><span class="user-input">detect-secrets scan > .secrets.baseline</span></p>
+          <p><span class="prompt">$ </span><span class="user-input full-text">pip install -r requirements.txt</span><span class="user-input short-text">pip install requirements.txt</span></p>
+          <p><span class="prompt">$ </span><span class="user-input full-text">pre-commit install</span><span class="user-input short-text">pre-commit install</span></p>
+          <p><span class="prompt">$ </span><span class="user-input full-text">detect-secrets scan &gt; .secrets.baseline</span><span class="user-input short-text">detect scan secrets</span></p>
           <p><span class="prompt">$ </span><span class="user-input">_</span></p>
         </div>
       </div>
@@ -190,6 +210,15 @@
     </div>
   </footer>
   <script src="scripts/mobile-menu.js"></script>
+  <script>
+    function scrollTerminalToEnd() {
+      var terminalContent = document.querySelector('.terminal-content');
+      if (terminalContent) {
+        terminalContent.scrollLeft = terminalContent.scrollWidth;
+      }
+    }
+    window.addEventListener('DOMContentLoaded', scrollTerminalToEnd);
+  </script>
 </body>
 </html>
       

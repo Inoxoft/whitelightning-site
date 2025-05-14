@@ -42,7 +42,10 @@
                 <li><a href="#model-types">Model Types</a>
                   <ul style="margin-left:1.2em;">
                     <li><a href="binary-classifier.html">Binary Classifier</a></li>
-                    <li><a href="multiclass-classifier.html">Multiclass Classifier</a>
+                    <ul style="margin-left:1.2em;">
+                        <li><a href="running_bnr.html">Running</a></li>
+                      </ul>
+                    <li><a href="multiclass-classifier.html" class="active">Multiclass Classifier</a>
                       <ul style="margin-left:1.2em;">
                         <li><a href="running_mlt.html">Running</a></li>
                       </ul>
@@ -223,43 +226,36 @@ predictions = classifier.predict("Your text here")
             <section id="best-practices">
                 <h2>Best Practices</h2>
                 <div class="features-grid">
-                    <div class="feature-card large-text">
-                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🎯</span>
-                        <h3>1. Model Selection</h3>
-                        <ul>
-                            <li>Use sigmoid for multi-label tasks where classes are independent</li>
-                            <li>Use softmax for single-label tasks where classes are mutually exclusive</li>
-                        </ul>
-                    </div>
-
-                    <div class="feature-card large-text">
-                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">📊</span>
-                        <h3>2. Data Quality</h3>
-                        <ul>
-                            <li>Ensure balanced representation of all classes</li>
-                            <li>Include examples of class combinations (for sigmoid)</li>
-                            <li>Include clear examples of each class (for softmax)</li>
-                        </ul>
-                    </div>
-
-                    <div class="feature-card large-text">
-                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">📈</span>
-                        <h3>3. Evaluation</h3>
-                        <ul>
-                            <li>For sigmoid: Use per-class metrics and micro/macro averages</li>
-                            <li>For softmax: Use accuracy, confusion matrix, and per-class metrics</li>
-                        </ul>
-                    </div>
-
-                    <div class="feature-card large-text">
-                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🚀</span>
-                        <h3>4. Deployment</h3>
-                        <ul>
-                            <li>Export to ONNX for cross-platform compatibility</li>
-                            <li>Consider class thresholds for sigmoid outputs</li>
-                            <li>Use argmax for softmax outputs</li>
-                        </ul>
-                    </div>
+                  <div class="feature-card large-text">
+                    <h3>Model Selection</h3>
+                    <ul>
+                      <li>Use sigmoid for multi-label tasks where classes are independent</li>
+                      <li>Use softmax for single-label tasks where classes are mutually exclusive</li>
+                    </ul>
+                  </div>
+                  <div class="feature-card large-text">
+                    <h3>Data Quality</h3>
+                    <ul>
+                      <li>Ensure balanced representation of all classes</li>
+                      <li>Include examples of class combinations (for sigmoid)</li>
+                      <li>Include clear examples of each class (for softmax)</li>
+                    </ul>
+                  </div>
+                  <div class="feature-card large-text">
+                    <h3>Evaluation</h3>
+                    <ul>
+                      <li>For sigmoid: Use per-class metrics and micro/macro averages</li>
+                      <li>For softmax: Use accuracy, confusion matrix, and per-class metrics</li>
+                    </ul>
+                  </div>
+                  <div class="feature-card large-text">
+                    <h3>Deployment</h3>
+                    <ul>
+                      <li>Export to ONNX for cross-platform compatibility</li>
+                      <li>Consider class thresholds for sigmoid outputs</li>
+                      <li>Use argmax for softmax outputs</li>
+                    </ul>
+                  </div>
                 </div>
             </section>
         </main>

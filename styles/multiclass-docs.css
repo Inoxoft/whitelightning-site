@@ -436,7 +436,6 @@
       align-items: flex-start;
       gap: 1.5rem;
     }
-    
     .footer-columns {
       justify-content: flex-start;
       gap: 0.5rem;
@@ -444,21 +443,17 @@
       flex-wrap: wrap;
       width: 100%;
     }
-    
     .footer-col {
       min-width: 80px;
       flex: 1;
     }
-  
     .footer-col-title {
       font-size: 0.8rem;
       margin-bottom: 0.2rem;
     }
-  
     .footer-col a {
       font-size: 0.75rem;
     }
-    
     .footer-bottom {
       flex-direction: column;
       align-items: center;
@@ -466,7 +461,6 @@
       font-size: 0.8rem;
       text-align: center;
     }
-  
     .footer-bottom span {
       display: block;
       width: 100%;
@@ -480,8 +474,8 @@
       padding: 0;
       margin: 0;
       width: 100%;
+      display: block;
     }
-  
     .docs-sidebar {
       position: fixed;
       top: 60px;
@@ -495,54 +489,72 @@
       box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
       overflow-y: auto;
     }
-  
     .docs-sidebar.active {
       left: 0;
     }
-  
     .docs-content {
       margin-left: 0;
-      padding: 20px;
+      padding: 16px;
     }
-  
-    .docs-content section {
-      padding: 0;
-      margin-bottom: var(--spacing-md);
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
-  
+    .feature-card {
+      padding: 1rem;
+      font-size: 1rem;
+    }
+    .code-block {
+      padding: 0.5rem;
+      font-size: 0.85rem;
+    }
+    .code-block pre {
+      padding: 0.5rem;
+      font-size: 0.85rem;
+    }
     .docs-content h1 {
-      font-size: 1.8rem;
-      word-wrap: break-word;
-    }
-  
-    .docs-content h2 {
       font-size: 1.5rem;
-      word-wrap: break-word;
     }
-  
-    .docs-content h3 {
-      font-size: 1.2rem;
-      word-wrap: break-word;
-    }
-  
-    .docs-content .lead {
+    .docs-content h2 {
       font-size: 1.1rem;
     }
+    .docs-content h3 {
+      font-size: 1rem;
+    }
+    .lead {
+      font-size: 1rem;
+    }
+    .hamburger {
+      display: flex;
+    }
+    nav {
+      display: none;
+    }
+  }
   
-    .docs-content .code-block {
-      padding: 15px;
+  @media (max-width: 600px) {
+    .docs-content {
+      padding: 8px;
+    }
+    .feature-card {
+      padding: 0.7rem;
+      font-size: 0.95rem;
+    }
+    .code-block {
+      padding: 0.2rem;
+      font-size: 0.8rem;
+    }
+    .code-block pre {
+      padding: 0.2rem;
+      font-size: 0.8rem;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      white-space: pre;
     }
-  
-    .docs-content .code-block pre {
-      white-space: pre-wrap;
-      word-wrap: break-word;
+    .footer-content {
+      padding: 0.5rem;
     }
-  
-    .docs-content img {
-      max-width: 100%;
-      height: auto;
+    .footer-brand {
+      min-width: 120px;
     }
   }
   

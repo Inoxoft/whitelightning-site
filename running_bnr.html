@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiclass Classifier Training Agent - WhiteLightning</title>
+    <link rel="stylesheet" href="styles/running.css">
+</head>
+<body>
+    <header class="wl-header">
+        <div class="logo">
+          <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
+          <h1><a href="index.html" style="text-decoration: none;letter-spacing: 0px; color: inherit; ">White<span>Lightning</span></a></h1>
+        </div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="playground.html">Playground</a></li>
+            <li><a id="plgr_btn" href="docs.html">Getting Started</a></li>
+            <li><a href="https://github.com/volodymyrparanyak/whitelightning.ai" target="_blank">GitHub</a></li>
+          </ul>
+        </nav>
+      </header>
+
+    <div class="docs-container">
+        <div class="docs-sidebar">
+            <nav class="docs-nav">
+              <ul>
+                <li><a href="docs.html">Overview</a>
+                  <ul style="margin-left:1.2em;">
+                    <li><a href="docs.html#what-is-llm">What is LLM Distillation?</a></li>
+                    <li><a href="docs.html#why-onnx">Why ONNX?</a></li>
+                    <li><a href="docs.html#features">Key Features</a></li>
+                    <li><a href="docs.html#quick-start">Quick Start</a></li>
+                    <li><a href="docs.html#documentation">Deployment Guide</a></li>
+                  </ul>
+                </li>
+                <li><a href="#model-types">Model Types</a>
+                  <ul style="margin-left:1.2em;">
+                    <li><a href="binary-classifier.html">Binary Classifier</a></li>
+                    <ul style="margin-left:1.2em;">
+                        <li><a href="running_bnr.html" class="active">Running</a></li>
+                      </ul>
+                    <li><a href="multiclass-classifier.html">Multiclass Classifier</a>
+                      <ul style="margin-left:1.2em;">
+                        <li><a href="running_mlt.html">Running</a></li>
+                      </ul>
+                      <ul style="margin-left:1.2em;">
+                        <li><a href="demo_mlt.html">Demos</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <!-- <li><a href="#contributing">Contributing</a></li> -->
+              </ul>
+            </nav>
+          </div>
+
+        <main class="docs-content">
+            <section id="running-binary-models">
+                <h1 class="neon-green">Running Binary Classifier Models</h1>
+                <div class="terminal-container intro-terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="terminal-circle red"></span>
+                            <span class="terminal-circle yellow"></span>
+                            <span class="terminal-circle green"></span>
+                        </div>
+                        <div class="terminal-title">WhiteLightning.ai Intro</div>
+                    </div>
+                    <div class="terminal-intro"><span id="typewriter-intro">Ready to pour your WhiteLightning.ai ONNX models into action? Here's how to run them across different platforms, from Python scripts to edge devices. These snippets assume a preprocessed input vector of 5000 features—our secret recipe for turning text into numbers. Use WhiteLightning.ai's CLI to whip up and preprocess your data for real-world sips; we'll show you the distillation process below.</span></div>
+                </div>
+                <div class="process-cards">
+                    <div class="process-card">
+                        <h2 class="neon-green">🧪 Preprocessing: Crafting the Vector</h2>
+                        <div class="process-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-content">
+                                    <h4>Text Input</h4>
+                                    <p>Start with your string (e.g., "This is a positive test").</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-content">
+                                    <h4>TF-IDF Magic</h4>
+                                    <p>Map words to a 5000-feature space using a pre-trained vocabulary and IDF weights (exported as <code>_vocab.json</code>).</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-content">
+                                    <h4>Scaling</h4>
+                                    <p>Normalize the features with mean and scale values (from <code>_scaler.json</code>) to keep the brew balanced.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-content">
+                                    <h4>Output</h4>
+                                    <p>A 5000-element <code>float32</code> array, ready to pour into the ONNX model.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="process-card">
+                        <h2 class="neon-green">🤖 Inference: Classifying the Text</h2>
+                        <div class="process-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-content">
+                                    <h4>Model Loading</h4>
+                                    <p>Load the ONNX model (<code>news_classifier.onnx</code>) using the ONNX Runtime</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-content">
+                                    <h4>Inference</h4>
+                                    <p>Pass the <code>[1, 30]</code> <code>int32</code> tensor to the model, which outputs a softmax probability distribution over classes</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-content">
+                                    <h4>Label Mapping</h4>
+                                    <p>Load the label map (from <code>_scaler.json</code>) to convert the highest-probability index to a class name (e.g., "Politics")</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-content">
+                                    <h4>Output</h4>
+                                    <p>The predicted class and its probability score (e.g., "Politics (Score: 0.9123)")</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </section>
+
+
+            <section id="code-examples">
+                <h2 class="neon-green">💻 Code Examples</h2>
+                <div class="terminal-container">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="terminal-circle red"></span>
+                            <span class="terminal-circle yellow"></span>
+                            <span class="terminal-circle green"></span>
+                        </div>
+                        <div class="terminal-title"></div>
+                        <button class="copy-btn" title="Copy code">Copy</button>
+                    </div>
+                    <div class="terminal-intro"><span id="typewriter"></span></div>
+                    <div class="language-selector">
+                        <button class="lang-btn active" data-lang="python">Python</button>
+                        <button class="lang-btn" data-lang="javascript">JavaScript</button>
+                        <button class="lang-btn" data-lang="c">C</button>
+                        <button class="lang-btn" data-lang="cpp">C++</button>
+                        <button class="lang-btn" data-lang="rust">Rust</button>
+                        <button class="lang-btn" data-lang="java">Java</button>
+                    </div>
+                    <div class="terminal-content">
+                        <div class="code-block active" id="python-code">
+                            <pre><code><span class="keyword">import</span> <span class="module">json</span>
+<span class="keyword">import</span> <span class="module">numpy</span> <span class="keyword">as</span> <span class="module">np</span>
+<span class="keyword">import</span> <span class="module">onnxruntime</span> <span class="keyword">as</span> <span class="module">ort</span>
+
+<span class="comment"># --- Preprocessing: TF-IDF + Scaling ---</span>
+<span class="keyword">def</span> <span class="function">preprocess_text</span>(<span class="parameter">text</span>, <span class="parameter">vocab_file</span>, <span class="parameter">scaler_file</span>):
+    <span class="comment"># Load vocabulary and IDF weights</span>
+    <span class="keyword">with</span> <span class="function">open</span>(<span class="string">'model_vocab.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:
+        vocab = <span class="module">json</span>.<span class="function">load</span>(f)
+    <span class="keyword">with</span> <span class="function">open</span>(<span class="string">'model_scaler.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:
+        scaler = <span class="module">json</span>.<span class="function">load</span>(f)
+    idf = vocab[<span class="string">'idf'</span>]
+    word2idx = vocab[<span class="string">'vocab'</span>]
+    mean = <span class="module">np</span>.<span class="function">array</span>(scaler[<span class="string">'mean'</span>], dtype=<span class="module">np</span>.<span class="class">float32</span>)
+    scale = <span class="module">np</span>.<span class="function">array</span>(scaler[<span class="string">'scale'</span>], dtype=<span class="module">np</span>.<span class="class">float32</span>)
+
+    <span class="comment"># Compute term frequency (TF)</span>
+    tf = <span class="module">np</span>.<span class="function">zeros</span>(<span class="function">len</span>(word2idx), dtype=<span class="module">np</span>.<span class="class">float32</span>)
+    words = text.<span class="function">lower</span>().<span class="function">split</span>()
+    <span class="keyword">for</span> word <span class="keyword">in</span> words:
+        idx = word2idx.<span class="function">get</span>(word)
+        <span class="keyword">if</span> idx <span class="keyword">is not</span> <span class="class">None</span>:
+            tf[idx] += 1
+    <span class="keyword">if</span> tf.<span class="function">sum</span>() &gt; 0:
+        tf = tf / tf.<span class="function">sum</span>()  <span class="comment"># Normalize TF</span>
+
+    <span class="comment"># TF-IDF</span>
+    tfidf = tf * <span class="module">np</span>.<span class="function">array</span>(idf, dtype=<span class="module">np</span>.<span class="class">float32</span>)
+
+    <span class="comment"># Standardize</span>
+    tfidf_scaled = (tfidf - mean) / scale
+    <span class="keyword">return</span> tfidf_scaled.<span class="function">astype</span>(<span class="module">np</span>.<span class="class">float32</span>)
+
+<span class="comment"># Example usage</span>
+text = <span class="string">"This is a positive test"</span>
+vector = <span class="function">preprocess_text</span>(text, <span class="string">'model_vocab.json'</span>, <span class="string">'model_scaler.json'</span>)  <span class="comment"># 5000-dim float32</span>
+
+<span class="comment"># --- ONNX Inference ---</span>
+session = <span class="module">ort</span>.<span class="class">InferenceSession</span>(<span class="string">'model.onnx'</span>)
+input_name = session.<span class="function">get_inputs</span>()[0].name
+output_name = session.<span class="function">get_outputs</span>()[0].name
+input_data = vector.<span class="function">reshape</span>(1, -1)
+outputs = session.<span class="function">run</span>([output_name], {input_name: input_data})
+
+probability = outputs[0][0][0]  <span class="comment"># Probability of positive class</span>
+<span class="function">print</span>(f<span class="string">'Python ONNX output: Probability = {probability:.4f}'</span>)
+</code></pre>
+                        </div>
+                        <div class="code-block" id="javascript-code">
+                            <pre><code><span class="keyword">async</span> <span class="keyword">function</span> <span class="function">preprocessText</span>(<span class="parameter">text</span>, <span class="parameter">vocabUrl</span>, <span class="parameter">scalerUrl</span>) {
+    <span class="keyword">const</span> tfidfResp = <span class="keyword">await</span> <span class="function">fetch</span>(vocabUrl);
+    <span class="keyword">const</span> tfidfData = <span class="keyword">await</span> tfidfResp.<span class="function">json</span>();
+    <span class="keyword">const</span> vocab = tfidfData.vocab;
+    <span class="keyword">const</span> idf = tfidfData.idf;
+
+    <span class="keyword">const</span> scalerResp = <span class="keyword">await</span> <span class="function">fetch</span>(scalerUrl);
+    <span class="keyword">const</span> scalerData = <span class="keyword">await</span> scalerResp.<span class="function">json</span>();
+    <span class="keyword">const</span> mean = scalerData.mean;
+    <span class="keyword">const</span> scale = scalerData.scale;
+
+    <span class="comment">// TF-IDF</span>
+    <span class="keyword">const</span> vector = <span class="keyword">new</span> <span class="class">Float32Array</span>(<span class="number">5000</span>).<span class="function">fill</span>(<span class="number">0</span>);
+    <span class="keyword">const</span> words = text.<span class="function">toLowerCase</span>().<span class="function">split</span>(<span class="regex">/\s+/</span>);
+    <span class="keyword">const</span> wordCounts = {};
+    words.<span class="function">forEach</span>(word =&gt; wordCounts[word] = (wordCounts[word] || <span class="number">0</span>) + <span class="number">1</span>);
+    <span class="keyword">for</span> (<span class="keyword">const</span> word <span class="keyword">in</span> wordCounts) {
+        <span class="keyword">if</span> (vocab[word] !== <span class="class">undefined</span>) {
+            vector[vocab[word]] = wordCounts[word] * idf[vocab[word]];
+        }
+    }
+
+    <span class="comment">// Scale</span>
+    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < <span class="number">5000</span>; i++) {
+        vector[i] = (vector[i] - mean[i]) / scale[i];
+    }
+    <span class="keyword">return</span> vector;
+}
+
+<span class="keyword">async</span> <span class="keyword">function</span> <span class="function">runModel</span>(<span class="parameter">text</span>) {
+    <span class="keyword">const</span> session = <span class="keyword">await</span> ort.<span class="class">InferenceSession</span>.<span class="function">create</span>(<span class="string">"text_classifier_pytorch.onnx"</span>);
+    <span class="keyword">const</span> vector = <span class="keyword">await</span> <span class="function">preprocessText</span>(text, <span class="string">"text_classifier_vocab.json"</span>, <span class="string">"text_classifier_scaler.json"</span>);
+    <span class="keyword">const</span> tensor = <span class="keyword">new</span> ort.<span class="class">Tensor</span>(<span class="string">"float32"</span>, vector, [<span class="number">1</span>, <span class="number">5000</span>]);
+    <span class="keyword">const</span> feeds = { float_input: tensor };
+    <span class="keyword">const</span> output = <span class="keyword">await</span> session.<span class="function">run</span>(feeds);
+    <span class="function">console</span>.<span class="function">log</span>(<span class="string">"JS ONNX output:"</span>, output.output.data[<span class="number">0</span>]);
+}
+
+<span class="function">runModel</span>(<span class="string">"This is a positive test string"</span>);
+</code></pre>
+                        </div>
+                        <div class="code-block" id="c-code">
+                            <pre><code><span class="keyword">#include</span><span class="string">&lt;onnxruntime_c_api.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;cjson/cJSON.h&gt;</span>
+
+<span class="keyword">float*</span> <span class="function">preprocess_text</span>(<span class="parameter">const char* text</span>, <span class="parameter">const char* vocab_file</span>, <span class="parameter">const char* scaler_file</span>) {
+    <span class="keyword">float*</span> vector = <span class="function">calloc</span>(<span class="number">5000</span>, <span class="keyword">sizeof</span>(<span class="keyword">float</span>));
+    
+    <span class="comment"># Load JSON (simplified, assumes cJSON library)</span>
+    FILE* f = <span class="function">fopen</span>(vocab_file, <span class="string">"r"</span>);
+    <span class="function">fseek</span>(f, <span class="number">0</span>, SEEK_END);
+    <span class="keyword">long</span> len = <span class="function">ftell</span>(f);
+    <span class="function">fseek</span>(f, <span class="number">0</span>, SEEK_SET);
+    <span class="keyword">char*</span> json_str = <span class="function">malloc</span>(len + <span class="number">1</span>);
+    <span class="function">fread</span>(json_str, <span class="number">1</span>, len, f);
+    json_str[len] = <span class="number">0</span>;
+    <span class="function">fclose</span>(f);
+    cJSON* tfidf_data = <span class="function">cJSON_Parse</span>(json_str);
+    cJSON* vocab = <span class="function">cJSON_GetObjectItem</span>(tfidf_data, <span class="string">"vocab"</span>);
+    cJSON* idf = <span class="function">cJSON_GetObjectItem</span>(tfidf_data, <span class="string">"idf"</span>);
+    
+    f = <span class="function">fopen</span>(scaler_file, <span class="string">"r"</span>);
+    <span class="function">fseek</span>(f, <span class="number">0</span>, SEEK_END);
+    len = <span class="function">ftell</span>(f);
+    <span class="function">fseek</span>(f, <span class="number">0</span>, SEEK_SET);
+    <span class="keyword">char*</span> scaler_str = <span class="function">malloc</span>(len + <span class="number">1</span>);
+    <span class="function">fread</span>(scaler_str, <span class="number">1</span>, len, f);
+    scaler_str[len] = <span class="number">0</span>;
+    <span class="function">fclose</span>(f);
+    cJSON* scaler_data = <span class="function">cJSON_Parse</span>(scaler_str);
+    cJSON* mean = <span class="function">cJSON_GetObjectItem</span>(scaler_data, <span class="string">"mean"</span>);
+    cJSON* scale = <span class="function">cJSON_GetObjectItem</span>(scaler_data, <span class="string">"scale"</span>);
+
+    <span class="comment"># TF-IDF</span>
+    <span class="keyword">char*</span> text_copy = <span class="function">strdup</span>(text);
+    <span class="keyword">for</span> (<span class="keyword">char*</span> p = text_copy; *p; p++) *p = <span class="function">tolower</span>(*p);
+    <span class="keyword">char*</span> word = <span class="function">strtok</span>(text_copy, <span class="string">" \t\n"</span>);
+    <span class="keyword">float</span> word_counts[<span class="number">5000</span>] = {<span class="number">0</span>};
+    <span class="keyword">while</span> (word) {
+        cJSON* idx = <span class="function">cJSON_GetObjectItem</span>(vocab, word);
+        <span class="keyword">if</span> (idx) {
+            <span class="keyword">int</span> i = idx->valueint;
+            word_counts[i] += <span class="function">cJSON_GetArrayItem</span>(idf, i)->valuedouble;
+        }
+        word = <span class="function">strtok</span>(NULL, <span class="string">" \t\n"</span>);
+    }
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">5000</span>; i++) {
+        vector[i] = word_counts[i];
+    }
+    
+    <span class="comment"># Scale</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">5000</span>; i++) {
+        vector[i] = (vector[i] - <span class="function">cJSON_GetArrayItem</span>(mean, i)->valuedouble) / <span class="function">cJSON_GetArrayItem</span>(scale, i)->valuedouble;
+    }
+    
+    <span class="function">free</span>(text_copy); <span class="function">free</span>(json_str); <span class="function">free</span>(scaler_str);
+    <span class="function">cJSON_Delete</span>(tfidf_data); <span class="function">cJSON_Delete</span>(scaler_data);
+    <span class="keyword">return</span> vector;
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="keyword">const char*</span> text = <span class="string">"This is a positive test string"</span>;
+    <span class="keyword">float*</span> vector = <span class="function">preprocess_text</span>(text, <span class="string">"text_classifier_vocab.json"</span>, <span class="string">"text_classifier_scaler.json"</span>);
+    
+    OrtEnv* env; <span class="function">OrtCreateEnv</span>(ORT_LOGGING_LEVEL_WARNING, <span class="string">"test"</span>, &env);
+    OrtSessionOptions* session_options; <span class="function">OrtCreateSessionOptions</span>(&session_options);
+    OrtSession* session; <span class="function">OrtCreateSession</span>(env, <span class="string">"text_classifier_pytorch.onnx"</span>, session_options, &session);
+    
+    OrtMemoryInfo* memory_info; <span class="function">OrtCreateMemoryInfo</span>(<span class="string">"Cpu"</span>, OrtDeviceAllocator, <span class="number">0</span>, OrtMemTypeDefault, &memory_info);
+    <span class="keyword">int64_t</span> input_shape[] = {<span class="number">1</span>, <span class="number">5000</span>};
+    OrtValue* input_tensor; <span class="function">OrtCreateTensorWithDataAsOrtValue</span>(memory_info, vector, <span class="number">5000</span> * <span class="keyword">sizeof</span>(<span class="keyword">float</span>), input_shape, <span class="number">2</span>, ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT, &input_tensor);
+    
+    <span class="keyword">const char*</span> input_names[] = {<span class="string">"float_input"</span>};
+    <span class="keyword">const char*</span> output_names[] = {<span class="string">"output"</span>};
+    OrtValue* output_tensor = <span class="class">NULL</span>;
+    <span class="function">OrtRun</span>(session, <span class="class">NULL</span>, input_names, (const OrtValue* const*)&input_tensor, <span class="number">1</span>, output_names, <span class="number">1</span>, &output_tensor);
+    
+    <span class="keyword">float*</span> output_data; <span class="function">OrtGetTensorMutableData</span>(output_tensor, (void**)&output_data);
+    <span class="function">printf</span>(<span class="string">"C ONNX output: %f\n"</span>, output_data[<span class="number">0</span>]);
+    
+    <span class="function">free</span>(vector); <span class="comment">// Cleanup omitted for brevity</span>
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre>
+                        </div>
+                        <div class="code-block" id="cpp-code">
+                            <pre><code><span class="keyword">#include</span><span class="string">&lt;onnxruntime_cxx_api.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;fstream&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;nlohmann/json.hpp&gt;</span>
+<span class="keyword">using</span> <span class="class">json</span> = nlohmann::json;
+
+<span class="keyword">std::vector&lt;float&gt;</span> <span class="function">preprocess_text</span>(<span class="parameter">const std::string&amp; text</span>, <span class="parameter">const std::string&amp; vocab_file</span>, <span class="parameter">const std::string&amp; scaler_file</span>) {
+    <span class="class">std::vector&lt;float&gt;</span> vector(<span class="number">5000</span>, <span class="number">0.0f</span>);
+    
+    <span class="class">std::ifstream</span> vf(vocab_file);
+    json tfidf_data; vf >> tfidf_data;
+    auto vocab = tfidf_data[<span class="string">"vocab"</span>];
+    <span class="class">std::vector&lt;float&gt;</span> idf = tfidf_data[<span class="string">"idf"</span>];
+    
+    <span class="class">std::ifstream</span> sf(scaler_file);
+    json scaler_data; sf >> scaler_data;
+    <span class="class">std::vector&lt;float&gt;</span> mean = scaler_data[<span class="string">"mean"</span>];
+    <span class="class">std::vector&lt;float&gt;</span> scale = scaler_data[<span class="string">"scale"</span>];
+    
+    <span class="comment"># TF-IDF</span>
+    <span class="class">std::string</span> text_lower = text;
+    std::transform(text_lower.begin(), text_lower.end(), text_lower.begin(), ::tolower);
+    <span class="class">std::map&lt;std::string, int&gt;</span> word_counts;
+    <span class="keyword">size_t</span> start = <span class="number">0</span>, end;
+    <span class="keyword">while</span> ((end = text_lower.find(' ', start)) != <span class="class">std::string</span>::npos) {
+        <span class="keyword">if</span> (end > start) word_counts[text_lower.substr(start, end - start)]++;
+        start = end + <span class="number">1</span>;
+    }
+    <span class="keyword">if</span> (start < text_lower.length()) word_counts[text_lower.substr(start)]++;
+    <span class="keyword">for</span> (<span class="keyword">const auto&amp;</span> [word, count] : word_counts) {
+        <span class="keyword">if</span> (vocab.contains(word)) {
+            vector[vocab[word]] = count * idf[vocab[word]];
+        }
+    }
+    
+    <span class="comment"># Scale</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">5000</span>; i++) {
+        vector[i] = (vector[i] - mean[i]) / scale[i];
+    }
+    <span class="keyword">return</span> vector;
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="class">std::string</span> text = <span class="string">"This is a positive test string"</span>;
+    auto vector = <span class="function">preprocess_text</span>(text, <span class="string">"text_classifier_vocab.json"</span>, <span class="string">"text_classifier_scaler.json"</span>);
+    
+    Ort::Env env(ORT_LOGGING_LEVEL_WARNING, <span class="string">"test"</span>);
+    Ort::SessionOptions session_options;
+    Ort::Session session(env, <span class="string">"text_classifier_pytorch.onnx"</span>, session_options);
+    
+    <span class="class">std::vector&lt;int64_t&gt;</span> input_shape = {<span class="number">1</span>, <span class="number">5000</span>};
+    Ort::MemoryInfo memory_info(<span class="string">"Cpu"</span>, OrtDeviceAllocator, <span class="number">0</span>, OrtMemTypeDefault);
+    Ort::Value input_tensor = Ort::Value::CreateTensor<<span class="class">float</span>>(memory_info, vector.data(), vector.size(), input_shape.data(), input_shape.size());
+    
+    <span class="class">std::vector&lt;const char*&gt;</span> input_names = {<span class="string">"float_input"</span>};
+    <span class="class">std::vector&lt;const char*&gt;</span> output_names = {<span class="string">"output"</span>};
+    auto output_tensors = session.Run(Ort::RunOptions{<span class="class">nullptr</span>}, input_names.data(), &input_tensor, <span class="number">1</span>, output_names.data(), <span class="number">1</span>);
+    
+    <span class="keyword">float*</span> output_data = output_tensors[<span class="number">0</span>].GetTensorMutableData<<span class="class">float</span>>();
+    std::cout << <span class="string">"C++ ONNX output: "</span> << output_data[<span class="number">0</span>] << std::endl;
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre>
+                        </div>
+                        <div class="code-block" id="rust-code">
+                            <pre><code><span class="keyword">use</span> <span class="module">ort</span>::{<span class="class">Environment</span>, <span class="class">Session</span>, <span class="class">Tensor</span>};
+<span class="keyword">use</span> <span class="module">std</span>::fs::File;
+<span class="keyword">use</span> <span class="module">std</span>::collections::HashMap;
+<span class="keyword">use</span> <span class="module">serde_json</span>;
+
+<span class="keyword">fn</span> <span class="function">preprocess_text</span>(<span class="parameter">text: &str</span>, <span class="parameter">vocab_file: &str</span>, <span class="parameter">scaler_file: &str</span>) -> <span class="class">Vec&lt;f32&gt;</span> {
+    <span class="keyword">let mut</span> vector = vec![<span class="number">0.0</span>; <span class="number">5000</span>];
+    
+    <span class="keyword">let</span> vf = File::open(vocab_file).unwrap();
+    <span class="keyword">let</span> tfidf_data: serde_json::Value = serde_json::from_reader(vf).unwrap();
+    <span class="keyword">let</span> vocab: <span class="class">HashMap&lt;String, usize&gt;</span> = serde_json::from_value(tfidf_data[<span class="string">"vocab"</span>].clone()).unwrap();
+    <span class="keyword">let</span> idf: <span class="class">Vec&lt;f32&gt;</span> = serde_json::from_value(tfidf_data[<span class="string">"idf"</span>].clone()).unwrap();
+    
+    <span class="keyword">let</span> sf = File::open(scaler_file).unwrap();
+    <span class="keyword">let</span> scaler_data: serde_json::Value = serde_json::from_reader(sf).unwrap();
+    <span class="keyword">let</span> mean: <span class="class">Vec&lt;f32&gt;</span> = serde_json::from_value(scaler_data[<span class="string">"mean"</span>].clone()).unwrap();
+    <span class="keyword">let</span> scale: <span class="class">Vec&lt;f32&gt;</span> = serde_json::from_value(scaler_data[<span class="string">"scale"</span>].clone()).unwrap();
+    
+    <span class="comment">// TF-IDF</span>
+    <span class="keyword">let</span> words: <span class="class">Vec&lt;&str&gt;</span> = text.to_lowercase().split_whitespace().collect();
+    <span class="keyword">let mut</span> word_counts = <span class="class">HashMap::new</span>();
+    <span class="keyword">for</span> word <span class="keyword">in</span> words {
+        *word_counts.entry(word.to_string()).or_insert(<span class="number">0</span>) += <span class="number">1</span>;
+    }
+    <span class="keyword">for</span> (word, count) <span class="keyword">in</span> word_counts {
+        <span class="keyword">if let</span> <span class="class">Some</span>(&idx) = vocab.get(&word) {
+            vector[idx] = count as f32 * idf[idx];
+        }
+    }
+    
+    <span class="comment">// Scale</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> 0..<span class="number">5000</span> {
+        vector[i] = (vector[i] - mean[i]) / scale[i];
+    }
+    vector
+}
+
+<span class="keyword">fn</span> <span class="function">main</span>() -> <span class="class">Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt;</span> {
+    <span class="keyword">let</span> text = <span class="string">"This is a positive test string"</span>;
+    <span class="keyword">let</span> vector = <span class="function">preprocess_text</span>(text, <span class="string">"text_classifier_vocab.json"</span>, <span class="string">"text_classifier_scaler.json"</span>);
+    
+    <span class="keyword">let</span> env = <span class="class">Environment</span>::builder().with_name(<span class="string">"test"</span>).build()?;
+    <span class="keyword">let</span> session = <span class="class">Session</span>::builder()?.commit_from_file(<span class="string">"text_classifier_pytorch.onnx"</span>)?;
+    
+    <span class="keyword">let</span> input_tensor = <span class="class">Tensor</span>::from_array(([<span class="number">1</span>, <span class="number">5000</span>], vector))?;
+    <span class="keyword">let</span> outputs = session.run(vec![input_tensor])?;
+    <span class="keyword">let</span> output: &<span class="class">Tensor&lt;f32&gt;</span> = outputs[<span class="number">0</span>].downcast_ref().unwrap();
+    <span class="function">println!</span>(<span class="string">"Rust ONNX output: {}"</span>, output.as_slice()[<span class="number">0</span>]);
+    <span class="class">Ok</span>(())
+}
+</code></pre>
+                        </div>
+                        <div class="code-block" id="java-code">
+                            <pre><code><span class="keyword">import</span> <span class="module">ai.onnxruntime.*</span>;
+<span class="keyword">import</span> <span class="module">org.json.JSONObject</span>;
+<span class="keyword">import</span> <span class="module">java.nio.file.Files</span>;
+<span class="keyword">import</span> <span class="module">java.nio.file.Paths</span>;
+<span class="keyword">import</span> <span class="module">java.util.*</span>;
+
+<span class="keyword">public class</span> <span class="class">ONNXModelRunner</span> {
+    <span class="keyword">public static void</span> <span class="function">main</span>(<span class="parameter">String[] args</span>) {
+        <span class="keyword">try</span> {
+            <span class="class">LabelVocabLoader</span> loader = <span class="keyword">new</span> <span class="class">LabelVocabLoader</span>(<span class="string">"resources/labelMap.json"</span>, <span class="string">"resources/vocab.json"</span>);
+            Map&lt;Integer, String&gt; labelMap = loader.getLabelMap();
+            Map&lt;String, Integer&gt; vocab = loader.getVocab();
+
+            String modelPath = <span class="string">"resources/model.onnx"</span>;
+            OrtEnvironment env = OrtEnvironment.getEnvironment();
+            OrtSession session = env.createSession(modelPath, <span class="keyword">new</span> OrtSession.SessionOptions());
+
+            String inputText = <span class="string">"let's go to the beach and have some fun"</span>;
+
+            Tokenizer tokenizer = <span class="keyword">new</span> Tokenizer(vocab);
+            int maxLen = <span class="number">30</span>;
+            int[] tokenizedInput = tokenizer.tokenize(inputText);
+            int[] paddedInput = <span class="keyword">new</span> int[maxLen];
+            <span class="keyword">for</span> (int i = 0; i < maxLen; i++) {
+                <span class="keyword">if</span> (i < tokenizedInput.length) {
+                    paddedInput[i] = tokenizedInput[i];
+                } <span class="keyword">else</span> {
+                    paddedInput[i] = 0;
+                }
+            }
+
+            int[][] inputData = <span class="keyword">new</span> int[1][maxLen];
+            inputData[0] = paddedInput;
+
+            OnnxTensor inputTensor = OnnxTensor.createTensor(env, inputData);
+
+            String inputName = session.getInputNames().iterator().next();
+            OrtSession.Result result = session.run(Collections.singletonMap(inputName, inputTensor));
+
+            float[][] outputArray = (float[][]) result.get(0).getValue();
+            System.out.println(<span class="string">"Model output:"</span>);
+            <span class="keyword">for</span> (int i = 0; i < outputArray[0].length; i++) {
+                System.out.println(<span class="string">"Class: "</span> + labelMap.get(i) + <span class="string">", Probability: "</span> + outputArray[0][i]);
+            }
+
+            session.close();
+            env.close();
+        } <span class="keyword">catch</span> (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    <span class="keyword">static class</span> <span class="class">Tokenizer</span> {
+        <span class="keyword">private</span> Map&lt;String, Integer&gt; vocab;
+
+        <span class="keyword">public</span> <span class="function">Tokenizer</span>(Map&lt;String, Integer&gt; vocab) {
+            this.vocab = vocab;
+        }
+
+        <span class="keyword">public int[]</span> <span class="function">tokenize</span>(String text) {
+            String[] words = text.toLowerCase().split(<span class="string">"\\s+"</span>);
+            int[] tokenized = <span class="keyword">new</span> int[words.length];
+            <span class="keyword">for</span> (int i = 0; i < words.length; i++) {
+                Integer token = vocab.getOrDefault(words[i], vocab.get(<span class="string">"<OOV>"</span>));
+                tokenized[i] = token;
+            }
+            return tokenized;
+        }
+    }
+
+    <span class="keyword">static class</span> <span class="class">LabelVocabLoader</span> {
+        <span class="keyword">private</span> Map&lt;Integer, String&gt; labelMap;
+        <span class="keyword">private</span> Map&lt;String, Integer&gt; vocab;
+
+        <span class="keyword">public</span> <span class="function">LabelVocabLoader</span>(String labelMapPath, String vocabPath) <span class="keyword">throws</span> Exception {
+            String labelMapJson = <span class="keyword">new</span> String(Files.readAllBytes(Paths.get(labelMapPath)));
+            JSONObject labelMapObject = <span class="keyword">new</span> JSONObject(labelMapJson);
+            this.labelMap = <span class="keyword">new</span> HashMap<>();
+            <span class="keyword">for</span> (String key : labelMapObject.keySet()) {
+                this.labelMap.put(Integer.parseInt(key), labelMapObject.getString(key));
+            }
+
+            String vocabJson = <span class="keyword">new</span> String(Files.readAllBytes(Paths.get(vocabPath)));
+            JSONObject vocabObject = <span class="keyword">new</span> JSONObject(vocabJson);
+            this.vocab = <span class="keyword">new</span> HashMap<>();
+            <span class="keyword">for</span> (String key : vocabObject.keySet()) {
+                this.vocab.put(key, vocabObject.getInt(key));
+            }
+        }
+
+        <span class="keyword">public</span> Map&lt;Integer, String&gt; <span class="function">getLabelMap</span>() {
+            return labelMap;
+        }
+
+        <span class="keyword">public</span> Map&lt;String, Integer&gt; <span class="function">getVocab</span>() {
+            return vocab;
+        }
+    }
+}
+
+<span class="output">Java ONNX output: Politics (Score: 0.9123)</span></code></pre>
+                        </div>
+                        <!-- Add other language code blocks similarly -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content container">
+            <div class="footer-brand">
+                <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo" class="footer-logo">
+                <div>
+                    <div class="footer-title">WhiteLightning</div>
+                    <div class="footer-desc">AI-Powered, Non-Intrusive LLM Distillation Tool</div>
+                </div>
+            </div>
+            <div class="footer-columns">
+                <div class="footer-col">
+                    <div class="footer-col-title">Docs & Links</div>
+                    <a href="docs.html">Documentation</a>
+                    <a href="playground.html">Playground</a>
+                    <a href="https://github.com/whitelightning/distill" target="_blank">GitHub</a>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-col-title">Resources</div>
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#demo">Demo</a>
+                    <a href="#">ONNX Format</a>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-col-title">Project</div>
+                    <a href="https://github.com/whitelightning/distill/issues" target="_blank">Report Issues</a>
+                    <a href="#">License</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <span>2025 WhiteLightning Project</span>
+            <span>Apache License 2.0</span>
+            <span>contact@whitelightning.ai</span>
+        </div>
+    </footer>
+
+    <script src="scripts/mobile-menu.js"></script>
+    <script>
+    const typewriterIntroText = `Ready to pour your WhiteLightning.ai ONNX models into action? Here's how to run them across different platforms, from Python scripts to edge devices. These snippets assume a preprocessed input vector of 5000 features—our secret recipe for turning text into numbers. Use WhiteLightning.ai's CLI to whip up and preprocess your data for real-world sips; we'll show you the distillation process below.`;
+    const typewriterIntroElem = document.getElementById('typewriter-intro');
+    let introIdx = 0;
+    function typeWriterIntro() {
+        if (introIdx < typewriterIntroText.length) {
+            typewriterIntroElem.innerHTML += typewriterIntroText.charAt(introIdx);
+            introIdx++;
+            setTimeout(typeWriterIntro, 18);
+        }
+    }
+    typeWriterIntro();
+
+    document.querySelector('.copy-btn').addEventListener('click', function() {
+      // Find the active code block
+      const activeBlock = document.querySelector('.code-block.active code');
+      if (!activeBlock) return;
+      let text = activeBlock.innerText || activeBlock.textContent;
+      text = text.replace(/▋$/, ''); // Remove cursor if present
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 1200);
+      });
+    });
+    </script>
+</body>
+</html> 

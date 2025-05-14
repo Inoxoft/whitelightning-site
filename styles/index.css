@@ -346,10 +346,8 @@ header h1 {
     margin-right: 5px;
   }
   
-  .ai-response {
-    color: var(--main-green);
-    margin-right: 5px;
-  }
+  .ai-response { color: #fff; }
+  .wl-label { color: #39ff14; font-weight: bold; }
   
   .user-input {
     color: var(--text-color);
@@ -793,5 +791,67 @@ header h1 {
     display: block;
     padding: 10px 0;
     font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .terminal-content {
+    overflow-x: auto;
+    white-space: nowrap;
+    direction: rtl;
+    text-align: left;
+  }
+  .terminal-content p, .terminal-line {
+    direction: ltr;
+    text-align: left;
+  }
+  .full-text { display: none; }
+  .short-text { display: inline; color: #fff; }
+}
+
+.full-text { display: inline; }
+.short-text { display: none; color: #fff; }
+
+@media (max-width: 600px) {
+  .full-text { display: none; }
+  .short-text { display: inline; }
+}
+
+@media (max-width: 600px) {
+  .process-flow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    justify-items: center;
+    align-items: center;
+  }
+  .process-step {
+    width: 90px;
+    height: 90px;
+    min-width: 90px;
+    min-height: 90px;
+    max-width: 90px;
+    max-height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(30,30,30,0.7);
+    border-radius: 12px;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .process-step .emoji {
+    font-size: 1.7rem;
+    margin-bottom: 0.2rem;
+  }
+  .step-name {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 0;
+    word-break: break-word;
+  }
+  .arrow {
+    display: none;
   }
 } 

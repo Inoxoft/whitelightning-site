@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multiclass Classifier Training Agent - WhiteLightning</title>
-    <link rel="stylesheet" href="styles/running_mlt.css">
+    <link rel="stylesheet" href="styles/running.css">
 </head>
 <body>
     <header class="wl-header">
@@ -19,8 +19,8 @@
         </div>
         <nav>
           <ul>
-            <li><a  href="playground.html">Playground</a></li>
-            <li><a  id="plgr_btn" href="docs.html">Getting Started</a></li>
+            <li><a href="playground.html">Playground</a></li>
+            <li><a id="plgr_btn" href="docs.html">Getting Started</a></li>
             <li><a href="https://github.com/volodymyrparanyak/whitelightning.ai" target="_blank">GitHub</a></li>
           </ul>
         </nav>
@@ -42,9 +42,12 @@
                 <li><a href="#model-types">Model Types</a>
                   <ul style="margin-left:1.2em;">
                     <li><a href="binary-classifier.html">Binary Classifier</a></li>
+                    <ul style="margin-left:1.2em;">
+                        <li><a href="running_bnr.html">Running</a></li>
+                      </ul>
                     <li><a href="multiclass-classifier.html">Multiclass Classifier</a>
                       <ul style="margin-left:1.2em;">
-                        <li><a href="running_mlt.html">Running</a></li>
+                        <li><a href="running_mlt.html" class="active">Running</a></li>
                       </ul>
                       <ul style="margin-left:1.2em;">
                         <li><a href="demo_mlt.html">Demos</a></li>
@@ -168,7 +171,8 @@
                             <span class="terminal-circle yellow"></span>
                             <span class="terminal-circle green"></span>
                         </div>
-                        <div class="terminal-title">WhiteLightning.ai ONNX Runner</div>
+                        <div class="terminal-title"></div>
+                        <button class="copy-btn" title="Copy code">Copy</button>
                     </div>
                     <div class="terminal-intro"><span id="typewriter"></span></div>
                     <div class="language-selector">
@@ -181,7 +185,7 @@
                     </div>
                     <div class="terminal-content">
                         <div class="code-block active" id="python-code">
-                            <pre><code><span class="prompt">$</span> <span class="keyword">import</span> <span class="module">json</span>
+                            <pre><code><span class="keyword">import</span> <span class="module">json</span>
 <span class="keyword">import</span> <span class="module">numpy</span> <span class="keyword">as</span> <span class="module">np</span>
 <span class="keyword">import</span> <span class="module">onnxruntime</span> <span class="keyword">as</span> <span class="module">ort</span>
 
@@ -252,7 +256,7 @@ score = probabilities[predicted_idx]
 <span class="function">runModel</span>(<span class="string">'The government announced new policies to boost the economy'</span>);</code></pre>
                         </div>
                         <div class="code-block" id="c-code">
-                            <pre><code><span class="prompt">$</span> <span class="keyword">#include</span> <span class="string">&lt;onnxruntime_c_api.h&gt;</span>
+                            <pre><code><span class="keyword">#include</span> <span class="string">&lt;onnxruntime_c_api.h&gt;</span>
 <span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 <span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
 <span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
@@ -335,7 +339,7 @@ score = probabilities[predicted_idx]
 <span class="output">C ONNX output: Politics (Score: 0.9123)</span></code></pre>
                         </div>
                         <div class="code-block" id="cpp-code">
-                            <pre><code><span class="prompt">$</span> <span class="keyword">#include</span> <span class="string">&lt;onnxruntime_cxx_api.h&gt;</span>
+                            <pre><code><span class="keyword">#include</span> <span class="string">&lt;onnxruntime_cxx_api.h&gt;</span>
 <span class="keyword">#include</span> <span class="string">&lt;fstream&gt;</span>
 <span class="keyword">#include</span> <span class="string">&lt;nlohmann/json.hpp&gt;</span>
 <span class="keyword">using</span> <span class="class">json</span> = nlohmann::json;
@@ -402,7 +406,7 @@ score = probabilities[predicted_idx]
 <span class="output">C++ ONNX output: Politics (Score: 0.9123)</span></code></pre>
                         </div>
                         <div class="code-block" id="rust-code">
-                            <pre><code><span class="prompt">$</span> <span class="keyword">use</span> <span class="module">ort</span>::{<span class="class">Environment</span>, <span class="class">Session</span>, <span class="class">Tensor</span>};
+                            <pre><code><span class="keyword">use</span> <span class="module">ort</span>::{<span class="class">Environment</span>, <span class="class">Session</span>, <span class="class">Tensor</span>};
 <span class="keyword">use</span> <span class="module">std</span>::fs::File;
 <span class="keyword">use</span> <span class="module">serde_json</span>::{self, <span class="class">Value</span>};
 <span class="keyword">use</span> <span class="module">std</span>::collections::HashMap;
@@ -446,7 +450,7 @@ score = probabilities[predicted_idx]
 <span class="output">Rust ONNX output: Politics (Score: 0.9123)</span></code></pre>
                         </div>
                         <div class="code-block" id="java-code">
-                            <pre><code><span class="prompt">$</span> <span class="keyword">import</span> <span class="module">ai.onnxruntime.*</span>;
+                            <pre><code><span class="keyword">import</span> <span class="module">ai.onnxruntime.*</span>;
 <span class="keyword">import</span> <span class="module">org.json.JSONObject</span>;
 <span class="keyword">import</span> <span class="module">java.nio.file.Files</span>;
 <span class="keyword">import</span> <span class="module">java.nio.file.Paths</span>;
@@ -604,6 +608,19 @@ score = probabilities[predicted_idx]
         }
     }
     typeWriterIntro();
+
+    document.querySelector('.copy-btn').addEventListener('click', function() {
+      // Find the active code block
+      const activeBlock = document.querySelector('.code-block.active code');
+      if (!activeBlock) return;
+      let text = activeBlock.innerText || activeBlock.textContent;
+      text = text.replace(/▋$/, ''); // Remove cursor if present
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 1200);
+      });
+    });
     </script>
 </body>
 </html> 

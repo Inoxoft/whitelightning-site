@@ -30,7 +30,7 @@
     <div class="docs-sidebar">
       <nav class="docs-nav">
         <ul>
-          <li><a href="docs.html">Overview</a>
+          <li><a href="docs.html" class="active">Overview</a>
             <ul style="margin-left:1.2em;">
               <li><a href="docs.html#what-is-llm">What is LLM Distillation?</a></li>
               <li><a href="docs.html#why-onnx">Why ONNX?</a></li>
@@ -42,6 +42,9 @@
           <li><a href="#model-types">Model Types</a>
             <ul style="margin-left:1.2em;">
               <li><a href="binary-classifier.html">Binary Classifier</a></li>
+              <ul style="margin-left:1.2em;">
+                  <li><a href="running_bnr.html">Running</a></li>
+                </ul>
               <li><a href="multiclass-classifier.html">Multiclass Classifier</a>
                 <ul style="margin-left:1.2em;">
                   <li><a href="running_mlt.html">Running</a></li>
@@ -166,8 +169,9 @@
 
       <section id="quick-start">
         <h2>Quick Start</h2>
-        <ol>
-          <li>Install dependencies:
+        <div class="quick-steps">
+          <div class="quick-step">
+            <p>Install dependencies:</p>
             <div class="code-block">
               <div class="terminal-header">
                 <div class="terminal-circle red"></div>
@@ -178,8 +182,9 @@
                 <code>pip install -r requirements/base.txt</code>
               </div>
             </div>
-          </li>
-          <li>Set up your environment:
+          </div>
+          <div class="quick-step">
+            <p>Set up your environment:</p>
             <div class="code-block">
               <div class="terminal-header">
                 <div class="terminal-circle red"></div>
@@ -187,12 +192,12 @@
                 <div class="terminal-circle green"></div>
               </div>
               <div class="terminal-content">
-                <code>cp .env.example .env</code>
-                <code># Edit .env with your API keys</code>
+                <code>Edit .env with your API keys</code>
               </div>
             </div>
-          </li>
-          <li>Run the classifier agent:
+          </div>
+          <div class="quick-step">
+            <p>Run the classifier agent:</p>
             <div class="code-block">
               <div class="terminal-header">
                 <div class="terminal-circle red"></div>
@@ -203,8 +208,8 @@
                 <code>python -m text_classifier.agent -p="Your classification task description"</code>
               </div>
             </div>
-          </li>
-        </ol>
+          </div>
+        </div>
       </section>
 
       <section id="documentation">

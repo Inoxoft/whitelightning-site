@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binary Classifier Training Agent - WhiteLightning</title>
-    <link rel="stylesheet" href="styles/binary-docs.css">
+    <link rel="stylesheet" href="styles/multiclass-docs.css">
 </head>
 <body>
     <header class="wl-header">
@@ -12,10 +12,15 @@
             <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
             <h1><a href="index.html" style="text-decoration: none;letter-spacing: 0px; color: inherit;">White<span>Lightning</span></a></h1>
         </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <nav>
             <ul>
                 <li><a href="playground.html">Playground</a></li>
-                <li><a href="docs.html">Documentation</a></li>
+                <li><a id="plgr_btn" href="docs.html">Getting Started</a></li>
                 <li><a href="https://github.com/whitelightning/distill" target="_blank">GitHub</a></li>
             </ul>
         </nav>
@@ -36,7 +41,10 @@
                 </li>
                 <li><a href="#model-types">Model Types</a>
                   <ul style="margin-left:1.2em;">
-                    <li><a href="binary-classifier.html">Binary Classifier</a></li>
+                    <li><a href="binary-classifier.html" class="active">Binary Classifier</a></li>
+                    <ul style="margin-left:1.2em;">
+                        <li><a href="running_bnr.html">Running</a></li>
+                      </ul>
                     <li><a href="multiclass-classifier.html">Multiclass Classifier</a>
                       <ul style="margin-left:1.2em;">
                         <li><a href="running_mlt.html">Running</a></li>
@@ -47,85 +55,84 @@
                     </li>
                   </ul>
                 </li>
-                <!-- <li><a href="#contributing">Contributing</a></li> -->
               </ul>
             </nav>
           </div>
 
         <main class="docs-content">
             <section id="overview">
-                <h1>Binary Classifier</h1>
-                <p class="lead">The Binary Classifier is designed for tasks where you need to classify text into exactly two categories with probability output. It's ideal for simple yes/no or true/false classification tasks.</p>
+                <h1 class="neon-green" style="text-align:center;"><span style="color:white;">Binary</span> Classifier</h1>
+                <div class="features-grid">
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">0️⃣</span>
+                        <h3>Binary Classification</h3>
+                        <p>Classifies text into exactly two categories with probability output. Ideal for yes/no or true/false tasks.</p>
+                    </div>
+                </div>
             </section>
 
             <section id="use-cases">
                 <h2>Use Cases</h2>
-                <ul>
-                    <li>Sentiment analysis (positive/negative)</li>
-                    <li>Spam detection (spam/ham)</li>
-                    <li>Content moderation (appropriate/inappropriate)</li>
-                    <li>Any other binary classification task</li>
-                </ul>
+                <div class="features-grid">
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">💡</span>
+                        <ul>
+                            <li>Sentiment analysis (positive/negative)</li>
+                            <li>Spam detection (spam/ham)</li>
+                            <li>Content moderation (appropriate/inappropriate)</li>
+                            <li>Any other binary classification task</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
 
             <section id="usage">
                 <h2>Usage</h2>
                 <div class="code-block">
+                    <div class="terminal-header">
+                        <div class="terminal-circle red"></div>
+                        <div class="terminal-circle yellow"></div>
+                        <div class="terminal-circle green"></div>
+                    </div>
                     <pre><code>python -m text_classifier.agent -p="Your classification task description"</code></pre>
                 </div>
                 <p>The agent will automatically:</p>
-                <ol>
-                    <li>Analyze your task and determine if it's suitable for binary classification</li>
-                    <li>Generate appropriate training data</li>
-                    <li>Train and evaluate the model</li>
-                    <li>Export the model in ONNX format</li>
-                </ol>
+                <ul class="checklist">
+                    <li>✅ <b>Analyze</b> your task and determine if it's suitable for binary classification</li>
+                    <li>✅ <b>Generate</b> appropriate training data</li>
+                    <li>✅ <b>Train and evaluate</b> the model</li>
+                    <li>✅ <b>Export</b> the model in ONNX format</li>
+                </ul>
             </section>
 
             <section id="parameters">
                 <h2>Parameters</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                            <th>Default</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>-p --problem_description</code></td>
-                            <td>Description of your classification problem</td>
-                            <td>(Required)</td>
-                        </tr>
-                        <tr>
-                            <td><code>-m --model</code></td>
-                            <td>LLM to use for training data generation</td>
-                            <td><code>openai/gpt-4o-mini</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>-l --library</code></td>
-                            <td>ML library to use (pytorch/tensorflow/scikit-learn)</td>
-                            <td><code>tensorflow</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>-o --output-path</code></td>
-                            <td>Directory to save model and data</td>
-                            <td><code>./models</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>--lang</code></td>
-                            <td>Language for training data</td>
-                            <td><code>english</code></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="code-block">
+                    <div class="terminal-header">
+                        <div class="terminal-circle red"></div>
+                        <div class="terminal-circle yellow"></div>
+                        <div class="terminal-circle green"></div>
+                    </div>
+                    <pre><code>Parameter                Description                                 Default
+----------------------  ------------------------------------------  ----------------------
+-p --problem_description  Description of your classification problem  (Required)
+-m --model                LLM to use for training data generation     openai/gpt-4o-mini
+-l --library              ML library  (pytorch/tensorflow/sklearn)    tensorflow
+-o --output-path          Directory to save model and data            ./models
+--lang                    Language for training data                  english
+</code></pre>
+                </div>
             </section>
 
             <section id="output">
                 <h2>Output</h2>
                 <p>The trained model and associated files will be saved in the specified output directory:</p>
                 <div class="code-block">
+                    <div class="terminal-header">
+                        <div class="terminal-circle red"></div>
+                        <div class="terminal-circle yellow"></div>
+                        <div class="terminal-circle green"></div>
+                    </div>
                     <pre><code>./models/[model_prefix]/
 ├── config.json                    # Configuration and analysis
 ├── data/
@@ -133,24 +140,35 @@
 │   └── edge_case_data.csv         # Challenging test cases
 ├── model.onnx                     # ONNX model file
 ├── model_scaler.json              # StandardScaler parameters
-└── model_vocab.json               # TF-IDF vocabulary</code></pre>
+└── model_vocab.json               # TF-IDF vocabulary
+</code></pre>
                 </div>
             </section>
 
             <section id="model-details">
                 <h2>Model Details</h2>
-                <ul>
-                    <li><strong>Type</strong>: Binary classification with probability output</li>
-                    <li><strong>Input</strong>: Text data</li>
-                    <li><strong>Output</strong>: Probability of the positive class</li>
-                    <li><strong>Activation</strong>: Sigmoid (for probability output)</li>
-                    <li><strong>Framework Support</strong>: TensorFlow, PyTorch, Scikit-learn</li>
-                </ul>
+                <div class="features-grid">
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">0️⃣</span>
+                        <ul>
+                            <li><b>Type:</b> Binary classification with probability output</li>
+                            <li><b>Input:</b> Text data</li>
+                            <li><b>Output:</b> Probability of the positive class</li>
+                            <li><b>Activation:</b> Sigmoid (for probability output)</li>
+                            <li><b>Framework Support:</b> TensorFlow, PyTorch, Scikit-learn</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
 
             <section id="example">
                 <h2>Example</h2>
                 <div class="code-block">
+                    <div class="terminal-header">
+                        <div class="terminal-circle red"></div>
+                        <div class="terminal-circle yellow"></div>
+                        <div class="terminal-circle green"></div>
+                    </div>
                     <pre><code>from text_classifier import TextClassifier, ModelType
 
 # Initialize classifier
@@ -165,18 +183,43 @@ classifier.train("path/to/training_data.csv")
 
 # Make predictions
 probabilities = classifier.predict_proba("Your text here")
-predictions = classifier.predict("Your text here")</code></pre>
+predictions = classifier.predict("Your text here")
+</code></pre>
                 </div>
             </section>
 
             <section id="best-practices">
                 <h2>Best Practices</h2>
-                <ol>
-                    <li><strong>Data Quality</strong>: Ensure your training data is balanced and representative</li>
-                    <li><strong>Edge Cases</strong>: Include challenging examples in your training data</li>
-                    <li><strong>Evaluation</strong>: Use appropriate metrics (accuracy, precision, recall, F1)</li>
-                    <li><strong>Deployment</strong>: Export to ONNX for cross-platform compatibility</li>
-                </ol>
+                <div class="features-grid">
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">📊</span>
+                        <h3>1. Data Quality</h3>
+                        <ul>
+                            <li>Ensure your training data is balanced and representative</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🧪</span>
+                        <h3>2. Edge Cases</h3>
+                        <ul>
+                            <li>Include challenging examples in your training data</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">📈</span>
+                        <h3>3. Evaluation</h3>
+                        <ul>
+                            <li>Use appropriate metrics (accuracy, precision, recall, F1)</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card large-text">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🚀</span>
+                        <h3>4. Deployment</h3>
+                        <ul>
+                            <li>Export to ONNX for cross-platform compatibility</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
         </main>
     </div>
