@@ -35,7 +35,10 @@ body {
     padding: var(--spacing-sm) var(--spacing-md);
     background-color: rgba(0, 0, 0, 0.2);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    position: relative;
+    position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
 }
 
 .logo {
