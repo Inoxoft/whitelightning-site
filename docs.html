@@ -86,16 +86,99 @@
         </div> -->
 
         <div class="demo-container">
-          <div class="demo-gif">
             <div class="terminal-header">
               <div class="terminal-circle red"></div>
               <div class="terminal-circle yellow"></div>
               <div class="terminal-circle green"></div>
             </div>
             <div class="terminal-content">
-              <img src="media/gif/cli_usage.gif" alt="CLI Usage" style="width:100%; display:block; border-radius: 0 0 var(--border-radius) var(--border-radius);" />
+              <p>
+                
+                <span class="user-input full-text">whitelightning.ai %</span>
+                <span class="user-input short-text"> whitelightning.ai %</span>
+              </p>
+              <p>
+                <span class="ai-response full-text"> ⚡ python -m text_classifier.agent -p "Classify customer reviews as positive, negative, or neutral"</span>
+                <span class="ai-response short-text">⚡ python -m text_classifier.agent -p</span>
+              </p>
+              <p>
+                <span class="ai-response full-text"> 🧠 - INFO - Generate Edge Cases: True (Target Volume per class: 5)</span>
+                <span class="ai-response short-text">"Classify reviews as positive or negative"</span>
+              </p>
+              <p>
+                <span class="ai-response full-text"> 🧠 - INFO - Successfully generated initial configuration.</span>
+                <!-- <span class="ai-response short-text">Created 1000 examples</span> -->
+              </p>
+              <p>
+                <span class="ai-response full-text"> 🧠 - INFO - DataGenerator initialized. Config Model: 'x-ai/grok-3-beta',  Model: 'openai/gpt-4o-mini'</span>
+                <!-- <span class="ai-response short-text">Training model...</span> -->
+              </p>
+              <p>
+                <span class="ai-response full-text"> 🧠 - INFO - Prompt Refinement Cycles: 1</span>
+                <span class="ai-response short-text">🧠 Created 1000 examples</span>
+              </p>
+              <p>
+                <span class="ai-response full-text"> 🧠 - INFO - Generate Edge Cases: True (Target Volume per class: 50)</span>
+                <span class="ai-response short-text">🧠 Generate Edge Cases...</span>
+              </p>
+              <p>
+                <span class="ai-response full-text"> 📦 - INFO - === Starting Data Generation & Model Training Process ===</span>
+                <span class="ai-response short-text">📦 Starting training process...</span>
+              </p>
+              <p>
+                <span class="ai-response full-text"> 📦 - INFO - Classification type: multiclass</span>
+                <span class="ai-response short-text">📦 Type: multiclass</span>
+              </p>
+              <p>
+                <span class="ai-response full-text"> 📦 - INFO - Class labels: ['negative', 'neutral', 'positive'] (Count: 3)</span>
+                <span class="ai-response short-text">📦 Labels: negative, neutral, positive</span>
+              </p>
+              <p>
+                <span class="ai-response full-text"> 📦 - INFO - --- Edge Case Generation Finished ---</span>
+                <span class="ai-response short-text">📦 Edge cases generated</span>
+              </p>
+              <p>
+                <span class="ai-response full-text"> ⚙️ - INFO - Starting model training using tensorflow strategy...</span>
+                <span class="ai-response short-text">⚙️ Training started</span>
+              </p>
+              <p>
+                <span class="ai-response full-text"> 📈 ━━━━━━━━━━━━━━━━━━━━ Epoch 1/20 - accuracy: 0.8164 - loss: 0.6194</span>
+                <span class="ai-response short-text">📈 Epoch 1/20 - accuracy: 0.8164</span>
+              </p>
+              <p>
+                <span class="ai-response full-text"> 📈 ━━━━━━━━━━━━━━━━━━━━ Epoch 2/20 - accuracy: 1.0000 - loss: 1.2484e-04</span>
+                <span class="ai-response short-text">📈 Epoch 2/20 - accuracy: 1.0000</span>
+              </p>
+              <p>
+                <span class="ai-response full-text"> 📈 ━━━━━━━━━━━━━━━━━━━━ Epoch 3/20 - accuracy: 1.0000 - loss: 5.3911e-05</span>
+                <span class="ai-response short-text">📈 Epoch 3/20 - accuracy: 1.0000</span>
+              </p>
+              <p>
+                <span class="ai-response full-text">...</span>
+                <span class="ai-response short-text">...</span>
+              </p>
+              <p>
+                <span class="ai-response full-text">────────────────────────────────────────────────────</span>
+                <span class="ai-response short-text">──────────────────────────</span>
+              </p>
+              <p>
+                <span class="ai-response full-text">✅ - INFO - Test set evaluation - Loss: 0.0006, Accuracy: 1.0000</span>
+                <span class="ai-response short-text">✅ Test accuracy: 1.0000</span>
+              </p>
+              <p>
+                <span class="ai-response full-text">📤 - INFO - Model exported to ONNX:</span>
+                <span class="ai-response short-text">📤 Model exported</span>
+              </p> 
+              <p>
+                <span class="ai-response full-text">         models_multiclass/customer_review_classifier/customer_review_classifier.onnx</span>
+                <span class="ai-response short-text">customer_review_classifier.onnx</span>
+              </p>
+              <p>
+                <span class="ai-response full-text">⚡ - INFO - === Data Generation & Model Training Process Finished. Duration: 0:10:42 ===</span>
+                <span class="ai-response short-text">⚡ Process completed in 10:42</span>
+              </p>
+              <!-- <p><span class="prompt">$ </span><span class="user-input">_</span></p> -->
             </div>
-          </div>
         </div>
       </section>
 
@@ -216,7 +299,8 @@
                 <div class="terminal-circle green"></div>
               </div>
               <div class="terminal-content">
-                <code>python -m text_classifier.agent -p="Your classification task description"</code>
+                <code>python -m text_classifier.agent -p</code>
+                <code>"Your classification task description"</code>
               </div>
             </div>
           </div>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Demo</title>
+    <link rel="stylesheet" href="styles/docs.css">
+</head>
+<body>
+    <div class="demo-container">
+        <div class="terminal-content">
+            <p>
+                <span class="prompt">$ </span>
+                <span class="command">whitelightning.ai %</span>
+            </p>
+            <p>
+                <span class="command">⚡ python -m text_classifier.agent -p "Classify customer reviews as positive, negative, or neutral"</span>
+            </p>
+            <p>
+                <span class="output">🧠 - INFO - Generate Edge Cases: True (Target Volume per class: 5)</span>
+            </p>
+            <p>
+                <span class="output">🧠 - INFO - Successfully generated initial configuration.</span>
+            </p>
+            <p>
+                <span class="output">🧠 - INFO - DataGenerator initialized. Config Model: 'x-ai/grok-3-beta',  Model: 'openai/gpt-4o-mini'</span>
+            </p>
+            <p>
+                <span class="output">🧠 - INFO - Prompt Refinement Cycles: 1</span>
+            </p>
+            <p>
+                <span class="output">🧠 - INFO - Generate Edge Cases: True (Target Volume per class: 50)</span>
+            </p>
+            <p>
+                <span class="output">📦 - INFO - === Starting Data Generation & Model Training Process ===</span>
+            </p>
+            <p>
+                <span class="output">📦 - INFO - Classification type: multiclass</span>
+            </p>
+            <p>
+                <span class="output">📦 - INFO - Class labels: ['negative', 'neutral', 'positive'] (Count: 3)</span>
+            </p>
+            <p>
+                <span class="output">📦 - INFO - --- Edge Case Generation Finished ---</span>
+            </p>
+            <p>
+                <span class="output">⚙️ - INFO - Starting model training using tensorflow strategy...</span>
+            </p>
+            <p>
+                <span class="epoch">📈 ━━━━━━━━━━━━━━━━━━━━ Epoch 1/20 - accuracy: 0.8164 - loss: 0.6194</span>
+            </p>
+            <p>
+                <span class="epoch">📈 ━━━━━━━━━━━━━━━━━━━━ Epoch 2/20 - accuracy: 1.0000 - loss: 1.2484e-04</span>
+            </p>
+            <p>
+                <span class="epoch">📈 ━━━━━━━━━━━━━━━━━━━━ Epoch 3/20 - accuracy: 1.0000 - loss: 5.3911e-05</span>
+            </p>
+            <p>
+                <span class="separator">...</span>
+            </p>
+            <p>
+                <span class="separator">────────────────────────────────────────────────────</span>
+            </p>
+            <p>
+                <span class="output">✅ - INFO - Test set evaluation - Loss: 0.0006, Accuracy: 1.0000</span>
+            </p>
+            <p>
+                <span class="output">📤 - INFO - Model exported to ONNX:</span>
+            </p>
+            <p>
+                <span class="output">         models_multiclass/customer_review_classifier/customer_review_classifier.onnx</span>
+            </p>
+            <p>
+                <span class="output">⚡ - INFO - === Data Generation & Model Training Process Finished. Duration: 0:10:42 ===</span>
+            </p>
+            <p>
+                <span class="prompt">$ </span>
+                <span class="command">_</span>
+            </p>
+        </div>
+    </div>
+</body>
+</html> 

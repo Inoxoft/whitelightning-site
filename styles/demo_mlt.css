@@ -98,6 +98,9 @@
   }
   
   .docs-content {
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    max-width: 1000px;
     margin: 0 auto;
   }
   
@@ -134,14 +137,6 @@
   .docs-nav a:hover {
     color: var(--main-green);
     transform: translateX(5px);
-  }
-  
-  .docs-content {
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-lg);
-    border: 1px solid rgba(57, 255, 20, 0.1);
-    max-width: 1000px;
   }
   
   section {
@@ -199,18 +194,13 @@
   .demo-container {
     text-align: center;
     margin: var(--spacing-md) 0;
-    background: var(--section-bg);
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius);
-    border: 1px solid rgba(57, 255, 20, 0.1);
   }
   
   .demo-gif {
     max-width: 100%;
     border-radius: var(--border-radius);
-    border: 1px solid rgba(57, 255, 20, 0.2);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
+    overflow: hidden;
   }
   
   .demo-gif:hover {
@@ -679,23 +669,42 @@
     text-align: center;
   }
   
-  .terminal-header {
-    background-color: #1a1a1a;
-    padding: 0.5rem 1rem;
+  .terminal-content {
+    padding: 1rem;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    background: #101620;
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    flex-direction: column;
+    gap: 0.4rem;
+    text-align: left;
+    border-radius: var(--border-radius);
   }
   
-  .terminal-circle {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+  .terminal-content code {
+    color: var(--main-green);
+    background: none;
+    font-family: inherit;
+    font-size: 0.8rem;
+    display: block;
+    white-space: pre;
+    width: 0;
+    overflow: hidden;
+    animation: typing 1.5s steps(50, end) forwards;
+    text-align: left;
+    padding-left: 0;
+    margin-left: 0;
   }
   
-  .terminal-circle.red { background-color: #ff5f56; }
-  .terminal-circle.yellow { background-color: #ffbd2e; }
-  .terminal-circle.green { background-color: #27c93f; }
+  @keyframes typing {
+    from { 
+      width: 0;
+    }
+    to { 
+      width: 100%;
+    }
+  }
   
   .checklist {
     list-style: none;

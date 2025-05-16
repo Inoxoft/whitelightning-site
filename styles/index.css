@@ -320,9 +320,7 @@ header h1 {
     margin: 0;
     overflow: hidden;
     white-space: nowrap;
-    border-right: 2px solid #39ff14;
-    animation: typing 1s steps(40, end) forwards,
-               blink-caret 0.75s step-end;
+    animation: typing 1s steps(40, end) forwards;
     opacity: 0;
   }
   
@@ -345,11 +343,6 @@ header h1 {
       width: 100%;
       opacity: 1;
     }
-  }
-  
-  @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #39ff14 }
   }
   
   .prompt {
@@ -827,20 +820,24 @@ header h1 {
   .terminal-content {
     overflow-x: auto;
     white-space: nowrap;
-    direction: rtl;
     text-align: left;
   }
   .terminal-content p, .terminal-line {
-    direction: ltr;
     text-align: left;
   }
   .full-text { display: none; }
-  .short-text { display: inline; color: #fff; }
-  
+  .short-text { 
+    display: inline; 
+    color: #fff;
+    font-size: 0.75rem;
+  }
 }
 
 .full-text { display: inline; }
-.short-text { display: none; color: #fff; }
+.short-text { 
+  display: none; 
+  color: #fff;
+}
 
 @media (max-width: 600px) {
   .full-text { display: none; }
@@ -934,8 +931,8 @@ header h1 {
     justify-content: center;
     min-height: 40px;
   }
-  .arrow.right { }
+  /* .arrow.right { }
   .arrow.left { }
-  .arrow.down { }
+  .arrow.down { } */
   .process-flow-mobile { display: grid; }
 } 

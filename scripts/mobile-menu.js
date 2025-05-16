@@ -66,4 +66,18 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  // Handle terminal animation completion
+  const terminalContents = document.querySelectorAll('.terminal-content');
+  
+  terminalContents.forEach(terminal => {
+    const codes = terminal.querySelectorAll('code');
+    const lastCode = codes[codes.length - 1];
+    
+    if (lastCode) {
+      lastCode.addEventListener('animationend', function() {
+        terminal.classList.add('animation-complete');
+      });
+    }
+  });
 }); 

@@ -45,8 +45,9 @@
         <div class="terminal-content">
           <p>
             <span class="prompt">$ </span>
-            <span class="user-input full-text">curl -fsSL https://get.whitelightning.dev | bash</span>
-            <span class="user-input short-text">https://get.whitelightning.dev</span>
+            <span class="user-input full-text">pip install -r requirements/base.txt</span>
+            <span class="user-input short-text">pip install -r requirements/base.txt
+            </span>
           </p>
           
         </div>
@@ -209,10 +210,10 @@
           <div class="terminal-circle green"></div>
         </div>
         <div class="terminal-content">
-          <p><span class="prompt">$ </span><span class="user-input full-text">pip install -r requirements.txt</span><span class="user-input short-text">pip install requirements.txt</span></p>
-          <p><span class="prompt">$ </span><span class="user-input full-text">pre-commit install</span><span class="user-input short-text">pre-commit install</span></p>
-          <p><span class="prompt">$ </span><span class="user-input full-text">detect-secrets scan &gt; .secrets.baseline</span><span class="user-input short-text">detect scan secrets</span></p>
-          <p><span class="prompt">$ </span><span class="user-input">_</span></p>
+          <p><span class="prompt">$ </span><span class="user-input full-text">python -m text_classifier.agent -p "Detect political bias in articles" \</span><span class="user-input short-text">python -m text_classifier.agent -p</span></p>
+          <p><span class="prompt">$ </span><span class="user-input full-text">--generate-edge-cases true \</span><span class="user-input short-text">"Detect political bias in articles"</span></p>
+          <p><span class="prompt">$ </span><span class="user-input full-text">--edge-case-volume-per-class 30</span><span class="user-input short-text">-edge-case-volume-per-class 30</span></p>
+          <!-- <p><span class="prompt">$ </span><span class="user-input">_</span></p> -->
         </div>
       </div>
       
