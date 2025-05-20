@@ -29,7 +29,7 @@
             <li><a id="plgr_btn" href="running_bnr.html">Binary Running</a></li>
             <li><a  href="multiclass-classifier.html">Multiclass Classifier</a></li>
             <li><a  href="running_mlt.html">Multiclass Running</a></li>
-            <li><a  href="demo_mlt.html">Multiclass Demos</a></li>
+            <li><a  href="demo_mlt.html">Demos</a></li>
             <li><a  href="playground.html">Playground</a></li>
             <li><a   href="docs.html">Getting Started</a></li>
             <li><a href="https://github.com/volodymyrparanyak/whitelightning.ai" target="_blank">GitHub</a></li>
@@ -158,7 +158,7 @@
 
 
             <section id="code-examples">
-                <h2 class="neon-green">💻 Code Examples</h2>
+                <h2 class="neon-green">💻 Running Guide</h2>
                 <div class="terminal-container">
                     <div class="terminal-header">
                         <div class="terminal-buttons">
@@ -180,6 +180,153 @@
                     </div>
                     <div class="terminal-content">
                         <div class="code-block active" id="python-code">
+                            <div class="guide-section">
+                                <h3 class="neon-green">🧠 How to Run a Binary Classifier ONNX Model with Python: Full Beginner-Friendly Guide</h3>
+                                
+                                <h4>📌 What is this?</h4>
+                                <p>This guide walks you through running a binary classifier ONNX model using Python, starting from scratch — including Python installation, setting up dependencies, and running the model for binary classification tasks.</p>
+
+                                <h4>✅ 1. Install Python</h4>
+                                <div class="os-section">
+                                    <h5>🔷 Windows</h5>
+                                    <ol>
+                                        <li>Go to: <a href="https://www.python.org/downloads/windows" class="neon-link">https://www.python.org/downloads/windows</a></li>
+                                        <li>Download the latest Python 3.11+ installer</li>
+                                        <li>During installation, check ✅ Add Python to PATH</li>
+                                        <li>After installation, check if it worked:</li>
+                                    </ol>
+                                    <pre><code>python --version</code></pre>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>🍏 macOS</h5>
+                                    <p>You have two options to install Python:</p>
+                                    <ol>
+                                        <li><strong>Option 1 - Official Website:</strong>
+                                            <ul>
+                                                <li>Visit: <a href="https://www.python.org/downloads/macos/" class="neon-link">https://www.python.org/downloads/macos/</a></li>
+                                                <li>Download the latest Python 3.11+ installer for macOS</li>
+                                                <li>Run the installer package and follow the installation wizard</li>
+                                            </ul>
+                                        </li>
+                                        <li><strong>Option 2 - Homebrew:</strong>
+                                            <ul>
+                                                <li>Install Homebrew (if you don't have it):</li>
+                                            </ul>
+                                            <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+                                            <p>Then install Python:</p>
+                                            <pre><code>brew install python@3.11</code></pre>
+                                        </li>
+                                    </ol>
+                                    <p>After installation, check if it worked:</p>
+                                    <pre><code>python3 --version</code></pre>
+                                    <p><em>Note: macOS uses python3, not python.</em></p>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>🐧 Linux (Ubuntu/Debian)</h5>
+                                    <p>You have two options to install Python:</p>
+                                    <ol>
+                                        <li><strong>Option 1 - Package Manager:</strong>
+                                            <pre><code>sudo apt update
+sudo apt install python3 python3-pip</code></pre>
+                                        </li>
+                                        <li><strong>Option 2 - Official Website:</strong>
+                                            <ul>
+                                                <li>Visit: <a href="https://www.python.org/downloads/source/" class="neon-link">https://www.python.org/downloads/source/</a></li>
+                                                <li>Download the latest Python 3.11+ source tarball</li>
+                                                <li>Extract and build from source:</li>
+                                            </ul>
+                                            <pre><code>tar -xf Python-3.11.x.tar.xz
+cd Python-3.11.x
+./configure
+make
+sudo make install</code></pre>
+                                        </li>
+                                    </ol>
+                                    <p>After installation, check if it worked:</p>
+                                    <pre><code>python3 --version</code></pre>
+                                </div>
+
+                                <h4>✅ 2. Get Your Model</h4>
+                                <div class="os-section">
+                                    <h5>🔷 Download the Repository</h5>
+                                    <pre><code>git clone https://github.com/volodymyrparanyak/whitelightning.ai.git
+cd whitelightning.ai</code></pre>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>🟩 Choose Your Model</h5>
+                                    <p>You have two options:</p>
+                                    <ol>
+                                        <li><strong>Use Pre-trained Model:</strong>
+                                            <ul>
+                                                <li>Navigate to the <code>models</code> directory</li>
+                                                <li>Copy these files to your project's <code>src/main/resources</code> directory:
+                                                    <ul>
+                                                        <li><code>model.onnx</code></li>
+                                                        <li><code>model_vocab.json</code></li>
+                                                        <li><code>model_scaler.json</code></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><strong>Train Your Own Model:</strong>
+                                            <ul>
+                                                <li>Follow the training guide in the repository</li>
+                                                <li>Use the provided scripts to train your custom binary classifier</li>
+                                                <li>Export your model to ONNX format</li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </div>
+
+                                <h4>✅ 3. Project Setup</h4>
+                                <pre><code>mkdir binary_classifier_demo
+cd binary_classifier_demo</code></pre>
+                                <p>Folder structure:</p>
+                                <pre><code>binary_classifier_demo/
+├── model.onnx
+├── model_vocab.json
+├── model_scaler.json
+└── run_onnx.py</code></pre>
+
+                                <h4>✅ 4. Install Required Python Libraries</h4>
+                                <pre><code>pip install onnxruntime numpy</code></pre>
+                                <p><em>On macOS or Linux, you might need to run pip3 install instead.</em></p>
+
+                                <h4>✅ 5. Prepare Supporting Files</h4>
+                                <div class="file-section">
+                                    <h5>🔹 model_vocab.json (TF-IDF vocabulary)</h5>
+                                    <pre><code>{
+  "vocab": {
+    "the": 0,
+    "government": 1,
+    "announced": 2,
+    "new": 3,
+    "policies": 4
+  },
+  "idf": [1.2, 2.1, 1.8, 1.5, 2.3]
+}</code></pre>
+                                </div>
+
+                                <div class="file-section">
+                                    <h5>🔹 model_scaler.json (normalization parameters)</h5>
+                                    <pre><code>{
+  "mean": [0.1, 0.2, 0.3, 0.4, 0.5],
+  "scale": [1.1, 1.2, 1.3, 1.4, 1.5]
+}</code></pre>
+                                    <p><em>These values are used to normalize the TF-IDF features.</em></p>
+                                </div>
+
+                                <div class="file-section">
+                                    <h5>🔹 model.onnx</h5>
+                                    <p>Place your trained binary classifier ONNX model here. It should accept a (1, 5000) input tensor of float32.</p>
+                                </div>
+
+                                <h4>✅ 6. Create the Python Script run_onnx.py</h4>
+                                <p>Use the code example below:</p>
+                            </div>
                             <pre><code><span class="keyword">import</span> <span class="module">json</span>
 <span class="keyword">import</span> <span class="module">numpy</span> <span class="keyword">as</span> <span class="module">np</span>
 <span class="keyword">import</span> <span class="module">onnxruntime</span> <span class="keyword">as</span> <span class="module">ort</span>
@@ -215,7 +362,7 @@
 
 <span class="comment"># Example usage</span>
 text = <span class="string">"This is a positive test"</span>
-vector = <span class="function">preprocess_text</span>(text, <span class="string">'model_vocab.json'</span>, <span class="string">'model_scaler.json'</span>)  <span class="comment"># 5000-dim float32</span>
+vector = <span class="function">preprocess_text</span>(text, <span class="string">'vocab.json'</span>, <span class="string">'scaler.json'</span>)  <span class="comment"># 5000-dim float32</span>
 
 <span class="comment"># --- ONNX Inference ---</span>
 session = <span class="module">ort</span>.<span class="class">InferenceSession</span>(<span class="string">'model.onnx'</span>)
@@ -227,138 +374,598 @@ outputs = session.<span class="function">run</span>([output_name], {input_name: 
 probability = outputs[0][0][0]  <span class="comment"># Probability of positive class</span>
 <span class="function">print</span>(f<span class="string">'Python ONNX output: Probability = {probability:.4f}'</span>)
 </code></pre>
+<span class="guide-section">
+    <h4>✅ 7. Run the Script</h4>
+    <div class="os-section">
+        <h5>🔷 Windows</h5>
+        <pre><code>python run_onnx.py</code></pre>
+    </div>
+    <div class="os-section">
+        <h5>🍏 macOS/Linux</h5>
+        <pre><code>python3 run_onnx.py</code></pre>
+    </div>
+
+    <h4>✅ 8. Expected Output</h4>
+    <div class="output-section">
+        <pre><code>Python ONNX output: Probability = 0.9123</code></pre>
+        <p>The output shows the probability of the positive class. In this example, the model predicted a 91.23% probability of the text belonging to the positive class. A probability above 0.5 indicates a positive classification, while below 0.5 indicates a negative classification.</p>
+    </div>
+</span>
                         </div>
                         <div class="code-block" id="javascript-code">
-                            <pre><code><span class="keyword">async</span> <span class="keyword">function</span> <span class="function">preprocessText</span>(<span class="parameter">text</span>, <span class="parameter">vocabUrl</span>, <span class="parameter">scalerUrl</span>) {
-    <span class="keyword">const</span> tfidfResp = <span class="keyword">await</span> <span class="function">fetch</span>(vocabUrl);
-    <span class="keyword">const</span> tfidfData = <span class="keyword">await</span> tfidfResp.<span class="function">json</span>();
-    <span class="keyword">const</span> vocab = tfidfData.vocab;
-    <span class="keyword">const</span> idf = tfidfData.idf;
+                            <div class="guide-section">
+                                <h3 class="neon-green">🧠 How to Run a Binary Classifier ONNX Model with JavaScript (Browser or Node.js)</h3>
+                                
+                                <h4>📌 What is this?</h4>
+                                <p>This guide explains how to load and run binary classifier ONNX models using JavaScript and ONNX Runtime Web, covering both browser and Node.js environments.</p>
 
-    <span class="keyword">const</span> scalerResp = <span class="keyword">await</span> <span class="function">fetch</span>(scalerUrl);
-    <span class="keyword">const</span> scalerData = <span class="keyword">await</span> scalerResp.<span class="function">json</span>();
-    <span class="keyword">const</span> mean = scalerData.mean;
-    <span class="keyword">const</span> scale = scalerData.scale;
+                                <h4>✅ 1. Choose Your Runtime</h4>
+                                <p>You can run ONNX models in JavaScript in two ways:</p>
+                                <table>
+                                    <tr>
+                                        <th>Environment</th>
+                                        <th>Description</th>
+                                        <th>Recommended For</th>
+                                    </tr>
+                                    <tr>
+                                        <td>✅ Browser</td>
+                                        <td>Uses WebAssembly or WebGL</td>
+                                        <td>Web apps, frontend demos</td>
+                                    </tr>
+                                    <tr>
+                                        <td>✅ Node.js</td>
+                                        <td>Uses Node runtime (CPU only)</td>
+                                        <td>Backend/CLI usage</td>
+                                    </tr>
+                                </table>
 
-    <span class="comment">// TF-IDF</span>
-    <span class="keyword">const</span> vector = <span class="keyword">new</span> <span class="class">Float32Array</span>(<span class="number">5000</span>).<span class="function">fill</span>(<span class="number">0</span>);
-    <span class="keyword">const</span> words = text.<span class="function">toLowerCase</span>().<span class="function">split</span>(<span class="regex">/\s+/</span>);
-    <span class="keyword">const</span> wordCounts = {};
-    words.<span class="function">forEach</span>(word =&gt; wordCounts[word] = (wordCounts[word] || <span class="number">0</span>) + <span class="number">1</span>);
-    <span class="keyword">for</span> (<span class="keyword">const</span> word <span class="keyword">in</span> wordCounts) {
-        <span class="keyword">if</span> (vocab[word] !== <span class="class">undefined</span>) {
-            vector[vocab[word]] = wordCounts[word] * idf[vocab[word]];
-        }
+                                <h4>✅ 2. Requirements</h4>
+                                <div class="os-section">
+                                    <h5>🔷 For browser</h5>
+                                    <p>No install — just include the library from a CDN or bundle via npm.</p>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>🟩 For Node.js</h5>
+                                    <p>Install Node.js:</p>
+                                    <ol>
+                                        <li>Download from: <a href="https://nodejs.org/" class="neon-link">https://nodejs.org/</a></li>
+                                        <li>Check installation:</li>
+                                    </ol>
+                                    <pre><code>node -v
+npm -v</code></pre>
+                                    <p>Then install ONNX Runtime:</p>
+                                    <pre><code>npm install onnxruntime-web</code></pre>
+                                </div>
+
+                                <h4>✅ 3. Get Your Model</h4>
+                                <div class="os-section">
+                                    <h5>🔄 Download Repository</h5>
+                                    <p>Clone our repository to get started:</p>
+                                    <pre><code>git clone https://github.com/volodymyrparanyak/whitelightning.ai.git
+cd whitelightning.ai</code></pre>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>📦 Choose Your Model</h5>
+                                    <p>You have two options:</p>
+                                    <ol>
+                                        <li><strong>Use Pre-trained Model:</strong>
+                                            <ul>
+                                                <li>Navigate to the <code>models</code> directory</li>
+                                                <li>Copy the binary classifier model files to your project:
+                                                    <ul>
+                                                        <li><code>model.onnx</code> - The ONNX model file</li>
+                                                        <li><code>model_vocab.json</code> - TF-IDF vocabulary</li>
+                                                        <li><code>model_scaler.json</code> - Feature scaling parameters</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><strong>Train Your Own Model:</strong>
+                                            <ul>
+                                                <li>Follow the training guide in the repository</li>
+                                                <li>Use the provided scripts to train a custom binary classifier</li>
+                                                <li>Export your model to ONNX format</li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </div>
+
+                                <h4>✅ 4. Folder Setup</h4>
+                                <pre><code>mkdir binary_classifier_demo
+cd binary_classifier_demo</code></pre>
+                                <p>Files you'll need:</p>
+                                <pre><code>binary_classifier_demo/
+├── index.html            # For browser use
+├── run.js                # Main logic
+├── model.onnx
+├── model_vocab.json
+└── model_scaler.json</code></pre>
+
+                                <h4>✅ 5. Sample model_vocab.json</h4>
+                                <pre><code>{
+  "vocab": {
+    "the": 0,
+    "government": 1,
+    "announced": 2,
+    "new": 3,
+    "policies": 4
+  },
+  "idf": [1.2, 2.1, 1.8, 1.5, 2.3]
+}</code></pre>
+
+                                <h4>✅ 6. Sample model_scaler.json</h4>
+                                <pre><code>{
+  "mean": [0.1, 0.2, 0.3, 0.4, 0.5],
+  "scale": [1.1, 1.2, 1.3, 1.4, 1.5]
+}</code></pre>
+
+                                <h4>✅ 7. JavaScript Code (run.js)</h4>
+                                <p>Works in both browser and Node.js (with minor changes)</p>
+                                <pre><code><span class="keyword">async</span> <span class="keyword">function</span> <span class="function">preprocessText</span>(<span class="parameter">text</span>, <span class="parameter">vocabUrl</span>, <span class="parameter">scalerUrl</span>) {
+<span class="keyword">const</span> tfidfResp = <span class="keyword">await</span> <span class="function">fetch</span>(vocabUrl);
+<span class="keyword">const</span> tfidfData = <span class="keyword">await</span> tfidfResp.<span class="function">json</span>();
+<span class="keyword">const</span> vocab = tfidfData.vocab;
+<span class="keyword">const</span> idf = tfidfData.idf;
+
+<span class="keyword">const</span> scalerResp = <span class="keyword">await</span> <span class="function">fetch</span>(scalerUrl);
+<span class="keyword">const</span> scalerData = <span class="keyword">await</span> scalerResp.<span class="function">json</span>();
+<span class="keyword">const</span> mean = scalerData.mean;
+<span class="keyword">const</span> scale = scalerData.scale;
+
+<span class="comment">// TF-IDF</span>
+<span class="keyword">const</span> vector = <span class="keyword">new</span> <span class="class">Float32Array</span>(<span class="number">5000</span>).<span class="function">fill</span>(<span class="number">0</span>);
+<span class="keyword">const</span> words = text.<span class="function">toLowerCase</span>().<span class="function">split</span>(<span class="regex">/\s+/</span>);
+<span class="keyword">const</span> wordCounts = {};
+words.<span class="function">forEach</span>(word => wordCounts[word] = (wordCounts[word] || <span class="number">0</span>);
+<span class="keyword">for</span> (<span class="keyword">const</span> word <span class="keyword">in</span> wordCounts) {
+    <span class="keyword">if</span> (vocab[word] !== <span class="class">undefined</span>) {
+        vector[vocab[word]] = wordCounts[word] * idf[vocab[word]];
     }
+}
 
-    <span class="comment">// Scale</span>
-    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < <span class="number">5000</span>; i++) {
-        vector[i] = (vector[i] - mean[i]) / scale[i];
-    }
-    <span class="keyword">return</span> vector;
+<span class="comment"># Scale</span>
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < <span class="number">5000</span>; i++) {
+    vector[i] = (vector[i] - mean[i]) / scale[i];
+}
+<span class="keyword">return</span> vector;
 }
 
 <span class="keyword">async</span> <span class="keyword">function</span> <span class="function">runModel</span>(<span class="parameter">text</span>) {
-    <span class="keyword">const</span> session = <span class="keyword">await</span> ort.<span class="class">InferenceSession</span>.<span class="function">create</span>(<span class="string">"text_classifier_pytorch.onnx"</span>);
-    <span class="keyword">const</span> vector = <span class="keyword">await</span> <span class="function">preprocessText</span>(text, <span class="string">"text_classifier_vocab.json"</span>, <span class="string">"text_classifier_scaler.json"</span>);
-    <span class="keyword">const</span> tensor = <span class="keyword">new</span> ort.<span class="class">Tensor</span>(<span class="string">"float32"</span>, vector, [<span class="number">1</span>, <span class="number">5000</span>]);
-    <span class="keyword">const</span> feeds = { float_input: tensor };
-    <span class="keyword">const</span> output = <span class="keyword">await</span> session.<span class="function">run</span>(feeds);
-    <span class="function">console</span>.<span class="function">log</span>(<span class="string">"JS ONNX output:"</span>, output.output.data[<span class="number">0</span>]);
+<span class="keyword">const</span> session = <span class="keyword">await</span> ort.<span class="class">InferenceSession</span>.<span class="function">create</span>(<span class="string">"model.onnx"</span>);
+<span class="keyword">const</span> vector = <span class="keyword">await</span> <span class="function">preprocessText</span>(text, <span class="string">"model_vocab.json"</span>, <span class="string">"model_scaler.json"</span>);
+<span class="keyword">const</span> tensor = <span class="keyword">new</span> ort.<span class="class">Tensor</span>(<span class="string">"float32"</span>, vector, [<span class="number">1</span>, <span class="number">5000</span>]);
+<span class="keyword">const</span> feeds = { input: tensor };
+<span class="keyword">const</span> output = <span class="keyword">await</span> session.<span class="function">run</span>(feeds);
+<span class="keyword">const</span> probability = output[<span class="class">Object</span>.<span class="function">keys</span>(output)[<span class="number">0</span>]].data[<span class="number">0</span>];
+<span class="function">console</span>.<span class="function">log</span>(<span class="string">`JS ONNX output: Probability = ${probability.toFixed(4)}`</span>);
 }
 
-<span class="function">runModel</span>(<span class="string">"This is a positive test string"</span>);
-</code></pre>
+<span class="function">runModel</span>(<span class="string">"This is a positive test string"</span>);</code></pre>
+
+                                <h4>✅ 8. Run in Browser (option A)</h4>
+                                <div class="file-section">
+                                    <h5>🔹 index.html</h5>
+                                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;title&gt;ONNX JS Inference&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Running ONNX Model...&lt;/h1&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"&gt;&lt;/script&gt;
+  &lt;script type="module" src="run.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                                </div>
+                                <p>📦 Start a local server (required due to fetch):</p>
+                                <pre><code>npx serve .
+# OR
+python3 -m http.server</code></pre>
+                                <p>Visit: http://localhost:3000</p>
+
+                                <h4>✅ 9. Run with Node.js (option B)</h4>
+                                <div class="file-section">
+                                    <h5>🔹 Modify run.js for Node</h5>
+                                    <pre><code><span class="keyword">import</span> * <span class="keyword">as</span> ort <span class="keyword">from</span> <span class="string">'onnxruntime-node'</span>;
+<span class="keyword">import</span> fs <span class="keyword">from</span> <span class="string">'fs/promises'</span>;
+
+<span class="keyword">async function</span> <span class="function">loadJSON</span>(<span class="parameter">path</span>) {
+  <span class="keyword">const</span> data = <span class="keyword">await</span> fs.<span class="function">readFile</span>(path, <span class="string">'utf-8'</span>);
+  <span class="keyword">return</span> <span class="class">JSON</span>.<span class="function">parse</span>(data);
+}
+
+<span class="comment">// Keep rest of logic same from previous example</span></code></pre>
+                                </div>
+                                <p>📦 Run it:</p>
+                                <pre><code>node run.js</code></pre>
+
+                                <h4>✅ 10. Expected Output</h4>
+                                <div class="output-section">
+                                    <pre><code>JS ONNX output: Probability = 0.9123</code></pre>
+                                    <p>The output shows the probability of the positive class. A probability above 0.5 indicates a positive classification, while below 0.5 indicates a negative classification.</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="code-block" id="c-code">
-                            <pre><code><span class="keyword">#include</span><span class="string">&lt;onnxruntime_c_api.h&gt;</span>
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+                            <div class="guide-section">
+                                <h3 class="neon-green">🧠 How to Run an ONNX Model with C using ONNX Runtime and cJSON</h3>
+                                
+                                <h4>📌 What is this?</h4>
+                                <p>This guide explains how to load and run ONNX models using C, ONNX Runtime C API, and cJSON for JSON parsing.</p>
+
+                                <h4>✅ 1. Prerequisites</h4>
+                                <div class="os-section">
+                                    <h5>🔷 C Compiler</h5>
+                                    <p>macOS: clang comes with Xcode Command Line Tools</p>
+                                    <pre><code>xcode-select --install</code></pre>
+                                    <p>Linux: install gcc</p>
+                                    <pre><code>sudo apt install build-essential</code></pre>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>🟩 ONNX Runtime C Library</h5>
+                                    <p>Download ONNX Runtime C API from the official website:</p>
+                                    <p>👉 <a href="https://github.com/microsoft/onnxruntime/releases" class="neon-link">https://github.com/microsoft/onnxruntime/releases</a></p>
+                                    <p>Choose:</p>
+                                    <pre><code>onnxruntime-osx-universal2-<version>.tgz   # For macOS
+onnxruntime-linux-x64-<version>.tgz        # For Linux</code></pre>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>📦 Install cJSON</h5>
+                                    <p>macOS:</p>
+                                    <pre><code>brew install cjson</code></pre>
+                                    <p>Linux:</p>
+                                    <pre><code>sudo apt install libcjson-dev</code></pre>
+                                </div>
+
+                                <h4>✅ 2. Choose Your Model</h4>
+                                <div class="os-section">
+                                    <h5>🔄 Download Repository</h5>
+                                    <p>Clone our repository to get started:</p>
+                                    <pre><code>git clone https://github.com/volodymyrparanyak/whitelightning.ai.git
+cd whitelightning.ai</code></pre>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>📦 Choose Your Model</h5>
+                                    <p>You have two options:</p>
+                                    <ol>
+                                        <li><strong>Use Pre-trained Model:</strong>
+                                            <ul>
+                                                <li>Navigate to the <code>models</code> directory</li>
+                                                <li>Copy the multiclass classifier model files to your project:
+                                                    <ul>
+                                                        <li><code>model.onnx</code> - The ONNX model file</li>
+                                                        <li><code>model_vocab.json</code> - Tokenizer vocabulary</li>
+                                                        <li><code>model_labels.json</code> - Class labels mapping</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><strong>Train Your Own Model:</strong>
+                                            <ul>
+                                                <li>Follow the training guide in the repository</li>
+                                                <li>Use the provided scripts to train a custom multiclass classifier</li>
+                                                <li>Export your model to ONNX format</li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </div>
+
+                                <h4>✅ 3. Folder Structure</h4>
+                                <pre><code>project/
+├── ONNX_test.c               ← your C code
+├── vocab.json                ← tokenizer
+├── scaler.json               ← label map
+├── model.onnx                ← ONNX model
+├── onnxruntime-osx-universal2-1.22.0/
+│   ├── include/
+│   └── lib/</code></pre>
+
+                                <h4>✅ 4. Build Command</h4>
+                                <div class="os-section">
+                                    <h5>🔷 macOS</h5>
+                                    <pre><code>gcc ONNX_test.c \
+  -I./onnxruntime-osx-universal2-1.22.0/include \
+  -L./onnxruntime-osx-universal2-1.22.0/lib \
+  -lonnxruntime \
+  -lcjson \
+  -o onnx_test</code></pre>
+                                </div>
+                                <div class="os-section">
+                                    <h5>🐧 Linux</h5>
+                                    <p>Replace the onnxruntime-osx-... path with onnxruntime-linux-x64-....</p>
+                                </div>
+
+                                <h4>✅ 5. Run the Executable</h4>
+                                <div class="os-section">
+                                    <h5>🔷 macOS</h5>
+                                    <p>Important: You must set the library path.</p>
+                                    <pre><code>export DYLD_LIBRARY_PATH=./onnxruntime-osx-universal2-1.22.0/lib:$DYLD_LIBRARY_PATH
+./onnx_test</code></pre>
+                                </div>
+                                <div class="os-section">
+                                    <h5>🐧 Linux</h5>
+                                    <pre><code>export LD_LIBRARY_PATH=./onnxruntime-linux-x64-1.22.0/lib:$LD_LIBRARY_PATH
+./onnx_test</code></pre>
+                                </div>
+
+                                <h4>✅ 6. C Code Example</h4>
+                                <pre><code><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
 <span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
 <span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;ctype.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">"onnxruntime-osx-universal2-1.22.0/include/onnxruntime_c_api.h"</span>
 <span class="keyword">#include</span> <span class="string">&lt;cjson/cJSON.h&gt;</span>
+
+<span class="keyword">const</span> OrtApi* g_ort = NULL;
 
 <span class="keyword">float*</span> <span class="function">preprocess_text</span>(<span class="parameter">const char* text</span>, <span class="parameter">const char* vocab_file</span>, <span class="parameter">const char* scaler_file</span>) {
     <span class="keyword">float*</span> vector = <span class="function">calloc</span>(<span class="number">5000</span>, <span class="keyword">sizeof</span>(<span class="keyword">float</span>));
-    
-    <span class="comment"># Load JSON (simplified, assumes cJSON library)</span>
+    <span class="keyword">if</span> (!vector) <span class="keyword">return</span> NULL;
+
     FILE* f = <span class="function">fopen</span>(vocab_file, <span class="string">"r"</span>);
-    <span class="function">fseek</span>(f, <span class="number">0</span>, SEEK_END);
+    <span class="keyword">if</span> (!f) <span class="keyword">return</span> NULL;
+
+    <span class="function">fseek</span>(f, 0, SEEK_END);
     <span class="keyword">long</span> len = <span class="function">ftell</span>(f);
-    <span class="function">fseek</span>(f, <span class="number">0</span>, SEEK_SET);
-    <span class="keyword">char*</span> json_str = <span class="function">malloc</span>(len + <span class="number">1</span>);
-    <span class="function">fread</span>(json_str, <span class="number">1</span>, len, f);
-    json_str[len] = <span class="number">0</span>;
+    <span class="function">fseek</span>(f, 0, SEEK_SET);
+    <span class="keyword">char*</span> json_str = <span class="function">malloc</span>(len + 1);
+    <span class="function">fread</span>(json_str, 1, len, f);
+    json_str[len] = 0;
     <span class="function">fclose</span>(f);
+
     cJSON* tfidf_data = <span class="function">cJSON_Parse</span>(json_str);
+    <span class="keyword">if</span> (!tfidf_data) {
+        <span class="function">free</span>(json_str);
+        <span class="keyword">return</span> NULL;
+    }
+
     cJSON* vocab = <span class="function">cJSON_GetObjectItem</span>(tfidf_data, <span class="string">"vocab"</span>);
     cJSON* idf = <span class="function">cJSON_GetObjectItem</span>(tfidf_data, <span class="string">"idf"</span>);
-    
+    <span class="keyword">if</span> (!vocab || !idf) {
+        <span class="function">free</span>(json_str);
+        <span class="function">cJSON_Delete</span>(tfidf_data);
+        <span class="keyword">return</span> NULL;
+    }
+
     f = <span class="function">fopen</span>(scaler_file, <span class="string">"r"</span>);
-    <span class="function">fseek</span>(f, <span class="number">0</span>, SEEK_END);
+    <span class="keyword">if</span> (!f) {
+        <span class="function">free</span>(json_str);
+        <span class="function">cJSON_Delete</span>(tfidf_data);
+        <span class="keyword">return</span> NULL;
+    }
+
+    <span class="function">fseek</span>(f, 0, SEEK_END);
     len = <span class="function">ftell</span>(f);
-    <span class="function">fseek</span>(f, <span class="number">0</span>, SEEK_SET);
-    <span class="keyword">char*</span> scaler_str = <span class="function">malloc</span>(len + <span class="number">1</span>);
-    <span class="function">fread</span>(scaler_str, <span class="number">1</span>, len, f);
-    scaler_str[len] = <span class="number">0</span>;
+    <span class="function">fseek</span>(f, 0, SEEK_SET);
+    <span class="keyword">char*</span> scaler_str = <span class="function">malloc</span>(len + 1);
+    <span class="function">fread</span>(scaler_str, 1, len, f);
+    scaler_str[len] = 0;
     <span class="function">fclose</span>(f);
+
     cJSON* scaler_data = <span class="function">cJSON_Parse</span>(scaler_str);
+    <span class="keyword">if</span> (!scaler_data) {
+        <span class="function">free</span>(json_str);
+        <span class="function">free</span>(scaler_str);
+        <span class="function">cJSON_Delete</span>(tfidf_data);
+        <span class="keyword">return</span> NULL;
+    }
+
     cJSON* mean = <span class="function">cJSON_GetObjectItem</span>(scaler_data, <span class="string">"mean"</span>);
     cJSON* scale = <span class="function">cJSON_GetObjectItem</span>(scaler_data, <span class="string">"scale"</span>);
+    <span class="keyword">if</span> (!mean || !scale) {
+        <span class="function">free</span>(json_str);
+        <span class="function">free</span>(scaler_str);
+        <span class="function">cJSON_Delete</span>(tfidf_data);
+        <span class="function">cJSON_Delete</span>(scaler_data);
+        <span class="keyword">return</span> NULL;
+    }
 
-    <span class="comment"># TF-IDF</span>
     <span class="keyword">char*</span> text_copy = <span class="function">strdup</span>(text);
     <span class="keyword">for</span> (<span class="keyword">char*</span> p = text_copy; *p; p++) *p = <span class="function">tolower</span>(*p);
+
     <span class="keyword">char*</span> word = <span class="function">strtok</span>(text_copy, <span class="string">" \t\n"</span>);
-    <span class="keyword">float</span> word_counts[<span class="number">5000</span>] = {<span class="number">0</span>};
     <span class="keyword">while</span> (word) {
         cJSON* idx = <span class="function">cJSON_GetObjectItem</span>(vocab, word);
         <span class="keyword">if</span> (idx) {
             <span class="keyword">int</span> i = idx->valueint;
-            word_counts[i] += <span class="function">cJSON_GetArrayItem</span>(idf, i)->valuedouble;
+            <span class="keyword">if</span> (i < 5000) {
+                vector[i] += <span class="function">cJSON_GetArrayItem</span>(idf, i)->valuedouble;
+            }
         }
         word = <span class="function">strtok</span>(NULL, <span class="string">" \t\n"</span>);
     }
-    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">5000</span>; i++) {
-        vector[i] = word_counts[i];
+
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < 5000; i++) {
+        vector[i] = (vector[i] - <span class="function">cJSON_GetArrayItem</span>(mean, i)->valuedouble) / 
+                    <span class="function">cJSON_GetArrayItem</span>(scale, i)->valuedouble;
     }
-    
-    <span class="comment"># Scale</span>
-    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">5000</span>; i++) {
-        vector[i] = (vector[i] - <span class="function">cJSON_GetArrayItem</span>(mean, i)->valuedouble) / <span class="function">cJSON_GetArrayItem</span>(scale, i)->valuedouble;
-    }
-    
-    <span class="function">free</span>(text_copy); <span class="function">free</span>(json_str); <span class="function">free</span>(scaler_str);
-    <span class="function">cJSON_Delete</span>(tfidf_data); <span class="function">cJSON_Delete</span>(scaler_data);
+
+    <span class="function">free</span>(text_copy);
+    <span class="function">free</span>(json_str);
+    <span class="function">free</span>(scaler_str);
+    <span class="function">cJSON_Delete</span>(tfidf_data);
+    <span class="function">cJSON_Delete</span>(scaler_data);
     <span class="keyword">return</span> vector;
 }
 
 <span class="keyword">int</span> <span class="function">main</span>() {
-    <span class="keyword">const char*</span> text = <span class="string">"This is a positive test string"</span>;
-    <span class="keyword">float*</span> vector = <span class="function">preprocess_text</span>(text, <span class="string">"text_classifier_vocab.json"</span>, <span class="string">"text_classifier_scaler.json"</span>);
-    
-    OrtEnv* env; <span class="function">OrtCreateEnv</span>(ORT_LOGGING_LEVEL_WARNING, <span class="string">"test"</span>, &env);
-    OrtSessionOptions* session_options; <span class="function">OrtCreateSessionOptions</span>(&session_options);
-    OrtSession* session; <span class="function">OrtCreateSession</span>(env, <span class="string">"text_classifier_pytorch.onnx"</span>, session_options, &session);
-    
-    OrtMemoryInfo* memory_info; <span class="function">OrtCreateMemoryInfo</span>(<span class="string">"Cpu"</span>, OrtDeviceAllocator, <span class="number">0</span>, OrtMemTypeDefault, &memory_info);
-    <span class="keyword">int64_t</span> input_shape[] = {<span class="number">1</span>, <span class="number">5000</span>};
-    OrtValue* input_tensor; <span class="function">OrtCreateTensorWithDataAsOrtValue</span>(memory_info, vector, <span class="number">5000</span> * <span class="keyword">sizeof</span>(<span class="keyword">float</span>), input_shape, <span class="number">2</span>, ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT, &input_tensor);
-    
+    g_ort = <span class="function">OrtGetApiBase</span>()-><span class="function">GetApi</span>(ORT_API_VERSION);
+    <span class="keyword">if</span> (!g_ort) <span class="keyword">return</span> 1;
+
+    <span class="keyword">const char*</span> text = <span class="string">"Earn $5000 a week from home — no experience required!"</span>;
+    <span class="keyword">float*</span> vector = <span class="function">preprocess_text</span>(text, <span class="string">"vocab.json"</span>, <span class="string">"scaler.json"</span>);
+    <span class="keyword">if</span> (!vector) <span class="keyword">return</span> 1;
+
+    OrtEnv* env;
+    OrtStatus* status = g_ort-><span class="function">CreateEnv</span>(ORT_LOGGING_LEVEL_WARNING, <span class="string">"test"</span>, &env);
+    <span class="keyword">if</span> (status) <span class="keyword">return</span> 1;
+
+    OrtSessionOptions* session_options;
+    status = g_ort-><span class="function">CreateSessionOptions</span>(&session_options);
+    <span class="keyword">if</span> (status) <span class="keyword">return</span> 1;
+
+    OrtSession* session;
+    status = g_ort-><span class="function">CreateSession</span>(env, <span class="string">"model.onnx"</span>, session_options, &session);
+    <span class="keyword">if</span> (status) <span class="keyword">return</span> 1;
+
+    OrtMemoryInfo* memory_info;
+    status = g_ort-><span class="function">CreateCpuMemoryInfo</span>(OrtArenaAllocator, OrtMemTypeDefault, &memory_info);
+    <span class="keyword">if</span> (status) <span class="keyword">return</span> 1;
+
+    <span class="keyword">int64_t</span> input_shape[] = {1, 5000};
+    OrtValue* input_tensor;
+    status = g_ort-><span class="function">CreateTensorWithDataAsOrtValue</span>(memory_info, vector, 5000 * <span class="keyword">sizeof</span>(<span class="keyword">float</span>), 
+                                                 input_shape, 2, ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT, 
+                                                 &input_tensor);
+    <span class="keyword">if</span> (status) <span class="keyword">return</span> 1;
+
     <span class="keyword">const char*</span> input_names[] = {<span class="string">"float_input"</span>};
     <span class="keyword">const char*</span> output_names[] = {<span class="string">"output"</span>};
-    OrtValue* output_tensor = <span class="class">NULL</span>;
-    <span class="function">OrtRun</span>(session, <span class="class">NULL</span>, input_names, (const OrtValue* const*)&input_tensor, <span class="number">1</span>, output_names, <span class="number">1</span>, &output_tensor);
-    
-    <span class="keyword">float*</span> output_data; <span class="function">OrtGetTensorMutableData</span>(output_tensor, (void**)&output_data);
-    <span class="function">printf</span>(<span class="string">"C ONNX output: %f\n"</span>, output_data[<span class="number">0</span>]);
-    
-    <span class="function">free</span>(vector); <span class="comment">// Cleanup omitted for brevity</span>
-    <span class="keyword">return</span> <span class="number">0</span>;
+    OrtValue* output_tensor = NULL;
+    status = g_ort-><span class="function">Run</span>(session, NULL, input_names, (<span class="keyword">const</span> OrtValue* <span class="keyword">const</span>*)&input_tensor, 1, 
+                       output_names, 1, &output_tensor);
+    <span class="keyword">if</span> (status) <span class="keyword">return</span> 1;
+
+    <span class="keyword">float*</span> output_data;
+    status = g_ort-><span class="function">GetTensorMutableData</span>(output_tensor, (<span class="keyword">void</span>**)&output_data);
+    <span class="keyword">if</span> (status) <span class="keyword">return</span> 1;
+
+    <span class="function">printf</span>(<span class="string">"C ONNX output: %s (Score: %.4f)\n"</span>, 
+           output_data[0] > 0.5 ? <span class="string">"Spam"</span> : <span class="string">"Not Spam"</span>, 
+           output_data[0]);
+
+    g_ort-><span class="function">ReleaseValue</span>(input_tensor);
+    g_ort-><span class="function">ReleaseValue</span>(output_tensor);
+    g_ort-><span class="function">ReleaseMemoryInfo</span>(memory_info);
+    g_ort-><span class="function">ReleaseSession</span>(session);
+    g_ort-><span class="function">ReleaseSessionOptions</span>(session_options);
+    g_ort-><span class="function">ReleaseEnv</span>(env);
+
+    <span class="function">free</span>(vector);
+    <span class="keyword">return</span> 0;
 }
+
+
 </code></pre>
+
+                                <h4>✅ 7. Expected Output</h4>
+                                <div class="output-section">
+                                    <pre><code>C ONNX output: Spam (Score: 0.9123)</code></pre>
+                                </div>
+                            </div>
                         </div>
                         <div class="code-block" id="cpp-code">
-                            <pre><code><span class="keyword">#include</span><span class="string">&lt;onnxruntime_cxx_api.h&gt;</span>
+                            <div class="guide-section">
+                                <h3 class="neon-green">🧠 How to Run a Binary Classifier ONNX Model with C++</h3>
+                                
+                                <h4>📌 What is this?</h4>
+                                <p>This guide explains how to load and run binary classifier ONNX models using C++ and ONNX Runtime C++ API, with a focus on efficient text preprocessing and model inference.</p>
+
+                                <h4>✅ 1. Prerequisites</h4>
+                                <div class="os-section">
+                                    <h5>🔷 C++ Compiler</h5>
+                                    <p>macOS: clang++ comes with Xcode Command Line Tools</p>
+                                    <pre><code>xcode-select --install</code></pre>
+                                    <p>Linux: install g++</p>
+                                    <pre><code>sudo apt install build-essential</code></pre>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>🟩 ONNX Runtime C++ Library</h5>
+                                    <p>Download ONNX Runtime C++ API from the official website:</p>
+                                    <p>👉 <a href="https://github.com/microsoft/onnxruntime/releases" class="neon-link">https://github.com/microsoft/onnxruntime/releases</a></p>
+                                    <p>Choose:</p>
+                                    <pre><code>onnxruntime-osx-universal2-<version>.tgz   # For macOS
+onnxruntime-linux-x64-<version>.tgz        # For Linux</code></pre>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>📦 Install nlohmann/json</h5>
+                                    <p>macOS:</p>
+                                    <pre><code>brew install nlohmann-json</code></pre>
+                                    <p>Linux:</p>
+                                    <pre><code>sudo apt install nlohmann-json3-dev</code></pre>
+                                </div>
+
+                                <h4>✅ 2. Choose Your Model</h4>
+                                <div class="os-section">
+                                    <h5>🔄 Download Repository</h5>
+                                    <p>Clone our repository to get started:</p>
+                                    <pre><code>git clone https://github.com/volodymyrparanyak/whitelightning.ai.git
+cd whitelightning.ai</code></pre>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>📦 Choose Your Model</h5>
+                                    <p>You have two options:</p>
+                                    <ol>
+                                        <li><strong>Use Pre-trained Model:</strong>
+                                            <ul>
+                                                <li>Navigate to the <code>models</code> directory</li>
+                                                <li>Copy the binary classifier model files to your project:
+                                                    <ul>
+                                                        <li><code>model.onnx</code> - The ONNX model file</li>
+                                                        <li><code>model_vocab.json</code> - TF-IDF vocabulary</li>
+                                                        <li><code>model_scaler.json</code> - Feature scaling parameters</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><strong>Train Your Own Model:</strong>
+                                            <ul>
+                                                <li>Follow the training guide in the repository</li>
+                                                <li>Use the provided scripts to train a custom binary classifier</li>
+                                                <li>Export your model to ONNX format</li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </div>
+
+                                <h4>✅ 3. Folder Structure</h4>
+                                <pre><code>project/
+├── main.cpp                ← your C++ code
+├── model_vocab.json        ← TF-IDF vocabulary
+├── model_scaler.json       ← scaling parameters
+├── model.onnx             ← ONNX model
+├── onnxruntime-osx-universal2-1.22.0/
+│   ├── include/
+│   └── lib/</code></pre>
+
+                                <h4>✅ 4. Build Command</h4>
+                                <div class="os-section">
+                                    <h5>🔷 macOS</h5>
+                                    <pre><code>g++ -std=c++17 main.cpp \
+  -I./onnxruntime-osx-universal2-1.22.0/include \
+  -L./onnxruntime-osx-universal2-1.22.0/lib \
+  -lonnxruntime \
+  -o binary_classifier</code></pre>
+                                </div>
+                                <div class="os-section">
+                                    <h5>🐧 Linux</h5>
+                                    <p>Replace the onnxruntime-osx-... path with onnxruntime-linux-x64-....</p>
+                                </div>
+
+                                <h4>✅ 5. Run the Executable</h4>
+                                <div class="os-section">
+                                    <h5>🔷 macOS</h5>
+                                    <p>Important: You must set the library path.</p>
+                                    <pre><code>export DYLD_LIBRARY_PATH=./onnxruntime-osx-universal2-1.22.0/lib:$DYLD_LIBRARY_PATH
+./binary_classifier</code></pre>
+                                </div>
+                                <div class="os-section">
+                                    <h5>🐧 Linux</h5>
+                                    <pre><code>export LD_LIBRARY_PATH=./onnxruntime-linux-x64-1.22.0/lib:$LD_LIBRARY_PATH
+./binary_classifier</code></pre>
+                                </div>
+
+                                <h4>✅ 6. C++ Code Example</h4>
+                                <pre><code><span class="keyword">#include</span><span class="string">&lt;onnxruntime_cxx_api.h&gt;</span>
 <span class="keyword">#include</span> <span class="string">&lt;fstream&gt;</span>
 <span class="keyword">#include</span> <span class="string">&lt;nlohmann/json.hpp&gt;</span>
 <span class="keyword">using</span> <span class="class">json</span> = nlohmann::json;
@@ -393,7 +1000,7 @@ probability = outputs[0][0][0]  <span class="comment"># Probability of positive 
     }
     
     <span class="comment"># Scale</span>
-    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < <span class="number">5000</span>; i++) {
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < <span class="number">5000</span>; i++) {
         vector[i] = (vector[i] - mean[i]) / scale[i];
     }
     <span class="keyword">return</span> vector;
@@ -401,181 +1008,443 @@ probability = outputs[0][0][0]  <span class="comment"># Probability of positive 
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="class">std::string</span> text = <span class="string">"This is a positive test string"</span>;
-    auto vector = <span class="function">preprocess_text</span>(text, <span class="string">"text_classifier_vocab.json"</span>, <span class="string">"text_classifier_scaler.json"</span>);
+    auto vector = <span class="function">preprocess_text</span>(text, <span class="string">"model_vocab.json"</span>, <span class="string">"model_scaler.json"</span>);
     
     Ort::Env env(ORT_LOGGING_LEVEL_WARNING, <span class="string">"test"</span>);
     Ort::SessionOptions session_options;
-    Ort::Session session(env, <span class="string">"text_classifier_pytorch.onnx"</span>, session_options);
+    Ort::Session session(env, <span class="string">"model.onnx"</span>, session_options);
     
     <span class="class">std::vector&lt;int64_t&gt;</span> input_shape = {<span class="number">1</span>, <span class="number">5000</span>};
     Ort::MemoryInfo memory_info(<span class="string">"Cpu"</span>, OrtDeviceAllocator, <span class="number">0</span>, OrtMemTypeDefault);
     Ort::Value input_tensor = Ort::Value::CreateTensor<<span class="class">float</span>>(memory_info, vector.data(), vector.size(), input_shape.data(), input_shape.size());
     
-    <span class="class">std::vector&lt;const char*&gt;</span> input_names = {<span class="string">"float_input"</span>};
+    <span class="class">std::vector&lt;const char*&gt;</span> input_names = {<span class="string">"input"</span>};
     <span class="class">std::vector&lt;const char*&gt;</span> output_names = {<span class="string">"output"</span>};
     auto output_tensors = session.Run(Ort::RunOptions{<span class="class">nullptr</span>}, input_names.data(), &input_tensor, <span class="number">1</span>, output_names.data(), <span class="number">1</span>);
     
     <span class="keyword">float*</span> output_data = output_tensors[<span class="number">0</span>].GetTensorMutableData<<span class="class">float</span>>();
-    std::cout << <span class="string">"C++ ONNX output: "</span> << output_data[<span class="number">0</span>] << std::endl;
+    std::cout << <span class="string">"C++ ONNX output: Probability = "</span> << output_data[<span class="number">0</span>] << std::endl;
     <span class="keyword">return</span> <span class="number">0</span>;
 }
 </code></pre>
+
+                                <h4>✅ 7. Expected Output</h4>
+                                <div class="output-section">
+                                    <pre><code>C++ ONNX output: Probability = 0.9123</code></pre>
+                                    <p>The output shows the probability of the positive class. A probability above 0.5 indicates a positive classification, while below 0.5 indicates a negative classification.</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="code-block" id="rust-code">
-                            <pre><code><span class="keyword">use</span> <span class="module">ort</span>::{<span class="class">Environment</span>, <span class="class">Session</span>, <span class="class">Tensor</span>};
+                            <div class="guide-section">
+                                <h3 class="neon-green">🧠 How to Run a Binary Classifier ONNX Model with Rust</h3>
+                                
+                                <h4>📌 What is this?</h4>
+                                <p>This guide explains how to load and run binary classifier ONNX models using Rust and ONNX Runtime, with a focus on efficient text preprocessing and model inference.</p>
+
+                                <h4>✅ 1. Prerequisites</h4>
+                                <div class="os-section">
+                                    <h5>🔷 Rust Toolchain</h5>
+                                    <p>Install Rust using rustup:</p>
+                                    <pre><code>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh</code></pre>
+                                    <p>Verify installation:</p>
+                                    <pre><code>rustc --version
+cargo --version</code></pre>
+                                </div>
+
+                                <h4>✅ 2. Get Your Model</h4>
+                                <div class="os-section">
+                                    <h5>🔄 Download Repository</h5>
+                                    <p>Clone our repository to get started:</p>
+                                    <pre><code>git clone https://github.com/volodymyrparanyak/whitelightning.ai.git
+cd whitelightning.ai</code></pre>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>📦 Choose Your Model</h5>
+                                    <p>You have two options:</p>
+                                    <ol>
+                                        <li><strong>Use Pre-trained Model:</strong>
+                                            <ul>
+                                                <li>Navigate to the <code>models</code> directory</li>
+                                                <li>Copy the binary classifier model files to your project:
+                                                    <ul>
+                                                        <li><code>model.onnx</code> - The ONNX model file</li>
+                                                        <li><code>model_vocab.json</code> - TF-IDF vocabulary</li>
+                                                        <li><code>model_scaler.json</code> - Feature scaling parameters</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><strong>Train Your Own Model:</strong>
+                                            <ul>
+                                                <li>Follow the training guide in the repository</li>
+                                                <li>Use the provided scripts to train a custom binary classifier</li>
+                                                <li>Export your model to ONNX format</li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </div>
+
+                                <h4>✅ 3. Create a New Project</h4>
+                                <pre><code>cargo new binary_classifier
+cd binary_classifier</code></pre>
+
+                                <h4>✅ 4. Add Dependencies</h4>
+                                <div class="file-section">
+                                    <h5>🔹 Cargo.toml</h5>
+                                    <pre><code>[package]
+name = "binary_classifier"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ort = "1.16.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+thiserror = "1.0"</code></pre>
+                                </div>
+
+                                <h4>✅ 5. Project Structure</h4>
+                                <pre><code>binary_classifier/
+├── src/
+│   └── main.rs
+├── resources/
+│   ├── model.onnx
+│   ├── model_vocab.json
+│   └── model_scaler.json
+└── Cargo.toml</code></pre>
+
+                                <h4>✅ 6. Rust Code Example</h4>
+                                <pre><code><span class="keyword">use</span> <span class="module">anyhow</span>::<span class="class">Result</span>;
+<span class="keyword">use</span> <span class="module">ort</span>::{<span class="class">Environment</span>, <span class="class">Session</span>, <span class="class">SessionBuilder</span>, <span class="class">Value</span>};
+<span class="keyword">use</span> <span class="module">serde_json</span>::<span class="class">Value</span> <span class="keyword">as</span> <span class="class">JsonValue</span>;
+<span class="keyword">use</span> <span class="module">std</span>::collections::<span class="class">HashMap</span>;
 <span class="keyword">use</span> <span class="module">std</span>::fs::File;
-<span class="keyword">use</span> <span class="module">std</span>::collections::HashMap;
-<span class="keyword">use</span> <span class="module">serde_json</span>;
+<span class="keyword">use</span> <span class="module">std</span>::io::<span class="class">BufReader</span>;
 
-<span class="keyword">fn</span> <span class="function">preprocess_text</span>(<span class="parameter">text: &str</span>, <span class="parameter">vocab_file: &str</span>, <span class="parameter">scaler_file: &str</span>) -> <span class="class">Vec&lt;f32&gt;</span> {
-    <span class="keyword">let mut</span> vector = vec![<span class="number">0.0</span>; <span class="number">5000</span>];
-    
-    <span class="keyword">let</span> vf = File::open(vocab_file).unwrap();
-    <span class="keyword">let</span> tfidf_data: serde_json::Value = serde_json::from_reader(vf).unwrap();
-    <span class="keyword">let</span> vocab: <span class="class">HashMap&lt;String, usize&gt;</span> = serde_json::from_value(tfidf_data[<span class="string">"vocab"</span>].clone()).unwrap();
-    <span class="keyword">let</span> idf: <span class="class">Vec&lt;f32&gt;</span> = serde_json::from_value(tfidf_data[<span class="string">"idf"</span>].clone()).unwrap();
-    
-    <span class="keyword">let</span> sf = File::open(scaler_file).unwrap();
-    <span class="keyword">let</span> scaler_data: serde_json::Value = serde_json::from_reader(sf).unwrap();
-    <span class="keyword">let</span> mean: <span class="class">Vec&lt;f32&gt;</span> = serde_json::from_value(scaler_data[<span class="string">"mean"</span>].clone()).unwrap();
-    <span class="keyword">let</span> scale: <span class="class">Vec&lt;f32&gt;</span> = serde_json::from_value(scaler_data[<span class="string">"scale"</span>].clone()).unwrap();
-    
-    <span class="comment">// TF-IDF</span>
-    <span class="keyword">let</span> words: <span class="class">Vec&lt;&str&gt;</span> = text.to_lowercase().split_whitespace().collect();
-    <span class="keyword">let mut</span> word_counts = <span class="class">HashMap::new</span>();
-    <span class="keyword">for</span> word <span class="keyword">in</span> words {
-        *word_counts.entry(word.to_string()).or_insert(<span class="number">0</span>) += <span class="number">1</span>;
-    }
-    <span class="keyword">for</span> (word, count) <span class="keyword">in</span> word_counts {
-        <span class="keyword">if let</span> <span class="class">Some</span>(&idx) = vocab.get(&word) {
-            vector[idx] = count as f32 * idf[idx];
+<span class="keyword">struct</span> <span class="class">BinaryClassifier</span> {
+    vocab: <span class="class">HashMap&lt;String, usize&gt;</span>,
+    idf: <span class="class">Vec&lt;f32&gt;</span>,
+    mean: <span class="class">Vec&lt;f32&gt;</span>,
+    scale: <span class="class">Vec&lt;f32&gt;</span>,
+    session: <span class="class">Session</span>,
+}
+
+<span class="keyword">impl</span> <span class="class">BinaryClassifier</span> {
+    <span class="keyword">fn</span> <span class="function">new</span>(<span class="parameter">model_path: &str</span>, <span class="parameter">vocab_path: &str</span>, <span class="parameter">scaler_path: &str</span>) -> <span class="class">Result&lt;Self&gt;</span> {
+        <span class="comment">// Load vocabulary and IDF weights</span>
+        <span class="keyword">let</span> vocab_file = <span class="class">File</span>::open(vocab_path)?;
+        <span class="keyword">let</span> vocab_reader = <span class="class">BufReader</span>::new(vocab_file);
+        <span class="keyword">let</span> vocab_data: <span class="class">JsonValue</span> = <span class="module">serde_json</span>::<span class="function">from_reader</span>(vocab_reader)?;
+        
+        <span class="keyword">let mut</span> vocab = <span class="class">HashMap</span>::new();
+        <span class="keyword">let</span> vocab_obj = vocab_data[<span class="string">"vocab"</span>].as_object().unwrap();
+        <span class="keyword">for</span> (key, value) <span class="keyword">in</span> vocab_obj {
+            vocab.insert(key.clone(), value.as_u64().unwrap() <span class="keyword">as</span> usize);
         }
+        
+        <span class="keyword">let</span> idf: <span class="class">Vec&lt;f32&gt;</span> = vocab_data[<span class="string">"idf"</span>]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|v| v.as_f64().unwrap() <span class="keyword">as</span> f32)
+            .collect();
+
+        <span class="comment">// Load scaling parameters</span>
+        <span class="keyword">let</span> scaler_file = <span class="class">File</span>::open(scaler_path)?;
+        <span class="keyword">let</span> scaler_reader = <span class="class">BufReader</span>::new(scaler_file);
+        <span class="keyword">let</span> scaler_data: <span class="class">JsonValue</span> = <span class="module">serde_json</span>::<span class="function">from_reader</span>(scaler_reader)?;
+        
+        <span class="keyword">let</span> mean: <span class="class">Vec&lt;f32&gt;</span> = scaler_data[<span class="string">"mean"</span>]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|v| v.as_f64().unwrap() <span class="keyword">as</span> f32)
+            .collect();
+            
+        <span class="keyword">let</span> scale: <span class="class">Vec&lt;f32&gt;</span> = scaler_data[<span class="string">"scale"</span>]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|v| v.as_f64().unwrap() <span class="keyword">as</span> f32)
+            .collect();
+
+        <span class="comment">// Initialize ONNX Runtime session</span>
+        <span class="keyword">let</span> environment = <span class="class">Environment</span>::builder()
+            .with_name(<span class="string">"binary_classifier"</span>)
+            .build()?;
+        <span class="keyword">let</span> session = <span class="class">SessionBuilder</span>::new(&environment)?
+            .with_model_from_file(model_path)?;
+
+        <span class="class">Ok</span>(<span class="class">BinaryClassifier</span> {
+            vocab,
+            idf,
+            mean,
+            scale,
+            session,
+        })
     }
-    
-    <span class="comment">// Scale</span>
-    <span class="keyword">for</span> i <span class="keyword">in</span> 0..<span class="number">5000</span> {
-        vector[i] = (vector[i] - mean[i]) / scale[i];
+
+    <span class="keyword">fn</span> <span class="function">preprocess_text</span>(&<span class="keyword">self</span>, <span class="parameter">text: &str</span>) -> <span class="class">Vec&lt;f32&gt;</span> {
+        <span class="keyword">let mut</span> vector = vec![<span class="number">0.0</span>; <span class="number">5000</span>];
+        <span class="keyword">let mut</span> word_counts: <span class="class">HashMap&lt;&str, usize&gt;</span> = <span class="class">HashMap</span>::new();
+
+        <span class="comment">// Count word frequencies</span>
+        <span class="keyword">for</span> word <span class="keyword">in</span> text.to_lowercase().split_whitespace() {
+            *word_counts.entry(word).or_insert(<span class="number">0</span>) += <span class="number">1</span>;
+        }
+
+        <span class="comment">// Compute TF-IDF</span>
+        <span class="keyword">for</span> (word, count) <span class="keyword">in</span> word_counts {
+            <span class="keyword">if let</span> <span class="class">Some</span>(&idx) = <span class="keyword">self</span>.vocab.get(word) {
+                vector[idx] = count <span class="keyword">as</span> f32 * <span class="keyword">self</span>.idf[idx];
+            }
+        }
+
+        <span class="comment">// Scale features</span>
+        <span class="keyword">for</span> i <span class="keyword">in</span> 0..<span class="number">5000</span> {
+            vector[i] = (vector[i] - <span class="keyword">self</span>.mean[i]) / <span class="keyword">self</span>.scale[i];
+        }
+
+        vector
     }
-    vector
+
+    <span class="keyword">fn</span> <span class="function">predict</span>(&<span class="keyword">self</span>, <span class="parameter">text: &str</span>) -> <span class="class">Result&lt;f32&gt;</span> {
+        <span class="keyword">let</span> input_data = <span class="keyword">self</span>.preprocess_text(text);
+        <span class="keyword">let</span> input_tensor = <span class="class">Value</span>::from_array(
+            <span class="keyword">self</span>.session.allocator(),
+            &[<span class="number">1</span>, <span class="number">5000</span>],
+            &input_data,
+        )?;
+
+        <span class="keyword">let</span> outputs = <span class="keyword">self</span>.session.run(vec![input_tensor])?;
+        <span class="keyword">let</span> output_tensor = outputs[<span class="number">0</span>].extract_tensor::&lt;f32&gt;()?;
+        <span class="keyword">let</span> output_data = output_tensor.view();
+        
+        <span class="class">Ok</span>(output_data[<span class="number">0</span>])
+    }
 }
 
-<span class="keyword">fn</span> <span class="function">main</span>() -> <span class="class">Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt;</span> {
+<span class="keyword">fn</span> <span class="function">main</span>() -> <span class="class">Result&lt;()&gt;</span> {
+    <span class="keyword">let</span> classifier = <span class="class">BinaryClassifier</span>::new(
+        <span class="string">"resources/model.onnx"</span>,
+        <span class="string">"resources/model_vocab.json"</span>,
+        <span class="string">"resources/model_scaler.json"</span>,
+    )?;
+
     <span class="keyword">let</span> text = <span class="string">"This is a positive test string"</span>;
-    <span class="keyword">let</span> vector = <span class="function">preprocess_text</span>(text, <span class="string">"text_classifier_vocab.json"</span>, <span class="string">"text_classifier_scaler.json"</span>);
+    <span class="keyword">let</span> probability = classifier.predict(text)?;
     
-    <span class="keyword">let</span> env = <span class="class">Environment</span>::builder().with_name(<span class="string">"test"</span>).build()?;
-    <span class="keyword">let</span> session = <span class="class">Session</span>::builder()?.commit_from_file(<span class="string">"text_classifier_pytorch.onnx"</span>)?;
-    
-    <span class="keyword">let</span> input_tensor = <span class="class">Tensor</span>::from_array(([<span class="number">1</span>, <span class="number">5000</span>], vector))?;
-    <span class="keyword">let</span> outputs = session.run(vec![input_tensor])?;
-    <span class="keyword">let</span> output: &<span class="class">Tensor&lt;f32&gt;</span> = outputs[<span class="number">0</span>].downcast_ref().unwrap();
-    <span class="function">println!</span>(<span class="string">"Rust ONNX output: {}"</span>, output.as_slice()[<span class="number">0</span>]);
+    <span class="function">println!</span>(<span class="string">"Rust ONNX output: Probability = {:.4}"</span>, probability);
+    <span class="function">println!</span>(<span class="string">"Classification: {}"</span>, 
+        <span class="keyword">if</span> probability > <span class="number">0.5</span> { <span class="string">"Positive"</span> } <span class="keyword">else</span> { <span class="string">"Negative"</span> }
+    );
+
     <span class="class">Ok</span>(())
-}
-</code></pre>
+}</code></pre>
+
+                                <h4>✅ 6. Build and Run</h4>
+                                <div class="os-section">
+                                    <h5>🔷 Build the Project</h5>
+                                    <pre><code>cargo build --release</code></pre>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>🟩 Run the Classifier</h5>
+                                    <pre><code>./target/release/binary_classifier</code></pre>
+                                </div>
+
+                                <h4>✅ 7. Expected Output</h4>
+                                <div class="output-section">
+                                    <pre><code>Rust ONNX output: Probability = 0.9123
+Classification: Positive</code></pre>
+                                    <p>The output shows the probability of the positive class. A probability above 0.5 indicates a positive classification, while below 0.5 indicates a negative classification.</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="code-block" id="java-code">
-                            <pre><code><span class="keyword">import</span> <span class="module">ai.onnxruntime.*</span>;
+                            <div class="guide-section">
+                                <h3 class="neon-green">🧠 How to Run a Binary Classifier ONNX Model with Java</h3>
+                                
+                                <h4>📌 What is this?</h4>
+                                <p>This guide explains how to load and run binary classifier ONNX models using Java and ONNX Runtime Java API, with a focus on efficient text preprocessing and model inference.</p>
+
+                                <h4>✅ 1. Prerequisites</h4>
+                                <div class="os-section">
+                                    <h5>🔷 Java Development Kit (JDK)</h5>
+                                    <p>Install JDK 11 or later:</p>
+                                    <ol>
+                                        <li>Download from: <a href="https://adoptium.net/" class="neon-link">https://adoptium.net/</a></li>
+                                        <li>Verify installation:</li>
+                                    </ol>
+                                    <pre><code>java -version
+javac -version</code></pre>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>🟩 Maven</h5>
+                                    <p>Install Maven for dependency management:</p>
+                                    <ol>
+                                        <li>Download from: <a href="https://maven.apache.org/download.cgi" class="neon-link">https://maven.apache.org/download.cgi</a></li>
+                                        <li>Verify installation:</li>
+                                    </ol>
+                                    <pre><code>mvn -version</code></pre>
+                                </div>
+
+                                <h4>✅ 2. Project Setup</h4>
+                                <div class="os-section">
+                                    <h5>🔄 Create Maven Project</h5>
+                                    <pre><code>mvn archetype:generate -DgroupId=com.example -DartifactId=binary-classifier -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</code></pre>
+                                </div>
+
+                                <h4>✅ 3. Add Dependencies</h4>
+                                <div class="file-section">
+                                    <h5>🔹 pom.xml</h5>
+                                    <pre><code>&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.microsoft.onnxruntime&lt;/groupId&gt;
+        &lt;artifactId&gt;onnxruntime&lt;/artifactId&gt;
+        &lt;version&gt;1.16.3&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.json&lt;/groupId&gt;
+        &lt;artifactId&gt;json&lt;/artifactId&gt;
+        &lt;version&gt;20231013&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre>
+                                </div>
+
+                                <h4>✅ 4. Project Structure</h4>
+                                <pre><code>binary-classifier/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── example/
+│   │   │           └── BinaryClassifier.java
+│   │   └── resources/
+│   │       ├── model.onnx
+│   │       ├── model_vocab.json
+│   │       └── model_scaler.json
+│   └── test/
+└── pom.xml</code></pre>
+
+                                <h4>✅ 5. Java Code Example</h4>
+                                <pre><code><span class="keyword">import</span> <span class="module">ai.onnxruntime.*</span>;
 <span class="keyword">import</span> <span class="module">org.json.JSONObject</span>;
 <span class="keyword">import</span> <span class="module">java.nio.file.Files</span>;
 <span class="keyword">import</span> <span class="module">java.nio.file.Paths</span>;
 <span class="keyword">import</span> <span class="module">java.util.*</span>;
 
-<span class="keyword">public class</span> <span class="class">ONNXModelRunner</span> {
+<span class="keyword">public class</span> <span class="class">BinaryClassifier</span> {
+    <span class="keyword">private</span> <span class="class">Map&lt;String, Integer&gt;</span> vocab;
+    <span class="keyword">private</span> <span class="class">List&lt;Float&gt;</span> idf;
+    <span class="keyword">private</span> <span class="class">List&lt;Float&gt;</span> mean;
+    <span class="keyword">private</span> <span class="class">List&lt;Float&gt;</span> scale;
+    <span class="keyword">private</span> <span class="class">OrtSession</span> session;
+
+    <span class="keyword">public</span> <span class="function">BinaryClassifier</span>(<span class="parameter">String modelPath</span>, <span class="parameter">String vocabPath</span>, <span class="parameter">String scalerPath</span>) <span class="keyword">throws</span> Exception {
+        <span class="comment">// Load vocabulary and IDF weights</span>
+        String vocabJson = <span class="keyword">new</span> String(Files.readAllBytes(Paths.get(vocabPath)));
+        JSONObject vocabData = <span class="keyword">new</span> JSONObject(vocabJson);
+        this.vocab = <span class="keyword">new</span> HashMap<>();
+        JSONObject vocabObj = vocabData.getJSONObject(<span class="string">"vocab"</span>);
+        <span class="keyword">for</span> (String key : vocabObj.keySet()) {
+            this.vocab.put(key, vocabObj.getInt(key));
+        }
+        this.idf = <span class="keyword">new</span> ArrayList<>();
+        vocabData.getJSONArray(<span class="string">"idf"</span>).forEach(item -> this.idf.add(((Number) item).floatValue()));
+
+        <span class="comment">// Load scaling parameters</span>
+        String scalerJson = <span class="keyword">new</span> String(Files.readAllBytes(Paths.get(scalerPath)));
+        JSONObject scalerData = <span class="keyword">new</span> JSONObject(scalerJson);
+        this.mean = <span class="keyword">new</span> ArrayList<>();
+        this.scale = <span class="keyword">new</span> ArrayList<>();
+        scalerData.getJSONArray(<span class="string">"mean"</span>).forEach(item -> this.mean.add(((Number) item).floatValue()));
+        scalerData.getJSONArray(<span class="string">"scale"</span>).forEach(item -> this.scale.add(((Number) item).floatValue()));
+
+        <span class="comment">// Initialize ONNX Runtime session</span>
+        OrtEnvironment env = OrtEnvironment.getEnvironment();
+        this.session = env.createSession(modelPath, <span class="keyword">new</span> OrtSession.SessionOptions());
+    }
+
+    <span class="keyword">private</span> <span class="class">float[]</span> <span class="function">preprocessText</span>(<span class="parameter">String text</span>) {
+        <span class="keyword">float[]</span> vector = <span class="keyword">new</span> <span class="keyword">float</span>[<span class="number">5000</span>];
+        <span class="class">Map&lt;String, Integer&gt;</span> wordCounts = <span class="keyword">new</span> HashMap<>();
+
+        <span class="comment">// Count word frequencies</span>
+        <span class="keyword">for</span> (String word : text.toLowerCase().split(<span class="string">"\\s+"</span>)) {
+            wordCounts.put(word, wordCounts.getOrDefault(word, 0) + 1);
+        }
+
+        <span class="comment">// Compute TF-IDF</span>
+        <span class="keyword">for</span> (<span class="class">Map.Entry&lt;String, Integer&gt;</span> entry : wordCounts.entrySet()) {
+            Integer idx = vocab.get(entry.getKey());
+            <span class="keyword">if</span> (idx != null) {
+                vector[idx] = entry.getValue() * idf.get(idx);
+            }
+        }
+
+        <span class="comment">// Scale features</span>
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < <span class="number">5000</span>; i++) {
+            vector[i] = (vector[i] - mean.get(i)) / scale.get(i);
+        }
+
+        <span class="keyword">return</span> vector;
+    }
+
+    <span class="keyword">public</span> <span class="keyword">float</span> <span class="function">predict</span>(<span class="parameter">String text</span>) <span class="keyword">throws</span> OrtException {
+        <span class="keyword">float[]</span> inputData = preprocessText(text);
+        <span class="keyword">float[][]</span> inputArray = <span class="keyword">new</span> <span class="keyword">float</span>[1][<span class="number">5000</span>];
+        inputArray[0] = inputData;
+
+        OnnxTensor inputTensor = OnnxTensor.createTensor(OrtEnvironment.getEnvironment(), inputArray);
+        String inputName = session.getInputNames().iterator().next();
+        OrtSession.Result result = session.run(Collections.singletonMap(inputName, inputTensor));
+
+        <span class="keyword">float[][]</span> outputArray = (<span class="keyword">float[][]</span>) result.get(0).getValue();
+        <span class="keyword">return</span> outputArray[0][0];
+    }
+
     <span class="keyword">public static void</span> <span class="function">main</span>(<span class="parameter">String[] args</span>) {
         <span class="keyword">try</span> {
-            <span class="class">LabelVocabLoader</span> loader = <span class="keyword">new</span> <span class="class">LabelVocabLoader</span>(<span class="string">"resources/labelMap.json"</span>, <span class="string">"resources/vocab.json"</span>);
-            Map&lt;Integer, String&gt; labelMap = loader.getLabelMap();
-            Map&lt;String, Integer&gt; vocab = loader.getVocab();
+            BinaryClassifier classifier = <span class="keyword">new</span> BinaryClassifier(
+                <span class="string">"src/main/resources/model.onnx"</span>,
+                <span class="string">"src/main/resources/model_vocab.json"</span>,
+                <span class="string">"src/main/resources/model_scaler.json"</span>
+            );
 
-            String modelPath = <span class="string">"resources/model.onnx"</span>;
-            OrtEnvironment env = OrtEnvironment.getEnvironment();
-            OrtSession session = env.createSession(modelPath, <span class="keyword">new</span> OrtSession.SessionOptions());
+            String text = <span class="string">"This is a positive test string"</span>;
+            float probability = classifier.predict(text);
+            System.out.printf(<span class="string">"Java ONNX output: Probability = %.4f%n"</span>, probability);
+            System.out.println(<span class="string">"Classification: "</span> + (probability > 0.5 ? <span class="string">"Positive"</span> : <span class="string">"Negative"</span>));
 
-            String inputText = <span class="string">"let's go to the beach and have some fun"</span>;
-
-            Tokenizer tokenizer = <span class="keyword">new</span> Tokenizer(vocab);
-            int maxLen = <span class="number">30</span>;
-            int[] tokenizedInput = tokenizer.tokenize(inputText);
-            int[] paddedInput = <span class="keyword">new</span> int[maxLen];
-            <span class="keyword">for</span> (int i = 0; i < maxLen; i++) {
-                <span class="keyword">if</span> (i < tokenizedInput.length) {
-                    paddedInput[i] = tokenizedInput[i];
-                } <span class="keyword">else</span> {
-                    paddedInput[i] = 0;
-                }
-            }
-
-            int[][] inputData = <span class="keyword">new</span> int[1][maxLen];
-            inputData[0] = paddedInput;
-
-            OnnxTensor inputTensor = OnnxTensor.createTensor(env, inputData);
-
-            String inputName = session.getInputNames().iterator().next();
-            OrtSession.Result result = session.run(Collections.singletonMap(inputName, inputTensor));
-
-            float[][] outputArray = (float[][]) result.get(0).getValue();
-            System.out.println(<span class="string">"Model output:"</span>);
-            <span class="keyword">for</span> (int i = 0; i < outputArray[0].length; i++) {
-                System.out.println(<span class="string">"Class: "</span> + labelMap.get(i) + <span class="string">", Probability: "</span> + outputArray[0][i]);
-            }
-
-            session.close();
-            env.close();
         } <span class="keyword">catch</span> (Exception e) {
             e.printStackTrace();
         }
     }
+}</code></pre>
 
-    <span class="keyword">static class</span> <span class="class">Tokenizer</span> {
-        <span class="keyword">private</span> Map&lt;String, Integer&gt; vocab;
+                                <h4>✅ 6. Build and Run</h4>
+                                <div class="os-section">
+                                    <h5>🔷 Build the Project</h5>
+                                    <pre><code>mvn clean package</code></pre>
+                                </div>
 
-        <span class="keyword">public</span> <span class="function">Tokenizer</span>(Map&lt;String, Integer&gt; vocab) {
-            this.vocab = vocab;
-        }
+                                <div class="os-section">
+                                    <h5>🟩 Run the Classifier</h5>
+                                    <pre><code>java -cp target/binary-classifier-1.0-SNAPSHOT.jar com.example.BinaryClassifier</code></pre>
+                                </div>
 
-        <span class="keyword">public int[]</span> <span class="function">tokenize</span>(String text) {
-            String[] words = text.toLowerCase().split(<span class="string">"\\s+"</span>);
-            int[] tokenized = <span class="keyword">new</span> int[words.length];
-            <span class="keyword">for</span> (int i = 0; i < words.length; i++) {
-                Integer token = vocab.getOrDefault(words[i], vocab.get(<span class="string">"<OOV>"</span>));
-                tokenized[i] = token;
-            }
-            return tokenized;
-        }
-    }
-
-    <span class="keyword">static class</span> <span class="class">LabelVocabLoader</span> {
-        <span class="keyword">private</span> Map&lt;Integer, String&gt; labelMap;
-        <span class="keyword">private</span> Map&lt;String, Integer&gt; vocab;
-
-        <span class="keyword">public</span> <span class="function">LabelVocabLoader</span>(String labelMapPath, String vocabPath) <span class="keyword">throws</span> Exception {
-            String labelMapJson = <span class="keyword">new</span> String(Files.readAllBytes(Paths.get(labelMapPath)));
-            JSONObject labelMapObject = <span class="keyword">new</span> JSONObject(labelMapJson);
-            this.labelMap = <span class="keyword">new</span> HashMap<>();
-            <span class="keyword">for</span> (String key : labelMapObject.keySet()) {
-                this.labelMap.put(Integer.parseInt(key), labelMapObject.getString(key));
-            }
-
-            String vocabJson = <span class="keyword">new</span> String(Files.readAllBytes(Paths.get(vocabPath)));
-            JSONObject vocabObject = <span class="keyword">new</span> JSONObject(vocabJson);
-            this.vocab = <span class="keyword">new</span> HashMap<>();
-            <span class="keyword">for</span> (String key : vocabObject.keySet()) {
-                this.vocab.put(key, vocabObject.getInt(key));
-            }
-        }
-
-        <span class="keyword">public</span> Map&lt;Integer, String&gt; <span class="function">getLabelMap</span>() {
-            return labelMap;
-        }
-
-        <span class="keyword">public</span> Map&lt;String, Integer&gt; <span class="function">getVocab</span>() {
-            return vocab;
-        }
-    }
-}
-
-<span class="output">Java ONNX output: Politics (Score: 0.9123)</span></code></pre>
+                                <h4>✅ 7. Expected Output</h4>
+                                <div class="output-section">
+                                    <pre><code>Java ONNX output: Probability = 0.9123
+Classification: Positive</code></pre>
+                                    <p>The output shows the probability of the positive class. A probability above 0.5 indicates a positive classification, while below 0.5 indicates a negative classification.</p>
+                                </div>
+                            </div>
                         </div>
                         <!-- Add other language code blocks similarly -->
                     </div>
