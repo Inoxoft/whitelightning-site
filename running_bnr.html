@@ -1103,7 +1103,8 @@ ort = "1.16.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 anyhow = "1.0"
-thiserror = "1.0"</code></pre>
+thiserror = "1.0"
+ndarray = "0.15"</code></pre>
                                 </div>
 
                                 <h4>✅ 5. Project Structure</h4>
@@ -1123,6 +1124,8 @@ thiserror = "1.0"</code></pre>
 <span class="keyword">use</span> <span class="module">std</span>::collections::<span class="class">HashMap</span>;
 <span class="keyword">use</span> <span class="module">std</span>::fs::File;
 <span class="keyword">use</span> <span class="module">std</span>::io::<span class="class">BufReader</span>;
+<span class="keyword">use</span> <span class="module">std</span>::sync::<span class="class">Arc</span>;
+<span class="keyword">use</span> <span class="module">ndarray</span>::<span class="class">Array2</span>;
 
 <span class="keyword">struct</span> <span class="class">BinaryClassifier</span> {
     vocab: <span class="class">HashMap&lt;String, usize&gt;</span>,
@@ -1134,7 +1137,6 @@ thiserror = "1.0"</code></pre>
 
 <span class="keyword">impl</span> <span class="class">BinaryClassifier</span> {
     <span class="keyword">fn</span> <span class="function">new</span>(<span class="parameter">model_path: &str</span>, <span class="parameter">vocab_path: &str</span>, <span class="parameter">scaler_path: &str</span>) -> <span class="class">Result&lt;Self&gt;</span> {
-        <span class="comment">// Load vocabulary and IDF weights</span>
         <span class="keyword">let</span> vocab_file = <span class="class">File</span>::open(vocab_path)?;
         <span class="keyword">let</span> vocab_reader = <span class="class">BufReader</span>::new(vocab_file);
         <span class="keyword">let</span> vocab_data: <span class="class">JsonValue</span> = <span class="module">serde_json</span>::<span class="function">from_reader</span>(vocab_reader)?;
@@ -1152,7 +1154,6 @@ thiserror = "1.0"</code></pre>
             .map(|v| v.as_f64().unwrap() <span class="keyword">as</span> f32)
             .collect();
 
-        <span class="comment">// Load scaling parameters</span>
         <span class="keyword">let</span> scaler_file = <span class="class">File</span>::open(scaler_path)?;
         <span class="keyword">let</span> scaler_reader = <span class="class">BufReader</span>::new(scaler_file);
         <span class="keyword">let</span> scaler_data: <span class="class">JsonValue</span> = <span class="module">serde_json</span>::<span class="function">from_reader</span>(scaler_reader)?;
@@ -1171,10 +1172,9 @@ thiserror = "1.0"</code></pre>
             .map(|v| v.as_f64().unwrap() <span class="keyword">as</span> f32)
             .collect();
 
-        <span class="comment">// Initialize ONNX Runtime session</span>
-        <span class="keyword">let</span> environment = <span class="class">Environment</span>::builder()
+        <span class="keyword">let</span> environment = <span class="class">Arc</span>::new(<span class="class">Environment</span>::builder()
             .with_name(<span class="string">"binary_classifier"</span>)
-            .build()?;
+            .build()?);
         <span class="keyword">let</span> session = <span class="class">SessionBuilder</span>::new(&environment)?
             .with_model_from_file(model_path)?;
 
@@ -1191,19 +1191,17 @@ thiserror = "1.0"</code></pre>
         <span class="keyword">let mut</span> vector = vec![<span class="number">0.0</span>; <span class="number">5000</span>];
         <span class="keyword">let mut</span> word_counts: <span class="class">HashMap&lt;&str, usize&gt;</span> = <span class="class">HashMap</span>::new();
 
-        <span class="comment">// Count word frequencies</span>
-        <span class="keyword">for</span> word <span class="keyword">in</span> text.to_lowercase().split_whitespace() {
+        <span class="keyword">let</span> text_lower = text.to_lowercase();
+        <span class="keyword">for</span> word <span class="keyword">in</span> text_lower.split_whitespace() {
             *word_counts.entry(word).or_insert(<span class="number">0</span>) += <span class="number">1</span>;
         }
 
-        <span class="comment">// Compute TF-IDF</span>
         <span class="keyword">for</span> (word, count) <span class="keyword">in</span> word_counts {
             <span class="keyword">if let</span> <span class="class">Some</span>(&idx) = <span class="keyword">self</span>.vocab.get(word) {
                 vector[idx] = count <span class="keyword">as</span> f32 * <span class="keyword">self</span>.idf[idx];
             }
         }
 
-        <span class="comment">// Scale features</span>
         <span class="keyword">for</span> i <span class="keyword">in</span> 0..<span class="number">5000</span> {
             vector[i] = (vector[i] - <span class="keyword">self</span>.mean[i]) / <span class="keyword">self</span>.scale[i];
         }
@@ -1213,28 +1211,27 @@ thiserror = "1.0"</code></pre>
 
     <span class="keyword">fn</span> <span class="function">predict</span>(&<span class="keyword">self</span>, <span class="parameter">text: &str</span>) -> <span class="class">Result&lt;f32&gt;</span> {
         <span class="keyword">let</span> input_data = <span class="keyword">self</span>.preprocess_text(text);
-        <span class="keyword">let</span> input_tensor = <span class="class">Value</span>::from_array(
-            <span class="keyword">self</span>.session.allocator(),
-            &[<span class="number">1</span>, <span class="number">5000</span>],
-            &input_data,
-        )?;
+        <span class="keyword">let</span> input_array = <span class="class">Array2</span>::from_shape_vec((<span class="number">1</span>, <span class="number">5000</span>), input_data)?;
+        <span class="keyword">let</span> input_dyn = input_array.into_dyn();
+        <span class="keyword">let</span> input_cow = ndarray::<span class="class">CowArray</span>::from(input_dyn.view());
+        <span class="keyword">let</span> input_tensor = <span class="class">Value</span>::from_array(<span class="keyword">self</span>.session.allocator(), &input_cow)?;
 
         <span class="keyword">let</span> outputs = <span class="keyword">self</span>.session.run(vec![input_tensor])?;
-        <span class="keyword">let</span> output_tensor = outputs[<span class="number">0</span>].extract_tensor::&lt;f32&gt;()?;
-        <span class="keyword">let</span> output_data = output_tensor.view();
+        <span class="keyword">let</span> output_view = outputs[<span class="number">0</span>].try_extract::&lt;f32&gt;()?;
+        <span class="keyword">let</span> output_data = output_view.view();
         
-        <span class="class">Ok</span>(output_data[<span class="number">0</span>])
+        <span class="class">Ok</span>(output_data[[<span class="number">0</span>, <span class="number">0</span>]])
     }
 }
 
 <span class="keyword">fn</span> <span class="function">main</span>() -> <span class="class">Result&lt;()&gt;</span> {
     <span class="keyword">let</span> classifier = <span class="class">BinaryClassifier</span>::new(
-        <span class="string">"resources/model.onnx"</span>,
-        <span class="string">"resources/model_vocab.json"</span>,
-        <span class="string">"resources/model_scaler.json"</span>,
+        <span class="string">"spam_classifier/model.onnx"</span>,
+        <span class="string">"spam_classifier/vocab.json"</span>,
+        <span class="string">"spam_classifier/scaler.json"</span>,
     )?;
 
-    <span class="keyword">let</span> text = <span class="string">"This is a positive test string"</span>;
+    <span class="keyword">let</span> text = <span class="string">"Act now! Get 70% off on all products. Visit our site today!"</span>;
     <span class="keyword">let</span> probability = classifier.predict(text)?;
     
     <span class="function">println!</span>(<span class="string">"Rust ONNX output: Probability = {:.4}"</span>, probability);
