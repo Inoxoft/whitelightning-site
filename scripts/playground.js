@@ -156,11 +156,38 @@ function preprocessMulticlassText(text, tokenizer, maxLen = 30) {
 }
 
 async function runBinaryInference(session, text, artifacts) {
-  const tensor = await preprocessBinaryText(text, artifacts);
-  const feeds = {};
-  feeds[session.inputNames[0]] = tensor;
-  const results = await session.run(feeds);
-  return results.output.data;
+  try {
+    console.log('🔍 Running binary inference with:', {
+      inputNames: session.inputNames,
+      artifacts: artifacts
+    });
+
+    const tensor = await preprocessBinaryText(text, artifacts);
+    const feeds = {};
+    
+    // Use the first input name from the session
+    const inputName = session.inputNames[0];
+    if (!inputName) {
+      throw new Error('No input names found in the model');
+    }
+    
+    feeds[inputName] = new ort.Tensor('float32', tensor, [1, tensor.length]);
+    
+    console.log('📦 Input tensor shape:', [1, tensor.length]);
+    console.log('🔑 Using input name:', inputName);
+    
+    const results = await session.run(feeds);
+    const outputTensor = results[Object.keys(results)[0]];
+    const probability = outputTensor.data[0];
+    
+    return {
+      label: probability > 0.5 ? 'Positive' : 'Negative',
+      probability: probability
+    };
+  } catch (error) {
+    console.error('❌ Binary inference error:', error);
+    throw new Error(`Binary inference failed: ${error.message}`);
+  }
 }
 
 async function runMulticlassInference(session, text, artifacts) {
