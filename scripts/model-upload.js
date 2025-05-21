@@ -5,7 +5,7 @@ class ModelUploader {
         this.uploadArea = document.querySelector('.upload-area');
         this.fileInput = document.querySelector('input[type="file"]');
         this.alertBox = document.querySelector('.alert');
-        this.modelInfo = document.querySelector('.model-info');
+        this.modelInfo = document.getElementById('modelDetails');
         this.modelNameInput = document.querySelector('input[name="modelName"]');
         this.modelTypeSelect = document.querySelector('select[name="modelType"]');
         this.modelDescriptionInput = document.querySelector('textarea[name="modelDescription"]');
@@ -27,6 +27,19 @@ class ModelUploader {
         // Show upload modal
         this.uploadCustomBtn.addEventListener('click', () => {
             this.uploadModal.classList.remove('hidden');
+            // Set the model type in the upload modal to match the main selector
+            this.modelTypeSelect.value = this.modelTypeSelectMain.value;
+        });
+
+        // Sync model type between main selector and upload modal
+        this.modelTypeSelectMain.addEventListener('change', () => {
+            if (!this.uploadModal.classList.contains('hidden')) {
+                this.modelTypeSelect.value = this.modelTypeSelectMain.value;
+            }
+        });
+
+        this.modelTypeSelect.addEventListener('change', () => {
+            this.modelTypeSelectMain.value = this.modelTypeSelect.value;
         });
 
         // Close modal when clicking outside
@@ -64,7 +77,6 @@ class ModelUploader {
         this.modelInfo.classList.add('hidden');
         this.alertBox.classList.add('hidden');
         this.modelNameInput.value = '';
-        this.modelTypeSelect.value = this.modelTypeSelectMain.value;
         this.modelDescriptionInput.value = '';
         this.fileInput.value = '';
         this.currentModelFiles = null;
@@ -186,6 +198,48 @@ class ModelUploader {
                 scaler: this.currentScaler
             };
 
+            // Update selectedModel and selectedModelType for the playground
+            selectedModelType = window.currentModel.type;
+            selectedModel = {
+                name: window.currentModel.name,
+                type: window.currentModel.type,
+                prefix: window.currentModel.name.toLowerCase().replace(/\s+/g, '_'),
+                subClasses: []
+            };
+
+            // Set session and artifacts for immediate use
+            session = window.currentModel.session;
+            
+            // Log the structure of data to understand its format
+            console.log('📊 Model data structure:', {
+                vocab: this.currentVocab,
+                scaler: this.currentScaler
+            });
+            
+            // Set artifacts based on model type
+            if (modelType === 'binary_classifier') {
+                artifacts = {
+                    vocab: this.currentVocab.vocab,
+                    idf: this.currentVocab.idf,
+                    mean: this.currentScaler.mean || this.currentScaler.scaler_info?.params?.mean,
+                    scale: this.currentScaler.scale || this.currentScaler.scaler_info?.params?.scale
+                };
+            } else {
+                // For multiclass, use vocab as tokenizer and scaler as labelMap
+                artifacts = {
+                    tokenizer: this.currentVocab,
+                    labelMap: this.currentScaler
+                };
+            }
+
+            console.log('🎯 Model loaded:', {
+                selectedModel,
+                selectedModelType,
+                session: session ? 'InferenceSession loaded' : 'No session',
+                artifacts: artifacts ? 'Artifacts loaded' : 'No artifacts',
+                modelType: modelType
+            });
+
             // Close modal and reset form
             this.uploadModal.classList.add('hidden');
             this.resetUploadForm();
@@ -193,6 +247,7 @@ class ModelUploader {
             this.showAlert('Model uploaded successfully!', 'success');
         } catch (error) {
             console.error('Error uploading model:', error);
+            console.error('Scaler data:', this.currentScaler);
             this.showAlert('Error uploading model. Please try again.', 'error');
         } finally {
             this.loadingSpinner.classList.add('hidden');

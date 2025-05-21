@@ -49,19 +49,30 @@
   <div class="playground-panel">
     <div class="playground-controls">
       <select id="modelTypeSelect">
-        <option value="binary">Binary Classification</option>
-        <option value="multiclass">Multiclass Classification</option>
+        <option value="binary_classifier">Binary Classification</option>
+        <option value="multiclass_classifier">Multiclass Classification</option>
       </select>
       <select id="modelSelect"></select>
       <select id="modelSubclassSelect" style="display:none"></select>
       <span id="modelStatus" class="chip">No model loaded</span>
-      <!-- <button id="uploadCustomBtn" class="button">Upload Custom</button> -->
+      <button id="uploadCustomBtn" class="button">Upload Custom</button>
       <button id="downloadModelBtn" class="button" style="display:none">Download Model</button>
     </div>
 
     <!-- Upload modal -->
     <div id="uploadModal" class="modal hidden">
       <div class="modal-content">
+        <div class="model-info">
+          <div class="model-info-table">
+            <div class="form-group">
+              <label for="modelType">Model Type</label>
+              <select name="modelType" required>
+                <option value="binary_classifier">Binary Classification</option>
+                <option value="multiclass_classifier">Multiclass Classification</option>
+              </select>
+            </div>
+          </div>
+        </div>
         <div class="upload-area">
           <div class="upload-icon">📁</div>
           <p>Drag and drop your model files here</p>
@@ -69,18 +80,11 @@
           <input type="file" multiple accept=".onnx,.json" style="display: none;">
         </div>
         <div class="alert hidden"></div>
-        <div class="model-info hidden">
+        <div class="model-info hidden" id="modelDetails">
           <div class="model-info-table">
             <div class="form-group">
               <label for="modelName">Model Name</label>
               <input type="text" name="modelName" required>
-            </div>
-            <div class="form-group">
-              <label for="modelType">Model Type</label>
-              <select name="modelType" required>
-                <option value="binary">Binary Classification</option>
-                <option value="multiclass">Multiclass Classification</option>
-              </select>
             </div>
             <div class="form-group">
               <label for="modelDescription">Description</label>
@@ -150,7 +154,7 @@
       <span>contact@whitelightning.ai</span>
     </div>
   </footer>
-  <script src="scripts/playground.js"></script>
   <script src="scripts/model-upload.js"></script>
+  <script src="scripts/playground.js"></script>
 </body>
 </html>
