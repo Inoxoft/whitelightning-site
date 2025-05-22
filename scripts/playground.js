@@ -62,19 +62,56 @@ function renderModelSubclassOptions() {
 function updateChat() {
   const chatArea = document.querySelector('.terminal-content');
   
+  // Clear all existing content
+  chatArea.innerHTML = '';
+  
   if (messages.length === 0) {
-    // Keep the initial animated messages
-    return;
+    // Add initial messages
+    const initialMessages = [
+      'Welcome to WhiteLightning Model Playground',
+      'Select a model type and model to begin',
+      'You can try binary classification or multiclass classification',
+      'Upload your own model or use our pre-trained models',
+      'Type your text and click Classify to get started'
+    ];
+    
+    initialMessages.forEach(text => {
+      const messageDiv = document.createElement('p');
+      const fullTextSpan = document.createElement('span');
+      fullTextSpan.className = 'full-text';
+      fullTextSpan.textContent = text;
+      
+      const shortTextSpan = document.createElement('span');
+      shortTextSpan.className = 'short-text';
+      shortTextSpan.textContent = text.length > 30 ? text.substring(0, 27) + '...' : text;
+      
+      messageDiv.appendChild(fullTextSpan);
+      messageDiv.appendChild(shortTextSpan);
+      chatArea.appendChild(messageDiv);
+    });
+  } else {
+    // Show user messages
+    messages.forEach(msg => {
+      const messageDiv = document.createElement('p');
+      const fullTextSpan = document.createElement('span');
+      fullTextSpan.className = 'full-text';
+      fullTextSpan.textContent = msg.text;
+      
+      const shortTextSpan = document.createElement('span');
+      shortTextSpan.className = 'short-text';
+      shortTextSpan.textContent = msg.text.length > 30 ? msg.text.substring(0, 27) + '...' : msg.text;
+      
+      if (msg.isUser) {
+        fullTextSpan.style.color = '#39ff14';
+        shortTextSpan.style.color = '#39ff14';
+      }
+      
+      messageDiv.appendChild(fullTextSpan);
+      messageDiv.appendChild(shortTextSpan);
+      chatArea.appendChild(messageDiv);
+    });
   }
   
-  // Clear the initial messages and show user messages
-  chatArea.innerHTML = '';
-  messages.forEach(msg => {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${msg.isUser ? 'user' : ''}`;
-    messageDiv.textContent = msg.text;
-    chatArea.appendChild(messageDiv);
-  });
   chatArea.scrollTop = chatArea.scrollHeight;
 }
 
@@ -345,106 +382,43 @@ async function loadModel() {
 }
 
 function addTerminalMessage(text, isError = false) {
-    const chatArea = document.querySelector('.terminal-content');
-    const messageDiv = document.createElement('p');
-    
-    // Create full-text and short-text spans
-    const fullTextSpan = document.createElement('span');
-    fullTextSpan.className = 'full-text';
-    fullTextSpan.textContent = text;
-    
-    const shortTextSpan = document.createElement('span');
-    shortTextSpan.className = 'short-text';
-    shortTextSpan.textContent = text.length > 30 ? text.substring(0, 27) + '...' : text;
-    
-    // Add error styling if needed
-    if (isError) {
-        fullTextSpan.style.color = '#ff6b6b';
-        shortTextSpan.style.color = '#ff6b6b';
-    }
-    
-    messageDiv.appendChild(fullTextSpan);
-    messageDiv.appendChild(shortTextSpan);
-    chatArea.appendChild(messageDiv);
-    chatArea.scrollTop = chatArea.scrollHeight;
+  messages.push({ text, isUser: false });
+  updateChat();
 }
 
 async function handleClassify(e) {
-    e.preventDefault();
-    
-    console.log("🔍 handleClassify triggered");
-    console.log('selectedModel:', selectedModel);
-    console.log('session:', session);
-    console.log('artifacts:', artifacts);
+  e.preventDefault();
+  
+  if (!selectedModel || !session || !artifacts) {
+    addTerminalMessage('Please select a model first', true);
+    return;
+  }
 
-    if (!selectedModel || !session || !artifacts) {
-        addTerminalMessage('Please select a model first', true);
-        return;
-    }
-
-    // Check model type against artifacts structure
-    if (selectedModel.type === 'binary_classifier' && !isBinaryArtifacts(artifacts)) {
-        addTerminalMessage('⚠️ You selected "Binary Classifier", but your model files look like a Multiclass model. Please switch model type.', true);
-        return;
-    }
-
-    if (selectedModel.type === 'multiclass_classifier' && !isMulticlassArtifacts(artifacts)) {
-        addTerminalMessage('⚠️ You selected "Multiclass Classifier", but your model files don\'t match. Please re-upload the correct files.', true);
-        return;
-    }
-
-    const input = $('inputText').value.trim();
-    if (!input) return;
+  const input = $('inputText').value.trim();
+  if (!input) return;
+  
+  // Add user input to messages
+  messages.push({ text: `> ${input}`, isUser: true });
+  updateChat();
+  
+  isProcessing = true;
+  setStatus('Processing...', false);
+  addTerminalMessage('Processing input, please wait...');
+  
+  try {
+    const result = selectedModel.type === 'binary_classifier'
+      ? await runBinaryInference(session, input, artifacts)
+      : await runMulticlassInference(session, input, artifacts);
     
-    addTerminalMessage(`> ${input}`);
-    
-    isProcessing = true;
-    setStatus('Processing...', false);
-    addTerminalMessage('Processing input, please wait...');
-    
-    try {
-        const result = selectedModel.type === 'binary_classifier'
-            ? await runBinaryInference(session, input, artifacts)
-            : await runMulticlassInference(session, input, artifacts);
-        
-        addTerminalMessage(`Classification: ${result.label} (Score: ${result.probability.toFixed(4)})`);
-    } catch (error) {
-        console.error("❌ Classification error:", error);
-        
-        let errorMessage;
-        if (error.message === 'MODEL_TYPE_MISMATCH_BINARY') {
-            errorMessage = '⚠️ You selected "Binary Classifier", but your model files look like a Multiclass model. Please switch model type.';
-        } else if (error.message === 'MODEL_TYPE_MISMATCH_MULTICLASS') {
-            errorMessage = '⚠️ You selected "Multiclass Classifier", but your model files don\'t match. Please re-upload the correct files.';
-        } else if (error.message.includes('MODEL_TYPE_MISMATCH')) {
-            errorMessage = '⚠️ Model type mismatch detected. Please choose the correct model type (binary or multiclass) that matches your uploaded files.';
-        } else if (
-            error.message.includes('Unexpected input data type') ||
-            error.message.includes('tensor(int32') ||
-            error.message.includes('tensor(float') ||
-            error.message.includes('expected: (tensor(float))')
-        ) {
-            errorMessage = '⚠️ The model expects a different input data type. Please check if you selected the correct model type (Binary vs Multiclass) and uploaded the right files.';
-        } else if (error.message.includes("input 'float_input' is missing")) {
-            errorMessage = '⚠️ Looks like the model expects a different input. Please check if you selected the correct model type (Binary vs Multiclass).';
-        } else if (error.message.includes('INVALID_ARTIFACTS')) {
-            errorMessage = '⚠️ Model files are missing or invalid. Please make sure you have uploaded all required model files.';
-        } else if (error.message.includes('INVALID_SESSION')) {
-            errorMessage = '⚠️ Model session is not properly initialized. Please try reloading the model.';
-        } else if (error.message.includes('INVALID_RESULTS')) {
-            errorMessage = '⚠️ Model inference failed. Please check if the model files are correct.';
-        } else if (error.message.includes('reading') && error.message.includes('undefined')) {
-            errorMessage = '⚠️ Looks like you selected the wrong model type or your uploaded files are invalid. Please check and re-upload the correct model.';
-        } else {
-            errorMessage = `❌ Error: ${error.message}`;
-        }
-        
-        addTerminalMessage(errorMessage, true);
-    } finally {
-        isProcessing = false;
-        setStatus('Model loaded', true);
-        $('inputText').value = '';
-    }
+    addTerminalMessage(`Classification: ${result.label} (Score: ${result.probability.toFixed(4)})`);
+  } catch (error) {
+    console.error("❌ Classification error:", error);
+    addTerminalMessage(`Error: ${error.message}`, true);
+  }
+  
+  isProcessing = false;
+  setStatus('Model loaded', true);
+  $('inputText').value = '';
 }
 
 window.addEventListener('DOMContentLoaded', () => {
