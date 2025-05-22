@@ -117,81 +117,145 @@ async function loadMulticlassArtifacts(modelPath) {
 }
 
 async function preprocessBinaryText(text, artifacts) {
-  const { vocab, idf, mean, scale } = artifacts;
-  const vector = new Float32Array(5000).fill(0);
-  const words = text.toLowerCase().split(/\s+/);
-  const wordCounts = Object.create(null);
-  words.forEach(word => (wordCounts[word] = (wordCounts[word] || 0) + 1));
-  for (const word in wordCounts) {
-    if (vocab[word] !== undefined) {
-      vector[vocab[word]] = wordCounts[word] * idf[vocab[word]];
-    }
-  }
+  try {
+    // Detailed validation of artifacts
+    console.log('🔍 Validating binary model artifacts:', {
+      hasVocab: !!artifacts?.vocab,
+      hasIdf: !!artifacts?.idf,
+      hasMean: !!artifacts?.mean,
+      hasScale: !!artifacts?.scale,
+      vocabType: typeof artifacts?.vocab,
+      idfType: typeof artifacts?.idf,
+      meanType: typeof artifacts?.mean,
+      scaleType: typeof artifacts?.scale
+    });
 
-  for (let i = 0; i < 5000; i++) {
-    vector[i] = (vector[i] - mean[i]) / scale[i];
+    if (!artifacts || typeof artifacts !== 'object') {
+      throw new Error('INVALID_ARTIFACTS: Model artifacts are missing or invalid');
+    }
+
+    // Check each required property
+    if (!artifacts.vocab) throw new Error('INVALID_ARTIFACTS: Vocabulary is missing');
+    if (!artifacts.idf) throw new Error('INVALID_ARTIFACTS: IDF values are missing');
+    if (!artifacts.mean) throw new Error('INVALID_ARTIFACTS: Mean values are missing');
+    if (!artifacts.scale) throw new Error('INVALID_ARTIFACTS: Scale values are missing');
+
+    const { vocab, idf, mean, scale } = artifacts;
+    const vector = new Float32Array(5000).fill(0);
+    const words = text.toLowerCase().split(/\s+/);
+    const wordCounts = Object.create(null);
+    words.forEach(word => (wordCounts[word] = (wordCounts[word] || 0) + 1));
+    
+    for (const word in wordCounts) {
+      if (vocab[word] !== undefined) {
+        vector[vocab[word]] = wordCounts[word] * idf[vocab[word]];
+      }
+    }
+
+    for (let i = 0; i < 5000; i++) {
+      vector[i] = (vector[i] - mean[i]) / scale[i];
+    }
+    return vector;
+  } catch (error) {
+    console.error('❌ Binary preprocessing error:', error);
+    throw error;
   }
-  return vector;
 }
 
 function preprocessMulticlassText(text, tokenizer, maxLen = 30) {
+  try {
+    // Validate tokenizer
+    if (!tokenizer || typeof tokenizer !== 'object') {
+      throw new Error('INVALID_ARTIFACTS: Model tokenizer is missing or invalid');
+    }
+
     const oovToken = '<OOV>';
     const words = text.toLowerCase().split(/\s+/);
     let sequence = words.map(word => {
-        // Check if word exists in tokenizer
-        if (tokenizer[word] !== undefined) {
-            return tokenizer[word];
-        }
-        // Check if OOV token exists
-        if (tokenizer[oovToken] !== undefined) {
-            return tokenizer[oovToken];
-        }
-        // Default to 1 if neither exists
-        return 1;
+      if (tokenizer[word] !== undefined) {
+        return tokenizer[word];
+      }
+      if (tokenizer[oovToken] !== undefined) {
+        return tokenizer[oovToken];
+      }
+      return 1;
     });
-    sequence = sequence.slice(0, maxLen); 
-    const padded = new Array(maxLen).fill(0); 
+    
+    sequence = sequence.slice(0, maxLen);
+    const padded = new Array(maxLen).fill(0);
     sequence.forEach((val, idx) => (padded[idx] = val));
     return padded;
+  } catch (error) {
+    console.error('❌ Multiclass preprocessing error:', error);
+    throw error;
+  }
+}
+
+// Add artifact type detection functions
+function isBinaryArtifacts(artifacts) {
+    return (
+        artifacts &&
+        artifacts.vocab && artifacts.idf &&
+        artifacts.mean && artifacts.scale
+    );
+}
+
+function isMulticlassArtifacts(artifacts) {
+    return (
+        artifacts &&
+        artifacts.tokenizer && artifacts.labelMap
+    );
 }
 
 async function runBinaryInference(session, text, artifacts) {
-  try {
-    console.log('🔍 Running binary inference with:', {
-      inputNames: session.inputNames,
-      artifacts: artifacts
-    });
+    try {
+        // Validate artifacts structure first
+        if (!isBinaryArtifacts(artifacts)) {
+            throw new Error('MODEL_TYPE_MISMATCH_BINARY');
+        }
 
-    const tensor = await preprocessBinaryText(text, artifacts);
-    const feeds = {};
-    
-    // Use the first input name from the session
-    const inputName = session.inputNames[0];
-    if (!inputName) {
-      throw new Error('No input names found in the model');
+        console.log('🔍 Running binary inference with:', {
+            inputNames: session.inputNames,
+            artifacts: artifacts
+        });
+
+        const tensor = await preprocessBinaryText(text, artifacts);
+        const feeds = {};
+        
+        const inputName = session.inputNames[0];
+        if (!inputName) {
+            throw new Error('INVALID_SESSION: No input names found in the model');
+        }
+        
+        feeds[inputName] = new ort.Tensor('float32', tensor, [1, tensor.length]);
+        
+        console.log('📦 Input tensor shape:', [1, tensor.length]);
+        console.log('🔑 Using input name:', inputName);
+        
+        const results = await session.run(feeds);
+        const outputTensor = results[Object.keys(results)[0]];
+        const probability = outputTensor.data[0];
+        
+        return {
+            label: probability > 0.5 ? 'Positive' : 'Negative',
+            probability: probability
+        };
+    } catch (error) {
+        console.error('❌ Binary inference error:', error);
+        if (error.message.includes('INVALID_') || error.message.includes('MODEL_TYPE_MISMATCH')) {
+            throw error;
+        }
+        throw new Error(`Binary inference failed: ${error.message}`);
     }
-    
-    feeds[inputName] = new ort.Tensor('float32', tensor, [1, tensor.length]);
-    
-    console.log('📦 Input tensor shape:', [1, tensor.length]);
-    console.log('🔑 Using input name:', inputName);
-    
-    const results = await session.run(feeds);
-    const outputTensor = results[Object.keys(results)[0]];
-    const probability = outputTensor.data[0];
-    
-    return {
-      label: probability > 0.5 ? 'Positive' : 'Negative',
-      probability: probability
-    };
-  } catch (error) {
-    console.error('❌ Binary inference error:', error);
-    throw new Error(`Binary inference failed: ${error.message}`);
-  }
 }
 
 async function runMulticlassInference(session, text, artifacts) {
     try {
+        // Validate artifacts structure first
+        if (!isMulticlassArtifacts(artifacts)) {
+            throw new Error('MODEL_TYPE_MISMATCH_MULTICLASS');
+        }
+
         const { tokenizer, labelMap } = artifacts;
         console.log('🔍 Multiclass artifacts:', {
             tokenizerKeys: Object.keys(tokenizer || {}),
@@ -202,29 +266,32 @@ async function runMulticlassInference(session, text, artifacts) {
         const inputArray = new Int32Array(tokenized);
         const tensor = new ort.Tensor('int32', inputArray, [1, 30]);
         
-        // Use dynamic input name
         const feeds = {};
-        feeds[session.inputNames[0]] = tensor;
+        const inputName = session.inputNames[0];
+        if (!inputName) {
+            throw new Error('INVALID_SESSION: No input names found in the model');
+        }
+        feeds[inputName] = tensor;
         
         const results = await session.run(feeds);
         const outputTensor = results[Object.keys(results)[0]];
         const probabilities = outputTensor.data;
         
-        // Find the class with highest probability
         const predictedClassIdx = probabilities.reduce(
             (maxIdx, val, idx) => (val > probabilities[maxIdx] ? idx : maxIdx),
             0
         );
         
-        // Get label from labelMap or use index if not found
         const label = labelMap[predictedClassIdx] || `Class ${predictedClassIdx}`;
         const probability = probabilities[predictedClassIdx];
         
         return { label, probability };
     } catch (error) {
-        console.error('Error running multiclass inference:', error);
-        console.error('Artifacts:', artifacts);
-        throw new Error(`Inference failed: ${error.message}`);
+        console.error('❌ Multiclass inference error:', error);
+        if (error.message.includes('INVALID_') || error.message.includes('MODEL_TYPE_MISMATCH')) {
+            throw error;
+        }
+        throw new Error(`Multiclass inference failed: ${error.message}`);
     }
 }
 
@@ -234,8 +301,7 @@ async function loadModel() {
   
   isLoading = true;
   setStatus('Loading...', false);
-  messages.push({ text: `Loading model: ${selectedModel.name}...`, isUser: false });
-  updateChat();
+  addTerminalMessage(`Loading model: ${selectedModel.name}...`);
   
   try {
     // Check if this is a custom uploaded model
@@ -269,14 +335,38 @@ async function loadModel() {
     }
 
     setStatus('Model loaded', true);
-    messages.push({ text: `Model loaded successfully! You can now start classifying text.`, isUser: false });
+    addTerminalMessage('Model loaded sucessfully! You can now start classifying text.');
   } catch (e) {
     setStatus('Error loading', false);
-    messages.push({ text: `Error: ${e.message}`, isUser: false });
+    addTerminalMessage(`Error: ${e.message}`, true);
   }
   
   isLoading = false;
-  updateChat();
+}
+
+function addTerminalMessage(text, isError = false) {
+    const chatArea = document.querySelector('.terminal-content');
+    const messageDiv = document.createElement('p');
+    
+    // Create full-text and short-text spans
+    const fullTextSpan = document.createElement('span');
+    fullTextSpan.className = 'full-text';
+    fullTextSpan.textContent = text;
+    
+    const shortTextSpan = document.createElement('span');
+    shortTextSpan.className = 'short-text';
+    shortTextSpan.textContent = text.length > 30 ? text.substring(0, 27) + '...' : text;
+    
+    // Add error styling if needed
+    if (isError) {
+        fullTextSpan.style.color = '#ff6b6b';
+        shortTextSpan.style.color = '#ff6b6b';
+    }
+    
+    messageDiv.appendChild(fullTextSpan);
+    messageDiv.appendChild(shortTextSpan);
+    chatArea.appendChild(messageDiv);
+    chatArea.scrollTop = chatArea.scrollHeight;
 }
 
 async function handleClassify(e) {
@@ -286,64 +376,93 @@ async function handleClassify(e) {
     console.log('selectedModel:', selectedModel);
     console.log('session:', session);
     console.log('artifacts:', artifacts);
-    console.log('📦 artifacts:', artifacts);
-    console.log('📊 vocab keys:', Object.keys(artifacts?.vocab || {}));
-    console.log('📈 idf length:', artifacts?.idf?.length);
-    console.log('📊 mean length:', artifacts?.mean?.length);
-    console.log('📊 scale length:', artifacts?.scale?.length);
 
     if (!selectedModel || !session || !artifacts) {
-        addMessage('Please select a model first', false);
+        addTerminalMessage('Please select a model first', true);
+        return;
+    }
+
+    // Check model type against artifacts structure
+    if (selectedModel.type === 'binary_classifier' && !isBinaryArtifacts(artifacts)) {
+        addTerminalMessage('⚠️ You selected "Binary Classifier", but your model files look like a Multiclass model. Please switch model type.', true);
+        return;
+    }
+
+    if (selectedModel.type === 'multiclass_classifier' && !isMulticlassArtifacts(artifacts)) {
+        addTerminalMessage('⚠️ You selected "Multiclass Classifier", but your model files don\'t match. Please re-upload the correct files.', true);
         return;
     }
 
     const input = $('inputText').value.trim();
     if (!input) return;
     
-    messages.push({ text: input, isUser: true });
-    updateChat();
+    addTerminalMessage(`> ${input}`);
     
     isProcessing = true;
     setStatus('Processing...', false);
-    messages.push({ text: 'Processing input, please wait...', isUser: false });
-    updateChat();
+    addTerminalMessage('Processing input, please wait...');
     
     try {
         const result = selectedModel.type === 'binary_classifier'
             ? await runBinaryInference(session, input, artifacts)
             : await runMulticlassInference(session, input, artifacts);
         
-        messages.pop();
-        
-        messages.push({ 
-            text: `Classification: ${result.label} (Score: ${result.probability.toFixed(4)})`, 
-            isUser: false 
-        });
+        addTerminalMessage(`Classification: ${result.label} (Score: ${result.probability.toFixed(4)})`);
     } catch (error) {
         console.error("❌ Classification error:", error);
-        messages.pop();
         
-        messages.push({ 
-            text: `Error processing input: ${error.message}`, 
-            isUser: false 
-        });
+        let errorMessage;
+        if (error.message === 'MODEL_TYPE_MISMATCH_BINARY') {
+            errorMessage = '⚠️ You selected "Binary Classifier", but your model files look like a Multiclass model. Please switch model type.';
+        } else if (error.message === 'MODEL_TYPE_MISMATCH_MULTICLASS') {
+            errorMessage = '⚠️ You selected "Multiclass Classifier", but your model files don\'t match. Please re-upload the correct files.';
+        } else if (error.message.includes('MODEL_TYPE_MISMATCH')) {
+            errorMessage = '⚠️ Model type mismatch detected. Please choose the correct model type (binary or multiclass) that matches your uploaded files.';
+        } else if (
+            error.message.includes('Unexpected input data type') ||
+            error.message.includes('tensor(int32') ||
+            error.message.includes('tensor(float') ||
+            error.message.includes('expected: (tensor(float))')
+        ) {
+            errorMessage = '⚠️ The model expects a different input data type. Please check if you selected the correct model type (Binary vs Multiclass) and uploaded the right files.';
+        } else if (error.message.includes("input 'float_input' is missing")) {
+            errorMessage = '⚠️ Looks like the model expects a different input. Please check if you selected the correct model type (Binary vs Multiclass).';
+        } else if (error.message.includes('INVALID_ARTIFACTS')) {
+            errorMessage = '⚠️ Model files are missing or invalid. Please make sure you have uploaded all required model files.';
+        } else if (error.message.includes('INVALID_SESSION')) {
+            errorMessage = '⚠️ Model session is not properly initialized. Please try reloading the model.';
+        } else if (error.message.includes('INVALID_RESULTS')) {
+            errorMessage = '⚠️ Model inference failed. Please check if the model files are correct.';
+        } else if (error.message.includes('reading') && error.message.includes('undefined')) {
+            errorMessage = '⚠️ Looks like you selected the wrong model type or your uploaded files are invalid. Please check and re-upload the correct model.';
+        } else {
+            errorMessage = `❌ Error: ${error.message}`;
+        }
+        
+        addTerminalMessage(errorMessage, true);
     } finally {
         isProcessing = false;
         setStatus('Model loaded', true);
-        updateChat();
         $('inputText').value = '';
     }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   if (!window.ort) {
-    console.error('ONNX Runtime Web not available');
-    messages.push({ 
-      text: 'Error: ONNX Runtime Web not available. Please make sure to include the ONNX Runtime Web library in your HTML.', 
-      isUser: false 
-    });
-    updateChat();
+    addTerminalMessage('Error: ONNX Runtime Web not available. Please make sure to include the ONNX Runtime Web library in your HTML.', true);
+    return;
   }
+  
+  // Clear existing messages
+  const chatArea = document.querySelector('.terminal-content');
+  chatArea.innerHTML = '';
+  
+  // Add initial messages
+  addTerminalMessage('Welcome to WhiteLightning Model Playground');
+  addTerminalMessage('Select a model type and model to begin');
+  addTerminalMessage('You can try binary classification or multiclass classification');
+  addTerminalMessage('Upload your own model or use our pre-trained models');
+  addTerminalMessage('Type your text and click Classify to get started');
   
   renderModelTypeOptions();
   setStatus('No model loaded', false);
