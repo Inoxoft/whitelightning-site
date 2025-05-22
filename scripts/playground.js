@@ -66,7 +66,7 @@ function updateChat() {
   chatArea.innerHTML = '';
   
   if (messages.length === 0) {
-    // Add initial messages
+    // Add initial messages with animation
     const initialMessages = [
       'Welcome to WhiteLightning Model Playground',
       'Select a model type and model to begin',
@@ -77,6 +77,8 @@ function updateChat() {
     
     initialMessages.forEach(text => {
       const messageDiv = document.createElement('p');
+      messageDiv.className = 'initial-message';
+      
       const fullTextSpan = document.createElement('span');
       fullTextSpan.className = 'full-text';
       fullTextSpan.textContent = text;
@@ -90,7 +92,7 @@ function updateChat() {
       chatArea.appendChild(messageDiv);
     });
   } else {
-    // Show user messages
+    // Show user messages without animation
     messages.forEach(msg => {
       const messageDiv = document.createElement('p');
       const fullTextSpan = document.createElement('span');
@@ -428,15 +430,36 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   
   // Clear existing messages
+  messages = [];
+  
+  // Add initial messages with animation
+  const initialMessages = [
+    'Welcome to WhiteLightning Model Playground',
+    'Select a model type and model to begin',
+    'You can try binary classification or multiclass classification',
+    'Upload your own model or use our pre-trained models',
+    'Type your text and click Classify to get started'
+  ];
+  
   const chatArea = document.querySelector('.terminal-content');
   chatArea.innerHTML = '';
   
-  // Add initial messages
-  addTerminalMessage('Welcome to WhiteLightning Model Playground');
-  addTerminalMessage('Select a model type and model to begin');
-  addTerminalMessage('You can try binary classification or multiclass classification');
-  addTerminalMessage('Upload your own model or use our pre-trained models');
-  addTerminalMessage('Type your text and click Classify to get started');
+  initialMessages.forEach(text => {
+    const messageDiv = document.createElement('p');
+    messageDiv.className = 'initial-message';
+    
+    const fullTextSpan = document.createElement('span');
+    fullTextSpan.className = 'full-text';
+    fullTextSpan.textContent = text;
+    
+    const shortTextSpan = document.createElement('span');
+    shortTextSpan.className = 'short-text';
+    shortTextSpan.textContent = text.length > 30 ? text.substring(0, 27) + '...' : text;
+    
+    messageDiv.appendChild(fullTextSpan);
+    messageDiv.appendChild(shortTextSpan);
+    chatArea.appendChild(messageDiv);
+  });
   
   renderModelTypeOptions();
   setStatus('No model loaded', false);
