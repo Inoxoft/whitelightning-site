@@ -417,6 +417,33 @@ footer {
   flex: 1;
 }
 
+.terminal-content p {
+  margin: 0;
+  opacity: 1;
+  width: auto;
+  white-space: normal;
+  animation: none;
+  border-right: none;
+}
+
+.terminal-content p .full-text {
+  display: inline;
+}
+
+.terminal-content p .short-text {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .terminal-content p .full-text {
+    display: none;
+  }
+  
+  .terminal-content p .short-text {
+    display: inline;
+  }
+}
+
 /* Initial welcome messages animation */
 .terminal-content p.initial-message {
   margin: 0;
@@ -449,24 +476,6 @@ footer {
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: #39ff14 }
-}
-
-/* Regular messages (no animation) */
-.terminal-content p:not(.initial-message) {
-  margin: 0;
-  opacity: 1;
-  width: auto;
-  white-space: normal;
-  animation: none;
-  border-right: none;
-}
-
-.terminal-content p .full-text,
-.terminal-content p .short-text {
-  display: inline;
-  opacity: 1;
-  width: auto;
-  animation: none;
 }
 
 .message {
