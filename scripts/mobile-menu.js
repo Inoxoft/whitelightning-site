@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
   const hamburger = document.querySelector('.hamburger');
-  const nav = document.querySelector('nav');
+  const mobileNav = document.querySelector('.mobile-nav');
+  const desktopNav = document.querySelector('.desktop-nav');
   const mobileSidebar = document.querySelector('.docs-sidebar.mobile-sidebar');
   
   hamburger.addEventListener('click', function() {
     hamburger.classList.toggle('active');
-    nav.classList.toggle('active');
+    mobileNav.classList.toggle('active');
     if (mobileSidebar) {
       mobileSidebar.classList.toggle('active');
     }
@@ -13,9 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Close menu when clicking outside
   document.addEventListener('click', function(event) {
-    if (!hamburger.contains(event.target) && !nav.contains(event.target)) {
+    if (!hamburger.contains(event.target) && !mobileNav.contains(event.target)) {
       hamburger.classList.remove('active');
-      nav.classList.remove('active');
+      mobileNav.classList.remove('active');
       if (mobileSidebar && !mobileSidebar.contains(event.target)) {
         mobileSidebar.classList.remove('active');
       }
@@ -23,11 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Close menu when clicking a link
-  const navLinks = document.querySelectorAll('nav a');
-  navLinks.forEach(link => {
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+  mobileNavLinks.forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('active');
-      nav.classList.remove('active');
+      mobileNav.classList.remove('active');
       if (mobileSidebar) {
         mobileSidebar.classList.remove('active');
       }

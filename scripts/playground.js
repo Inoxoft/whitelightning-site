@@ -405,7 +405,6 @@ async function handleClassify(e) {
   
   isProcessing = true;
   setStatus('Processing...', false);
-  addTerminalMessage('Processing input, please wait...');
   
   try {
     const result = selectedModel.type === 'binary_classifier'
