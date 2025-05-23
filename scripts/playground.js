@@ -85,7 +85,7 @@ function updateChat() {
       
       const shortTextSpan = document.createElement('span');
       shortTextSpan.className = 'short-text';
-      shortTextSpan.textContent = text.length > 30 ? text.substring(0, 27) + '...' : text;
+      shortTextSpan.textContent = text.length > 100 ? text.substring(0, 97) + '...' : text;
       
       messageDiv.appendChild(fullTextSpan);
       messageDiv.appendChild(shortTextSpan);
@@ -101,7 +101,7 @@ function updateChat() {
       
       const shortTextSpan = document.createElement('span');
       shortTextSpan.className = 'short-text';
-      shortTextSpan.textContent = msg.text.length > 30 ? msg.text.substring(0, 27) + '...' : msg.text;
+      shortTextSpan.textContent = msg.text.length > 100 ? msg.text.substring(0, 97) + '...' : msg.text;
       
       if (msg.isUser) {
         fullTextSpan.style.color = '#39ff14';
@@ -453,7 +453,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
     const shortTextSpan = document.createElement('span');
     shortTextSpan.className = 'short-text';
-    shortTextSpan.textContent = text.length > 30 ? text.substring(0, 27) + '...' : text;
+    shortTextSpan.textContent = text.length > 100 ? text.substring(0, 97) + '...' : text;
     
     messageDiv.appendChild(fullTextSpan);
     messageDiv.appendChild(shortTextSpan);
