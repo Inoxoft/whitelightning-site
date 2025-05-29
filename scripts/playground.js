@@ -68,11 +68,11 @@ function updateChat() {
   if (messages.length === 0) {
     // Add initial messages with animation
     const initialMessages = [
-      'Welcome to WhiteLightning Model Playground',
-      'Select a model type and model to begin',
-      'You can try binary classification or multiclass classification',
-      'Upload your own model or use our pre-trained models',
-      'Type your text and click Classify to get started'
+      'Welcome to model Playground!',
+      'Select a model type',
+      'Try binary or multiclass',
+      'Upload or use pre-trained',
+      'Type text and classify'
     ];
     
     initialMessages.forEach(text => {
