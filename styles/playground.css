@@ -454,6 +454,14 @@ footer {
     min-height: 200px;
     max-height: 300px;
   }
+
+  .terminal-content p .full-text {
+    display: none !important;
+  }
+  
+  .terminal-content p .short-text {
+    display: inline !important;
+  }
 }
 
 /* Initial welcome messages animation */
