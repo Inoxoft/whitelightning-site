@@ -324,15 +324,29 @@ header h1 {
     opacity: 0;
   }
   
-  .terminal-content p:nth-child(1) { animation-delay: 0s, 0s; }
-  .terminal-content p:nth-child(2) { animation-delay: 1s, 1s; }
-  .terminal-content p:nth-child(3) { animation-delay: 2s, 2s; }
-  .terminal-content p:nth-child(4) { animation-delay: 3s, 3s; }
-  .terminal-content p:nth-child(5) { animation-delay: 4s, 4s; }
-  .terminal-content p:nth-child(6) { animation-delay: 5s, 5s; }
-  .terminal-content p:nth-child(7) { animation-delay: 6s, 6s; }
-  .terminal-content p:nth-child(8) { animation-delay: 7s, 7s; }
-  .terminal-content p:nth-child(9) { animation-delay: 8s, 8s; }
+
+  .terminal-content p:nth-child(1) { animation-delay: 0s; }
+  .terminal-content p:nth-child(2) { animation-delay: 0.5s; }
+  .terminal-content p:nth-child(3) { animation-delay: 1s; }
+  .terminal-content p:nth-child(4) { animation-delay: 1.5s; }
+  .terminal-content p:nth-child(5) { animation-delay: 2s; }
+  .terminal-content p:nth-child(6) { animation-delay: 2.5s; }
+  .terminal-content p:nth-child(7) { animation-delay: 3s; }
+  .terminal-content p:nth-child(8) { animation-delay: 3.5s; }
+  .terminal-content p:nth-child(9) { animation-delay: 4s; }
+  .terminal-content p:nth-child(10) { animation-delay: 4.5s; }
+  .terminal-content p:nth-child(11) { animation-delay: 5s; }
+  .terminal-content p:nth-child(12) { animation-delay: 5.5s; }
+  .terminal-content p:nth-child(13) { animation-delay: 6s; }
+  .terminal-content p:nth-child(14) { animation-delay: 6.5s; }
+  .terminal-content p:nth-child(15) { animation-delay: 7s; }
+  .terminal-content p:nth-child(16) { animation-delay: 7.5s; }
+  .terminal-content p:nth-child(17) { animation-delay: 8s; }
+  .terminal-content p:nth-child(18) { animation-delay: 8.5s; }
+  .terminal-content p:nth-child(19) { animation-delay: 9s; }
+  .terminal-content p:nth-child(20) { animation-delay: 9.5s; }
+  .terminal-content p:nth-child(21) { animation-delay: 10s; }
+
   
   @keyframes typing {
     from { 
