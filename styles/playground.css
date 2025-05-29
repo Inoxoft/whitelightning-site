@@ -814,13 +814,21 @@ footer {
   }
 } 
 
-.full-text { display: inline; }
-.short-text { display: none; color: #fff; }
+.full-text { 
+  display: inline; 
+}
+.short-text { 
+  display: none; 
+  color: #fff; 
+}
 
 @media (max-width: 600px) {
-  .full-text { display: none; }
-  .short-text { display: inline; }
-  
+  .full-text { 
+    display: none !important; 
+  }
+  .short-text { 
+    display: inline !important; 
+  }
 } 
 
 .modal {
