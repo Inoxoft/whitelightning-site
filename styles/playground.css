@@ -415,15 +415,21 @@ footer {
   line-height: 1.5;
   overflow-y: auto;
   flex: 1;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .terminal-content p {
   margin: 0;
   opacity: 1;
-  width: auto;
+  width: 100%;
   white-space: normal;
   animation: none;
   border-right: none;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .terminal-content p .full-text {
@@ -435,12 +441,18 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .terminal-content p .full-text {
-    display: none;
+  .terminal-content {
+    padding: 0.8rem;
+    font-size: 0.85rem;
   }
   
-  .terminal-content p .short-text {
-    display: inline;
+  .terminal-content p {
+    padding-right: 0.5rem;
+  }
+  
+  .chat-area {
+    min-height: 200px;
+    max-height: 300px;
   }
 }
 
