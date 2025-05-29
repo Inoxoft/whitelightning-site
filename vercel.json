@@ -1,14 +1,14 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/binary-classifier", "destination": "/binary-classifier.html" },
-    { "source": "/demo_mlt", "destination": "/demo_mlt.html" },
-    { "source": "/docs", "destination": "/docs.html" },
-    { "source": "/examples", "destination": "/examples.html" },
-    { "source": "/multiclass-classifier", "destination": "/multiclass-classifier.html" },
-    { "source": "/playground", "destination": "/playground.html" },
-    { "source": "/running_bnr", "destination": "/running_bnr.html" },
-    { "source": "/running_mlt", "destination": "/running_mlt.html" }
+    { "source": "/", "destination": "/index" },
+    { "source": "/binary-classifier", "destination": "/binary-classifier" },
+    { "source": "/demo_mlt", "destination": "/demo_mlt" },
+    { "source": "/docs", "destination": "/docs" },
+    { "source": "/examples", "destination": "/examples" },
+    { "source": "/multiclass-classifier", "destination": "/multiclass-classifier" },
+    { "source": "/playground", "destination": "/playground" },
+    { "source": "/running_bnr", "destination": "/running_bnr" },
+    { "source": "/running_mlt", "destination": "/running_mlt" }
   ],
   "outputDirectory": "pages"
 }
