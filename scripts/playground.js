@@ -433,27 +433,27 @@ window.addEventListener('DOMContentLoaded', () => {
   
   // Add initial messages with animation
   const initialMessages = [
-    'Welcome to WhiteLightning Model Playground',
-    'Select a model type and model to begin',
-    'You can try binary classification or multiclass classification',
-    'Upload your own model or use our pre-trained models',
-    'Type your text and click Classify to get started'
+    { full: 'Welcome to WhiteLightning Model Playground', short: 'Welcome to model playground!' },
+    { full: 'Select a model type and model to begin', short: 'Select model type!' },
+    { full: 'You can try binary classification or multiclass classification', short: 'Try binary or multiclass!' },
+    { full: 'Upload your own model or use our pre-trained models', short: 'Upload or use pre-trained!' },
+    { full: 'Type your text and click Classify to get started', short: 'Type text & classify!' }
   ];
   
   const chatArea = document.querySelector('.terminal-content');
   chatArea.innerHTML = '';
   
-  initialMessages.forEach(text => {
+  initialMessages.forEach(msg => {
     const messageDiv = document.createElement('p');
     messageDiv.className = 'initial-message';
     
     const fullTextSpan = document.createElement('span');
     fullTextSpan.className = 'full-text';
-    fullTextSpan.textContent = text;
+    fullTextSpan.textContent = msg.full;
     
     const shortTextSpan = document.createElement('span');
     shortTextSpan.className = 'short-text';
-    shortTextSpan.textContent = text.length > 100 ? text.substring(0, 97) + '...' : text;
+    shortTextSpan.textContent = msg.short;
     
     messageDiv.appendChild(fullTextSpan);
     messageDiv.appendChild(shortTextSpan);
