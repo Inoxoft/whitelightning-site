@@ -21,25 +21,25 @@
     <nav class="desktop-nav">
       <ul>
         <li class="dropdown">
-          <a href="">Introduction & Examples</a>
+          <a href="">Introduction</a>
           <ul class="dropdown-menu">
-            <li><a href="/getting-started">Getting Started</a></li>
-            <li><a href="/prompt-examples">Prompt Examples</a></li>      
+            <li><a href="/getting-started">Start Here</a></li>
+            <li><a id="plgr_btn" href="/prompt-examples">Prompt Examples</a></li>      
           </ul>
         </li>
         <li class="dropdown">
-          <a href="">Model Setup & Configuration</a>
+          <a href="">Data & Training</a>
           <ul class="dropdown-menu">
-            <li><a href="/binary-setup">Binary Setup</a></li>
-            <li><a href="/multiclass-setup">Multiclass Setup</a></li>
+            <li><a href="/binary-setup">Setup: Binary</a></li>
+            <li><a href="/multiclass-setup">Setup: Multiclass</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="">Using & Applying Your Model</a>
+          <a href="">Test & Deploy</a>
           <ul class="dropdown-menu">
-            <li><a href="/binary-running">Binary Running</a></li>
-            <li><a href="/multiclass-running">Multiclass Running</a></li>
-            <li><a href="/mobile-deployment">Mobile Deployment</a></li>
+            <li><a href="/binary-running">Run: Binary</a></li>
+            <li><a href="/multiclass-running">Run: Multiclass</a></li>
+            <li><a href="/mobile-deployment">Deploy: iOS & Android</a></li>
             <li><a href="/playground">Playground</a></li>
           </ul>
         </li>
@@ -48,18 +48,18 @@
     </nav>
     <nav class="mobile-nav">
       <ul>
-        <li class="mobile-section-header">Introduction & Examples</li>
-        <li><a href="/getting-started">Getting Started</a></li>
-        <li><a href="/prompt-examples">Prompt Examples</a></li>
+        <li class="mobile-section-header">Introduction</li>
+        <li><a href="/getting-started">Start Here</a></li>
+        <li><a id="plgr_btn" href="/prompt-examples">Prompt Examples</a></li>
         
-        <li class="mobile-section-header">Model Setup & Configuration</li>
-        <li><a href="/binary-setup">Binary Setup</a></li>
-        <li><a href="/multiclass-setup">Multiclass Setup</a></li>
+        <li class="mobile-section-header">Data & Training</li>
+        <li><a href="/binary-setup">Setup: Binary</a></li>
+        <li><a href="/multiclass-setup">Setup: Multiclass</a></li>
         
-        <li class="mobile-section-header">Using & Applying Your Model</li>
-        <li><a href="/binary-running">Binary Running</a></li>
-        <li><a href="/multiclass-running">Multiclass Running</a></li>
-        <li><a href="/mobile-deployment">Mobile Deployment</a></li>
+        <li class="mobile-section-header">Test & Deploy</li>
+        <li><a href="/binary-running">Run: Binary</a></li>
+        <li><a href="/multiclass-running">Run: Multiclass</a></li>
+        <li><a href="/mobile-deployment">Deploy: iOS & Android</a></li>
         <li><a href="/playground">Playground</a></li>
       </ul>
     </nav>
@@ -112,34 +112,35 @@
                     <div class="model-grid">
                         <div class="model-card">
                             <h4>Data Generation Models</h4>
+                            <p class="model-intro">WhiteLightning supports all models available through OpenRouter, including:</p>
                             <ul class="model-list">
                                 <li><code>openai/gpt-4</code> - OpenAI's GPT-4</li>
                                 <li><code>openai/gpt-4-turbo</code> - Latest GPT-4 Turbo</li>
-                                <li><code>openai/gpt-3.5-turbo</code> - GPT-3.5 Turbo</li>
                                 <li><code>anthropic/claude-3-opus</code> - Claude 3 Opus</li>
                                 <li><code>anthropic/claude-3-sonnet</code> - Claude 3 Sonnet</li>
-                                <li><code>anthropic/claude-3-haiku</code> - Claude 3 Haiku</li>
                                 <li><code>mistral/mistral-large</code> - Mistral Large</li>
-                                <li><code>mistral/mistral-medium</code> - Mistral Medium</li>
-                                <li><code>mistral/mistral-small</code> - Mistral Small</li>
+                                <li><code>google/gemini-pro</code> - Google's Gemini Pro</li>
+                                <li><code>meta-llama/llama-2-70b</code> - Meta's Llama 2 70B</li>
                             </ul>
+                            <p class="model-note">And many more! Check out the complete list at <a href="https://openrouter.ai/models" target="_blank" class="neon-link">OpenRouter Models</a></p>
                         </div>
-                        <div class="model-card">
+                        <!-- <div class="model-card">
                             <h4>Model Backends</h4>
                             <ul class="model-list">
                                 <li><code>tensorflow</code> - TensorFlow backend</li>
                                 <li><code>pytorch</code> - PyTorch backend</li>
                                 <li><code>scikit</code> - Scikit-learn backend</li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="model-usage">
-                        <p>To use a specific model, add the <code>--data-gen-model</code> parameter:</p>
+                        <p>To use any OpenRouter model, simply specify it with the <code>--data-gen-model</code> parameter:</p>
                         <pre class="code-block">
 $ python -m text_classifier.agent \
     -p "Your prompt here" \
     --data-gen-model "openai/gpt-4" \
     --model-type tensorflow</pre>
+                        <p class="model-tip">💡 Tip: You can use any model ID from OpenRouter. Just make sure to use the exact model ID as shown in the OpenRouter dashboard.</p>
                     </div>
                 </div>
 
