@@ -6,7 +6,16 @@
     <title>Multiclass Classifier Training Agent - WhiteLightning</title>
     <link rel="icon" type="image/png" href="media/image/favicons-f07016ef02d695ba85dee5ffd3b42f39(pr-cy.ru)/favicon-32x32.png" />
     <link rel="stylesheet" href="styles/running.css">
-    
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        #code-examples {
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
     <header class="wl-header">
@@ -40,7 +49,7 @@
               <ul class="dropdown-menu">
                 <li><a href="/binary-running">Run: Binary</a></li>
                 <li><a href="/multiclass-running">Run: Multiclass</a></li>
-                <li><a id="plgr_btn" href="/mobile-deployment">Deploy: iOS & Android</a></li>
+                <li><a  href="/mobile-deployment">Deploy: iOS & Android</a></li>
                 <li><a id="plgr_btn" href="/arduino-deployment">Deploy: Arduino</a></li>
                 <li><a href="/playground">Playground</a></li>
               </ul>
@@ -61,80 +70,82 @@
             <li class="mobile-section-header">Test & Deploy</li>
             <li><a href="/binary-running">Run: Binary</a></li>
             <li><a href="/multiclass-running">Run: Multiclass</a></li>
-            <li><a id="plgr_btn" href="/mobile-deployment">Deploy: iOS & Android</a></li>
+            <li><a  href="/mobile-deployment">Deploy: iOS & Android</a></li>
             <li><a id="plgr_btn" href="/arduino-deployment">Deploy: Arduino</a></li>
             <li><a href="/playground">Playground</a></li>
           </ul>
         </nav>
       </header>
-  <section id="code-examples">
-    <h2 class="neon-green">💻 Running Guide</h2>
-    <div class="terminal-container">
-        <div class="terminal-header">
+  <div class="docs-container">
+    <main class="docs-content">
+      <section id="code-examples">
+        <h2 class="neon-green">💻 Running Guide</h2>
+        <div class="terminal-container">
+          <div class="terminal-header">
             <div class="terminal-buttons">
-                <span class="terminal-circle red"></span>
-                <span class="terminal-circle yellow"></span>
-                <span class="terminal-circle green"></span>
+              <span class="terminal-circle red"></span>
+              <span class="terminal-circle yellow"></span>
+              <span class="terminal-circle green"></span>
             </div>
             <div class="terminal-title">Arduino ONNX Guide</div>
-        </div>
-        <div class="terminal-content">
+          </div>
+          <div class="terminal-content">
             <div class="guide-section">
-                <h3 class="neon-green">🧠 How to Run an ONNX Model on Arduino</h3>
-                
-                <h4>📌 What is this?</h4>
-                <p>This guide explains how to deploy and run ONNX models on Arduino devices using TensorFlow Lite Micro and Arduino IDE.</p>
+              <h3 class="neon-green">🧠 How to Run an ONNX Model on Arduino</h3>
+              
+              <h4>📌 What is this?</h4>
+              <p>This guide explains how to deploy and run ONNX models on Arduino devices using TensorFlow Lite Micro and Arduino IDE.</p>
 
-                <h4>✅ 1. Prerequisites</h4>
-                <div class="os-section">
-                    <h5>🔧 Required Hardware</h5>
+              <h4>✅ 1. Prerequisites</h4>
+              <div class="os-section">
+                <h5>🔧 Required Hardware</h5>
+                <ul>
+                  <li>Arduino board (Arduino Nano 33 BLE Sense recommended)</li>
+                  <li>USB cable</li>
+                  <li>Computer with Arduino IDE installed</li>
+                </ul>
+              </div>
+
+              <div class="os-section">
+                <h5>📦 Required Software</h5>
+                <ul>
+                  <li>Arduino IDE 2.0 or later</li>
+                  <li>TensorFlow Lite Micro library</li>
+                  <li>Arduino_TensorFlowLite library</li>
+                </ul>
+              </div>
+
+              <h4>✅ 2. Setup Arduino IDE</h4>
+              <div class="os-section">
+                <h5>⚙️ Install Required Libraries</h5>
+                <ol>
+                  <li>Open Arduino IDE</li>
+                  <li>Go to Tools → Manage Libraries</li>
+                  <li>Search and install:
                     <ul>
-                        <li>Arduino board (Arduino Nano 33 BLE Sense recommended)</li>
-                        <li>USB cable</li>
-                        <li>Computer with Arduino IDE installed</li>
+                      <li>Arduino_TensorFlowLite</li>
+                      <li>Arduino_LSM9DS1 (for Nano 33 BLE Sense)</li>
                     </ul>
-                </div>
+                  </li>
+                </ol>
+              </div>
 
-                <div class="os-section">
-                    <h5>📦 Required Software</h5>
-                    <ul>
-                        <li>Arduino IDE 2.0 or later</li>
-                        <li>TensorFlow Lite Micro library</li>
-                        <li>Arduino_TensorFlowLite library</li>
-                    </ul>
-                </div>
+              <h4>✅ 3. Convert ONNX Model</h4>
+              <div class="os-section">
+                <h5>🔄 Model Conversion Steps</h5>
+                <ol>
+                  <li>Convert ONNX to TensorFlow Lite:
+                    <pre><code>python -m tf2onnx.convert --onnx model.onnx --output model.tflite</code></pre>
+                  </li>
+                  <li>Convert to C array:
+                    <pre><code>xxd -i model.tflite > model.h</code></pre>
+                  </li>
+                </ol>
+              </div>
 
-                <h4>✅ 2. Setup Arduino IDE</h4>
-                <div class="os-section">
-                    <h5>⚙️ Install Required Libraries</h5>
-                    <ol>
-                        <li>Open Arduino IDE</li>
-                        <li>Go to Tools → Manage Libraries</li>
-                        <li>Search and install:
-                            <ul>
-                                <li>Arduino_TensorFlowLite</li>
-                                <li>Arduino_LSM9DS1 (for Nano 33 BLE Sense)</li>
-                            </ul>
-                        </li>
-                    </ol>
-                </div>
-
-                <h4>✅ 3. Convert ONNX Model</h4>
-                <div class="os-section">
-                    <h5>🔄 Model Conversion Steps</h5>
-                    <ol>
-                        <li>Convert ONNX to TensorFlow Lite:
-                            <pre><code>python -m tf2onnx.convert --onnx model.onnx --output model.tflite</code></pre>
-                        </li>
-                        <li>Convert to C array:
-                            <pre><code>xxd -i model.tflite > model.h</code></pre>
-                        </li>
-                    </ol>
-                </div>
-
-                <h4>✅ 4. Arduino Code</h4>
-                <p>Create a new sketch and paste this code:</p>
-                <pre><code><span class="keyword">#include</span> <span class="string">&lt;TensorFlowLite.h&gt;</span>
+              <h4>✅ 4. Arduino Code</h4>
+              <p>Create a new sketch and paste this code:</p>
+              <pre><code><span class="keyword">#include</span> <span class="string">&lt;TensorFlowLite.h&gt;</span>
 <span class="keyword">#include</span> <span class="string">"model.h"</span>
 
 <span class="keyword">#include</span> <span class="string">"tensorflow/lite/micro/all_ops_resolver.h"</span>
@@ -218,117 +229,82 @@ TfLiteTensor* output = nullptr;
     }
 }</code></pre>
 
-                <h4>✅ 5. Upload and Test</h4>
-                <div class="os-section">
-                    <h5>🚀 Deployment Steps</h5>
-                    <ol>
-                        <li>Connect Arduino to computer</li>
-                        <li>Select correct board in Arduino IDE</li>
-                        <li>Click Upload button</li>
-                        <li>Open Serial Monitor (9600 baud)</li>
-                        <li>Type text and press Enter to test</li>
-                    </ol>
-                </div>
+              <h4>✅ 5. Upload and Test</h4>
+              <div class="os-section">
+                <h5>🚀 Deployment Steps</h5>
+                <ol>
+                  <li>Connect Arduino to computer</li>
+                  <li>Select correct board in Arduino IDE</li>
+                  <li>Click Upload button</li>
+                  <li>Open Serial Monitor (9600 baud)</li>
+                  <li>Type text and press Enter to test</li>
+                </ol>
+              </div>
 
-                <h4>✅ 6. Memory Optimization</h4>
-                <div class="os-section">
-                    <h5>💾 Tips for Better Performance</h5>
-                    <ul>
-                        <li>Use quantization to reduce model size</li>
-                        <li>Optimize tensor arena size</li>
-                        <li>Consider using smaller input sequences</li>
-                        <li>Use Arduino with more RAM if needed</li>
-                    </ul>
-                </div>
+              <h4>✅ 6. Memory Optimization</h4>
+              <div class="os-section">
+                <h5>💾 Tips for Better Performance</h5>
+                <ul>
+                  <li>Use quantization to reduce model size</li>
+                  <li>Optimize tensor arena size</li>
+                  <li>Consider using smaller input sequences</li>
+                  <li>Use Arduino with more RAM if needed</li>
+                </ul>
+              </div>
 
-                <h4>✅ 7. Troubleshooting</h4>
-                <div class="os-section">
-                    <h5>⚠️ Common Issues</h5>
-                    <ul>
-                        <li><strong>Out of Memory:</strong> Increase tensor arena size or optimize model</li>
-                        <li><strong>Upload Failed:</strong> Check board selection and connections</li>
-                        <li><strong>Incorrect Results:</strong> Verify preprocessing matches training</li>
-                        <li><strong>Slow Inference:</strong> Consider model quantization</li>
-                    </ul>
-                </div>
+              <h4>✅ 7. Troubleshooting</h4>
+              <div class="os-section">
+                <h5>⚠️ Common Issues</h5>
+                <ul>
+                  <li><strong>Out of Memory:</strong> Increase tensor arena size or optimize model</li>
+                  <li><strong>Upload Failed:</strong> Check board selection and connections</li>
+                  <li><strong>Incorrect Results:</strong> Verify preprocessing matches training</li>
+                  <li><strong>Slow Inference:</strong> Consider model quantization</li>
+                </ul>
+              </div>
             </div>
+          </div>
         </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-content container">
+      <div class="footer-brand">
+        <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo" class="footer-logo">
+        <div>
+          <div class="footer-title">WhiteLightning</div>
+          <div class="footer-desc">Create Edge‑Ready AI in One Line No Data Required</div>
+        </div>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-col">
+          <div class="footer-col-title">Docs & Links</div>
+          <a href="docs">Documentation</a>
+          <a href="playground">Playground</a>
+          <a href="https://github.com/volodymyrparanyak/whitelightning.ai" target="_blank">GitHub</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Resources</div>
+          <a href="docs#features">Features</a>
+          <a href="demo_mlt">Demo</a>
+          <!-- <a href="#">ONNX Format</a> -->
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Project</div>
+          <a href="https://github.com/volodymyrparanyak/whitelightning.ai/pulls" target="_blank">Report Issues</a>
+          <a href="https://github.com/volodymyrparanyak/whitelightning.ai/blob/alpha-0.0.1/LICENSE" target="_blank">License</a>
+        </div>
+      </div>
     </div>
-</section>
+    <div class="footer-bottom container">
+      <span>2025 WhiteLightning Project</span>
+      <span>Apache License 2.0</span>
+      <span>contact@whitelightning.ai</span>
+    </div>
+  </footer>
 
-    <!-- <div class="docs-container">
-        <main class="docs-content">
-            <section id="onnx-demos">
-                <h2 class="neon-green">📱 ONNX Model Deployment Demos</h2>
-                <div class="mobile-demos">
-                    <div class="feature-card full-width">
-                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🤖</span>
-                        <h3 class="neon-green">Android Demo</h3>
-                        <p>🎬 <strong>ONNX inference running on Android device</strong></p>
-                        <div class="demo-container">
-                            <img src="media/gif/Android runningONNX.gif" alt="Android Demo" class="demo-gif">
-                        </div>
-                        <p class="demo-link">
-                            <a class="neon-link" href="https://www.youtube.com/watch?v=ANDROID_VIDEO_ID" target="_blank">
-                                <span class="icon">▶️</span> Watch Full Video on YouTube
-                            </a>
-                        </p>
-                    </div>
-
-                    <div class="feature-card full-width">
-                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🍎</span>
-                        <h3 class="neon-green">iOS Demo</h3>
-                        <p>🎬 <strong>ONNX model working in an iOS app (Swift + CoreML)</strong></p>
-                        <div class="demo-container">
-                            <img src="media/gif/OIS runningONNX.gif" alt="iOS Demo" class="demo-gif">
-                        </div>
-                        <p class="demo-link">
-                            <a class="neon-link" href="https://www.youtube.com/watch?v=IOS_VIDEO_ID" target="_blank">
-                                <span class="icon">▶️</span> Watch iOS Deployment on YouTube
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div> -->
-
-    <footer class="site-footer">
-      <div class="footer-content container">
-        <div class="footer-brand">
-          <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo" class="footer-logo">
-          <div>
-            <div class="footer-title">WhiteLightning</div>
-            <div class="footer-desc">Create Edge‑Ready AI in One Line No Data Required</div>
-          </div>
-        </div>
-        <div class="footer-columns">
-          <div class="footer-col">
-            <div class="footer-col-title">Docs & Links</div>
-            <a href="docs">Documentation</a>
-            <a href="playground">Playground</a>
-            <a href="https://github.com/volodymyrparanyak/whitelightning.ai" target="_blank">GitHub</a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">Resources</div>
-            <a href="docs#features">Features</a>
-            <a href="demo_mlt">Demo</a>
-            <!-- <a href="#">ONNX Format</a> -->
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">Project</div>
-            <a href="https://github.com/volodymyrparanyak/whitelightning.ai/pulls" target="_blank">Report Issues</a>
-            <a href="https://github.com/volodymyrparanyak/whitelightning.ai/blob/alpha-0.0.1/LICENSE" target="_blank">License</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom container">
-        <span>2025 WhiteLightning Project</span>
-        <span>Apache License 2.0</span>
-        <span>contact@whitelightning.ai</span>
-      </div>
-    </footer>
-
-    <script src="scripts/mobile-menu.js"></script>
+  <script src="scripts/mobile-menu.js"></script>
 </body>
 </html> 
