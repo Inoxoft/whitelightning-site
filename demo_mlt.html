@@ -40,6 +40,7 @@
                 <li><a href="/binary-running">Run: Binary</a></li>
                 <li><a href="/multiclass-running">Run: Multiclass</a></li>
                 <li><a id="plgr_btn" href="/mobile-deployment">Deploy: iOS & Android</a></li>
+                <li><a href="/arduino-deployment">Deploy: Arduino</a></li>
                 <li><a href="/playground">Playground</a></li>
               </ul>
             </li>
@@ -60,6 +61,7 @@
             <li><a href="/binary-running">Run: Binary</a></li>
             <li><a href="/multiclass-running">Run: Multiclass</a></li>
             <li><a id="plgr_btn" href="/mobile-deployment">Deploy: iOS & Android</a></li>
+            <li><a href="/arduino-deployment">Deploy: Arduino</a></li>
             <li><a href="/playground">Playground</a></li>
           </ul>
         </nav>
@@ -80,8 +82,6 @@
         <div class="language-selector">
             <button class="lang-btn active" data-lang="python">IOS</button>
             <button class="lang-btn" data-lang="javascript">Android</button>
-            <button class="lang-btn" data-lang="c">Arduino</button>
-            
         </div>
         <div class="terminal-content">
             <div class="code-block active" id="python-code">
@@ -651,186 +651,6 @@ Neutral: 0.0145</code></pre>
                     </div>
                 </div>
             </div>
-            <div class="code-block" id="c-code">
-                <div class="guide-section">
-                    <h3 class="neon-green">🧠 How to Run an ONNX Model on Arduino</h3>
-                    
-                    <h4>📌 What is this?</h4>
-                    <p>This guide explains how to deploy and run ONNX models on Arduino devices using TensorFlow Lite Micro and Arduino IDE.</p>
-
-                    <h4>✅ 1. Prerequisites</h4>
-                    <div class="os-section">
-                        <h5>🔧 Required Hardware</h5>
-                        <ul>
-                            <li>Arduino board (Arduino Nano 33 BLE Sense recommended)</li>
-                            <li>USB cable</li>
-                            <li>Computer with Arduino IDE installed</li>
-                        </ul>
-                    </div>
-
-                    <div class="os-section">
-                        <h5>📦 Required Software</h5>
-                        <ul>
-                            <li>Arduino IDE 2.0 or later</li>
-                            <li>TensorFlow Lite Micro library</li>
-                            <li>Arduino_TensorFlowLite library</li>
-                        </ul>
-                    </div>
-
-                    <h4>✅ 2. Setup Arduino IDE</h4>
-                    <div class="os-section">
-                        <h5>⚙️ Install Required Libraries</h5>
-                        <ol>
-                            <li>Open Arduino IDE</li>
-                            <li>Go to Tools → Manage Libraries</li>
-                            <li>Search and install:
-                                <ul>
-                                    <li>Arduino_TensorFlowLite</li>
-                                    <li>Arduino_LSM9DS1 (for Nano 33 BLE Sense)</li>
-                                </ul>
-                            </li>
-                        </ol>
-                    </div>
-
-                    <h4>✅ 3. Convert ONNX Model</h4>
-                    <div class="os-section">
-                        <h5>🔄 Model Conversion Steps</h5>
-                        <ol>
-                            <li>Convert ONNX to TensorFlow Lite:
-                                <pre><code>python -m tf2onnx.convert --onnx model.onnx --output model.tflite</code></pre>
-                            </li>
-                            <li>Convert to C array:
-                                <pre><code>xxd -i model.tflite > model.h</code></pre>
-                            </li>
-                        </ol>
-                    </div>
-
-                    <h4>✅ 4. Arduino Code</h4>
-                    <p>Create a new sketch and paste this code:</p>
-                    <pre><code><span class="keyword">#include</span> <span class="string">&lt;TensorFlowLite.h&gt;</span>
-<span class="keyword">#include</span> <span class="string">"model.h"</span>
-
-<span class="keyword">#include</span> <span class="string">"tensorflow/lite/micro/all_ops_resolver.h"</span>
-<span class="keyword">#include</span> <span class="string">"tensorflow/lite/micro/micro_error_reporter.h"</span>
-<span class="keyword">#include</span> <span class="string">"tensorflow/lite/micro/micro_interpreter.h"</span>
-<span class="keyword">#include</span> <span class="string">"tensorflow/lite/schema/schema_generated.h"</span>
-
-<span class="keyword">const</span> tflite::Model* model = nullptr;
-tflite::MicroErrorReporter micro_error_reporter;
-tflite::ErrorReporter* error_reporter = nullptr;
-tflite::MicroInterpreter* interpreter = nullptr;
-TfLiteTensor* input = nullptr;
-TfLiteTensor* output = nullptr;
-
-<span class="keyword">constexpr int</span> kTensorArenaSize = 100 * 1024;
-<span class="keyword">uint8_t</span> tensor_arena[kTensorArenaSize];
-
-<span class="keyword">void</span> <span class="function">setup</span>() {
-    Serial.begin(9600);
-    <span class="keyword">while</span> (!Serial);
-
-    error_reporter = &micro_error_reporter;
-    model = tflite::GetModel(g_model);
-    <span class="keyword">if</span> (model->version() != TFLITE_SCHEMA_VERSION) {
-        error_reporter->Report("Model schema mismatch!");
-        <span class="keyword">while</span> (1);
-    }
-
-    <span class="keyword">static</span> tflite::AllOpsResolver resolver;
-    <span class="keyword">static</span> tflite::MicroInterpreter static_interpreter(
-        model, resolver, tensor_arena, kTensorArenaSize, error_reporter);
-    interpreter = &static_interpreter;
-
-    TfLiteStatus allocate_status = interpreter->AllocateTensors();
-    <span class="keyword">if</span> (allocate_status != kTfLiteOk) {
-        error_reporter->Report("AllocateTensors() failed");
-        <span class="keyword">while</span> (1);
-    }
-
-    input = interpreter->input(0);
-    output = interpreter->output(0);
-}
-
-<span class="keyword">void</span> <span class="function">loop</span>() {
-    <span class="keyword">if</span> (Serial.available() > 0) {
-        String input_text = Serial.readStringUntil('\n');
-        input_text.trim();
-
-        <span class="comment">// Preprocess input text</span>
-        <span class="keyword">float</span> input_data[30] = {0};  <span class="comment">// Adjust size based on your model</span>
-        <span class="comment">// Add your preprocessing logic here</span>
-
-        <span class="comment">// Copy input data to tensor</span>
-        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < 30; i++) {
-            input->data.f[i] = input_data[i];
-        }
-
-        <span class="comment">// Run inference</span>
-        TfLiteStatus invoke_status = interpreter->Invoke();
-        <span class="keyword">if</span> (invoke_status != kTfLiteOk) {
-            error_reporter->Report("Invoke failed!");
-            <span class="keyword">return</span>;
-        }
-
-        <span class="comment">// Get results</span>
-        <span class="keyword">float</span> max_score = output->data.f[0];
-        <span class="keyword">int</span> max_index = 0;
-        <span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i < output->dims->data[1]; i++) {
-            <span class="keyword">if</span> (output->data.f[i] > max_score) {
-                max_score = output->data.f[i];
-                max_index = i;
-            }
-        }
-
-        <span class="comment">// Print results</span>
-        Serial.print("Prediction: ");
-        Serial.print(max_index);
-        Serial.print(" (Score: ");
-        Serial.print(max_score);
-        Serial.println(")");
-    }
-}</code></pre>
-
-                    <h4>✅ 5. Upload and Test</h4>
-                    <div class="os-section">
-                        <h5>🚀 Deployment Steps</h5>
-                        <ol>
-                            <li>Connect Arduino to computer</li>
-                            <li>Select correct board in Arduino IDE</li>
-                            <li>Click Upload button</li>
-                            <li>Open Serial Monitor (9600 baud)</li>
-                            <li>Type text and press Enter to test</li>
-                        </ol>
-                    </div>
-
-                    <h4>✅ 6. Memory Optimization</h4>
-                    <div class="os-section">
-                        <h5>💾 Tips for Better Performance</h5>
-                        <ul>
-                            <li>Use quantization to reduce model size</li>
-                            <li>Optimize tensor arena size</li>
-                            <li>Consider using smaller input sequences</li>
-                            <li>Use Arduino with more RAM if needed</li>
-                        </ul>
-                    </div>
-
-                    <h4>✅ 7. Troubleshooting</h4>
-                    <div class="os-section">
-                        <h5>⚠️ Common Issues</h5>
-                        <ul>
-                            <li><strong>Out of Memory:</strong> Increase tensor arena size or optimize model</li>
-                            <li><strong>Upload Failed:</strong> Check board selection and connections</li>
-                            <li><strong>Incorrect Results:</strong> Verify preprocessing matches training</li>
-                            <li><strong>Slow Inference:</strong> Consider model quantization</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-                    </div>
-                </div>
-            </div>
-            <!-- Add other language code blocks similarly -->
         </div>
     </div>
 </section>

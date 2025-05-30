@@ -8,6 +8,7 @@
     { "source": "/multiclass-setup", "destination": "/multiclass-classifier.html" },
     { "source": "/playground", "destination": "/playground.html" },
     { "source": "/binary-running", "destination": "/running_bnr.html" },
-    { "source": "/multiclass-running", "destination": "/running_mlt.html" }
+    { "source": "/multiclass-running", "destination": "/running_mlt.html" },
+    { "source": "/arduino-deployment", "destination": "/arduino.html" }
   ]
 }
