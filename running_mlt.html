@@ -21,36 +21,46 @@
         <nav class="desktop-nav">
           <ul>
             <li class="dropdown">
-              <a href="">Demos</a>
+              <a href="">Introduction & Examples</a>
               <ul class="dropdown-menu">
-                <li><a href="/prompt-examples">Promt Examples</a></li>
-                <li><a href="/mobile-deployment">Mobile Deployment</a></li>
+                <li><a href="/getting-started">Getting Started</a></li>
+                <li><a href="/prompt-examples">Prompt Examples</a></li>      
               </ul>
             </li>
             <li class="dropdown">
-              <a href="">Documentation</a>
+              <a href="">Model Setup & Configuration</a>
               <ul class="dropdown-menu">
-                <li><a href="/multiclass-setup">Multiclass Setup</a></li>
                 <li><a href="/binary-setup">Binary Setup</a></li>
-                <li><a id="plgr_btn" href="/multiclass-running">Multiclass Running</a></li>
-                <li><a href="/binary-running">Binary Running</a></li>
+                <li><a href="/multiclass-setup">Multiclass Setup</a></li>
               </ul>
             </li>
-            <li><a href="/playground">Playground</a></li>
-            <li><a href="/getting-started">Getting Started</a></li>
+            <li class="dropdown">
+              <a href="">Using & Applying Your Model</a>
+              <ul class="dropdown-menu">
+                <li><a href="/binary-running">Binary Running</a></li>
+                <li><a id="plgr_btn" href="/multiclass-running">Multiclass Running</a></li>
+                <li><a href="/mobile-deployment">Mobile Deployment</a></li>
+                <li><a href="/playground">Playground</a></li>
+              </ul>
+            </li>
             <li><a href="https://github.com/volodymyrparanyak/whitelightning.ai" target="_blank">GitHub</a></li>
           </ul>
         </nav>
         <nav class="mobile-nav">
           <ul>
-            <li><a href="/prompt-examples">Promt Examples</a></li>
+            <li class="mobile-section-header">Introduction & Examples</li>
+            <li><a href="/getting-started">Getting Started</a></li>
+            <li><a href="/prompt-examples">Prompt Examples</a></li>
+            
+            <li class="mobile-section-header">Model Setup & Configuration</li>
             <li><a href="/binary-setup">Binary Setup</a></li>
-            <li><a href="/binary-running">Binary Running </a></li>
             <li><a href="/multiclass-setup">Multiclass Setup</a></li>
+            
+            <li class="mobile-section-header">Using & Applying Your Model</li>
+            <li><a href="/binary-running">Binary Running</a></li>
             <li><a id="plgr_btn" href="/multiclass-running">Multiclass Running</a></li>
             <li><a href="/mobile-deployment">Mobile Deployment</a></li>
             <li><a href="/playground">Playground</a></li>
-            <li><a href="/getting-started">Getting Started</a></li>
           </ul>
         </nav>
       </header>
@@ -1289,11 +1299,61 @@ cargo run --release</code></pre>
                                 <h4>✅ 1. Prerequisites</h4>
                                 <div class="os-section">
                                     <h5>🔷 Java Development Kit (JDK)</h5>
-                                    <p>Install JDK 11 or later:</p>
-                                    <ol>
-                                        <li>Download from: <a href="https://adoptium.net/" class="neon-link">https://adoptium.net/</a></li>
-                                        <li>Verify installation:</li>
-                                    </ol>
+                                    <p>Install JDK 17 or later:</p>
+                                    
+                                    <h6>🐧 Linux</h6>
+                                    <p>✅ Installation via package manager (Ubuntu/Debian):</p>
+                                    <pre><code>sudo apt update
+sudo apt install openjdk-17-jdk -y</code></pre>
+                                    
+                                    <p>📦 Download from Oracle website:</p>
+                                    <ul>
+                                        <li>.tar.gz archive: jdk-17.0.15_linux-x64_bin.tar.gz</li>
+                                        <li>.deb package: jdk-17.0.15_linux-x64_bin.deb</li>
+                                        <li>.rpm package: jdk-17.0.15_linux-x64_bin.rpm</li>
+                                    </ul>
+                                    
+                                    <p>🔗 Alternative sources:</p>
+                                    <ul>
+                                        <li>Adoptium (Temurin)</li>
+                                        <li>OpenLogic</li>
+                                        <li>Liberica JDK</li>
+                                    </ul>
+
+                                    <h6>🪟 Windows</h6>
+                                    <p>📥 Download from Oracle:</p>
+                                    <ul>
+                                        <li>.exe installer: jdk-17.0.15_windows-x64_bin.exe</li>
+                                        <li>.msi installer: jdk-17.0.15_windows-x64_bin.msi</li>
+                                        <li>.zip archive: jdk-17.0.15_windows-x64_bin.zip</li>
+                                    </ul>
+                                    
+                                    <p>🔗 Alternative sources:</p>
+                                    <ul>
+                                        <li>Adoptium (Temurin)</li>
+                                        <li>Microsoft Build of OpenJDK</li>
+                                    </ul>
+
+                                    <h6>🍏 macOS</h6>
+                                    <p>📥 Download from Oracle:</p>
+                                    <p>For Intel (x64):</p>
+                                    <ul>
+                                        <li>.dmg installer: jdk-17.0.15_macos-x64_bin.dmg</li>
+                                        <li>.tar.gz archive: jdk-17.0.15_macos-x64_bin.tar.gz</li>
+                                    </ul>
+                                    <p>For Apple Silicon (ARM64):</p>
+                                    <ul>
+                                        <li>.dmg installer: jdk-17.0.15_macos-aarch64_bin.dmg</li>
+                                        <li>.tar.gz archive: jdk-17.0.15_macos-aarch64_bin.tar.gz</li>
+                                    </ul>
+                                    
+                                    <p>🔗 Alternative sources:</p>
+                                    <ul>
+                                        <li>Adoptium (Temurin)</li>
+                                        <li>Liberica JDK</li>
+                                    </ul>
+
+                                    <p>Verify installation:</p>
                                     <pre><code>java -version
 javac -version</code></pre>
                                 </div>

@@ -403,3 +403,17 @@ li {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
 } 
+.mobile-nav .mobile-section-header {
+    color: white#666;
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 15px 20px 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #eee;
+    margin-top: 10px;
+}
+
+.mobile-nav .mobile-section-header:first-child {
+    margin-top: 0;
+}  

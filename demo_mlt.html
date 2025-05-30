@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multiclass Classifier Training Agent - WhiteLightning</title>
     <link rel="icon" type="image/png" href="media/image/favicons-f07016ef02d695ba85dee5ffd3b42f39(pr-cy.ru)/favicon-32x32.png" />
-    <link rel="stylesheet" href="styles/demo_mlt.css">
+    <link rel="stylesheet" href="styles/running.css">
 </head>
 <body>
   <header class="wl-header">
@@ -21,79 +21,822 @@
     <nav class="desktop-nav">
       <ul>
         <li class="dropdown">
-          <a href="">Demos</a>
+          <a href="">Introduction & Examples</a>
           <ul class="dropdown-menu">
-            <li><a href="/prompt-examples">Promt Examples</a></li>
-            <li><a id="plgr_btn" href="/mobile-deployment">Mobile Deployment</a></li>
+            <li><a href="/getting-started">Getting Started</a></li>
+            <li><a href="/prompt-examples">Prompt Examples</a></li>      
           </ul>
         </li>
         <li class="dropdown">
-          <a href="">Documentation</a>
+          <a href="">Model Setup & Configuration</a>
           <ul class="dropdown-menu">
-            <li><a href="/multiclass-setup">Multiclass Setup</a></li>
             <li><a href="/binary-setup">Binary Setup</a></li>
-            <li><a href="/multiclass-running">Multiclass Running</a></li>
-            <li><a href="/binary-running">Binary Running</a></li>
+            <li><a href="/multiclass-setup">Multiclass Setup</a></li>
           </ul>
         </li>
+        <li class="dropdown">
+          <a href="">Using & Applying Your Model</a>
+          <ul class="dropdown-menu">
+            <li><a href="/binary-running">Binary Running</a></li>
+            <li><a href="/multiclass-running">Multiclass Running</a></li>
+            <li><a id="plgr_btn" href="/mobile-deployment">Mobile Deployment</a></li>
         <li><a href="/playground">Playground</a></li>
-        <li><a href="/getting-started">Getting Started</a></li>
+          </ul>
+        </li>
         <li><a href="https://github.com/volodymyrparanyak/whitelightning.ai" target="_blank">GitHub</a></li>
       </ul>
     </nav>
     <nav class="mobile-nav">
       <ul>
-        <li><a href="/prompt-examples">Promt Examples</a></li>
+        <li class="mobile-section-header">Introduction & Examples</li>
+        <li><a href="/getting-started">Getting Started</a></li>
+        <li><a href="/prompt-examples">Prompt Examples</a></li>
+        
+        <li class="mobile-section-header">Model Setup & Configuration</li>
         <li><a href="/binary-setup">Binary Setup</a></li>
-        <li><a href="/binary-running">Binary Running </a></li>
         <li><a href="/multiclass-setup">Multiclass Setup</a></li>
+        
+        <li class="mobile-section-header">Using & Applying Your Model</li>
+        <li><a href="/binary-running">Binary Running</a></li>
         <li><a href="/multiclass-running">Multiclass Running</a></li>
         <li><a id="plgr_btn" href="/mobile-deployment">Mobile Deployment</a></li>
         <li><a href="/playground">Playground</a></li>
-        <li><a href="/getting-started">Getting Started</a></li>
       </ul>
     </nav>
   </header>
-
-    <div class="docs-container">
-      <!-- <div class="docs-sidebar">
-        <nav class="docs-nav">
-          <ul>
-            <li><a href="docs.html">Overview</a>
-              <ul style="margin-left:1.2em;">
-                <li><a href="docs.html#what-is-llm">What is LLM Distillation?</a></li>
-                <li><a href="docs.html#why-onnx">Why ONNX?</a></li>
-                <li><a href="docs.html#features">Key Features</a></li>
-                <li><a href="docs.html#quick-start">Quick Start</a></li>
-                <li><a href="docs.html#documentation">Deployment Guide</a></li>
-              </ul>
-            </li>
-            <li><a href="#model-types">Model Types</a>
-              <ul style="margin-left:1.2em;">
-                <li><a href="binary-classifier.html">Binary Classifier</a></li>
-                <ul style="margin-left:1.2em;">
-                    <li><a href="running_bnr.html">Running</a></li>
-                  </ul>
-                <li><a href="multiclass-classifier.html">Multiclass Classifier</a>
-                  <ul style="margin-left:1.2em;">
-                    <li><a href="running_mlt.html">Running</a></li>
-                  </ul>
-                  <ul style="margin-left:1.2em;">
-                    <li><a href="demo_mlt.html" class="active">Demos</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
+  <section id="code-examples">
+    <h2 class="neon-green">💻 Running Guide</h2>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="terminal-circle red"></span>
+                <span class="terminal-circle yellow"></span>
+                <span class="terminal-circle green"></span>
+            </div>
+            <div class="terminal-title"></div>
+            <button class="copy-btn" title="Copy code">Copy</button>
+        </div>
+        <div class="terminal-intro"><span id="typewriter"></span></div>
+        <div class="language-selector">
+            <button class="lang-btn active" data-lang="python">IOS</button>
+            <button class="lang-btn" data-lang="javascript">Android</button>
+            <button class="lang-btn" data-lang="c">Arduino</button>
             
-          </ul>
-        </nav>
-      </div> -->
+        </div>
+        <div class="terminal-content">
+            <div class="code-block active" id="python-code">
+                <div class="guide-section">
+                    <h3 class="neon-green">🧠 How to Run an ONNX Model in a Swift iOS Project (Xcode)</h3>
+                    
+                    <h4>📌 What is this?</h4>
+                    <p>This guide walks you through integrating and running an ONNX model using onnxruntime-objc in an iOS app with Swift.</p>
 
+                    <h4>✅ Prerequisites</h4>
+                    <div class="os-section">
+                        <h5>📦 Required Software</h5>
+                        <ul>
+                            <li>Xcode installed</li>
+                            <li>Homebrew installed</li>
+                            <li>Ruby ≥ 3.1</li>
+                            <li>CocoaPods</li>
+                            <li>ONNX model files:
+                                <ul>
+                                    <li><code>model.onnx</code></li>
+                                    <li><code>vocab.json</code></li>
+                                    <li><code>label_map.json</code></li>
+                                </ul>
+                            </li>
+                                </ul>
+                        <p>Install Homebrew if not installed:</p>
+                                <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+                        <p>Install Ruby and CocoaPods:</p>
+                        <pre><code>brew install ruby
+gem install cocoapods</code></pre>
+                    </div>
+
+                    <h4>✅ 1. Create and Setup the Xcode Project</h4>
+                    <div class="os-section">
+                        <h5>📁 Project Setup</h5>
+                        <pre><code>cd ~
+mkdir ONNXruntime
+cd ONNXruntime
+xcode-select --install         # if not installed
+xcodebuild -project .          # just to initialize</code></pre>
+                        <p>Then in Xcode:</p>
+                        <ol>
+                            <li>File → New → Project → iOS → App</li>
+                            <li>Name it: ONNXruntime</li>
+                            <li>Save inside your ~/ONNXruntime folder</li>
+                        </ol>
+                    </div>
+
+                    <h4>✅ 2. Place Resources</h4>
+                    <div class="os-section">
+                        <h5>📂 Add Model Files</h5>
+                        <p>Put these files in your project folder:</p>
+                        <ul>
+                            <li><code>model.onnx</code></li>
+                            <li><code>vocab.json</code></li>
+                            <li><code>label_map.json</code></li>
+                                        </ul>
+                        <p>Make sure to:</p>
+                        <ul>
+                            <li>Drag them into Xcode's Navigator</li>
+                            <li>Set Target Membership ✅</li>
+                            <li>Check "Copy if needed"</li>
+                                </ul>
+                    </div>
+
+                    <h4>✅ 3. Initialize and Install CocoaPods</h4>
+                    <div class="os-section">
+                        <h5>📦 CocoaPods Setup</h5>
+                        <p>In terminal:</p>
+                        <pre><code>cd ~/ONNXruntime
+pod init</code></pre>
+                        <p>Edit the Podfile and add:</p>
+                        <pre><code>platform :ios, '13.0'
+target 'ONNXruntime' do
+  use_frameworks!
+  pod 'onnxruntime-objc'
+end</code></pre>
+                        <p>Then install pods:</p>
+                        <pre><code>pod install</code></pre>
+                        <p><strong>Important:</strong> Now always open the project using ONNXruntime.xcworkspace</p>
+                    </div>
+
+                    <h4>✅ 4. Add Swift Model Logic</h4>
+                    <p>Create a new file: Utils.swift and paste this code:</p>
+                    <pre><code><span class="keyword">import</span> Foundation
+<span class="keyword">import</span> onnxruntime_objc
+
+<span class="keyword">class</span> Tokenizer {
+    <span class="keyword">private</span> <span class="keyword">var</span> vocab: [String: Int]
+    
+    <span class="keyword">init</span>(vocab: [String: Int]) {
+        <span class="keyword">self</span>.vocab = vocab
+    }
+    
+    <span class="keyword">func</span> tokenize(text: String) -> [Int] {
+        <span class="keyword">let</span> words = text.lowercased().split(separator: " ").map { String($0) }
+        <span class="keyword">return</span> words.map { vocab[$0] ?? vocab["&lt;OOV&gt;"] ?? 1 }
+    }
+}
+
+<span class="keyword">class</span> LabelVocabLoader {
+    <span class="keyword">private</span>(<span class="keyword">set</span>) <span class="keyword">var</span> labelMap: [Int: String] = [:]
+    <span class="keyword">private</span>(<span class="keyword">set</span>) <span class="keyword">var</span> vocab: [String: Int] = [:]
+
+    <span class="keyword">init</span>(labelMapPath: String, vocabPath: String) <span class="keyword">throws</span> {
+        <span class="keyword">let</span> labelMapData = <span class="keyword">try</span> Data(contentsOf: URL(fileURLWithPath: labelMapPath))
+        <span class="keyword">let</span> vocabData = <span class="keyword">try</span> Data(contentsOf: URL(fileURLWithPath: vocabPath))
+
+        <span class="keyword">if</span> <span class="keyword">let</span> labelMapJson = <span class="keyword">try</span> JSONSerialization.jsonObject(with: labelMapData) <span class="keyword">as</span>? [String: String] {
+            <span class="keyword">for</span> (key, value) <span class="keyword">in</span> labelMapJson {
+                <span class="keyword">if</span> <span class="keyword">let</span> intKey = Int(key) {
+                    labelMap[intKey] = value
+                }
+            }
+        }
+
+        <span class="keyword">if</span> <span class="keyword">let</span> vocabJson = <span class="keyword">try</span> JSONSerialization.jsonObject(with: vocabData) <span class="keyword">as</span>? [String: Int] {
+            vocab = vocabJson
+        }
+    }
+}
+
+<span class="keyword">class</span> ONNXModelRunner {
+    <span class="keyword">private</span> <span class="keyword">var</span> session: ORTSession
+    <span class="keyword">private</span> <span class="keyword">var</span> labelMap: [Int: String]
+    <span class="keyword">private</span> <span class="keyword">var</span> vocab: [String: Int]
+    <span class="keyword">private</span> <span class="keyword">let</span> maxLen = 30
+
+    <span class="keyword">init</span>() <span class="keyword">throws</span> {
+        <span class="keyword">guard</span> <span class="keyword">let</span> modelPath = Bundle.main.path(forResource: "model", ofType: "onnx"),
+              <span class="keyword">let</span> labelPath = Bundle.main.path(forResource: "label_map", ofType: "json"),
+              <span class="keyword">let</span> vocabPath = Bundle.main.path(forResource: "vocab", ofType: "json") <span class="keyword">else</span> {
+            <span class="keyword">throw</span> NSError(domain: "Paths", code: 1, userInfo: [NSLocalizedDescriptionKey: "Missing model or json files"])
+        }
+
+        <span class="keyword">let</span> loader = <span class="keyword">try</span> LabelVocabLoader(labelMapPath: labelPath, vocabPath: vocabPath)
+        <span class="keyword">self</span>.labelMap = loader.labelMap
+        <span class="keyword">self</span>.vocab = loader.vocab
+
+        <span class="keyword">let</span> env = <span class="keyword">try</span> ORTEnv(loggingLevel: .warning)
+        <span class="keyword">let</span> sessionOptions = <span class="keyword">try</span> ORTSessionOptions()
+        <span class="keyword">self</span>.session = <span class="keyword">try</span> ORTSession(env: env, modelPath: modelPath, sessionOptions: sessionOptions)
+    }
+
+    <span class="keyword">func</span> predict(text: String) <span class="keyword">throws</span> -> [(String, Float)] {
+        <span class="keyword">let</span> tokenizer = Tokenizer(vocab: vocab)
+        <span class="keyword">var</span> tokens = tokenizer.tokenize(text: text)
+
+        <span class="keyword">if</span> tokens.count < maxLen {
+            tokens += Array(repeating: 0, count: maxLen - tokens.count)
+        } <span class="keyword">else</span> <span class="keyword">if</span> tokens.count > maxLen {
+            tokens = Array(tokens.prefix(maxLen))
+        }
+
+        <span class="keyword">let</span> int32Tokens = tokens.map { Int32($0) }
+        <span class="keyword">let</span> inputData = Data(from: int32Tokens)
+
+        <span class="keyword">let</span> tensor = <span class="keyword">try</span> ORTValue(
+            tensorData: NSMutableData(data: inputData),
+            elementType: .int32,
+            shape: [1, NSNumber(value: maxLen)]
+        )
+
+        <span class="keyword">let</span> outputs = <span class="keyword">try</span> session.run(
+            withInputs: ["input": tensor],
+            outputNames: Set(["sequential"]),
+            runOptions: nil
+        )
+
+        <span class="keyword">guard</span> <span class="keyword">let</span> result = outputs["sequential"]?.value <span class="keyword">as</span>? [[Float]] <span class="keyword">else</span> {
+            <span class="keyword">throw</span> NSError(domain: "ONNX", code: 2, userInfo: [NSLocalizedDescriptionKey: "No valid output"])
+        }
+
+        <span class="keyword">return</span> result[0].enumerated().map { (i, score) <span class="keyword">in</span>
+            (labelMap[i] ?? "Unknown", score)
+        }
+    }
+}
+
+<span class="keyword">private</span> <span class="keyword">extension</span> Data {
+    <span class="keyword">init</span>&lt;T&gt;(from array: [T]) {
+        <span class="keyword">self</span> = array.withUnsafeBufferPointer { buffer <span class="keyword">in</span>
+            Data(buffer: buffer)
+        }
+    }
+}</code></pre>
+
+                    <h4>✅ 5. Update ContentView.swift</h4>
+                    <p>Replace ContentView.swift with this SwiftUI implementation:</p>
+                    <pre><code><span class="keyword">import</span> SwiftUI
+
+<span class="keyword">struct</span> ContentView: View {
+    @State <span class="keyword">private</span> <span class="keyword">var</span> result = "Processing..."
+
+    <span class="keyword">var</span> body: <span class="keyword">some</span> View {
+        VStack(spacing: 20) {
+            Text(result)
+                .padding()
+
+            Button("Run Inference") {
+                <span class="keyword">do</span> {
+                    <span class="keyword">let</span> runner = <span class="keyword">try</span> ONNXModelRunner()
+                    <span class="keyword">let</span> predictions = <span class="keyword">try</span> runner.predict(text: "I hate this product")
+
+                    result = predictions
+                        .map { "\($0.0): \($0.1)" }
+                        .joined(separator: "\n")
+                } <span class="keyword">catch</span> {
+                    result = "Error: \(error.localizedDescription)"
+                }
+            }
+        }
+        .padding()
+    }
+}</code></pre>
+
+                    <h4>✅ 6. Build and Run</h4>
+                    <div class="os-section">
+                        <h5>🚀 Final Steps</h5>
+                        <ol>
+                            <li>Open ONNXruntime.xcworkspace</li>
+                            <li>Select a simulator or your connected iPhone</li>
+                            <li>Press Run ▶️</li>
+                        </ol>
+                    </div>
+
+                    <h4>✅ 7. Expected Output</h4>
+                    <div class="output-section">
+                        <pre><code>Hate: 0.9732
+Not_hate: 0.0123
+Neutral: 0.0145</code></pre>
+                    </div>
+
+                    <h4>✅ 8. Troubleshooting</h4>
+                    <div class="os-section">
+                        <h5>⚠️ Common Issues</h5>
+                        <ul>
+                            <li><strong>Build Errors:</strong> Make sure you're using .xcworkspace, not .xcodeproj</li>
+                            <li><strong>Missing Files:</strong> Verify all model files are in the correct location and added to target</li>
+                            <li><strong>Memory Issues:</strong> Check model size and optimize if needed</li>
+                            <li><strong>Performance:</strong> Consider using background threads for inference</li>
+                        </ul>
+                    </div>
+
+                    <h4>✅ 9. iOS Demo</h4>
+                    <div class="feature-card full-width">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🍎</span>
+                        <h3 class="neon-green">iOS Demo</h3>
+                        <p>🎬 <strong>ONNX model working in an iOS app (Swift + CoreML)</strong></p>
+                        <div class="demo-container">
+                            <img src="media/gif/OIS runningONNX.gif" alt="iOS Demo" class="demo-gif">
+                        </div>
+                        <p class="demo-link">
+                            <a class="neon-link" href="https://www.youtube.com/watch?v=IOS_VIDEO_ID" target="_blank">
+                                <span class="icon">▶️</span> Watch iOS Deployment on YouTube
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="code-block" id="javascript-code">
+                <div class="guide-section">
+                    <h3 class="neon-green">🧠 Full Guide: How to Run an ONNX Model on Android (Java)</h3>
+                    
+                    <h4>📌 What is this?</h4>
+                    <p>This guide walks you through creating and deploying a fully offline ONNX-based text classification app on Android using Java.</p>
+
+                    <h4>✅ 1. Project Setup</h4>
+                    <div class="os-section">
+                        <h5>📁 Create a new Android project</h5>
+                        <ul>
+                            <li>Use Java as the programming language</li>
+                            <li>Use Empty Activity</li>
+                        </ul>
+                    </div>
+
+                    <h4>✅ 2. Prepare Assets</h4>
+                    <div class="os-section">
+                        <h5>📦 Setup Project Structure</h5>
+                        <p>Inside your Android project, create this folder:</p>
+                        <pre><code>app/src/main/assets/</code></pre>
+                        <p>Put these files inside:</p>
+                        <ul>
+                            <li><code>model.onnx</code> – your exported ONNX model</li>
+                            <li><code>vocab.json</code> – dictionary mapping words to token IDs</li>
+                            <li><code>labelMap.json</code> – mapping prediction indexes to labels</li>
+                        </ul>
+
+                        <h5>📝 Example Files</h5>
+                        <p>Example of vocab.json:</p>
+                        <pre><code>{
+  "&lt;OOV&gt;": 1,
+  "hello": 2,
+  "world": 3
+}</code></pre>
+                        <p>Example of labelMap.json:</p>
+                        <pre><code>{
+  "0": "Not_Hate",
+  "1": "Hate"
+}</code></pre>
+                    </div>
+
+                    <h4>✅ 3. Add ONNX Runtime</h4>
+                    <div class="os-section">
+                        <h5>⚙️ Configure Dependencies</h5>
+                        <p>In your app/build.gradle, add the ONNX Runtime for Android:</p>
+                        <pre><code>dependencies {
+    implementation 'ai.onnxruntime:onnxruntime-android:1.16.3'
+}</code></pre>
+                        <p>Then click Sync Now.</p>
+                    </div>
+
+                    <h4>✅ 4. Java Implementation</h4>
+                    <p>Replace the contents of MainActivity.java with this code:</p>
+                    <pre><code><span class="keyword">package</span> com.example.hateclassifier;
+
+<span class="keyword">import</span> android.os.Bundle;
+<span class="keyword">import</span> android.util.Log;
+<span class="keyword">import</span> android.widget.Button;
+<span class="keyword">import</span> android.widget.EditText;
+<span class="keyword">import</span> android.widget.TextView;
+
+<span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;
+
+<span class="keyword">import</span> ai.onnxruntime.*;
+
+<span class="keyword">import</span> org.json.JSONObject;
+
+<span class="keyword">import</span> java.io.*;
+<span class="keyword">import</span> java.util.*;
+
+<span class="keyword">public class</span> MainActivity <span class="keyword">extends</span> AppCompatActivity {
+    <span class="keyword">private</span> OrtEnvironment env;
+    <span class="keyword">private</span> OrtSession session;
+    <span class="keyword">private</span> Map&lt;Integer, String&gt; labelMap;
+    <span class="keyword">private</span> Map&lt;String, Integer&gt; vocab;
+
+    <span class="keyword">private static final</span> <span class="keyword">int</span> MAX_LEN = 30;
+
+    @Override
+    <span class="keyword">protected void</span> onCreate(Bundle savedInstanceState) {
+        <span class="keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        EditText inputText = findViewById(R.id.inputText);
+        Button sendButton = findViewById(R.id.sendButton);
+        TextView chatOutput = findViewById(R.id.chatOutput);
+
+        <span class="keyword">try</span> {
+            LabelVocabLoader loader = <span class="keyword">new</span> LabelVocabLoader("labelMap.json", "vocab.json");
+            labelMap = loader.getLabelMap();
+            vocab = loader.getVocab();
+
+            Log.d("ONNX", "Loading model...");
+            session = loadModel("model.onnx");
+            env = OrtEnvironment.getEnvironment();
+        } <span class="keyword">catch</span> (Exception e) {
+            e.printStackTrace();
+            chatOutput.setText("❌ Error loading model or data.");
+            <span class="keyword">return</span>;
+        }
+
+        sendButton.setOnClickListener(v -> {
+            String text = inputText.getText().toString().trim();
+            <span class="keyword">if</span> (text.isEmpty()) <span class="keyword">return</span>;
+
+            <span class="keyword">new</span> Thread(() -> {
+                <span class="keyword">try</span> {
+                    Tokenizer tokenizer = <span class="keyword">new</span> Tokenizer(vocab);
+                    <span class="keyword">int</span>[] tokenizedInput = tokenizer.tokenize(text);
+                    <span class="keyword">int</span>[] paddedInput = <span class="keyword">new</span> <span class="keyword">int</span>[MAX_LEN];
+                    <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < MAX_LEN; i++) {
+                        <span class="keyword">if</span> (i < tokenizedInput.length) {
+                            paddedInput[i] = tokenizedInput[i];
+                        } <span class="keyword">else</span> {
+                            paddedInput[i] = 0;
+                        }
+                    }
+
+                    <span class="keyword">int</span>[][] inputData = <span class="keyword">new</span> <span class="keyword">int</span>[1][MAX_LEN];
+                    inputData[0] = paddedInput;
+
+                    String inputName = session.getInputNames().iterator().next();
+                    OnnxTensor inputTensor = OnnxTensor.createTensor(env, inputData);
+
+                    OrtSession.Result result = session.run(Collections.singletonMap(inputName, inputTensor));
+                    <span class="keyword">float</span>[][] outputArray = (<span class="keyword">float</span>[][]) result.get(0).getValue();
+
+                    StringBuilder builder = <span class="keyword">new</span> StringBuilder();
+                    <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < outputArray[0].length; i++) {
+                        builder.append("Class: ")
+                               .append(labelMap.get(i))
+                               .append(", Probability: ")
+                               .append(outputArray[0][i])
+                               .append("\n");
+                    }
+
+                    runOnUiThread(() -> {
+                        chatOutput.append("👤: " + text + "\n🤖:\n" + builder + "\n");
+                        inputText.setText("");
+                    });
+
+                } <span class="keyword">catch</span> (Exception ex) {
+                    ex.printStackTrace();
+                    runOnUiThread(() -> chatOutput.append("❌ Error during inference\n"));
+                }
+            }).start();
+        });
+    }
+
+    <span class="keyword">private</span> OrtSession loadModel(String filename) <span class="keyword">throws</span> IOException, OrtException {
+        InputStream is = getAssets().open(filename);
+        <span class="keyword">byte</span>[] modelBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[is.available()];
+        is.read(modelBytes);
+        is.close();
+        <span class="keyword">return</span> OrtEnvironment.getEnvironment().createSession(modelBytes, <span class="keyword">new</span> OrtSession.SessionOptions());
+    }
+
+    <span class="keyword">static class</span> Tokenizer {
+        <span class="keyword">private final</span> Map&lt;String, Integer&gt; vocab;
+
+        <span class="keyword">public</span> Tokenizer(Map&lt;String, Integer&gt; vocab) {
+            <span class="keyword">this</span>.vocab = vocab;
+        }
+
+        <span class="keyword">public</span> <span class="keyword">int</span>[] tokenize(String text) {
+            String[] words = text.toLowerCase().split("\\s+");
+            <span class="keyword">int</span>[] tokenized = <span class="keyword">new</span> <span class="keyword">int</span>[words.length];
+            <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < words.length; i++) {
+                tokenized[i] = vocab.getOrDefault(words[i], vocab.get("&lt;OOV&gt;"));
+            }
+            <span class="keyword">return</span> tokenized;
+        }
+    }
+
+    <span class="keyword">class</span> LabelVocabLoader {
+        <span class="keyword">private final</span> Map&lt;Integer, String&gt; labelMap;
+        <span class="keyword">private final</span> Map&lt;String, Integer&gt; vocab;
+
+        <span class="keyword">public</span> LabelVocabLoader(String labelMapFile, String vocabFile) <span class="keyword">throws</span> Exception {
+            labelMap = <span class="keyword">new</span> HashMap&lt;&gt;();
+            vocab = <span class="keyword">new</span> HashMap&lt;&gt;();
+
+            String labelJson = readJsonFromAssets(labelMapFile);
+            JSONObject labelObj = <span class="keyword">new</span> JSONObject(labelJson);
+            <span class="keyword">for</span> (Iterator&lt;String&gt; it = labelObj.keys(); it.hasNext(); ) {
+                String key = it.next();
+                labelMap.put(Integer.parseInt(key), labelObj.getString(key));
+            }
+
+            String vocabJson = readJsonFromAssets(vocabFile);
+            JSONObject vocabObj = <span class="keyword">new</span> JSONObject(vocabJson);
+            <span class="keyword">for</span> (Iterator&lt;String&gt; it = vocabObj.keys(); it.hasNext(); ) {
+                String key = it.next();
+                vocab.put(key, vocabObj.getInt(key));
+            }
+        }
+
+        <span class="keyword">public</span> Map&lt;Integer, String&gt; getLabelMap() {
+            <span class="keyword">return</span> labelMap;
+        }
+
+        <span class="keyword">public</span> Map&lt;String, Integer&gt; getVocab() {
+            <span class="keyword">return</span> vocab;
+        }
+
+        <span class="keyword">private</span> String readJsonFromAssets(String filename) <span class="keyword">throws</span> IOException {
+            InputStream is = getAssets().open(filename);
+            BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(is));
+            StringBuilder sb = <span class="keyword">new</span> StringBuilder();
+            String line;
+            <span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) {
+                sb.append(line);
+            }
+            reader.close();
+            <span class="keyword">return</span> sb.toString();
+        }
+    }
+}</code></pre>
+
+                    <h4>✅ 5. Create the UI</h4>
+                    <div class="os-section">
+                        <h5>📐 Layout Setup</h5>
+                        <p>Edit res/layout/activity_main.xml like this:</p>
+                        <pre><code>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"&gt;
+
+    &lt;EditText
+        android:id="@+id/inputText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter a sentence..." /&gt;
+
+    &lt;Button
+        android:id="@+id/sendButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Run Model" /&gt;
+
+    &lt;TextView
+        android:id="@+id/chatOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:paddingTop="16dp" /&gt;
+&lt;/LinearLayout&gt;</code></pre>
+                    </div>
+
+                    <h4>✅ 6. Build the APK</h4>
+                    <div class="os-section">
+                        <h5>🏗️ Build Steps</h5>
+                        <p>In Android Studio:</p>
+                        <ol>
+                            <li>Build → Build APK(s) → Build APK</li>
+                            <li>Once built, click Locate to find your APK:</li>
+                        </ol>
+                        <pre><code>app/build/outputs/apk/debug/app-debug.apk</code></pre>
+                    </div>
+
+                    <h4>✅ 7. Install on Your Android Device</h4>
+                    <div class="os-section">
+                        <h5>📲 Installation Options</h5>
+                        <p><strong>Option 1: USB transfer</strong></p>
+                        <ol>
+                            <li>Connect your phone via USB</li>
+                            <li>Copy app-debug.apk to Downloads</li>
+                            <li>Open it from your phone and tap Install</li>
+                            <li>Allow "Install from unknown sources" if prompted</li>
+                        </ol>
+
+                        <p><strong>Option 2: Telegram / Google Drive</strong></p>
+                        <ol>
+                            <li>Upload the APK</li>
+                            <li>Download on your phone</li>
+                            <li>Tap to install</li>
+                        </ol>
+                    </div>
+
+                    <h4>✅ 8. Android Demo</h4>
+                    <div class="feature-card full-width">
+                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🤖</span>
+                        <h3 class="neon-green">Android Demo</h3>
+                        <p>🎬 <strong>ONNX inference running on Android device</strong></p>
+                        <div class="demo-container" style="width: 500px; height: 500px; margin: 0 auto;">
+                            <img src="media/gif/Android runningONNX.gif" alt="Android Demo" class="demo-gif" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <p class="demo-link">
+                            <a class="neon-link" href="https://www.youtube.com/watch?v=ANDROID_VIDEO_ID" target="_blank">
+                                <span class="icon">▶️</span> Watch Full Video on YouTube
+                            </a>
+                        </p>
+                    </div>
+
+                    <h4>✅ 9. Features</h4>
+                    <div class="os-section">
+                        <ul>
+                            <li>Loads the model from assets</li>
+                            <li>Loads vocab and label map from JSON</li>
+                            <li>Tokenizes and pads input text</li>
+                            <li>Creates an ONNX tensor from input</li>
+                            <li>Runs inference and shows results</li>
+                            <li>UI thread-safe updates via runOnUiThread</li>
+                                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="code-block" id="c-code">
+                <div class="guide-section">
+                    <h3 class="neon-green">🧠 How to Run an ONNX Model on Arduino</h3>
+                    
+                    <h4>📌 What is this?</h4>
+                    <p>This guide explains how to deploy and run ONNX models on Arduino devices using TensorFlow Lite Micro and Arduino IDE.</p>
+
+                    <h4>✅ 1. Prerequisites</h4>
+                    <div class="os-section">
+                        <h5>🔧 Required Hardware</h5>
+                        <ul>
+                            <li>Arduino board (Arduino Nano 33 BLE Sense recommended)</li>
+                            <li>USB cable</li>
+                            <li>Computer with Arduino IDE installed</li>
+                        </ul>
+                    </div>
+
+                    <div class="os-section">
+                        <h5>📦 Required Software</h5>
+                        <ul>
+                            <li>Arduino IDE 2.0 or later</li>
+                            <li>TensorFlow Lite Micro library</li>
+                            <li>Arduino_TensorFlowLite library</li>
+                        </ul>
+                    </div>
+
+                    <h4>✅ 2. Setup Arduino IDE</h4>
+                    <div class="os-section">
+                        <h5>⚙️ Install Required Libraries</h5>
+                        <ol>
+                            <li>Open Arduino IDE</li>
+                            <li>Go to Tools → Manage Libraries</li>
+                            <li>Search and install:
+                                <ul>
+                                    <li>Arduino_TensorFlowLite</li>
+                                    <li>Arduino_LSM9DS1 (for Nano 33 BLE Sense)</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <h4>✅ 3. Convert ONNX Model</h4>
+                    <div class="os-section">
+                        <h5>🔄 Model Conversion Steps</h5>
+                        <ol>
+                            <li>Convert ONNX to TensorFlow Lite:
+                                <pre><code>python -m tf2onnx.convert --onnx model.onnx --output model.tflite</code></pre>
+                            </li>
+                            <li>Convert to C array:
+                                <pre><code>xxd -i model.tflite > model.h</code></pre>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <h4>✅ 4. Arduino Code</h4>
+                    <p>Create a new sketch and paste this code:</p>
+                    <pre><code><span class="keyword">#include</span> <span class="string">&lt;TensorFlowLite.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">"model.h"</span>
+
+<span class="keyword">#include</span> <span class="string">"tensorflow/lite/micro/all_ops_resolver.h"</span>
+<span class="keyword">#include</span> <span class="string">"tensorflow/lite/micro/micro_error_reporter.h"</span>
+<span class="keyword">#include</span> <span class="string">"tensorflow/lite/micro/micro_interpreter.h"</span>
+<span class="keyword">#include</span> <span class="string">"tensorflow/lite/schema/schema_generated.h"</span>
+
+<span class="keyword">const</span> tflite::Model* model = nullptr;
+tflite::MicroErrorReporter micro_error_reporter;
+tflite::ErrorReporter* error_reporter = nullptr;
+tflite::MicroInterpreter* interpreter = nullptr;
+TfLiteTensor* input = nullptr;
+TfLiteTensor* output = nullptr;
+
+<span class="keyword">constexpr int</span> kTensorArenaSize = 100 * 1024;
+<span class="keyword">uint8_t</span> tensor_arena[kTensorArenaSize];
+
+<span class="keyword">void</span> <span class="function">setup</span>() {
+    Serial.begin(9600);
+    <span class="keyword">while</span> (!Serial);
+
+    error_reporter = &micro_error_reporter;
+    model = tflite::GetModel(g_model);
+    <span class="keyword">if</span> (model->version() != TFLITE_SCHEMA_VERSION) {
+        error_reporter->Report("Model schema mismatch!");
+        <span class="keyword">while</span> (1);
+    }
+
+    <span class="keyword">static</span> tflite::AllOpsResolver resolver;
+    <span class="keyword">static</span> tflite::MicroInterpreter static_interpreter(
+        model, resolver, tensor_arena, kTensorArenaSize, error_reporter);
+    interpreter = &static_interpreter;
+
+    TfLiteStatus allocate_status = interpreter->AllocateTensors();
+    <span class="keyword">if</span> (allocate_status != kTfLiteOk) {
+        error_reporter->Report("AllocateTensors() failed");
+        <span class="keyword">while</span> (1);
+    }
+
+    input = interpreter->input(0);
+    output = interpreter->output(0);
+}
+
+<span class="keyword">void</span> <span class="function">loop</span>() {
+    <span class="keyword">if</span> (Serial.available() > 0) {
+        String input_text = Serial.readStringUntil('\n');
+        input_text.trim();
+
+        <span class="comment">// Preprocess input text</span>
+        <span class="keyword">float</span> input_data[30] = {0};  <span class="comment">// Adjust size based on your model</span>
+        <span class="comment">// Add your preprocessing logic here</span>
+
+        <span class="comment">// Copy input data to tensor</span>
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i < 30; i++) {
+            input->data.f[i] = input_data[i];
+        }
+
+        <span class="comment">// Run inference</span>
+        TfLiteStatus invoke_status = interpreter->Invoke();
+        <span class="keyword">if</span> (invoke_status != kTfLiteOk) {
+            error_reporter->Report("Invoke failed!");
+            <span class="keyword">return</span>;
+        }
+
+        <span class="comment">// Get results</span>
+        <span class="keyword">float</span> max_score = output->data.f[0];
+        <span class="keyword">int</span> max_index = 0;
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i < output->dims->data[1]; i++) {
+            <span class="keyword">if</span> (output->data.f[i] > max_score) {
+                max_score = output->data.f[i];
+                max_index = i;
+            }
+        }
+
+        <span class="comment">// Print results</span>
+        Serial.print("Prediction: ");
+        Serial.print(max_index);
+        Serial.print(" (Score: ");
+        Serial.print(max_score);
+        Serial.println(")");
+    }
+}</code></pre>
+
+                    <h4>✅ 5. Upload and Test</h4>
+                    <div class="os-section">
+                        <h5>🚀 Deployment Steps</h5>
+                        <ol>
+                            <li>Connect Arduino to computer</li>
+                            <li>Select correct board in Arduino IDE</li>
+                            <li>Click Upload button</li>
+                            <li>Open Serial Monitor (9600 baud)</li>
+                            <li>Type text and press Enter to test</li>
+                        </ol>
+                    </div>
+
+                    <h4>✅ 6. Memory Optimization</h4>
+                    <div class="os-section">
+                        <h5>💾 Tips for Better Performance</h5>
+                        <ul>
+                            <li>Use quantization to reduce model size</li>
+                            <li>Optimize tensor arena size</li>
+                            <li>Consider using smaller input sequences</li>
+                            <li>Use Arduino with more RAM if needed</li>
+                        </ul>
+                    </div>
+
+                    <h4>✅ 7. Troubleshooting</h4>
+                    <div class="os-section">
+                        <h5>⚠️ Common Issues</h5>
+                        <ul>
+                            <li><strong>Out of Memory:</strong> Increase tensor arena size or optimize model</li>
+                            <li><strong>Upload Failed:</strong> Check board selection and connections</li>
+                            <li><strong>Incorrect Results:</strong> Verify preprocessing matches training</li>
+                            <li><strong>Slow Inference:</strong> Consider model quantization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+                    </div>
+                </div>
+            </div>
+            <!-- Add other language code blocks similarly -->
+        </div>
+    </div>
+</section>
+
+    <!-- <div class="docs-container">
         <main class="docs-content">
-            
-
-            
-
             <section id="onnx-demos">
                 <h2 class="neon-green">📱 ONNX Model Deployment Demos</h2>
                 <div class="mobile-demos">
@@ -127,7 +870,7 @@
                 </div>
             </section>
         </main>
-    </div>
+    </div> -->
 
     <footer class="site-footer">
       <div class="footer-content container">
