@@ -1,3 +1,7 @@
-# WhiteLightning Documentation
+# WhiteLightning Website
 
-WhiteLightning is an innovative LLM distillation tool that enables you to create edge-ready AI models in one line with no data required. This repository contains the official website for WhiteLightning, showcasing its capabilities and providing comprehensive documentation. See the main project repo at [whitelightning-ai/whitelightning](https://github.com/whitelightning-ai/whitelightning.git)
+This repository hosts the official website for **WhiteLightning**, a cutting-edge LLM distillation tool.
+
+WhiteLightning empowers you to create **edge-ready AI models with a single line of code and no data** required.
+
+[Explore the main project repository here!](https://github.com/whitelightning-ai/whitelightning.git)
