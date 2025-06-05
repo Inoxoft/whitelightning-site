@@ -902,18 +902,22 @@ header h1 {
   }
 }
 
-.process-flow-mobile { display: none; }
+.process-flow-mobile { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem 0;
+}
 
 @media (max-width: 600px) {
   .process-flow { display: none; } /* Hide the old flow on mobile */
   .process-flow-mobile {
-    display: grid;
-    grid-template-columns: 1fr 40px 1fr;
-    gap: 0.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     margin: 2rem 0;
-    justify-items: center;
-    align-items: center;
   }
   .process-step {
     background: rgba(30,30,30,0.7);
