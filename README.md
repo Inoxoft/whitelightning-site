@@ -1,6 +1,6 @@
 # WhiteLightning Website
 
-![WhiteLightning AI Process Flow](media/image/wl.png)
+![WhiteLightning AI Process Flow](media/image/WL.jpeg)
 
 ## Overview
 
