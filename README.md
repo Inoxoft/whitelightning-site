@@ -1,6 +1,6 @@
 # WhiteLightning Website
 
-This repository hosts the official website for **WhiteLightning**, a cutting-edge LLM distillation tool.
+This repository hosts the official website for **WhiteLightning** at [https://whitelightning.ai](https://whitelightning.ai), a cutting-edge LLM distillation tool.
 
 WhiteLightning empowers you to create **edge-ready AI models with a single line of code and no data** required.
 
