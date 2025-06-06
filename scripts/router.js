@@ -68,13 +68,6 @@
         if (routes[currentPath] && getCurrentPage() !== routes[currentPath]) {
             window.location.replace(routes[currentPath]);
         }
-
-        // If someone accesses HTML files directly, redirect to clean URLs
-        const currentFile = getCurrentPage();
-        const cleanUrl = Object.keys(routes).find(key => routes[key] === currentFile);
-        if (cleanUrl && cleanUrl !== currentPath && currentPath.endsWith('.html')) {
-            window.location.replace(cleanUrl);
-        }
     }
 
     // Wait for DOM to be ready
