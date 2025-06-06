@@ -4,9 +4,7 @@
     const routes = {
         '/': 'index.html',
         '/getting-started': 'docs.html',
-        '/docs': 'docs.html',
         '/prompt-examples': 'examples.html',
-        '/examples': 'examples.html',
         '/binary-setup': 'binary-classifier.html',
         '/multiclass-setup': 'multiclass-classifier.html',
         '/binary-running': 'running_bnr.html',
