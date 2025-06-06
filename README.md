@@ -88,8 +88,8 @@ The WhiteLightning process follows these steps:
 ## Links
 
 - **GitHub Repository**: [whitelightning-ai/whitelightning](https://github.com/whitelightning-ai/whitelightning.git)
-- **Documentation**: Start with our [Getting Started Guide](getting-started)
-- **Playground**: Try the [Interactive Playground](playground)
+- **Documentation**: Start with our [Getting Started Guide](docs.html)
+- **Playground**: Try the [Interactive Playground](playground.html)
 
 ## Contributing
 
@@ -113,8 +113,8 @@ This project is licensed under the Apache License 2.0. See the [LICENSE](https:/
 ## Support
 
 Need help? Check out our:
-- [Documentation](getting-started)
-- [Examples](prompt-examples)
+- [Documentation](docs.html)
+- [Examples](examples.html)
 - [GitHub Issues](https://github.com/whitelightning-ai/whitelightning/issues)
 
 ---
