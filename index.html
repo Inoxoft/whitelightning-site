@@ -88,8 +88,8 @@
         <div class="terminal-content">
           <p>
             <span class="prompt">$ </span>
-            <span class="user-input full-text">pip install -r requirements/base.txt</span>
-            <span class="user-input short-text">pip install -r requirements/base.txt
+            <span class="user-input full-text">docker build -t whitelightning:local .</span>
+            <span class="user-input short-text">docker build -t whitelightning:local .
             </span>
             
           </p>
@@ -117,17 +117,22 @@
             <span class="user-input short-text"> whitelightning.ai %</span>
           </p>
           <p>
-            <span class="ai-response full-text"> python -m text_classifier.agent -p "Classify customer reviews as positive, negative, or neutral"</span>
-            <span class="ai-response short-text">python -m text_classifier.agent -p</span>
+            <span class="ai-response full-text"> docker run --rm -v $(pwd)/output:/app/output -v $(pwd)/.env:/app/.env whitelightning:local \</span>
+            <span class="ai-response short-text">docker run --rm -v $(pwd)/output</span>
           </p>
           <p>
+            <span class="ai-response full-text"> -p="Classify customer reviews as positive or negative sentiment"</span>
+            <span class="ai-response short-text">-v  whitelightning:local \</span>
+          </p>
+          
+          <p>
             <span class="ai-response full-text"> 🧠 - INFO - Generate Edge Cases: True (Target Volume per class: 5)</span>
-            <span class="ai-response short-text">"Classify reviews as positive, </span>
+            <span class="ai-response short-text">"p="Classify customer reviews as</span>
             
           </p>
           <p>
             <span class="ai-response full-text"> 🧠 - INFO - Successfully generated initial configuration.</span>
-            <span class="ai-response short-text">negative or neutral"</span>
+            <span class="ai-response short-text">positive or negative sentiment"</span>
           </p>
           <p>
             <span class="ai-response full-text"> 🧠 - INFO - DataGenerator initialized. Config Model: 'x-ai/grok-3-beta',  Model: 'openai/gpt-4o-mini'</span>
