@@ -27,25 +27,25 @@
         <li class="dropdown">
           <a href="">Introduction</a>
           <ul class="dropdown-menu">
-            <li><a href="docs.html">Start Here</a></li>
-            <li><a href="examples.html">Prompt Examples</a></li>      
+            <li><a href="/getting-started">Start Here</a></li>
+            <li><a href="/prompt-examples">Prompt Examples</a></li>      
           </ul>
         </li>
         <li class="dropdown">
           <a href="">Data & Training</a>
           <ul class="dropdown-menu">
-            <li><a href="binary-classifier.html">Setup: Binary</a></li>
-            <li><a href="multiclass-classifier.html">Setup: Multiclass</a></li>
+            <li><a href="/binary-setup">Setup: Binary</a></li>
+            <li><a href="/multiclass-setup">Setup: Multiclass</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="">Test & Deploy</a>
           <ul class="dropdown-menu">
-            <li><a href="running_bnr.html">Run: Binary</a></li>
-            <li><a href="running_mlt.html">Run: Multiclass</a></li>
-            <li><a href="arduino.html">Deploy: iOS & Android</a></li>
-            <li><a href="arduino.html">Deploy: Arduino</a></li>
-            <li><a href="playground.html">Playground</a></li>
+            <li><a href="/binary-running">Run: Binary</a></li>
+            <li><a href="/multiclass-running">Run: Multiclass</a></li>
+            <li><a href="/mobile-deployment">Deploy: iOS & Android</a></li>
+            <li><a href="/arduino-deployment">Deploy: Arduino</a></li>
+            <li><a href="/playground">Playground</a></li>
           </ul>
         </li>
         <li><a href="https://github.com/whitelightning-ai/whitelightning.git" target="_blank">GitHub</a></li>
@@ -54,19 +54,19 @@
     <nav class="mobile-nav">
       <ul>
         <li class="mobile-section-header">Introduction</li>
-        <li><a href="docs.html">Start Here</a></li>
-        <li><a href="examples.html">Prompt Examples</a></li>
+        <li><a href="/getting-started">Start Here</a></li>
+        <li><a href="/prompt-examples">Prompt Examples</a></li>
         
         <li class="mobile-section-header">Data & Training</li>
-        <li><a href="binary-classifier.html">Setup: Binary</a></li>
-        <li><a href="multiclass-classifier.html">Setup: Multiclass</a></li>
+        <li><a href="/binary-setup">Setup: Binary</a></li>
+        <li><a href="/multiclass-setup">Setup: Multiclass</a></li>
         
         <li class="mobile-section-header">Test & Deploy</li>
-        <li><a href="running_bnr.html">Run: Binary</a></li>
-        <li><a href="running_mlt.html">Run: Multiclass</a></li>
-        <li><a href="arduino.html">Deploy: iOS & Android</a></li>
-        <li><a href="arduino.html">Deploy: Arduino</a></li>
-        <li><a href="playground.html">Playground</a></li>
+        <li><a href="/binary-running">Run: Binary</a></li>
+        <li><a href="/multiclass-running">Run: Multiclass</a></li>
+        <li><a href="/mobile-deployment">Deploy: iOS & Android</a></li>
+        <li><a href="/arduino-deployment">Deploy: Arduino</a></li>
+        <li><a href="/playground">Playground</a></li>
       </ul>
     </nav>
   </header>
@@ -222,8 +222,8 @@
         </div>
 
       <div>
-        <a href="playground.html" class="button button-primary">Try Playground</a>
-        <a href="docs.html" class="button">Getting Started</a>
+        <a href="/playground" class="button button-primary">Try Playground</a>
+        <a href="/getting-started" class="button">Getting Started</a>
       </div>
     </section>
     
@@ -296,14 +296,14 @@
       <div class="footer-columns">
         <div class="footer-col">
           <div class="footer-col-title">Docs & Links</div>
-          <a href="docs.html">Documentation</a>
-          <a href="playground.html">Playground</a>
+          <a href="/getting-started">Documentation</a>
+          <a href="/playground">Playground</a>
           <a href="https://github.com/whitelightning-ai/whitelightning.git" target="_blank">GitHub</a>
         </div>
         <div class="footer-col">
           <div class="footer-col-title">Resources</div>
-          <a href="docs.html#features">Features</a>
-          <a href="arduino.html">Demo</a>
+          <a href="/getting-started#features">Features</a>
+          <a href="/mobile-deployment">Demo</a>
           <!-- <a href="#">ONNX Format</a> -->
         </div>
         <div class="footer-col">
@@ -320,6 +320,7 @@
     </div>
   </footer>
   <script src="scripts/mobile-menu.js"></script>
+  <script src="scripts/router.js"></script>
   <script>
     function scrollTerminalToEnd() {
       var terminalContent = document.querySelector('.terminal-content');
