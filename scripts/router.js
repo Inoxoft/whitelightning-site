@@ -9,7 +9,7 @@
         '/multiclass-setup': 'multiclass-classifier.html',
         '/binary-running': 'running_bnr.html',
         '/multiclass-running': 'running_mlt.html',
-        '/mobile-deployment': 'arduino.html',
+        '/mobile-deployment': 'demo_mlt.html',
         '/arduino-deployment': 'arduino.html',
         '/playground': 'playground.html'
     };
