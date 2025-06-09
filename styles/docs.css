@@ -1225,8 +1225,26 @@ section#multiclass-onnx-demos h2 {
   margin-left: 0;
 }
 
+.quick-steps .code-block .terminal-content code.full-text {
+  display: block !important;
+}
+
+.quick-steps .code-block .terminal-content code.short-text {
+  display: none !important;
+}
+
 @media (max-width: 600px) {
   .quick-steps .code-block .terminal-content code {
+    font-size: 0.75rem;
+  }
+  
+  .quick-steps .code-block .terminal-content code.full-text {
+    display: none !important;
+  }
+  
+  .quick-steps .code-block .terminal-content code.short-text {
+    display: block !important;
+    color: #fff;
     font-size: 0.75rem;
   }
 }

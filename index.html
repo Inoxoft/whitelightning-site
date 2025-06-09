@@ -87,9 +87,16 @@
         </div>
         <div class="terminal-content">
           <p>
-            <span class="prompt">$ </span>
-            <span class="user-input full-text">docker build -t whitelightning:local .</span>
-            <span class="user-input short-text">docker build -t whitelightning:local .
+            <!-- <span class="prompt">$</span> -->
+            <span class="user-input full-text">docker pull ghcr.io/whitelightning-ai/whitelightning:latest.</span>
+            <span class="user-input short-text">docker pull ghcr.io/whitelightning-ai
+            </span>
+            
+          </p>
+          <p>
+            
+            <!-- <span class="prompt">$</span> -->
+            <span class="user-input short-text">/whitelightning:latest.
             </span>
             
           </p>
@@ -279,9 +286,12 @@
           <div class="terminal-circle green"></div>
         </div>
         <div class="terminal-content">
-          <p><span class="prompt">$ </span><span class="user-input full-text">python -m text_classifier.agent -p "Detect political bias in articles" \</span><span class="user-input short-text">python -m text_classifier.agent -p</span></p>
-          <p><span class="prompt">$ </span><span class="user-input full-text">--generate-edge-cases true \</span><span class="user-input short-text">"Detect political bias in articles"</span></p>
-          <p><span class="prompt">$ </span><span class="user-input full-text">--edge-case-volume-per-class 30</span><span class="user-input short-text">-edge-case-volume-per-class 30</span></p>
+          <p><span class="prompt"></span><span class="user-input full-text">docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env</span><span class="user-input short-text">docker run --rm -v $(pwd)/models:</span></p>
+          <p><span class="prompt"></span><span class="user-input full-text">ghcr.io/whitelightning-ai/whitelightning:latest</span><span class="user-input short-text">/app/models -v $(pwd)/.env:/app/.</span></p>
+          <p><span class="prompt"></span><span class="user-input full-text">-p="Classify customer feedback as positive or negative sentiment"0</span><span class="user-input short-text">env ghcr.io/whitelightning-ai/</span></p>
+          <p><span class="user-input short-text">/whitelightning:latest -p=</span></p>
+          <p></span><span class="user-input short-text">"Classify customer feedback as</span></p>
+          <p><span class="user-input short-text">positive or negative sentiment"</span></p>
           <!-- <p><span class="prompt">$ </span><span class="user-input">_</span></p> -->
         </div>
       </div>

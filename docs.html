@@ -239,7 +239,7 @@
         <h2>Quick Start</h2>
         <div class="quick-steps">
           <div class="quick-step">
-            <p>Install dependencies:</p>
+            <p>Pull the Docker image:</p>
             <div class="code-block">
               <div class="terminal-header">
                 <div class="terminal-circle red"></div>
@@ -247,7 +247,9 @@
                 <div class="terminal-circle green"></div>
               </div>
               <div class="terminal-content">
-                <code>pip install -r requirements/base.txt</code>
+                <code class="full-text">docker pull ghcr.io/whitelightning-ai/whitelightning:latest</code>
+                <code class="short-text">docker pull ghcr.io/whitelightning-ai</code>
+                <code class="short-text">/whitelightning:latest</code>
               </div>
             </div>
           </div>
@@ -260,7 +262,8 @@
                 <div class="terminal-circle green"></div>
               </div>
               <div class="terminal-content">
-                <code>Edit .env with your API keys</code>
+                <code>cp .env.example .env</code>
+                <code># Edit .env with your API keys</code>
               </div>
             </div>
           </div>
@@ -273,8 +276,15 @@
                 <div class="terminal-circle green"></div>
               </div>
               <div class="terminal-content">
-                <code>python -m text_classifier.agent -p</code>
-                <code>"Your classification task description"</code>
+                <code class="full-text">docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env </code>
+                <code class="full-text">ghcr.io/whitelightning-ai/whitelightning:latest </code>
+                <code class="full-text">-p="Classify customer feedback as positive or negative sentiment"</code>
+                <code class="short-text">docker run --rm -v $(pwd)/models:</code>
+                <code class="short-text">/app/models -v $(pwd)/.env:/app/.</code>
+                <code class="short-text">env ghcr.io/whitelightning-ai/</code>
+                <code class="short-text">/whitelightning:latest -p=</code>
+                <code class="short-text">"Classify customer feedback as</code>
+                <code class="short-text">positive or negative sentiment"</code>
               </div>
             </div>
           </div>

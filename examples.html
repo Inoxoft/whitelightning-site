@@ -138,10 +138,11 @@
                     <div class="model-usage">
                         <p>To use any OpenRouter model, simply specify it with the <code>--data-gen-model</code> parameter:</p>
                         <pre class="code-block">
-$ python -m text_classifier.agent \
-    -p "Your prompt here" \
-    --data-gen-model "openai/gpt-4" \
-    --model-type tensorflow</pre>
+$ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
+    ghcr.io/whitelightning-ai/whitelightning:latest \
+    -p="Your prompt here" \
+    --data-gen-model="openai/gpt-4" \
+    --model-type="tensorflow"</pre>
                         <p class="model-tip">💡 Tip: You can use any model ID from OpenRouter. Just make sure to use the exact model ID as shown in the OpenRouter dashboard.</p>
                     </div>
                 </div>
@@ -153,13 +154,14 @@ $ python -m text_classifier.agent \
                         <p>🚀 <strong>Run models directly from command line</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ python -m text_classifier.agent \
-    -p "Detect political bias in articles" \
-    --generate-edge-cases true \
-    --edge-case-volume-per-class 30 \
-    --model-type tensorflow \
-    --lang english \
-    --max-features 5000</pre>
+$ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
+    ghcr.io/whitelightning-ai/whitelightning:latest \
+    -p="Detect political bias in articles" \
+    --generate-edge-cases="true" \
+    --edge-case-volume-per-class=30 \
+    --model-type="tensorflow" \
+    --lang="english" \
+    --max-features=5000</pre>
                         </div>
                         <p class="demo-description">
                             Train and deploy models with a single command. Supports various options for customization:
@@ -178,12 +180,13 @@ $ python -m text_classifier.agent \
                         <p>🌐 <strong>Train models in multiple languages</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ python -m text_classifier.agent \
-    -p "Classify news articles by topic" \
-    --lang spanish \
-    --model-type pytorch \
-    --data-gen-model "claude-3-opus" \
-    --batch-size 5</pre>
+$ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
+    ghcr.io/whitelightning-ai/whitelightning:latest \
+    -p="Classify news articles by topic" \
+    --lang="spanish" \
+    --model-type="pytorch" \
+    --data-gen-model="claude-3-opus" \
+    --batch-size=5</pre>
                         </div>
                         <p class="demo-description">
                             Support for multiple languages with advanced configuration:
@@ -202,12 +205,13 @@ $ python -m text_classifier.agent \
                         <p>📊 <strong>Generate and analyze edge cases</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ python -m text_classifier.agent \
-    -p "Detect toxic content" \
-    --generate-edge-cases true \
-    --edge-case-volume-per-class 50 \
-    --refinement-cycles 3 \
-    --config-llm-model "gpt-4"</pre>
+$ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
+    ghcr.io/whitelightning-ai/whitelightning:latest \
+    -p="Detect toxic content" \
+    --generate-edge-cases="true" \
+    --edge-case-volume-per-class=50 \
+    --refinement-cycles=3 \
+    --config-llm-model="gpt-4"</pre>
                         </div>
                         <p class="demo-description">
                             Advanced edge case handling with:
@@ -226,11 +230,13 @@ $ python -m text_classifier.agent \
                         <p>📁 <strong>Specify custom output directory</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ python -m text_classifier.agent \
-    -p "Classify customer feedback" \
-    -o "./custom_models/feedback" \
-    --model-type scikit \
-    --max-features 3000</pre>
+$ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
+    -v $(pwd)/custom_models:/app/custom_models \
+    ghcr.io/whitelightning-ai/whitelightning:latest \
+    -p="Classify customer feedback" \
+    -o="./custom_models/feedback" \
+    --model-type="scikit" \
+    --max-features=3000</pre>
                         </div>
                         <p class="demo-description">
                             Flexible output configuration:
@@ -249,11 +255,12 @@ $ python -m text_classifier.agent \
                         <p>⚡ <strong>Optimized for large datasets</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ python -m text_classifier.agent \
-    -p "Analyze product reviews" \
-    --batch-size 10 \
-    --data-gen-model "claude-3-sonnet" \
-    --refinement-cycles 5</pre>
+$ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
+    ghcr.io/whitelightning-ai/whitelightning:latest \
+    -p="Analyze product reviews" \
+    --batch-size=10 \
+    --data-gen-model="claude-3-sonnet" \
+    --refinement-cycles=5</pre>
                         </div>
                         <p class="demo-description">
                             Performance optimization features:
@@ -272,10 +279,11 @@ $ python -m text_classifier.agent \
                         <p>✨ <strong>Quick start with minimal setup</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ python -m text_classifier.agent \
-    -p "Classify emails as spam/not spam" \
-    --model-type tensorflow \
-    --lang english</pre>
+$ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
+    ghcr.io/whitelightning-ai/whitelightning:latest \
+    -p="Classify emails as spam/not spam" \
+    --model-type="tensorflow" \
+    --lang="english"</pre>
                         </div>
                         <p class="demo-description">
                             Simple and efficient setup:
