@@ -32,13 +32,6 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="">Data & Training</a>
-          <ul class="dropdown-menu">
-            <li><a href="/binary-setup">Setup: Binary</a></li>
-            <li><a href="/multiclass-setup">Setup: Multiclass</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="">Test & Deploy</a>
           <ul class="dropdown-menu">
             <li><a href="/binary-running">Run: Binary</a></li>
@@ -56,10 +49,6 @@
         <li class="mobile-section-header">Introduction</li>
         <li><a href="/getting-started">Start Here</a></li>
         <li><a href="/prompt-examples">Prompt Examples</a></li>
-        
-        <li class="mobile-section-header">Data & Training</li>
-        <li><a href="/binary-setup">Setup: Binary</a></li>
-        <li><a href="/multiclass-setup">Setup: Multiclass</a></li>
         
         <li class="mobile-section-header">Test & Deploy</li>
         <li><a href="/binary-running">Run: Binary</a></li>
@@ -88,11 +77,20 @@
         <div class="terminal-content">
           <p>
             <!-- <span class="prompt">$</span> -->
-            <span class="user-input full-text">docker pull ghcr.io/whitelightning-ai/whitelightning:latest.</span>
+            <span class="user-input full-text">docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \</span>
             <span class="user-input short-text">docker pull ghcr.io/whitelightning-ai
             </span>
             
           </p>
+
+          <p>
+            <!-- <span class="prompt">$</span> -->
+            <span class="user-input full-text"> ghcr.io/whitelightning-ai/whitelightning:latest -p="Classify customer reviews as positive or negative sentiment"</span>
+            <span class="user-input short-text">docker pull ghcr.io/whitelightning-ai
+            </span>
+
+          </p>
+
           <p>
             
             <!-- <span class="prompt">$</span> -->
@@ -123,15 +121,7 @@
             <span class="user-input full-text">whitelightning.ai %</span>
             <span class="user-input short-text"> whitelightning.ai %</span>
           </p>
-          <p>
-            <span class="ai-response full-text"> docker run --rm -v $(pwd)/output:/app/output -v $(pwd)/.env:/app/.env whitelightning:local \</span>
-            <span class="ai-response short-text">docker run --rm -v $(pwd)/output</span>
-          </p>
-          <p>
-            <span class="ai-response full-text"> -p="Classify customer reviews as positive or negative sentiment"</span>
-            <span class="ai-response short-text">-v  whitelightning:local \</span>
-          </p>
-          
+
           <p>
             <span class="ai-response full-text"> 🧠 - INFO - Generate Edge Cases: True (Target Volume per class: 5)</span>
             <span class="ai-response short-text">"p="Classify customer reviews as</span>
@@ -286,8 +276,8 @@
           <div class="terminal-circle green"></div>
         </div>
         <div class="terminal-content">
-          <p><span class="prompt"></span><span class="user-input full-text">docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env</span><span class="user-input short-text">docker run --rm -v $(pwd)/models:</span></p>
-          <p><span class="prompt"></span><span class="user-input full-text">ghcr.io/whitelightning-ai/whitelightning:latest</span><span class="user-input short-text">/app/models -v $(pwd)/.env:/app/.</span></p>
+          <p><span class="prompt"></span><span class="user-input full-text">docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE"</span><span class="user-input short-text">docker run --rm -v $(pwd)/app/models:</span></p>
+          <p><span class="prompt"></span><span class="user-input full-text">ghcr.io/whitelightning-ai/whitelightning:latest</span><span class="user-input short-text">-e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE"</span></p>
           <p><span class="prompt"></span><span class="user-input full-text">-p="Classify customer feedback as positive or negative sentiment"0</span><span class="user-input short-text">env ghcr.io/whitelightning-ai/</span></p>
           <p><span class="user-input short-text">/whitelightning:latest -p=</span></p>
           <p></span><span class="user-input short-text">"Classify customer feedback as</span></p>

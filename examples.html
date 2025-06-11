@@ -28,13 +28,6 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="">Data & Training</a>
-          <ul class="dropdown-menu">
-            <li><a href="/binary-setup">Setup: Binary</a></li>
-            <li><a href="/multiclass-setup">Setup: Multiclass</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="">Test & Deploy</a>
           <ul class="dropdown-menu">
             <li><a href="/binary-running">Run: Binary</a></li>
@@ -52,10 +45,6 @@
         <li class="mobile-section-header">Introduction</li>
         <li><a href="/getting-started">Start Here</a></li>
         <li><a id="plgr_btn" href="/prompt-examples">Prompt Examples</a></li>
-        
-        <li class="mobile-section-header">Data & Training</li>
-        <li><a href="/binary-setup">Setup: Binary</a></li>
-        <li><a href="/multiclass-setup">Setup: Multiclass</a></li>
         
         <li class="mobile-section-header">Test & Deploy</li>
         <li><a href="/binary-running">Run: Binary</a></li>
@@ -138,7 +127,7 @@
                     <div class="model-usage">
                         <p>To use any OpenRouter model, simply specify it with the <code>--data-gen-model</code> parameter:</p>
                         <pre class="code-block">
-$ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
+$ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/whitelightning-ai/whitelightning:latest \
     -p="Your prompt here" \
     --data-gen-model="openai/gpt-4" \
@@ -154,7 +143,7 @@ $ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
                         <p>🚀 <strong>Run models directly from command line</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
+$ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/whitelightning-ai/whitelightning:latest \
     -p="Detect political bias in articles" \
     --generate-edge-cases="true" \
@@ -180,7 +169,7 @@ $ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
                         <p>🌐 <strong>Train models in multiple languages</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
+$ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/whitelightning-ai/whitelightning:latest \
     -p="Classify news articles by topic" \
     --lang="spanish" \
@@ -205,7 +194,7 @@ $ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
                         <p>📊 <strong>Generate and analyze edge cases</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
+$ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/whitelightning-ai/whitelightning:latest \
     -p="Detect toxic content" \
     --generate-edge-cases="true" \
@@ -230,8 +219,7 @@ $ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
                         <p>📁 <strong>Specify custom output directory</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
-    -v $(pwd)/custom_models:/app/custom_models \
+$ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/whitelightning-ai/whitelightning:latest \
     -p="Classify customer feedback" \
     -o="./custom_models/feedback" \
@@ -255,7 +243,7 @@ $ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
                         <p>⚡ <strong>Optimized for large datasets</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
+$ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/whitelightning-ai/whitelightning:latest \
     -p="Analyze product reviews" \
     --batch-size=10 \
@@ -279,7 +267,7 @@ $ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
                         <p>✨ <strong>Quick start with minimal setup</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env \
+$ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/whitelightning-ai/whitelightning:latest \
     -p="Classify emails as spam/not spam" \
     --model-type="tensorflow" \

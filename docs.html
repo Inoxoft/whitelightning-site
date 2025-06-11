@@ -1,73 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WhiteLightning Documentation</title>
-  <link rel="icon" type="image/png" href="media/image/favicons-f07016ef02d695ba85dee5ffd3b42f39(pr-cy.ru)/favicon-32x32.png" />
-  <link rel="stylesheet" href="styles/docs.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhiteLightning Documentation</title>
+    <link rel="icon" type="image/png"
+          href="media/image/favicons-f07016ef02d695ba85dee5ffd3b42f39(pr-cy.ru)/favicon-32x32.png"/>
+    <link rel="stylesheet" href="styles/docs.css">
 </head>
 <body>
-  <header class="wl-header">
+<header class="wl-header">
     <div class="logo">
-      <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
-      <h1><a href="/" style="text-decoration: none;letter-spacing: 0px; color: inherit; ">White<span>Lightning</span></a></h1>
+        <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo">
+        <h1><a href="/" style="text-decoration: none;letter-spacing: 0px; color: inherit; ">White<span>Lightning</span></a>
+        </h1>
     </div>
     <div class="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
     <nav class="desktop-nav">
-      <ul>
-        <li class="dropdown">
-          <a href="">Introduction</a>
-          <ul class="dropdown-menu">
+        <ul>
+            <li class="dropdown">
+                <a href="">Introduction</a>
+                <ul class="dropdown-menu">
+                    <li><a id="plgr_btn" href="/getting-started">Start Here</a></li>
+                    <li><a href="/prompt-examples">Prompt Examples</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="">Test & Deploy</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/binary-running">Run: Binary</a></li>
+                    <li><a href="/multiclass-running">Run: Multiclass</a></li>
+                    <li><a href="/mobile-deployment">Deploy: iOS & Android</a></li>
+                    <li><a href="/arduino-deployment">Deploy: Arduino</a></li>
+                    <li><a href="/playground">Playground</a></li>
+                </ul>
+            </li>
+            <li><a href="https://github.com/whitelightning-ai/whitelightning.git" target="_blank">GitHub</a></li>
+        </ul>
+    </nav>
+    <nav class="mobile-nav">
+        <ul>
+            <li class="mobile-section-header">Introduction</li>
             <li><a id="plgr_btn" href="/getting-started">Start Here</a></li>
-            <li><a href="/prompt-examples">Prompt Examples</a></li>      
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="">Data & Training</a>
-          <ul class="dropdown-menu">
-            <li><a href="/binary-setup">Setup: Binary</a></li>
-            <li><a href="/multiclass-setup">Setup: Multiclass</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="">Test & Deploy</a>
-          <ul class="dropdown-menu">
+            <li><a href="/prompt-examples">Prompt Examples</a></li>
+
+            <li class="mobile-section-header">Test & Deploy</li>
             <li><a href="/binary-running">Run: Binary</a></li>
             <li><a href="/multiclass-running">Run: Multiclass</a></li>
             <li><a href="/mobile-deployment">Deploy: iOS & Android</a></li>
             <li><a href="/arduino-deployment">Deploy: Arduino</a></li>
             <li><a href="/playground">Playground</a></li>
-          </ul>
-        </li>
-        <li><a href="https://github.com/whitelightning-ai/whitelightning.git" target="_blank">GitHub</a></li>
-      </ul>
+        </ul>
     </nav>
-    <nav class="mobile-nav">
-      <ul>
-        <li class="mobile-section-header">Introduction</li>
-        <li><a id="plgr_btn" href="/getting-started">Start Here</a></li>
-        <li><a href="/prompt-examples">Prompt Examples</a></li>
-        
-        <li class="mobile-section-header">Data & Training</li>
-        <li><a href="/binary-setup">Setup: Binary</a></li>
-        <li><a href="/multiclass-setup">Setup: Multiclass</a></li>
-        
-        <li class="mobile-section-header">Test & Deploy</li>
-        <li><a href="/binary-running">Run: Binary</a></li>
-        <li><a href="/multiclass-running">Run: Multiclass</a></li>
-        <li><a href="/mobile-deployment">Deploy: iOS & Android</a></li>
-        <li><a href="/arduino-deployment">Deploy: Arduino</a></li>
-        <li><a href="/playground">Playground</a></li>
-      </ul>
-    </nav>
-  </header>
+</header>
 
-  <div class="docs-container">
+<div class="docs-container">
     <!-- <div class="docs-sidebar">
       <nav class="docs-nav">
         <ul>
@@ -102,257 +93,357 @@
     </div> -->
 
     <main class="docs-content">
-      <section id="introduction">
-        <h1><span>WhiteLightning</span> - LLM Distillation Tool</h1>
-        <div class="features-grid">
-          <div class="feature-card large-text">
-            
-            <p>WhiteLightning is a powerful tool designed to distill large language models (LLMs) into lightweight, efficient text classifiers. By leveraging advanced techniques, it simplifies the process of creating text classifiers that can run anywhere, from cloud environments to edge devices, using the ONNX format for cross-platform compatibility.</p>
-          </div>
-        </div>
-        
-        <!-- <div class="logo-container">
-          <img src="media/image/moonshiner_floppy.jpeg" alt="Moonshiner" class="logo-image">
-        </div> -->
+        <section id="introduction">
+            <h1><span>WhiteLightning</span> - LLM Distillation Tool</h1>
+            <div class="features-grid">
+                <div class="feature-card large-text">
 
-        <div class="demo-container">
-            <div class="terminal-header">
-              <div class="terminal-circle red"></div>
-              <div class="terminal-circle yellow"></div>
-              <div class="terminal-circle green"></div>
+                    <p>WhiteLightning is a powerful tool designed to distill large language models (LLMs) into
+                        lightweight, efficient text classifiers. By leveraging advanced techniques, it simplifies the
+                        process of creating text classifiers that can run anywhere, from cloud environments to edge
+                        devices, using the ONNX format for cross-platform compatibility.</p>
+                </div>
             </div>
-            <div class="terminal-content">
-              <p>
-                <!-- <span class="prompt">$ </span> -->
-                <span class="user-input full-text">whitelightning identify toxic comments in online discussions</span>
-                <span class="user-input short-text"> WL identify toxic comments!</span>
-              </p>
-              <p>
-                <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> I'll help you create a binary classifier for toxic comments detection.</span>
-                <span class="ai-response short-text">Creating a binary classifier...</span>
-              </p>
-              <p>
-                <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> First, I'll generate synthetic training data using LLM...</span>
-                <span class="ai-response short-text">Generating synthetic data...</span>
-              </p>
-              <p>
-                <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> Created 1000 examples (500 spam, 500 ham)</span>
-                <span class="ai-response short-text">Created 1000 examples</span>
-              </p>
-              <p>
-                <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> Training lightweight classifier model...</span>
-                <span class="ai-response short-text">Training model...</span>
-              </p>
-              <p>
-                <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> Model trained successfully. Accuracy: 94.2%</span>
-                <span class="ai-response short-text">Model trained. Accuracy: 94.2%</span>
-              </p>
-              <p>
-                <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> Saved model to toxic_comments_classifier.onnx (2.1MB)</span>
-                <span class="ai-response short-text">Model saved</span>
-              </p>
-              <!-- <p><span class="prompt">$ </span></p> -->
+
+            <!-- <div class="logo-container">
+              <img src="media/image/moonshiner_floppy.jpeg" alt="Moonshiner" class="logo-image">
+            </div> -->
+
+            <div class="demo-container">
+                <div class="terminal-header">
+                    <div class="terminal-circle red"></div>
+                    <div class="terminal-circle yellow"></div>
+                    <div class="terminal-circle green"></div>
+                </div>
+                <div class="terminal-content">
+                    <p>
+                        <!-- <span class="prompt">$ </span> -->
+                        <span class="user-input full-text">whitelightning identify toxic comments in online discussions</span>
+                        <span class="user-input short-text"> WL identify toxic comments!</span>
+                    </p>
+                    <p>
+                        <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> I'll help you create a binary classifier for toxic comments detection.</span>
+                        <span class="ai-response short-text">Creating a binary classifier...</span>
+                    </p>
+                    <p>
+                        <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> First, I'll generate synthetic training data using LLM...</span>
+                        <span class="ai-response short-text">Generating synthetic data...</span>
+                    </p>
+                    <p>
+                        <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> Created 1000 examples (500 spam, 500 ham)</span>
+                        <span class="ai-response short-text">Created 1000 examples</span>
+                    </p>
+                    <p>
+                        <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> Training lightweight classifier model...</span>
+                        <span class="ai-response short-text">Training model...</span>
+                    </p>
+                    <p>
+                        <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> Model trained successfully. Accuracy: 94.2%</span>
+                        <span class="ai-response short-text">Model trained. Accuracy: 94.2%</span>
+                    </p>
+                    <p>
+                        <span class="ai-response full-text"><span class="wl-label">WhiteLightning &gt;</span> Saved model to toxic_comments_classifier.onnx (2.1MB)</span>
+                        <span class="ai-response short-text">Model saved</span>
+                    </p>
+                    <!-- <p><span class="prompt">$ </span></p> -->
+                </div>
             </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="what-is-llm">
-        <!-- <h2>What is LLM Distillation?</h2> -->
-        <div class="features-grid">
-          <div class="feature-card large-text">
-            <span class="feature-icon">🧠</span>
-            <h3>What is LLM Distillation?</h3>
-            <p>LLM distillation is the process of transforming large, complex language models into smaller, task-specific models. WhiteLightning focuses on text classification, enabling users to create efficient classifiers for various use cases. This approach ensures high performance while significantly reducing computational requirements.</p>
-          </div>
-        </div>
-      </section>
+        <section id="what-is-llm">
+            <!-- <h2>What is LLM Distillation?</h2> -->
+            <div class="features-grid">
+                <div class="feature-card large-text">
+                    <span class="feature-icon">🧠</span>
+                    <h3>What is LLM Distillation?</h3>
+                    <p>LLM distillation is the process of transforming large, complex language models into smaller,
+                        task-specific models. WhiteLightning focuses on text classification, enabling users to create
+                        efficient classifiers for various use cases. This approach ensures high performance while
+                        significantly reducing computational requirements.</p>
+                </div>
+            </div>
+        </section>
 
-      <section id="why-onnx">
-        <!-- <h2>Why ONNX?</h2> -->
-        <div class="features-grid">
-          <div class="feature-card large-text">
-            <span class="feature-icon">🔄</span>
-            <h3>Why ONNX?</h3>
-            <p>WhiteLightning uses ONNX (Open Neural Network Exchange) to export trained models, making them deployable across a wide range of platforms and programming languages. With ONNX, you can run your models in Python, JavaScript, C++, Rust, and more, ensuring flexibility and scalability for your applications.</p>
-          </div>
-        </div>
-      </section>
+        <section id="why-onnx">
+            <!-- <h2>Why ONNX?</h2> -->
+            <div class="features-grid">
+                <div class="feature-card large-text">
+                    <span class="feature-icon">🔄</span>
+                    <h3>Why ONNX?</h3>
+                    <p>WhiteLightning uses ONNX (Open Neural Network Exchange) to export trained models, making them
+                        deployable across a wide range of platforms and programming languages. With ONNX, you can run
+                        your models in Python, JavaScript, C++, Rust, and more, ensuring flexibility and scalability for
+                        your applications.</p>
+                </div>
+            </div>
+        </section>
 
-      <section id="features">
-        <h2>Key Features</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <span class="feature-icon">🔢</span>
-            <h3>Multiple Model Types</h3>
-            <p>Support for binary and multiclass classification with different activation types</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🌐</span>
-            <h3>Cross-Platform Deployment</h3>
-            <p>Export models to ONNX for use in diverse environments</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">⚡</span>
-            <h3>Lightweight and Fast</h3>
-            <p>Optimized for performance with minimal resource usage</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🔧</span>
-            <h3>Customizable</h3>
-            <p>Supports multiple machine learning frameworks (TensorFlow, PyTorch, Scikit-learn)</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🌍</span>
-            <h3>Multilingual Support</h3>
-            <p>Generate training data in multiple languages</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🤖</span>
-            <h3>Automatic Configuration</h3>
-            <p>Smart prompt generation and refinement based on your task</p>
-          </div>
-        </div>
-      </section>
+        <section id="features">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🔢</span>
+                    <h3>Multiple Model Types</h3>
+                    <p>Support for binary and multiclass classification with different activation types</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🌐</span>
+                    <h3>Cross-Platform Deployment</h3>
+                    <p>Export models to ONNX for use in diverse environments</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Lightweight and Fast</h3>
+                    <p>Optimized for performance with minimal resource usage</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔧</span>
+                    <h3>Customizable</h3>
+                    <p>Supports multiple machine learning frameworks (TensorFlow, PyTorch, Scikit-learn)</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🌍</span>
+                    <h3>Multilingual Support</h3>
+                    <p>Generate training data in multiple languages</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🤖</span>
+                    <h3>Automatic Configuration</h3>
+                    <p>Smart prompt generation and refinement based on your task</p>
+                </div>
+            </div>
+        </section>
 
-      <section id="model-types">
-        <h2>Model Types</h2>
-        <div class="models-grid">
-          <div class="model-card" id="binary-classifier">
-            <h3>Binary Classifier</h3>
-            <p>Simple yes/no or true/false classification with probability output for single class. Ideal for sentiment analysis, spam detection, and content moderation.</p>
-            <a href="/binary-setup" class="button">Learn More</a>
-          </div>
-          <!-- <div class="model-card">
-            <h3>Multiclass Sigmoid</h3>
-            <p>Multi-label classification with independent class probabilities. Multiple classes can be active simultaneously. Ideal for topic tagging, emotion detection, and content categorization.</p>
-            <a href="multiclass-classifier.html" class="button">Learn More</a>
-          </div> -->
-          <div class="model-card" id="multiclass-classifier">
-            <h3>Multiclass Classifier</h3>
-            <p>Single-label classification with mutually exclusive class probabilities.Ideal for news categorization, intent classification, and language detection.</p>
-            <a href="/multiclass-setup" class="button">Learn More</a>
-          </div>
-        </div>
-      </section>
+        <section id="model-types">
+            <h2>Model Types</h2>
+            <div class="models-grid">
+                <div class="model-card" id="binary-classifier">
+                    <h3>Binary Classifier</h3>
+                    <p>Simple yes/no or true/false classification with probability output for single class. Ideal for
+                        sentiment analysis, spam detection, and content moderation.</p>
+                    <a href="/binary-running" class="button">Learn More</a>
+                </div>
+                <!-- <div class="model-card">
+                  <h3>Multiclass Sigmoid</h3>
+                  <p>Multi-label classification with independent class probabilities. Multiple classes can be active simultaneously. Ideal for topic tagging, emotion detection, and content categorization.</p>
+                  <a href="multiclass-classifier.html" class="button">Learn More</a>
+                </div> -->
+                <div class="model-card" id="multiclass-classifier">
+                    <h3>Multiclass Classifier</h3>
+                    <p>Single-label classification with mutually exclusive class probabilities.Ideal for news
+                        categorization, intent classification, and language detection.</p>
+                    <a href="/multiclass-running" class="button">Learn More</a>
+                </div>
+            </div>
+        </section>
 
-      <section id="quick-start">
-        <h2>Quick Start</h2>
-        <div class="quick-steps">
-          <div class="quick-step">
-            <p>Pull the Docker image:</p>
+        <section id="quick-start">
+            <h2>Quick Start</h2>
+            <div class="quick-steps">
+                <div class="quick-step">
+                    <p>Pull the Docker image:</p>
+                    <div class="code-block">
+                        <div class="terminal-header">
+                            <div class="terminal-circle red"></div>
+                            <div class="terminal-circle yellow"></div>
+                            <div class="terminal-circle green"></div>
+                        </div>
+                        <div class="terminal-content">
+                            <code class="full-text">docker pull ghcr.io/whitelightning-ai/whitelightning:latest</code>
+                            <code class="short-text">docker pull ghcr.io/whitelightning-ai</code>
+                            <code class="short-text">/whitelightning:latest</code>
+                        </div>
+                    </div>
+                </div>
+                <div class="quick-step">
+                    <p>Set up your environment:</p>
+                    <div class="code-block">
+                        <div class="terminal-header">
+                            <div class="terminal-circle red"></div>
+                            <div class="terminal-circle yellow"></div>
+                            <div class="terminal-circle green"></div>
+                        </div>
+                        <div class="terminal-content">
+                            <code>cp .env.example .env</code>
+                            <code># Edit .env with your API keys</code>
+                        </div>
+                    </div>
+                </div>
+                <div class="quick-step">
+                    <p>Run the classifier agent:</p>
+                    <div class="code-block">
+                        <div class="terminal-header">
+                            <div class="terminal-circle red"></div>
+                            <div class="terminal-circle yellow"></div>
+                            <div class="terminal-circle green"></div>
+                        </div>
+                        <div class="terminal-content">
+                            <code class="full-text">docker run --rm -v $(pwd):/app/models -e
+                                OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" </code>
+                            <code class="full-text">ghcr.io/whitelightning-ai/whitelightning:latest </code>
+                            <code class="full-text">-p="Classify customer feedback as positive or negative
+                                sentiment"</code>
+                            <code class="short-text">docker run --rm -v $(pwd):/app/models</code>
+                            <code class="short-text">-e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE".</code>
+                            <code class="short-text">env ghcr.io/whitelightning-ai/</code>
+                            <code class="short-text">/whitelightning:latest -p=</code>
+                            <code class="short-text">"Classify customer feedback as</code>
+                            <code class="short-text">positive or negative sentiment"</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="parameters">
+            <h2>Parameters</h2>
             <div class="code-block">
-              <div class="terminal-header">
-                <div class="terminal-circle red"></div>
-                <div class="terminal-circle yellow"></div>
-                <div class="terminal-circle green"></div>
-              </div>
-              <div class="terminal-content">
-                <code class="full-text">docker pull ghcr.io/whitelightning-ai/whitelightning:latest</code>
-                <code class="short-text">docker pull ghcr.io/whitelightning-ai</code>
-                <code class="short-text">/whitelightning:latest</code>
-              </div>
-            </div>
-          </div>
-          <div class="quick-step">
-            <p>Set up your environment:</p>
-            <div class="code-block">
-              <div class="terminal-header">
-                <div class="terminal-circle red"></div>
-                <div class="terminal-circle yellow"></div>
-                <div class="terminal-circle green"></div>
-              </div>
-              <div class="terminal-content">
-                <code>cp .env.example .env</code>
-                <code># Edit .env with your API keys</code>
-              </div>
-            </div>
-          </div>
-          <div class="quick-step">
-            <p>Run the classifier agent:</p>
-            <div class="code-block">
-              <div class="terminal-header">
-                <div class="terminal-circle red"></div>
-                <div class="terminal-circle yellow"></div>
-                <div class="terminal-circle green"></div>
-              </div>
-              <div class="terminal-content">
-                <code class="full-text">docker run --rm -v $(pwd)/models:/app/models -v $(pwd)/.env:/app/.env </code>
-                <code class="full-text">ghcr.io/whitelightning-ai/whitelightning:latest </code>
-                <code class="full-text">-p="Classify customer feedback as positive or negative sentiment"</code>
-                <code class="short-text">docker run --rm -v $(pwd)/models:</code>
-                <code class="short-text">/app/models -v $(pwd)/.env:/app/.</code>
-                <code class="short-text">env ghcr.io/whitelightning-ai/</code>
-                <code class="short-text">/whitelightning:latest -p=</code>
-                <code class="short-text">"Classify customer feedback as</code>
-                <code class="short-text">positive or negative sentiment"</code>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+                <div class="terminal-header">
+                    <div class="terminal-circle red"></div>
+                    <div class="terminal-circle yellow"></div>
+                    <div class="terminal-circle green"></div>
+                </div>
+                <pre><code>
+Parameter                   Description                                          Default
+------------------------    ------------------------------------------------     ----------------------
+-p --problem_description    Description of your classification problem           (Required)
 
-      <section id="documentation">
-        <h2>Deployment Guide</h2>
-        <div class="models-grid">
-          <div class="model-card">
-            <h3>Model Deployment</h3>
-            <p>Learn how to deploy your ONNX models across different platforms and environments for maximum flexibility.</p>
-            <a href="/multiclass-running" class="button">Multiclass</a>
-            <a href="/binary-running" class="button">Binary</a>
-            <a href="/mobile-deployment" class="button">Demos</a>
-          </div>
-          <!-- <div class="model-card">
-            <h3>API Reference</h3>
-            <p>Explore the full API documentation for integrating and extending WhiteLightning in your projects.</p>
-            <a href="#" class="button">View API Docs</a>
-          </div> -->
-        </div>
-      </section>
+--model-type                ML library to use for the classifier model           tensorflow
+                            tensorflow | torch | sklearn
 
-      <!-- <section id="contributing">
-        <h2>Contributing</h2>
-        <p>We welcome contributions! Please see our <a href="#" class="neon-link">Contributing Guide</a> for details.</p>
-        <p>This project is licensed under the MIT License - see the <a href="#" class="neon-link">LICENSE</a> file for details.</p>
-      </section> -->
+--data-gen-model            OpenRouter model name for bulk data generation       openai/gtp-4o-mini
+
+--config-llm-model          OpenRouter model for config, refinement,             x-ai/grok-3-beta
+                            edge cases, analysis (should be powerful,
+                            e.g., GPT-4, Claude Opus).",
+
+--refinement-cycles         Number of prompt refinement cycles (0 to disable).   1
+
+--generate-edge-cases       Generate challenging edge case data (true/false)     true
+
+--batch-size                Number of parallel LLM API requests for bulk data
+                            generation batches.                                  10
+
+--lang                      Primary language for the generated dataset           english
+                            (e.g., english, german, spanish, etc.).
+</code></pre>
+            </div>
+        </section>
+
+        <section id="advanced-parameters">
+            <h2>Advanced Parameters</h2>
+            <div class="code-block">
+                <div class="terminal-header">
+                    <div class="terminal-circle red"></div>
+                    <div class="terminal-circle yellow"></div>
+                    <div class="terminal-circle green"></div>
+                </div>
+                <pre><code>
+Parameter                   Description
+------------------------    ----------------------------------------------------------------------------
+--config-path               Continue from a previous configuration file. Can be used for additional data
+                            generation or retraining with user data or another library.
+
+--skip-data-gen             Skip data generation and only train the model from existing data. Works only
+                            if training_data.csv is present in the model directory and --config-path is
+                            specified.
+
+--skip-model-training       Skip model training and only generate data
+    )
+</code></pre>
+            </div>
+        </section>
+
+        <section id="output">
+            <h2>Output</h2>
+            <p>The trained model and associated files will be saved in the specified output directory:</p>
+            <div class="code-block">
+                <div class="terminal-header">
+                    <div class="terminal-circle red"></div>
+                    <div class="terminal-circle yellow"></div>
+                    <div class="terminal-circle green"></div>
+                </div>
+                <pre>
+                    <code>
+.[model_prefix]/
+    ├── api_requests/                  # API requests used for training data generation
+    ├── generation_config.json         # Configuration and analysis
+    ├── edge_case_data.csv             # Sophisticated data used for model evaluation by LLM
+    ├── model.onnx                     # ONNX model file
+    ├── scaler.json                    # StandardScaler parameters
+    ├── tokenizer.json                 # Tokenizer configuration (for softmax models)
+    ├── training_data.csv              # Training data used for model training
+    └── vocab.json                     # TF-IDF vocabulary (for sigmoid models)
+    + ... native model files .h5, .keras
+                    </code>
+                </pre>
+            </div>
+        </section>
+
+        <section id="documentation">
+            <h2>Deployment Guide</h2>
+            <div class="models-grid">
+                <div class="model-card">
+                    <h3>Model Deployment</h3>
+                    <p>Learn how to deploy your ONNX models across different platforms and environments for maximum
+                        flexibility.</p>
+                    <a href="/multiclass-running" class="button">Multiclass</a>
+                    <a href="/binary-running" class="button">Binary</a>
+                    <a href="/mobile-deployment" class="button">Demos</a>
+                </div>
+                <!-- <div class="model-card">
+                  <h3>API Reference</h3>
+                  <p>Explore the full API documentation for integrating and extending WhiteLightning in your projects.</p>
+                  <a href="#" class="button">View API Docs</a>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- <section id="contributing">
+          <h2>Contributing</h2>
+          <p>We welcome contributions! Please see our <a href="#" class="neon-link">Contributing Guide</a> for details.</p>
+          <p>This project is licensed under the MIT License - see the <a href="#" class="neon-link">LICENSE</a> file for details.</p>
+        </section> -->
     </main>
-  </div>
+</div>
 
-  <footer class="site-footer">
+<footer class="site-footer">
     <div class="footer-content container">
-      <div class="footer-brand">
-        <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo" class="footer-logo">
-        <div>
-          <div class="footer-title">WhiteLightning</div>
-          <div class="footer-desc">Create Edge‑Ready AI in One Line No Data Required</div>
+        <div class="footer-brand">
+            <img src="media/image/moonshiner_floppy.jpeg" alt="WhiteLightning Logo" class="footer-logo">
+            <div>
+                <div class="footer-title">WhiteLightning</div>
+                <div class="footer-desc">Create Edge‑Ready AI in One Line No Data Required</div>
+            </div>
         </div>
-      </div>
-      <div class="footer-columns">
-        <div class="footer-col">
-          <div class="footer-col-title">Docs & Links</div>
-          <a href="docs">Documentation</a>
-          <a href="playground">Playground</a>
-          <a href="https://github.com/whitelightning-ai/whitelightning.git" target="_blank">GitHub</a>
+        <div class="footer-columns">
+            <div class="footer-col">
+                <div class="footer-col-title">Docs & Links</div>
+                <a href="docs">Documentation</a>
+                <a href="playground">Playground</a>
+                <a href="https://github.com/whitelightning-ai/whitelightning.git" target="_blank">GitHub</a>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Resources</div>
+                <a href="docs#features">Features</a>
+                <a href="demo_mlt">Demo</a>
+                <!-- <a href="#">ONNX Format</a> -->
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Project</div>
+                <a href="https://github.com/whitelightning-ai/whitelightning/issues" target="_blank">Report Issues</a>
+                <a href="https://github.com/whitelightning-ai/whitelightning/blob/main/LICENSE"
+                   target="_blank">License</a>
+            </div>
         </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Resources</div>
-          <a href="docs#features">Features</a>
-          <a href="demo_mlt">Demo</a>
-          <!-- <a href="#">ONNX Format</a> -->
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Project</div>
-          <a href="https://github.com/whitelightning-ai/whitelightning/issues" target="_blank">Report Issues</a>
-          <a href="https://github.com/whitelightning-ai/whitelightning/blob/main/LICENSE" target="_blank">License</a>
-        </div>
-      </div>
     </div>
     <div class="footer-bottom container">
-      <span>2025 WhiteLightning Project</span>
-      <span>GPLv3</span>
-      <!-- <span>contact@whitelightning.ai</span> -->
+        <span>2025 WhiteLightning Project</span>
+        <span>GPLv3</span>
+        <!-- <span>contact@whitelightning.ai</span> -->
     </div>
-  </footer>
-  <script src="scripts/mobile-menu.js"></script>
-  <script src="scripts/router.js"></script>
+</footer>
+<script src="scripts/mobile-menu.js"></script>
+<script src="scripts/router.js"></script>
 </body>
 </html> 

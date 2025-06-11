@@ -5,8 +5,6 @@
         '/': 'index.html',
         '/getting-started': 'docs.html',
         '/prompt-examples': 'examples.html',
-        '/binary-setup': 'binary-classifier.html',
-        '/multiclass-setup': 'multiclass-classifier.html',
         '/binary-running': 'running_bnr.html',
         '/multiclass-running': 'running_mlt.html',
         '/mobile-deployment': 'demo_mlt.html',
