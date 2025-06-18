@@ -165,6 +165,7 @@
                         <button class="lang-btn" data-lang="cpp">C++</button>
                         <button class="lang-btn" data-lang="rust">Rust</button>
                         <button class="lang-btn" data-lang="java">Java</button>
+                        <button class="lang-btn" data-lang="dart">Dart</button>
                     </div>
                     <div class="terminal-content">
                         <div class="code-block active" id="python-code">
@@ -173,6 +174,14 @@
                                 
                                 <h4>📌 What is this?</h4>
                                 <p>This guide walks you through running a binary classifier ONNX model using Python, starting from scratch — including Python installation, setting up dependencies, and running the model for binary classification tasks.</p>
+
+                                <div class="choice-section">
+                                    <p><strong>Choose your path:</strong></p>
+                                    <ul>
+                                        <li>📖 <strong>Quick Guide:</strong> Follow the step-by-step tutorial below</li>
+                                        <li>🚀 <strong>Full Example:</strong> <a href="https://github.com/whitelightning-ai/whitelightning-test/tree/main/tests/binary_classifier/python" class="neon-link" target="_blank">See complete implementation with tests on GitHub</a></li>
+                                    </ul>
+                                </div>
 
                                 <h4>✅ 1. Install Python</h4>
                                 <div class="os-section">
@@ -243,8 +252,10 @@ sudo make install</code></pre>
 cd whitelightning.ai</code></pre>
                                 </div>
 
+                                
+
                                 <div class="os-section">
-                                    <h5>🟩 Choose Your Model</h5>
+                                    <h5>🟩 3 Choose Your Model</h5>
                                     <p>You have two options:</p>
                                     <ol>
                                         <li><strong>Use Pre-trained Model:</strong>
@@ -269,7 +280,7 @@ cd whitelightning.ai</code></pre>
                                     </ol>
                                 </div>
 
-                                <h4>✅ 3. Project Setup</h4>
+                                <h4>✅ 4. Project Setup</h4>
                                 <pre><code>mkdir binary_classifier_demo
 cd binary_classifier_demo</code></pre>
                                 <p>Folder structure:</p>
@@ -279,11 +290,11 @@ cd binary_classifier_demo</code></pre>
 ├── model_scaler.json
 └── run_onnx.py</code></pre>
 
-                                <h4>✅ 4. Install Required Python Libraries</h4>
+                                <h4>✅ 5. Install Required Python Libraries</h4>
                                 <pre><code>pip install onnxruntime numpy</code></pre>
                                 <p><em>On macOS or Linux, you might need to run pip3 install instead.</em></p>
 
-                                <h4>✅ 5. Prepare Supporting Files</h4>
+                                <h4>✅ 6. Prepare Supporting Files</h4>
                                 <div class="file-section">
                                     <h5>🔹 model_vocab.json (TF-IDF vocabulary)</h5>
                                     <pre><code>{
@@ -312,7 +323,7 @@ cd binary_classifier_demo</code></pre>
                                     <p>Place your trained binary classifier ONNX model here. It should accept a (1, 5000) input tensor of float32.</p>
                                 </div>
 
-                                <h4>✅ 6. Create the Python Script run_onnx.py</h4>
+                                <h4>✅ 7. Create the Python Script run_onnx.py</h4>
                                 <p>Use the code example below:</p>
                             </div>
                             <pre><code><span class="keyword">import</span> <span class="module">json</span>
@@ -363,7 +374,7 @@ probability = outputs[0][0][0]  <span class="comment"># Probability of positive 
 <span class="function">print</span>(f<span class="string">'Python ONNX output: Probability = {probability:.4f}'</span>)
 </code></pre>
 <span class="guide-section">
-    <h4>✅ 7. Run the Script</h4>
+    <h4>✅ 8. Run the Script</h4>
     <div class="os-section">
         <h5>🔷 Windows</h5>
         <pre><code>python run_onnx.py</code></pre>
@@ -373,11 +384,13 @@ probability = outputs[0][0][0]  <span class="comment"># Probability of positive 
         <pre><code>python3 run_onnx.py</code></pre>
     </div>
 
-    <h4>✅ 8. Expected Output</h4>
-    <div class="output-section">
-        <pre><code>Python ONNX output: Probability = 0.9123</code></pre>
-        <p>The output shows the probability of the positive class. In this example, the model predicted a 91.23% probability of the text belonging to the positive class. A probability above 0.5 indicates a positive classification, while below 0.5 indicates a negative classification.</p>
-    </div>
+                                    <h4>✅ 9. Expected Output</h4>
+                                <div class="output-section">
+                                    <pre><code>Python ONNX output: Probability = 0.9123</code></pre>
+                                    <p>The output shows the probability of the positive class. In this example, the model predicted a 91.23% probability of the text belonging to the positive class. A probability above 0.5 indicates a positive classification, while below 0.5 indicates a negative classification.</p>
+                                </div>
+
+
 </span>
                         </div>
                         <div class="code-block" id="javascript-code">
@@ -386,6 +399,14 @@ probability = outputs[0][0][0]  <span class="comment"># Probability of positive 
                                 
                                 <h4>📌 What is this?</h4>
                                 <p>This guide explains how to load and run binary classifier ONNX models using JavaScript and ONNX Runtime Web, covering both browser and Node.js environments.</p>
+
+                                <div class="choice-section">
+                                    <p><strong>Choose your path:</strong></p>
+                                    <ul>
+                                        <li>📖 <strong>Quick Guide:</strong> Follow the step-by-step tutorial below</li>
+                                        <li>🚀 <strong>Full Example:</strong> <a href="https://github.com/whitelightning-ai/whitelightning-test/tree/main/tests/binary_classifier/nodejs" class="neon-link" target="_blank">See complete implementation with tests on GitHub</a></li>
+                                    </ul>
+                                </div>
 
                                 <h4>✅ 1. Choose Your Runtime</h4>
                                 <p>You can run ONNX models in JavaScript in two ways:</p>
@@ -433,6 +454,8 @@ npm -v</code></pre>
                                     <pre><code>git clone https://github.com/whitelightning-ai/whitelightning.git
 cd whitelightning.ai</code></pre>
                                 </div>
+
+
 
                                 <div class="os-section">
                                     <h5>📦 Choose Your Model</h5>
@@ -575,6 +598,8 @@ python3 -m http.server</code></pre>
                                     <pre><code>JS ONNX output: Probability = 0.9123</code></pre>
                                     <p>The output shows the probability of the positive class. A probability above 0.5 indicates a positive classification, while below 0.5 indicates a negative classification.</p>
                                 </div>
+
+
                             </div>
                         </div>
                         <div class="code-block" id="c-code">
@@ -583,6 +608,14 @@ python3 -m http.server</code></pre>
                                 
                                 <h4>📌 What is this?</h4>
                                 <p>This guide explains how to load and run ONNX models using C, ONNX Runtime C API, and cJSON for JSON parsing.</p>
+
+                                <div class="choice-section">
+                                    <p><strong>Choose your path:</strong></p>
+                                    <ul>
+                                        <li>📖 <strong>Quick Guide:</strong> Follow the step-by-step tutorial below</li>
+                                        <li>🚀 <strong>Full Example:</strong> <a href="https://github.com/whitelightning-ai/whitelightning-test/tree/main/tests/binary_classifier/c" class="neon-link" target="_blank">See complete implementation with tests on GitHub</a></li>
+                                    </ul>
+                                </div>
 
                                 <h4>✅ 1. Prerequisites</h4>
                                 <div class="os-section">
@@ -846,6 +879,8 @@ cd whitelightning.ai</code></pre>
                                 <div class="output-section">
                                     <pre><code>C ONNX output: Spam (Score: 0.9123)</code></pre>
                                 </div>
+
+                                
                             </div>
                         </div>
                         <div class="code-block" id="cpp-code">
@@ -854,6 +889,14 @@ cd whitelightning.ai</code></pre>
                                 
                                 <h4>📌 What is this?</h4>
                                 <p>This guide explains how to load and run binary classifier ONNX models using C++ and ONNX Runtime C++ API, with a focus on efficient text preprocessing and model inference.</p>
+
+                                <div class="choice-section">
+                                    <p><strong>Choose your path:</strong></p>
+                                    <ul>
+                                        <li>📖 <strong>Quick Guide:</strong> Follow the step-by-step tutorial below</li>
+                                        <li>🚀 <strong>Full Example:</strong> <a href="https://github.com/whitelightning-ai/whitelightning-test/tree/main/tests/binary_classifier/cpp" class="neon-link" target="_blank">See complete implementation with tests on GitHub</a></li>
+                                    </ul>
+                                </div>
 
                                 <h4>✅ 1. Prerequisites</h4>
                                 <div class="os-section">
@@ -1021,6 +1064,8 @@ cd whitelightning.ai</code></pre>
                                     <pre><code>C++ ONNX output: Probability = 0.9123</code></pre>
                                     <p>The output shows the probability of the positive class. A probability above 0.5 indicates a positive classification, while below 0.5 indicates a negative classification.</p>
                                 </div>
+
+
                             </div>
                         </div>
                         <div class="code-block" id="rust-code">
@@ -1029,6 +1074,14 @@ cd whitelightning.ai</code></pre>
                                 
                                 <h4>📌 What is this?</h4>
                                 <p>This guide explains how to load and run binary classifier ONNX models using Rust and ONNX Runtime, with a focus on efficient text preprocessing and model inference.</p>
+
+                                <div class="choice-section">
+                                    <p><strong>Choose your path:</strong></p>
+                                    <ul>
+                                        <li>📖 <strong>Quick Guide:</strong> Follow the step-by-step tutorial below</li>
+                                        <li>🚀 <strong>Full Example:</strong> <a href="https://github.com/whitelightning-ai/whitelightning-test/tree/main/tests/binary_classifier/rust" class="neon-link" target="_blank">See complete implementation with tests on GitHub</a></li>
+                                    </ul>
+                                </div>
 
                                 <h4>✅ 1. Prerequisites</h4>
                                 <div class="os-section">
@@ -1247,6 +1300,8 @@ ndarray = "0.15"</code></pre>
 Classification: Positive</code></pre>
                                     <p>The output shows the probability of the positive class. A probability above 0.5 indicates a positive classification, while below 0.5 indicates a negative classification.</p>
                                 </div>
+
+                                
                             </div>
                         </div>
                         <div class="code-block" id="java-code">
@@ -1255,6 +1310,14 @@ Classification: Positive</code></pre>
                                 
                                 <h4>📌 What is this?</h4>
                                 <p>This guide explains how to load and run binary classifier ONNX models using Java and ONNX Runtime Java API, with a focus on efficient text preprocessing and model inference.</p>
+
+                                <div class="choice-section">
+                                    <p><strong>Choose your path:</strong></p>
+                                    <ul>
+                                        <li>📖 <strong>Quick Guide:</strong> Follow the step-by-step tutorial below</li>
+                                        <li>🚀 <strong>Full Example:</strong> <a href="https://github.com/whitelightning-ai/whitelightning-test/tree/main/tests/binary_classifier/java" class="neon-link" target="_blank">See complete implementation with tests on GitHub</a></li>
+                                    </ul>
+                                </div>
 
                                 <h4>✅ 1. Prerequisites</h4>
                                 <div class="os-section">
@@ -1479,7 +1542,338 @@ javac -version</code></pre>
 Classification: Positive</code></pre>
                                     <p>The output shows the probability of the positive class. A probability above 0.5 indicates a positive classification, while below 0.5 indicates a negative classification.</p>
                                 </div>
+
+
                             </div>
+                        </div>
+                        <div class="code-block" id="dart-code">
+                            <div class="guide-section">
+                                <h3 class="neon-green">🧠 How to Run a Binary Classifier ONNX Model with Dart</h3>
+                                
+                                <h4>📌 What is this?</h4>
+                                <p>This guide explains how to load and run binary classifier ONNX models using Dart, with comprehensive text preprocessing, system monitoring, and performance analysis.</p>
+
+                                <div class="choice-section">
+                                    <p><strong>Choose your path:</strong></p>
+                                    <ul>
+                                        <li>📖 <strong>Quick Guide:</strong> Follow the step-by-step tutorial below</li>
+                                        <li>🚀 <strong>Full Example:</strong> <a href="https://github.com/whitelightning-ai/whitelightning-test/tree/main/tests/binary_classifier/dart" class="neon-link" target="_blank">See complete implementation with tests on GitHub</a></li>
+                                    </ul>
+                                </div>
+
+                                <h4>✅ 1. Prerequisites</h4>
+                                <div class="os-section">
+                                    <h5>🔷 Dart SDK</h5>
+                                    <p>Install Dart SDK:</p>
+                                    
+                                    <h6>🪟 Windows</h6>
+                                    <pre><code>choco install dart-sdk</code></pre>
+                                    <p>Or download from: <a href="https://dart.dev/get-dart" class="neon-link">https://dart.dev/get-dart</a></p>
+                                    
+                                    <h6>🍏 macOS</h6>
+                                    <pre><code>brew tap dart-lang/dart
+brew install dart</code></pre>
+                                    
+                                    <h6>🐧 Linux</h6>
+                                    <pre><code>sudo apt-get update
+sudo apt-get install apt-transport-https
+wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list | sudo tee /etc/apt/sources.list.d/dart_stable.list
+sudo apt-get update
+sudo apt-get install dart</code></pre>
+
+                                    <p>Verify installation:</p>
+                                    <pre><code>dart --version</code></pre>
+                                </div>
+
+                                <h4>✅ 2. Project Setup</h4>
+                                <div class="os-section">
+                                    <h5>🔄 Create Flutter Project</h5>
+                                    <pre><code>flutter create binary_classifier_dart
+cd binary_classifier_dart</code></pre>
+                                </div>
+
+                                <h4>✅ 3. Project Structure</h4>
+                                <pre><code>binary_classifier_dart/
+├── lib/
+│   └── main.dart
+├── assets/
+│   ├── model.onnx
+│   ├── vocab.json
+│   └── scaler.json
+└── pubspec.yaml</code></pre>
+
+                                <h4>✅ 4. Add Dependencies</h4>
+                                <div class="file-section">
+                                    <h5>🔹 pubspec.yaml</h5>
+                                    <pre><code>name: binary_classifier_dart
+description: "Binary Classifier ONNX Test"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  onnxruntime: ^1.4.1
+  path_provider: ^2.1.2
+  image_picker: ^1.0.7
+  image: ^4.1.7
+  collection: ^1.18.0
+  http: ^1.2.0
+  shared_preferences: ^2.2.2
+  fl_chart: ^0.60.0
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - model.onnx
+    - vocab.json
+    - scaler.json</code></pre>
+                                </div>
+
+                                <h4>✅ 5. Get Your Model</h4>
+                                <div class="os-section">
+                                    <h5>🔄 Download Repository</h5>
+                                    <p>Clone our repository to get started:</p>
+                                    <pre><code>git clone https://github.com/whitelightning-ai/whitelightning.git
+cd whitelightning.ai</code></pre>
+                                </div>
+
+                                <div class="os-section">
+                                    <h5>📦 Choose Your Model</h5>
+                                    <p>You have two options:</p>
+                                    <ol>
+                                        <li><strong>Use Pre-trained Model:</strong>
+                                            <ul>
+                                                <li>Navigate to the <code>models</code> directory</li>
+                                                <li>Copy the binary classifier model files to your project:
+                                                    <ul>
+                                                        <li><code>model.onnx</code> - The ONNX model file</li>
+                                                        <li><code>vocab.json</code> - TF-IDF vocabulary</li>
+                                                        <li><code>scaler.json</code> - Feature scaling parameters</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><strong>Train Your Own Model:</strong>
+                                            <ul>
+                                                <li>Follow the training guide in the repository</li>
+                                                <li>Use the provided scripts to train a custom binary classifier</li>
+                                                <li>Export your model to ONNX format</li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </div>
+
+                                <h4>✅ 6. Dart Code Example</h4>
+                                <p>Create <code>lib/main.dart</code>:</p>
+                            </div>
+                            <pre><code><span class="keyword">import</span> <span class="string">'dart:convert'</span>;
+<span class="keyword">import</span> <span class="string">'dart:typed_data'</span>;
+<span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;
+<span class="keyword">import</span> <span class="string">'package:flutter/services.dart'</span>;
+<span class="keyword">import</span> <span class="string">'package:onnxruntime/onnxruntime.dart'</span>;
+
+<span class="keyword">class</span> <span class="class">BinaryClassifier</span> {
+  <span class="keyword">late</span> <span class="class">OrtSession</span> _session;
+  <span class="keyword">late</span> <span class="class">Map&lt;String, int&gt;</span> _vocab;
+  <span class="keyword">late</span> <span class="class">List&lt;double&gt;</span> _idf;
+  <span class="keyword">late</span> <span class="class">List&lt;double&gt;</span> _mean;
+  <span class="keyword">late</span> <span class="class">List&lt;double&gt;</span> _scale;
+
+  <span class="class">Future&lt;void&gt;</span> <span class="function">initialize</span>() <span class="keyword">async</span> {
+    <span class="comment">// Load model</span>
+    <span class="keyword">final</span> modelBytes = <span class="keyword">await</span> rootBundle.<span class="function">load</span>(<span class="string">'model.onnx'</span>);
+    <span class="keyword">final</span> sessionOptions = <span class="class">OrtSessionOptions</span>();
+    _session = <span class="class">OrtSession</span>.<span class="function">fromBuffer</span>(modelBytes.buffer.asUint8List(), sessionOptions);
+
+    <span class="comment">// Load vocabulary</span>
+    <span class="keyword">final</span> vocabString = <span class="keyword">await</span> rootBundle.<span class="function">loadString</span>(<span class="string">'vocab.json'</span>);
+    <span class="keyword">final</span> vocabData = json.<span class="function">decode</span>(vocabString);
+    _vocab = <span class="class">Map&lt;String, int&gt;</span>.<span class="function">from</span>(vocabData[<span class="string">'vocab'</span>]);
+    _idf = (vocabData[<span class="string">'idf'</span>] <span class="keyword">as</span> List).<span class="function">map</span>((e) => (e <span class="keyword">as</span> num).<span class="function">toDouble</span>()).<span class="function">toList</span>();
+
+    <span class="comment">// Load scaler</span>
+    <span class="keyword">final</span> scalerString = <span class="keyword">await</span> rootBundle.<span class="function">loadString</span>(<span class="string">'scaler.json'</span>);
+    <span class="keyword">final</span> scalerData = json.<span class="function">decode</span>(scalerString);
+    _mean = (scalerData[<span class="string">'mean'</span>] <span class="keyword">as</span> List).<span class="function">map</span>((e) => (e <span class="keyword">as</span> num).<span class="function">toDouble</span>()).<span class="function">toList</span>();
+    _scale = (scalerData[<span class="string">'scale'</span>] <span class="keyword">as</span> List).<span class="function">map</span>((e) => (e <span class="keyword">as</span> num).<span class="function">toDouble</span>()).<span class="function">toList</span>();
+  }
+
+  <span class="class">Float32List</span> <span class="function">_preprocessText</span>(<span class="class">String</span> text) {
+    <span class="keyword">final</span> tf = <span class="class">List&lt;double&gt;</span>.<span class="function">filled</span>(_vocab.length, <span class="number">0.0</span>);
+    <span class="keyword">final</span> words = text.<span class="function">toLowerCase</span>().<span class="function">split</span>(<span class="class">RegExp</span>(<span class="string">r'\s+'</span>));
+    
+    <span class="keyword">for</span> (<span class="keyword">final</span> word <span class="keyword">in</span> words) {
+      <span class="keyword">final</span> idx = _vocab[word];
+      <span class="keyword">if</span> (idx != <span class="keyword">null</span>) {
+        tf[idx] += <span class="number">1.0</span>;
+      }
+    }
+    
+    <span class="keyword">final</span> tfSum = tf.<span class="function">reduce</span>((a, b) => a + b);
+    <span class="keyword">if</span> (tfSum > <span class="number">0</span>) {
+      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i < tf.length; i++) {
+        tf[i] = tf[i] / tfSum;
+      }
+    }
+
+    <span class="keyword">final</span> tfidf = <span class="class">List&lt;double&gt;</span>.<span class="function">generate</span>(tf.length, (i) => tf[i] * _idf[i]);
+    <span class="keyword">final</span> tfidfScaled = <span class="class">List&lt;double&gt;</span>.<span class="function">generate</span>(tfidf.length, (i) => (tfidf[i] - _mean[i]) / _scale[i]);
+
+    <span class="keyword">return</span> <span class="class">Float32List</span>.<span class="function">fromList</span>(tfidfScaled);
+  }
+
+  <span class="class">Future&lt;double&gt;</span> <span class="function">predict</span>(<span class="class">String</span> text) <span class="keyword">async</span> {
+    <span class="keyword">final</span> inputVector = <span class="function">_preprocessText</span>(text);
+    <span class="keyword">final</span> inputOrt = <span class="class">OrtValueTensor</span>.<span class="function">createTensorWithDataAsFloat32List</span>(
+      [<span class="number">1</span>, inputVector.length], 
+      inputVector
+    );
+    
+    <span class="keyword">final</span> inputs = {<span class="string">'input'</span>: inputOrt};
+    <span class="keyword">final</span> runOptions = <span class="class">OrtRunOptions</span>();
+    <span class="keyword">final</span> outputs = <span class="keyword">await</span> _session.<span class="function">runAsync</span>(runOptions, inputs);
+    
+    <span class="keyword">final</span> output = outputs[<span class="number">0</span>]?.<span class="function">value</span> <span class="keyword">as</span> <span class="class">List&lt;List&lt;double&gt;&gt;</span>;
+    <span class="keyword">return</span> output[<span class="number">0</span>][<span class="number">0</span>];
+  }
+
+  <span class="keyword">void</span> <span class="function">dispose</span>() {
+    _session.<span class="function">release</span>();
+  }
+}
+
+<span class="keyword">void</span> <span class="function">main</span>() {
+  <span class="function">runApp</span>(<span class="class">MyApp</span>());
+}
+
+<span class="keyword">class</span> <span class="class">MyApp</span> <span class="keyword">extends</span> <span class="class">StatelessWidget</span> {
+  @<span class="keyword">override</span>
+  <span class="class">Widget</span> <span class="function">build</span>(<span class="class">BuildContext</span> context) {
+    <span class="keyword">return</span> <span class="class">MaterialApp</span>(
+      title: <span class="string">'Binary Classifier'</span>,
+      theme: <span class="class">ThemeData</span>(primarySwatch: <span class="class">Colors</span>.blue),
+      home: <span class="class">BinaryClassifierPage</span>(),
+    );
+  }
+}
+
+<span class="keyword">class</span> <span class="class">BinaryClassifierPage</span> <span class="keyword">extends</span> <span class="class">StatefulWidget</span> {
+  @<span class="keyword">override</span>
+  _BinaryClassifierPageState <span class="function">createState</span>() => _BinaryClassifierPageState();
+}
+
+<span class="keyword">class</span> <span class="class">_BinaryClassifierPageState</span> <span class="keyword">extends</span> <span class="class">State&lt;BinaryClassifierPage&gt;</span> {
+  <span class="keyword">final</span> _classifier = <span class="class">BinaryClassifier</span>();
+  <span class="keyword">final</span> _textController = <span class="class">TextEditingController</span>();
+  <span class="class">String</span> _result = <span class="string">''</span>;
+  <span class="keyword">bool</span> _isLoading = <span class="keyword">false</span>;
+
+  @<span class="keyword">override</span>
+  <span class="keyword">void</span> <span class="function">initState</span>() {
+    <span class="keyword">super</span>.<span class="function">initState</span>();
+    <span class="function">_initializeClassifier</span>();
+  }
+
+  <span class="class">Future&lt;void&gt;</span> <span class="function">_initializeClassifier</span>() <span class="keyword">async</span> {
+    <span class="keyword">await</span> _classifier.<span class="function">initialize</span>();
+  }
+
+  <span class="class">Future&lt;void&gt;</span> <span class="function">_classifyText</span>() <span class="keyword">async</span> {
+    <span class="function">setState</span>(() {
+      _isLoading = <span class="keyword">true</span>;
+    });
+
+    <span class="keyword">try</span> {
+      <span class="keyword">final</span> probability = <span class="keyword">await</span> _classifier.<span class="function">predict</span>(_textController.text);
+      <span class="keyword">final</span> sentiment = probability > <span class="number">0.5</span> ? <span class="string">'Positive'</span> : <span class="string">'Negative'</span>;
+      
+      <span class="function">setState</span>(() {
+        _result = <span class="string">'Prediction: $sentiment\nProbability: ${probability.toStringAsFixed(4)}'</span>;
+      });
+    } <span class="keyword">catch</span> (e) {
+      <span class="function">setState</span>(() {
+        _result = <span class="string">'Error: $e'</span>;
+      });
+    } <span class="keyword">finally</span> {
+      <span class="function">setState</span>(() {
+        _isLoading = <span class="keyword">false</span>;
+      });
+    }
+  }
+
+  @<span class="keyword">override</span>
+  <span class="keyword">void</span> <span class="function">dispose</span>() {
+    _classifier.<span class="function">dispose</span>();
+    _textController.<span class="function">dispose</span>();
+    <span class="keyword">super</span>.<span class="function">dispose</span>();
+  }
+
+  @<span class="keyword">override</span>
+  <span class="class">Widget</span> <span class="function">build</span>(<span class="class">BuildContext</span> context) {
+    <span class="keyword">return</span> <span class="class">Scaffold</span>(
+      appBar: <span class="class">AppBar</span>(title: <span class="class">Text</span>(<span class="string">'Binary Classifier'</span>)),
+      body: <span class="class">Padding</span>(
+        padding: <span class="class">EdgeInsets</span>.<span class="function">all</span>(<span class="number">16.0</span>),
+        child: <span class="class">Column</span>(
+          children: [
+            <span class="class">TextField</span>(
+              controller: _textController,
+              decoration: <span class="class">InputDecoration</span>(
+                hintText: <span class="string">'Enter text to classify'</span>,
+                border: <span class="class">OutlineInputBorder</span>(),
+              ),
+              maxLines: <span class="number">3</span>,
+            ),
+            <span class="class">SizedBox</span>(height: <span class="number">16</span>),
+            <span class="class">ElevatedButton</span>(
+              onPressed: _isLoading ? <span class="keyword">null</span> : _classifyText,
+              child: _isLoading ? <span class="class">CircularProgressIndicator</span>() : <span class="class">Text</span>(<span class="string">'Classify'</span>),
+            ),
+            <span class="class">SizedBox</span>(height: <span class="number">16</span>),
+            <span class="class">Text</span>(_result, style: <span class="class">TextStyle</span>(fontSize: <span class="number">16</span>)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+<span class="guide-section">
+    <h4>✅ 7. Run the Application</h4>
+    <div class="os-section">
+        <h5>🔷 Build and Run</h5>
+        <pre><code>dart run bin/binary_classifier.dart</code></pre>
+        <p>Or with custom text:</p>
+        <pre><code>dart run bin/binary_classifier.dart "This is a positive test message"</code></pre>
+    </div>
+
+                        <h4>✅ 8. Expected Output</h4>
+                    <div class="output-section">
+                        <pre><code>🤖 ONNX BINARY CLASSIFIER - DART IMPLEMENTATION
+📊  RESULTS:
+   🏆 Predicted Sentiment: Positive
+   📈 Confidence: 99.98% (0.9998)
+   
+   (45.0ms total - Target: <100ms)</code></pre>
+                        <p>This example shows comprehensive system monitoring and performance analysis. The Dart implementation includes detailed preprocessing steps, system information gathering, and performance benchmarking with real-time metrics.</p>
+                    </div>
+
+
+                    
+</span>
                         </div>
                         <!-- Add other language code blocks similarly -->
                     </div>
