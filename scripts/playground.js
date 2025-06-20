@@ -180,7 +180,12 @@ async function preprocessBinaryText(text, artifacts) {
     if (!artifacts.scale) throw new Error('INVALID_ARTIFACTS: Scale values are missing');
 
     const { vocab, idf, mean, scale } = artifacts;
-    const vector = new Float32Array(5000).fill(0);
+    
+    // Dynamically determine vector size from the mean/scale arrays
+    const vectorSize = mean.length;
+    console.log('🔍 Using vector size:', vectorSize);
+    
+    const vector = new Float32Array(vectorSize).fill(0);
     const words = text.toLowerCase().split(/\s+/);
     const wordCounts = Object.create(null);
     words.forEach(word => (wordCounts[word] = (wordCounts[word] || 0) + 1));
@@ -191,7 +196,7 @@ async function preprocessBinaryText(text, artifacts) {
       }
     }
 
-    for (let i = 0; i < 5000; i++) {
+    for (let i = 0; i < vectorSize; i++) {
       vector[i] = (vector[i] - mean[i]) / scale[i];
     }
     return vector;
