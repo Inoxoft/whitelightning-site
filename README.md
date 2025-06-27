@@ -8,7 +8,7 @@ WhiteLightning empowers you to create **edge-ready AI models with a single line 
 
 ---
 
-## 🌐 Main Repo
+## ⚡  Main Repo
 
 [WhiteLightning](https://github.com/Inoxoft/whitelightning) distills massive, state-of-the-art language models into lightweight, hyper-efficient text classifiers. It's a command-line tool that lets you create specialized models that run anywhere—from the cloud to the edge—using the universal ONNX format for maximum compatibility.
 
