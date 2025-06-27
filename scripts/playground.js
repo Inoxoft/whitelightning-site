@@ -206,28 +206,75 @@ async function preprocessBinaryText(text, artifacts) {
   }
 }
 
-function preprocessMulticlassText(text, tokenizer, maxLen = 30) {
+function preprocessMulticlassText(text, tokenizer, maxLen = 30, vocabBounds = null) {
   try {
     // Validate tokenizer
     if (!tokenizer || typeof tokenizer !== 'object') {
       throw new Error('INVALID_ARTIFACTS: Model tokenizer is missing or invalid');
     }
 
+    // Dynamic vocabulary bounds detection
+    let MAX_VOCAB_SIZE, MIN_VOCAB_SIZE;
+    
+    if (vocabBounds) {
+      // Use provided bounds
+      MAX_VOCAB_SIZE = vocabBounds.max;
+      MIN_VOCAB_SIZE = vocabBounds.min;
+    } else {
+      // Auto-detect bounds from tokenizer
+      const tokenIds = Object.values(tokenizer).filter(id => typeof id === 'number');
+      if (tokenIds.length > 0) {
+        MAX_VOCAB_SIZE = Math.max(...tokenIds);
+        MIN_VOCAB_SIZE = Math.min(...tokenIds);
+        console.log(`🔍 Auto-detected vocabulary bounds: [${MIN_VOCAB_SIZE}, ${MAX_VOCAB_SIZE}]`);
+      } else {
+        // Fallback to conservative bounds
+        MAX_VOCAB_SIZE = 9999;
+        MIN_VOCAB_SIZE = 0;
+        console.warn('⚠️ Could not detect vocabulary bounds, using fallback: [0, 9999]');
+      }
+    }
+    
+    const OOV_TOKEN_ID = Math.min(1, MAX_VOCAB_SIZE); // Safe fallback within bounds
+    
     const oovToken = '<OOV>';
     const words = text.toLowerCase().split(/\s+/);
+    let oovCount = 0;
+    let boundsViolationCount = 0;
+    
     let sequence = words.map(word => {
+      let tokenId;
+      
       if (tokenizer[word] !== undefined) {
-        return tokenizer[word];
+        tokenId = tokenizer[word];
+      } else if (tokenizer[oovToken] !== undefined) {
+        tokenId = tokenizer[oovToken];
+        oovCount++;
+      } else {
+        tokenId = OOV_TOKEN_ID;
+        oovCount++;
       }
-      if (tokenizer[oovToken] !== undefined) {
-        return tokenizer[oovToken];
+      
+      // Bounds checking - ensure token ID is within detected/provided range
+      if (tokenId > MAX_VOCAB_SIZE || tokenId < MIN_VOCAB_SIZE) {
+        console.warn(`⚠️ Token ID ${tokenId} for word "${word}" is out of bounds [${MIN_VOCAB_SIZE}, ${MAX_VOCAB_SIZE}]. Using OOV token.`);
+        boundsViolationCount++;
+        return OOV_TOKEN_ID;
       }
-      return 1;
+      
+      return tokenId;
     });
+    
+    // Log preprocessing statistics
+    if (oovCount > 0 || boundsViolationCount > 0) {
+      console.log(`📊 Preprocessing stats: ${oovCount} OOV tokens, ${boundsViolationCount} bounds violations`);
+    }
     
     sequence = sequence.slice(0, maxLen);
     const padded = new Array(maxLen).fill(0);
     sequence.forEach((val, idx) => (padded[idx] = val));
+    
+    console.log('🔍 Final token sequence:', padded);
     return padded;
   } catch (error) {
     console.error('❌ Multiclass preprocessing error:', error);
@@ -249,6 +296,40 @@ function isMulticlassArtifacts(artifacts) {
         artifacts &&
         artifacts.tokenizer && artifacts.labelMap
     );
+}
+
+// Helper function to detect vocabulary bounds from ONNX model metadata
+function detectVocabularyBounds(session, tokenizer) {
+    try {
+        // Try to get embedding layer info from model metadata
+        const inputMetadata = session.inputsMetadata;
+        const modelMetadata = session.modelMetadata;
+        
+        // Check if model metadata contains vocabulary size info
+        if (modelMetadata && modelMetadata.custom) {
+            const vocabSize = modelMetadata.custom.vocab_size || modelMetadata.custom.vocabulary_size;
+            if (vocabSize) {
+                console.log(`📊 Found vocabulary size in model metadata: ${vocabSize}`);
+                return { min: 0, max: parseInt(vocabSize) - 1 };
+            }
+        }
+        
+        // Fallback: analyze tokenizer vocabulary
+        if (tokenizer && typeof tokenizer === 'object') {
+            const tokenIds = Object.values(tokenizer).filter(id => typeof id === 'number');
+            if (tokenIds.length > 0) {
+                const bounds = { min: Math.min(...tokenIds), max: Math.max(...tokenIds) };
+                console.log(`📊 Detected vocabulary bounds from tokenizer: [${bounds.min}, ${bounds.max}]`);
+                return bounds;
+            }
+        }
+        
+        console.warn('⚠️ Could not detect vocabulary bounds, using conservative defaults');
+        return null;
+    } catch (error) {
+        console.warn('⚠️ Error detecting vocabulary bounds:', error.message);
+        return null;
+    }
 }
 
 async function runBinaryInference(session, text, artifacts) {
@@ -306,7 +387,9 @@ async function runMulticlassInference(session, text, artifacts) {
             labelMapKeys: Object.keys(labelMap || {})
         });
 
-        const tokenized = preprocessMulticlassText(text, tokenizer);
+        // Detect vocabulary bounds for this model
+        const vocabBounds = detectVocabularyBounds(session, tokenizer);
+        const tokenized = preprocessMulticlassText(text, tokenizer, 30, vocabBounds);
         const inputArray = new Int32Array(tokenized);
         const tensor = new ort.Tensor('int32', inputArray, [1, 30]);
         
@@ -332,9 +415,20 @@ async function runMulticlassInference(session, text, artifacts) {
         return { label, probability };
     } catch (error) {
         console.error('❌ Multiclass inference error:', error);
+        
+        // Handle specific ONNX Runtime errors
+        if (error.message && error.message.includes('indices element out of data bounds')) {
+            throw new Error('VOCABULARY_BOUNDS_ERROR: Token vocabulary mismatch with model. This usually indicates the tokenizer vocabulary contains IDs outside the model\'s embedding range. Please check your model and tokenizer compatibility.');
+        }
+        
+        if (error.message && error.message.includes('GatherV2')) {
+            throw new Error('EMBEDDING_ERROR: Model embedding layer error. This may be due to vocabulary size mismatch or corrupted model file.');
+        }
+        
         if (error.message.includes('INVALID_') || error.message.includes('MODEL_TYPE_MISMATCH')) {
             throw error;
         }
+        
         throw new Error(`Multiclass inference failed: ${error.message}`);
     }
 }
