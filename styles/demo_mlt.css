@@ -1207,5 +1207,40 @@
     width: calc(100% - 1rem);
     max-width: calc(100vw - 2rem);
   }
-} 
-  
+}
+
+.feature-card.large-text {
+  text-align: left;
+}
+
+.feature-card.large-text h3 {
+  text-align: left;
+}
+
+.feature-card.large-text p {
+  text-align: left;
+}
+
+.feature-card.large-text .demo-description {
+  text-align: left;
+}
+
+.feature-card.large-text .feature-list {
+  text-align: left;
+}
+
+.feature-card.large-text .feature-list li {
+  text-align: left;
+}
+
+.feature-card.large-text .code-block {
+  text-align: left;
+}
+
+.feature-card.large-text .code-block pre {
+  text-align: left;
+}
+
+.feature-card.large-text strong {
+  text-align: left;
+}  
