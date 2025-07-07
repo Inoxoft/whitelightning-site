@@ -14,9 +14,7 @@ const MULTICLASS_MODELS = [
 ];
 
 const MULTICLASS_SIGMOID_MODELS = [
-  { name: 'Film Genre Classifier', type: 'multiclass_sigmoid', prefix: 'film_genre_classifier', subClasses: [] },
-  { name: 'Fruit Description Classifier', type: 'multiclass_sigmoid', prefix: 'fruit_desc_classifier', subClasses: [] },
-  { name: 'Vegetable Classifier', type: 'multiclass_sigmoid', prefix: 'vegetable_classifier', subClasses: [] },
+  { name: 'News Multilabel Classifier', type: 'multiclass_sigmoid', prefix: 'news_multilabel_clf', subClasses: [], description: 'Classifies news articles into multiple categories (business, health, politics, sports, technologies)' },
 ];
 
 let selectedModelType = null;

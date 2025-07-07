@@ -1,9 +1,0 @@
-{
-  "timestamp": "2025-07-07T10:59:39.825264",
-  "model_used": "mistralai/mistral-nemo",
-  "prompt_type": "training_data",
-  "class_label": "comedy",
-  "status": "success",
-  "prompt": "Write a film review for a comedy movie packed with humor and lighthearted content. Highlight specific comedic elements such as witty dialogue, physical slapstick, dark humor, or clever satire, and express how these resonated emotionally or culturally. Occasionally blend in other genres like romance (funny romantic mishaps), drama (touching yet humorous family dynamics), or action (comedic fight scenes). Ensure diversity by covering various comedy styles (e.g., romantic comedies, buddy films, or mockumentaries) and tones (e.g., silly, sarcastic, or heartfelt). Diversify the reviewer’s voice (e.g., sarcastic critic, enthusiastic fan, or witty commentator) and include references to different cultural or demographic humor to broaden the scope.",
-  "response": "\"In 'Superbad,' Seth and Evan's hilarious misadventures in high school, from disastrous parties to awkward conversations, are a riot. Jonah Hill and Michael Cera's chemistry is pure comedic gold, with their rapid-fire wit and physical slapstick. Yet, it's the heartwarming bond between them that truly resonates, balanced perfectly with the laugh-out-loud moments. The film cleverly satirizes teenage angst and masculinity, making it a timeless comedy classic.\""
-}

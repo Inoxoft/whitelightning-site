@@ -1,9 +1,0 @@
-{
-  "timestamp": "2025-07-04T14:27:35.537259",
-  "model_used": "openai/gpt-4",
-  "prompt_type": "training_data",
-  "class_label": "onion",
-  "status": "failed",
-  "prompt": "Generate rich and varied descriptions of vegetables with a primary focus on onions. Detail their appearance (e.g., round or flattened, white/yellow/red varieties, layered structure), smell (e.g., pungent, tear-inducing), taste (e.g., sharp raw, sweet when caramelized), culinary versatility across global dishes (e.g., French onion soup, Indian curries, Mexican salsas), and cultivation tips (e.g., soil preferences, long storage life). Occasionally include cucumber, garlic, or tomato in cooking scenarios, companion planting, or food history for realistic overlaps. Enhance diversity by switching tones (e.g., humorous kitchen mishaps, detailed agricultural guides, poetic food writing) and contexts (e.g., street food stalls, ancient trade routes, nutritional studies). Mention specific types (e.g., shallots, green onions) and regional uses to broaden the scope.",
-  "response": "LLM_API_ERROR: JSONDecodeError - Expecting value: line 147 column 1 (char 803)"
-}
