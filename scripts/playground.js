@@ -242,12 +242,15 @@ async function preprocessMulticlassSigmoidText(text, artifacts) {
 
     const { vectorizer } = artifacts;
     
-    // Validate vectorizer structure
-    if (!vectorizer.vocabulary || !vectorizer.idf) {
-      throw new Error('INVALID_ARTIFACTS: Vectorizer missing vocabulary or idf');
+    // Validate vectorizer structure - handle both formats
+    const vocabulary = vectorizer.vocabulary || vectorizer.vocab;
+    const idf = vectorizer.idf;
+    
+    if (!vocabulary || !idf) {
+      throw new Error('INVALID_ARTIFACTS: Vectorizer missing vocabulary/vocab or idf');
     }
 
-    const { vocabulary, idf, max_features } = vectorizer;
+    const max_features = vectorizer.max_features;
     
     // Tokenize and count words
     const words = text.toLowerCase().split(/\s+/);

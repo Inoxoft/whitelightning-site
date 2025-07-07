@@ -210,17 +210,25 @@ class ModelUploader {
             this.addTerminalMessage(`Loading model: ${modelName}...`);
             session = this.currentSession;
 
-            artifacts = modelType === 'binary_classifier'
-                ? {
+            if (modelType === 'binary_classifier') {
+                artifacts = {
                     vocab: this.currentVocab.vocab,
                     idf: this.currentVocab.idf,
                     mean: this.currentScaler.mean || this.currentScaler.scaler_info?.params?.mean,
                     scale: this.currentScaler.scale || this.currentScaler.scaler_info?.params?.scale
-                }
-                : {
+                };
+            } else if (modelType === 'multiclass_sigmoid') {
+                artifacts = {
+                    vectorizer: this.currentVocab,
+                    classes: this.currentScaler
+                };
+            } else {
+                // multiclass_classifier
+                artifacts = {
                     tokenizer: this.currentVocab,
                     labelMap: this.currentScaler
                 };
+            }
 
             this.addTerminalMessage('Model loaded successfully! You can now start classifying text.');
             this.uploadModal.classList.add('hidden');
