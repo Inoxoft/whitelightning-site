@@ -13,6 +13,12 @@ const MULTICLASS_MODELS = [
   { name: 'Hate Speech Classifier', type: 'multiclass_classifier', prefix: 'hate_speech', subClasses: ['Deutch','English','French','Italian','Ukrainian','Russian','Spanish'], subClassLabel: 'Language' },
 ];
 
+const MULTICLASS_SIGMOID_MODELS = [
+  { name: 'Film Genre Classifier', type: 'multiclass_sigmoid', prefix: 'film_genre_classifier', subClasses: [] },
+  { name: 'Fruit Description Classifier', type: 'multiclass_sigmoid', prefix: 'fruit_desc_classifier', subClasses: [] },
+  { name: 'Vegetable Classifier', type: 'multiclass_sigmoid', prefix: 'vegetable_classifier', subClasses: [] },
+];
+
 let selectedModelType = null;
 let selectedModel = null;
 let selectedModelSubclass = null;
@@ -25,7 +31,7 @@ let messages = [];
 const initialMessages = [
   { text: 'Welcome to WhiteLightning Model Playground', isUser: false },
   { text: 'Select a model type and model to begin', isUser: false },
-  { text: 'You can try binary classification or multiclass classification', isUser: false },
+  { text: 'You can try binary, multiclass, or multiclass sigmoid classification', isUser: false },
   { text: 'Upload your own model or use our pre-trained models', isUser: false },
   { text: 'Type your text and click Classify to get started', isUser: false }
 ];
@@ -36,7 +42,8 @@ function renderModelTypeOptions() {
   const sel = $('modelTypeSelect');
   sel.innerHTML = `<option value="">Select Model Type</option>
     <option value="binary_classifier">Binary Classifier</option>
-    <option value="multiclass_classifier">Multiclass Classifier</option>`;
+    <option value="multiclass_classifier">Multiclass Classifier</option>
+    <option value="multiclass_sigmoid">Multiclass Sigmoid</option>`;
 }
 
 function renderModelOptions() {
@@ -44,6 +51,7 @@ function renderModelOptions() {
   let models = [];
   if (selectedModelType === 'binary_classifier') models = BINARY_MODELS;
   if (selectedModelType === 'multiclass_classifier') models = MULTICLASS_MODELS;
+  if (selectedModelType === 'multiclass_sigmoid') models = MULTICLASS_SIGMOID_MODELS;
   sel.innerHTML = `<option value="">Select Model</option>` +
     models.map(m => `<option value="${m.name}">${m.name}</option>`).join('');
 }
@@ -70,7 +78,7 @@ function updateChat() {
     const initialMessages = [
       'Welcome to WhiteLightning Model Playground',
       'Select a model type and model to begin',
-      'You can try binary classification or multiclass classification',
+      'You can try binary, multiclass, or multiclass sigmoid classification',
       'Upload your own model or use our pre-trained models',
       'Type your text and click Classify to get started'
     ];
@@ -155,6 +163,20 @@ async function loadMulticlassArtifacts(modelPath) {
   }
 }
 
+async function loadMulticlassSigmoidArtifacts(modelPath) {
+  try {
+    const vectorizerResp = await fetch(`${modelPath}/vocab.json`);
+    const classesResp = await fetch(`${modelPath}/scaler.json`);
+    return {
+      vectorizer: await vectorizerResp.json(),
+      classes: await classesResp.json(),
+    };
+  } catch (error) {
+    console.error('Error loading multiclass sigmoid artifacts:', error);
+    throw new Error(`Failed to load preprocessing artifacts: ${error.message}`);
+  }
+}
+
 async function preprocessBinaryText(text, artifacts) {
   try {
     // Detailed validation of artifacts
@@ -202,6 +224,64 @@ async function preprocessBinaryText(text, artifacts) {
     return vector;
   } catch (error) {
     console.error('❌ Binary preprocessing error:', error);
+    throw error;
+  }
+}
+
+async function preprocessMulticlassSigmoidText(text, artifacts) {
+  try {
+    // Validate artifacts
+    console.log('🔍 Validating multiclass sigmoid artifacts:', {
+      hasVectorizer: !!artifacts?.vectorizer,
+      hasClasses: !!artifacts?.classes,
+      vectorizerKeys: Object.keys(artifacts?.vectorizer || {}),
+      classesKeys: Object.keys(artifacts?.classes || {})
+    });
+
+    if (!artifacts || !artifacts.vectorizer || !artifacts.classes) {
+      throw new Error('INVALID_ARTIFACTS: Missing vectorizer or classes');
+    }
+
+    const { vectorizer } = artifacts;
+    
+    // Validate vectorizer structure
+    if (!vectorizer.vocabulary || !vectorizer.idf) {
+      throw new Error('INVALID_ARTIFACTS: Vectorizer missing vocabulary or idf');
+    }
+
+    const { vocabulary, idf, max_features } = vectorizer;
+    
+    // Tokenize and count words
+    const words = text.toLowerCase().split(/\s+/);
+    const wordCounts = {};
+    words.forEach(word => {
+      wordCounts[word] = (wordCounts[word] || 0) + 1;
+    });
+    
+    // Create TF-IDF vector
+    const vectorSize = max_features || Object.keys(vocabulary).length;
+    const vector = new Float32Array(vectorSize).fill(0);
+    
+    // Calculate term frequencies and apply IDF
+    const totalWords = words.length;
+    for (const [word, count] of Object.entries(wordCounts)) {
+      if (vocabulary[word] !== undefined) {
+        const termFreq = count / totalWords;
+        const idfValue = idf[vocabulary[word]] || 0;
+        vector[vocabulary[word]] = termFreq * idfValue;
+      }
+    }
+    
+    console.log('🔍 Vector created:', {
+      size: vectorSize,
+      nonZeroCount: vector.filter(v => v !== 0).length,
+      maxValue: Math.max(...vector),
+      minValue: Math.min(...vector)
+    });
+
+    return vector;
+  } catch (error) {
+    console.error('❌ Multiclass sigmoid preprocessing error:', error);
     throw error;
   }
 }
@@ -295,6 +375,13 @@ function isMulticlassArtifacts(artifacts) {
     return (
         artifacts &&
         artifacts.tokenizer && artifacts.labelMap
+    );
+}
+
+function isMulticlassSigmoidArtifacts(artifacts) {
+    return (
+        artifacts &&
+        artifacts.vectorizer && artifacts.classes
     );
 }
 
@@ -433,6 +520,78 @@ async function runMulticlassInference(session, text, artifacts) {
     }
 }
 
+async function runMulticlassSigmoidInference(session, text, artifacts) {
+    try {
+        // Validate artifacts structure first
+        if (!isMulticlassSigmoidArtifacts(artifacts)) {
+            throw new Error('MODEL_TYPE_MISMATCH_MULTICLASS_SIGMOID');
+        }
+
+        const { vectorizer, classes } = artifacts;
+        console.log('🔍 Multiclass sigmoid inference:', {
+            vectorizerKeys: Object.keys(vectorizer || {}),
+            classesKeys: Object.keys(classes || {}),
+            numClasses: Object.keys(classes).length
+        });
+
+        // Preprocess text to get TF-IDF features
+        const features = await preprocessMulticlassSigmoidText(text, artifacts);
+        
+        // Create input tensor
+        const inputName = session.inputNames[0];
+        if (!inputName) {
+            throw new Error('INVALID_SESSION: No input names found in the model');
+        }
+        
+        const feeds = {};
+        feeds[inputName] = new ort.Tensor('float32', features, [1, features.length]);
+        
+        console.log('📦 Input tensor shape:', [1, features.length]);
+        console.log('🔑 Using input name:', inputName);
+        
+        // Run inference
+        const results = await session.run(feeds);
+        const outputTensor = results[Object.keys(results)[0]];
+        const logits = outputTensor.data;
+        
+        // Apply sigmoid activation: 1 / (1 + exp(-x))
+        const probabilities = Array.from(logits).map(x => 1 / (1 + Math.exp(-x)));
+        
+        console.log('📊 Logits:', Array.from(logits));
+        console.log('📊 Probabilities:', probabilities);
+        
+        // Create predictions array
+        const predictions = [];
+        probabilities.forEach((prob, idx) => {
+            const className = classes[idx.toString()] || `Class ${idx}`;
+            const status = prob > 0.5 ? '✅' : '❌';
+            predictions.push({
+                index: idx,
+                class: className,
+                probability: prob,
+                status: status,
+                predicted: prob > 0.5
+            });
+        });
+        
+        // Sort by probability (descending)
+        predictions.sort((a, b) => b.probability - a.probability);
+        
+        return {
+            predictions: predictions,
+            topPrediction: predictions[0]
+        };
+    } catch (error) {
+        console.error('❌ Multiclass sigmoid inference error:', error);
+        
+        if (error.message.includes('INVALID_') || error.message.includes('MODEL_TYPE_MISMATCH')) {
+            throw error;
+        }
+        
+        throw new Error(`Multiclass sigmoid inference failed: ${error.message}`);
+    }
+}
+
 async function loadModel() {
   if (!selectedModel) return;
   if (selectedModel.subClasses.length && !selectedModelSubclass) return;
@@ -447,17 +606,24 @@ async function loadModel() {
     if (modelOption && modelOption.dataset.isCustom === 'true') {
       // Use the custom model data
       session = window.currentModel.session;
-      artifacts = selectedModel.type === 'binary_classifier' 
-        ? {
-            vocab: window.currentModel.vocab.vocab,
-            idf: window.currentModel.vocab.idf,
-            mean: window.currentModel.scaler.scaler_info.params.mean,
-            scale: window.currentModel.scaler.scaler_info.params.scale
-          }
-        : {
-            tokenizer: window.currentModel.vocab,
-            labelMap: window.currentModel.scaler
-          };
+      if (selectedModel.type === 'binary_classifier') {
+        artifacts = {
+          vocab: window.currentModel.vocab.vocab,
+          idf: window.currentModel.vocab.idf,
+          mean: window.currentModel.scaler.scaler_info.params.mean,
+          scale: window.currentModel.scaler.scaler_info.params.scale
+        };
+      } else if (selectedModel.type === 'multiclass_classifier') {
+        artifacts = {
+          tokenizer: window.currentModel.vocab,
+          labelMap: window.currentModel.scaler
+        };
+      } else if (selectedModel.type === 'multiclass_sigmoid') {
+        artifacts = {
+          vectorizer: window.currentModel.vocab,
+          classes: window.currentModel.scaler
+        };
+      }
     } else {
       // Load pre-trained model
       let modelPath = `../models/${selectedModel.type}/${selectedModel.prefix}`;
@@ -467,9 +633,13 @@ async function loadModel() {
 
       session = await ort.InferenceSession.create(`${modelPath}/model.onnx`);
 
-      artifacts = selectedModel.type === 'binary_classifier' 
-        ? await loadBinaryArtifacts(modelPath)
-        : await loadMulticlassArtifacts(modelPath);
+      if (selectedModel.type === 'binary_classifier') {
+        artifacts = await loadBinaryArtifacts(modelPath);
+      } else if (selectedModel.type === 'multiclass_classifier') {
+        artifacts = await loadMulticlassArtifacts(modelPath);
+      } else if (selectedModel.type === 'multiclass_sigmoid') {
+        artifacts = await loadMulticlassSigmoidArtifacts(modelPath);
+      }
     }
 
     setStatus('Model loaded', true);
@@ -506,11 +676,22 @@ async function handleClassify(e) {
   setStatus('Processing...', false);
   
   try {
-    const result = selectedModel.type === 'binary_classifier'
-      ? await runBinaryInference(session, input, artifacts)
-      : await runMulticlassInference(session, input, artifacts);
-    
-    addTerminalMessage(`Classification: ${result.label} (Score: ${result.probability.toFixed(4)})`);
+    let result;
+    if (selectedModel.type === 'binary_classifier') {
+      result = await runBinaryInference(session, input, artifacts);
+      addTerminalMessage(`Classification: ${result.label} (Score: ${result.probability.toFixed(4)})`);
+    } else if (selectedModel.type === 'multiclass_classifier') {
+      result = await runMulticlassInference(session, input, artifacts);
+      addTerminalMessage(`Classification: ${result.label} (Score: ${result.probability.toFixed(4)})`);
+    } else if (selectedModel.type === 'multiclass_sigmoid') {
+      result = await runMulticlassSigmoidInference(session, input, artifacts);
+      
+      // Display results like the Python example
+      addTerminalMessage(`⭐ Classification Results:`);
+      result.predictions.forEach(pred => {
+        addTerminalMessage(`  ${pred.status} ${pred.index}: ${pred.class} - ${pred.probability.toFixed(3)}`);
+      });
+    }
   } catch (error) {
     console.error("❌ Classification error:", error);
     addTerminalMessage(`Error: ${error.message}`, true);
@@ -534,7 +715,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const initialMessages = [
     { full: 'Welcome to WhiteLightning Model Playground', short: 'Welcome to model playground!' },
     { full: 'Select a model type and model to begin', short: 'Select model type!' },
-    { full: 'You can try binary classification or multiclass classification', short: 'Try binary or multiclass!' },
+    { full: 'You can try binary, multiclass, or multiclass sigmoid classification', short: 'Try binary, multiclass, or sigmoid!' },
     { full: 'Upload your own model or use our pre-trained models', short: 'Upload or use pre-trained!' },
     { full: 'Type your text and click Classify to get started', short: 'Type text & classify!' }
   ];
@@ -575,7 +756,11 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   
   $('modelSelect').addEventListener('change', e => {
-    const models = selectedModelType === 'binary_classifier' ? BINARY_MODELS : MULTICLASS_MODELS;
+    let models = [];
+    if (selectedModelType === 'binary_classifier') models = BINARY_MODELS;
+    else if (selectedModelType === 'multiclass_classifier') models = MULTICLASS_MODELS;
+    else if (selectedModelType === 'multiclass_sigmoid') models = MULTICLASS_SIGMOID_MODELS;
+    
     selectedModel = models.find(m => m.name === e.target.value);
     selectedModelSubclass = null;
     renderModelSubclassOptions();
