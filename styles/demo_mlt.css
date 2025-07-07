@@ -192,7 +192,7 @@
   }
   
   .demo-container {
-    text-align: center;
+    text-align: left;
     margin: var(--spacing-md) 0;
   }
   
@@ -209,7 +209,7 @@
   
   .demo-link {
     margin-top: var(--spacing-md);
-    text-align: center;
+    text-align: left;
   }
   
   .demo-link .icon {
@@ -317,7 +317,7 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 600px));
     gap: 1.5rem;
     margin-bottom: 2rem;
-    justify-content: center;
+    justify-content: start;
     width: 100%;
     box-sizing: border-box;
   }
@@ -329,7 +329,7 @@
     border: 1px solid rgba(57, 255, 20, 0.1);
     max-width: 100%;
     width: 100%;
-    margin: 0 auto;
+    margin: 0;
     box-sizing: border-box;
     overflow-wrap: break-word;
   }
@@ -861,7 +861,7 @@
   
   .mobile-demos .demo-container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0;
   }
   
   .mobile-demos .demo-gif {
@@ -873,7 +873,7 @@
   
   .mobile-demos .feature-card:first-child .demo-gif {
     width: 300px;
-    margin: 0 auto;
+    margin: 0;
     display: block;
   }  
   @media (max-width: 600px) {
