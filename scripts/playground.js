@@ -13,6 +13,7 @@ const MULTICLASS_MODELS = [
 
 const MULTICLASS_SIGMOID_MODELS = [
   { name: 'News Multilabel Classifier', type: 'multiclass_sigmoid', prefix: 'news_multilabel_clf', subClasses: [], description: 'Classifies news articles into multiple categories (business, health, politics, sports, technologies)' },
+  { name: 'Emotion Classifier', type: 'multiclass_sigmoid', prefix: 'emotion_classifier', subClasses: [], description: 'Classifies text into emotions (anger, disgust, fear, happiness, sadness, surprise)' },
 ];
 
 let selectedModelType = null;
@@ -243,39 +244,48 @@ async function preprocessMulticlassSigmoidText(text, artifacts) {
     // Validate vectorizer structure - handle both formats
     const vocabulary = vectorizer.vocabulary || vectorizer.vocab;
     const idf = vectorizer.idf;
+    const maxFeatures = vectorizer.max_features || 5000;
     
     if (!vocabulary || !idf) {
       throw new Error('INVALID_ARTIFACTS: Vectorizer missing vocabulary/vocab or idf');
     }
 
-    const max_features = vectorizer.max_features;
-    
-    // Tokenize and count words
-    const words = text.toLowerCase().split(/\s+/);
-    const wordCounts = {};
-    words.forEach(word => {
-      wordCounts[word] = (wordCounts[word] || 0) + 1;
+    console.log('🔍 Vectorizer info:', {
+      vocabSize: Object.keys(vocabulary).length,
+      maxFeatures: maxFeatures,
+      idfLength: idf.length
     });
+
+    // Reconstruct TF-IDF vectorizer properly (like sklearn)
+    // Step 1: Tokenize text (simple whitespace tokenization like sklearn's default)
+    const tokens = text.toLowerCase().split(/\s+/).filter(token => token.length > 0);
     
-    // Create TF-IDF vector
-    const vectorSize = max_features || Object.keys(vocabulary).length;
-    const vector = new Float32Array(vectorSize).fill(0);
+    // Step 2: Count term frequencies
+    const termCounts = {};
+    tokens.forEach(token => {
+      termCounts[token] = (termCounts[token] || 0) + 1;
+    });
+
+    // Step 3: Create TF-IDF vector (exactly like sklearn)
+    const vector = new Float32Array(maxFeatures).fill(0);
     
-    // Calculate term frequencies and apply IDF
-    const totalWords = words.length;
-    for (const [word, count] of Object.entries(wordCounts)) {
-      if (vocabulary[word] !== undefined) {
-        const termFreq = count / totalWords;
-        const idfValue = idf[vocabulary[word]] || 0;
-        vector[vocabulary[word]] = termFreq * idfValue;
+    // Calculate TF-IDF for each term in vocabulary
+    for (const [term, count] of Object.entries(termCounts)) {
+      if (vocabulary[term] !== undefined) {
+        const termIndex = vocabulary[term];
+        if (termIndex < maxFeatures) {
+          // TF-IDF = term_frequency * idf_weight
+          // Note: sklearn uses raw term frequency, not normalized
+          vector[termIndex] = count * idf[termIndex];
+        }
       }
     }
     
-    console.log('🔍 Vector created:', {
-      size: vectorSize,
-      nonZeroCount: vector.filter(v => v !== 0).length,
-      maxValue: Math.max(...vector),
-      minValue: Math.min(...vector)
+    console.log('🔍 TF-IDF vector stats:', {
+      shape: vector.length,
+      nonZeroFeatures: vector.filter(v => v !== 0).length,
+      maxValue: Math.max(...vector).toFixed(4),
+      minValue: Math.min(...vector).toFixed(4)
     });
 
     return vector;
@@ -533,8 +543,16 @@ async function runMulticlassSigmoidInference(session, text, artifacts) {
             numClasses: Object.keys(classes).length
         });
 
+        console.log('🎯 Running prediction...');
+        console.log('📝 Text:', text);
+
         // Preprocess text to get TF-IDF features
         const features = await preprocessMulticlassSigmoidText(text, artifacts);
+        
+        console.log('📊 TF-IDF shape:', [1, features.length]);
+        console.log('📊 Non-zero features:', features.filter(f => f !== 0).length);
+        console.log('📊 Max TF-IDF value:', Math.max(...features).toFixed(4));
+        console.log('📊 Min TF-IDF value:', Math.min(...features).toFixed(4));
         
         // Create input tensor
         const inputName = session.inputNames[0];
@@ -556,21 +574,21 @@ async function runMulticlassSigmoidInference(session, text, artifacts) {
         // Apply sigmoid activation: 1 / (1 + exp(-x))
         const probabilities = Array.from(logits).map(x => 1 / (1 + Math.exp(-x)));
         
-        console.log('📊 Logits:', Array.from(logits));
-        console.log('📊 Probabilities:', probabilities);
+        console.log('📊 Predictions (probabilities):');
         
         // Create predictions array
         const predictions = [];
         probabilities.forEach((prob, idx) => {
             const className = classes[idx.toString()] || `Class ${idx}`;
-            const status = prob > 0.5 ? '✅' : '❌';
             predictions.push({
                 index: idx,
                 class: className,
                 probability: prob,
-                status: status,
                 predicted: prob > 0.5
             });
+            
+            // Log each prediction like Python version
+            console.log(`  ${className}: ${prob.toFixed(3)}`);
         });
         
         // Sort by probability (descending)
@@ -686,9 +704,9 @@ async function handleClassify(e) {
       result = await runMulticlassSigmoidInference(session, input, artifacts);
       
       // Display results like the Python example
-      addTerminalMessage(`⭐ Classification Results:`);
+      addTerminalMessage(`📊 Predictions (probabilities):`);
       result.predictions.forEach(pred => {
-        addTerminalMessage(`  ${pred.status} ${pred.index}: ${pred.class} - ${pred.probability.toFixed(3)}`);
+        addTerminalMessage(`  ${pred.class}: ${pred.probability.toFixed(3)}`);
       });
     }
   } catch (error) {
