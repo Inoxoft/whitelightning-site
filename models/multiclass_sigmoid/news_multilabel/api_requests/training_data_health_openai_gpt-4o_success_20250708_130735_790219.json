@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-08T13:07:35.790255",
+  "model_used": "openai/gpt-4o",
+  "prompt_type": "training_data",
+  "class_label": "health",
+  "status": "success",
+  "prompt": "Write a news piece on health topics, ranging from medical research breakthroughs and disease outbreaks to mental health awareness and healthcare access issues. Maintain a clear, empathetic, and evidence-based tone, incorporating specifics like statistics, expert opinions, or affected demographics. Explore diverse angles such as global health disparities, alternative medicine, or preventive care, and blend with politics (e.g., healthcare funding), environment (e.g., climate-related health risks), or technologies (e.g., telemedicine). Avoid repetitive focus on pandemics by including lifestyle or chronic illness topics.",
+  "response": "The newly released smartphone app helps users track their fitness activities and offers personalized health tips, while also providing mental wellness exercises to improve overall well-being."
+}

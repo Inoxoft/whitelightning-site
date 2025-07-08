@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-08T13:22:29.681960",
+  "model_used": "openai/gpt-4o",
+  "prompt_type": "training_data",
+  "class_label": "wars",
+  "status": "success",
+  "prompt": "Write a news article snippet on military conflicts, humanitarian crises, or geopolitical strife, focusing on specific events like battles, peace negotiations, refugee crises, or post-war rebuilding. Use a somber, factual tone, detailing locations, factions, casualty figures, or international involvement. Ensure diversity by covering historical conflicts, ongoing wars, and potential flashpoints across different regions, with overlaps to politics (e.g., UN resolutions), environment (e.g., resource-driven conflicts), or technologies (e.g., drone warfare). Avoid repetitive focus on active combat by including stories of reconciliation or war’s societal toll.",
+  "response": "The recent peace negotiations in Geneva aimed at resolving the long-standing conflict in the Eastern region have seen representatives from both factions finally agreeing on a ceasefire, a move hailed by the United Nations as a significant step towards lasting peace. However, the humanitarian crisis remains dire with thousands of refugees still displaced, and the international community is calling for urgent aid to address the ongoing food and medical shortages in the camps."
+}

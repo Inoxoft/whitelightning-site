@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-08T13:14:32.386259",
+  "model_used": "openai/gpt-4o",
+  "prompt_type": "training_data",
+  "class_label": "sports",
+  "status": "success",
+  "prompt": "Create a news snippet about sports, encompassing a broad spectrum of events like game outcomes, athlete milestones, team controversies, or global competitions (e.g., Olympics, World Cup). Use a dynamic, enthusiastic tone and vary the focus across different sports (e.g., soccer, tennis, esports) and levels (amateur to professional). Include occasional intersections with business (e.g., endorsement deals), health (e.g., doping scandals or recovery stories), or politics (e.g., hosting rights disputes). Ensure diversity by covering underrepresented sports or cultural impacts of sports events.",
+  "response": "The thrilling finale of the World Surfing Championship saw unexpected powerhouse performances, with the young Brazilian surfer clinching victory while simultaneously announcing a major sponsorship deal with a leading sports brand, marking a significant milestone in his burgeoning career."
+}

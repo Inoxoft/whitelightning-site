@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-08T13:02:01.493930",
+  "model_used": "openai/gpt-4o",
+  "prompt_type": "training_data",
+  "class_label": "business",
+  "status": "success",
+  "prompt": "Generate a news segment on business and economic developments, covering topics like corporate strategies, market fluctuations, entrepreneurship, or labor trends. Use a professional, data-driven tone, incorporating specifics such as company names, financial figures, or industry sectors. Ensure diversity by addressing small businesses, global corporations, and emerging markets, with intersections to politics (e.g., taxation policies), technologies (e.g., fintech innovations), or sports (e.g., sports franchise economics). Avoid overemphasis on tech startups by including traditional industries or economic crises.",
+  "response": "Tesla has announced a strategic partnership with Panasonic to improve their battery technology, aiming to reduce costs by 20% and boost production before the end of 2024, while this move is expected to impact the global supply chain across the automotive and renewable energy sectors."
+}

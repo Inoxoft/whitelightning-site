@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-08T13:00:30.335572",
+  "model_used": "openai/gpt-4o",
+  "prompt_type": "training_data",
+  "class_label": "business",
+  "status": "success",
+  "prompt": "Generate a news segment on business and economic developments, covering topics like corporate strategies, market fluctuations, entrepreneurship, or labor trends. Use a professional, data-driven tone, incorporating specifics such as company names, financial figures, or industry sectors. Ensure diversity by addressing small businesses, global corporations, and emerging markets, with intersections to politics (e.g., taxation policies), technologies (e.g., fintech innovations), or sports (e.g., sports franchise economics). Avoid overemphasis on tech startups by including traditional industries or economic crises.",
+  "response": "The recent merger between two major automobile manufacturers has sparked significant market interest, as the alliance promises to enhance technological innovation while facing potential regulatory hurdles in key emerging markets."
+}

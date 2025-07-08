@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-08T13:12:00.831802",
+  "model_used": "openai/gpt-4o",
+  "prompt_type": "training_data",
+  "class_label": "politics",
+  "status": "success",
+  "prompt": "Generate a news article excerpt focused on political events, covering a wide range of topics such as elections, legislative reforms, international diplomacy, or political scandals. Use a formal, analytical tone and include specific details like political figures, government bodies, or policy impacts. Ensure diversity by addressing local, national, and global contexts, and occasionally overlap with related themes like economic policies (business), military tensions (wars), or climate regulations (environment). Avoid overly generic content by specifying unique angles, such as grassroots movements or historical political shifts.",
+  "response": "The recent summit in Geneva saw President Smith addressing the global climate crisis with a proposal that intertwines economic incentives and stringent environmental regulations. This move seeks to balance international trade policies with sustainable practices, potentially reshaping both the political landscape and economic strategies of participating nations. Meanwhile, domestic responses are polarized as opposition parties critique the bill's impact on national industries, highlighting the intersectionality of environmental issues and economic growth."
+}

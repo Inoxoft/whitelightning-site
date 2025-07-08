@@ -1,9 +1,0 @@
-{
-  "timestamp": "2025-07-07T13:16:14.332661",
-  "model_used": "mistralai/mistral-nemo",
-  "prompt_type": "training_data",
-  "class_label": "business",
-  "status": "success",
-  "prompt": "Generate a news article excerpt (3-5 sentences) focused on business topics such as corporate earnings, market trends, mergers, acquisitions, or economic policies. Include realistic details like specific company names, financial figures, or industry challenges, and ensure diversity by covering a wide range of sectors (e.g., finance, retail, energy, startups) and business scales (global corporations to small businesses). Occasionally include overlaps with politics (e.g., regulatory impacts) or technology (e.g., tech-driven market shifts), but maintain a clear emphasis on business outcomes and economic contexts.",
-  "response": "\"Apple's Q2 earnings beat expectations, with a 25% increase in services revenue, driven by strong growth in Apple Music and iCloud subscriptions. Meanwhile, Tesla's stock surged after the company reported record deliveries, exceeding analyst estimates and solidifying its position in the electric vehicle market. In other news, Amazon faced scrutiny from lawmakers over its third-party seller practices, which could potentially impact its e-commerce dominance and raise antitrust concerns.\""
-}

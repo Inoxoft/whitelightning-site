@@ -1,9 +1,0 @@
-{
-  "timestamp": "2025-07-07T13:31:15.755219",
-  "model_used": "mistralai/mistral-nemo",
-  "prompt_type": "training_data",
-  "class_label": "sports",
-  "status": "success",
-  "prompt": "Generate a news article excerpt (3-5 sentences) focused on sports news, including game outcomes, athlete performances, team updates, or major tournaments. Include realistic details such as specific sports, player or team names, and event contexts, and ensure diversity by covering a wide range of sports (e.g., mainstream like soccer, niche like archery, or esports) and levels (professional, amateur, youth). Occasionally incorporate business (e.g., sponsorship deals) or health (e.g., injury prevention) angles, but ensure the primary focus remains on sports events or achievements.",
-  "response": "\"Liverpool's Salah scores a hat-trick in their 5-0 Premier League win over Watford, while Mbappe's brace helps PSG secure a 3-1 victory in Ligue 1. Meanwhile, in the WTA Finals, Barty showcases her versatility, winning her semi-final match in straight sets, and in the NBA, Curry's 50-point performance lifts the Warriors to victory. In golf, world number one Rahm withdraws from the DP World Tour Championship due to a back injury, while in esports, Team Liquid secures a massive $3 million sponsorship deal with a sportswear giant ahead of the upcoming League of Legends World Championship. Back on the field, 16-year-old football sensation Mukuna scores two goals, helping her team win the U17 World Cup final.\""
-}

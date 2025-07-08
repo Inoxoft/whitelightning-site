@@ -12,8 +12,9 @@ const MULTICLASS_MODELS = [
 ];
 
 const MULTICLASS_SIGMOID_MODELS = [
-  { name: 'News Multilabel Classifier', type: 'multiclass_sigmoid', prefix: 'news_multilabel_clf', subClasses: [], description: 'Classifies news articles into multiple categories (business, health, politics, sports, technologies)' },
+ 
   { name: 'Emotion Classifier', type: 'multiclass_sigmoid', prefix: 'emotion_classifier', subClasses: [], description: 'Classifies text into emotions (anger, disgust, fear, happiness, sadness, surprise)' },
+  { name: 'News Multilabel Classifier', type: 'multiclass_sigmoid', prefix: 'news_multilabel', subClasses: [], description: 'Classifies news articles into multiple categories (business, health, politics, sports, technologies)' },
 ];
 
 let selectedModelType = null;
