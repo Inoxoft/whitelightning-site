@@ -243,8 +243,10 @@ async function preprocessMulticlassSigmoidText(text, artifacts) {
       throw new Error('INVALID_ARTIFACTS: Vectorizer missing vocabulary or idf');
     }
 
-    // Step 1: Tokenize text (simple whitespace tokenization like sklearn)
-    const tokens = text.toLowerCase().split(/\s+/).filter(token => token.length > 0);
+    // Step 1: Tokenize text (match sklearn's TfidfVectorizer exactly)
+    // sklearn default token_pattern: r"(?u)\b\w\w+\b" (words of 2+ chars)
+    const tokens = text.toLowerCase()
+      .match(/\b\w\w+\b/g) || [];  // Extract words of 2+ characters
     
     // Step 2: Count term frequencies
     const termCounts = {};
