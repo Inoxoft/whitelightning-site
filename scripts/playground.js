@@ -259,27 +259,45 @@ async function preprocessMulticlassSigmoidText(text, artifacts) {
     // Reconstruct TF-IDF vectorizer properly (like sklearn)
     // Step 1: Tokenize text (simple whitespace tokenization like sklearn's default)
     const tokens = text.toLowerCase().split(/\s+/).filter(token => token.length > 0);
+    console.log('📝 Tokens:', tokens);
     
     // Step 2: Count term frequencies
     const termCounts = {};
     tokens.forEach(token => {
       termCounts[token] = (termCounts[token] || 0) + 1;
     });
+    console.log('📊 Term counts:', termCounts);
 
     // Step 3: Create TF-IDF vector (exactly like sklearn)
     const vector = new Float32Array(maxFeatures).fill(0);
     
     // Calculate TF-IDF for each term in vocabulary
+    let foundTerms = 0;
     for (const [term, count] of Object.entries(termCounts)) {
       if (vocabulary[term] !== undefined) {
         const termIndex = vocabulary[term];
         if (termIndex < maxFeatures) {
           // TF-IDF = term_frequency * idf_weight
           // Note: sklearn uses raw term frequency, not normalized
-          vector[termIndex] = count * idf[termIndex];
+          const tfidfValue = count * idf[termIndex];
+          vector[termIndex] = tfidfValue;
+          foundTerms++;
+          console.log(`📊 Term "${term}": index=${termIndex}, count=${count}, idf=${idf[termIndex]?.toFixed(4)}, tfidf=${tfidfValue.toFixed(4)}`);
         }
       }
     }
+    
+    console.log(`📊 Found ${foundTerms} terms in vocabulary out of ${tokens.length} total tokens`);
+    
+    // Check vector before normalization
+    const nonZeroBeforeNorm = vector.filter(v => v !== 0).length;
+    const maxBeforeNorm = Math.max(...vector);
+    const minBeforeNorm = Math.min(...vector);
+    console.log('📊 Vector before normalization:', {
+      nonZeroFeatures: nonZeroBeforeNorm,
+      maxValue: maxBeforeNorm.toFixed(4),
+      minValue: minBeforeNorm.toFixed(4)
+    });
     
     // Step 4: Apply L2 normalization (sklearn's default)
     // Calculate L2 norm (Euclidean norm)
