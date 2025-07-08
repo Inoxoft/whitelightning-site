@@ -248,6 +248,8 @@ async function preprocessMulticlassSigmoidText(text, artifacts) {
     const tokens = text.toLowerCase()
       .match(/\b\w\w+\b/g) || [];  // Extract words of 2+ characters
     
+    console.log(`📊 Tokens found: ${tokens.length}, First 10:`, tokens.slice(0, 10));
+    
     // Step 2: Count term frequencies
     const termCounts = {};
     tokens.forEach(token => {
@@ -256,14 +258,18 @@ async function preprocessMulticlassSigmoidText(text, artifacts) {
 
     // Step 3: Create TF-IDF vector
     const vector = new Float32Array(maxFeatures).fill(0);
+    let foundInVocab = 0;
     
     // Apply TF-IDF: raw term frequency * IDF weight
     for (const [term, count] of Object.entries(termCounts)) {
       const termIndex = vocabulary[term];
       if (termIndex !== undefined && termIndex < maxFeatures) {
         vector[termIndex] = count * idf[termIndex];
+        foundInVocab++;
       }
     }
+    
+    console.log(`📊 Found ${foundInVocab} terms in vocabulary out of ${tokens.length} total tokens`);
     
     // Step 4: L2 normalization (crucial for sklearn compatibility)
     let norm = 0;
@@ -278,6 +284,8 @@ async function preprocessMulticlassSigmoidText(text, artifacts) {
         vector[i] = vector[i] / norm;
       }
     }
+    
+    console.log(`📊 TF-IDF: ${vector.filter(v => v !== 0).length} non-zero, max: ${Math.max(...vector).toFixed(4)}, norm: ${norm.toFixed(4)}`);
 
     return vector;
   } catch (error) {
