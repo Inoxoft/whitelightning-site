@@ -572,8 +572,9 @@ async function runMulticlassSigmoidInference(session, text, artifacts) {
         
         console.log('📊 Raw logits from model:', Array.from(logits));
         
-        // Apply sigmoid activation: 1 / (1 + exp(-x))
-        const probabilities = Array.from(logits).map(x => 1 / (1 + Math.exp(-x)));
+        // Model already outputs probabilities (0-1 range), not logits
+        // No need to apply sigmoid activation
+        const probabilities = Array.from(logits);
         
         console.log('📊 Predictions (probabilities):');
         
