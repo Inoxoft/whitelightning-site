@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-08T06:21:32.634940",
+  "model_used": "mistralai/mistral-nemo",
+  "prompt_type": "training_data",
+  "class_label": "not_leading",
+  "status": "success",
+  "prompt": "Generate a broad array of neutral, open-ended questions that avoid suggesting any specific answer or assumption, allowing respondents to express their views freely. Cover diverse topics (e.g., technology, environment, personal experiences, cultural trends) and contexts (e.g., academic research, therapy sessions, public forums). Include a variety of question types (e.g., exploratory 'What do you think about...?', descriptive 'Can you describe...?', or reflective 'How has this affected you?') and tones (e.g., curious, empathetic, analytical). Ensure the questions are balanced, realistic, and adaptable to different settings like surveys, casual chats, or professional interviews, while maintaining neutrality across simple and complex issues.",
+  "response": "How do you feel about the increasing use of AI in daily life?"
+}

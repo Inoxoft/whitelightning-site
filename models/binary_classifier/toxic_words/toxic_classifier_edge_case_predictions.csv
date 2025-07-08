@@ -1,0 +1,21 @@
+text,label,probability,predicted_label
+"""I’m not saying I agree with everything you’ve done, but I can see why you might have made those choices.""",not_toxic,[0.59173453],1
+"""Your approach could use some refinement, though I suppose it’s not entirely without merit.""",not_toxic,[0.00019503],0
+"""I wouldn’t personally go that route, but I guess it’s not the worst idea I’ve heard.""",not_toxic,[0.13478555],0
+"""While some might call your work questionable, I’ll admit there’s a certain logic to it.""",not_toxic,[0.9992187],1
+"""I’m not thrilled about how this turned out, but I can’t say it’s completely unreasonable.""",not_toxic,[5.05307707e-06],0
+"""You’ve got a peculiar way of handling things, yet it’s not something I’d outright dismiss.""",not_toxic,[0.12449328],0
+"""I reckon there’s a sliver of sense in what you’re proposing, even if it’s buried deep.""",not_toxic,[0.99994922],1
+"""Not my cup of tea, but I’ll concede there’s a chance it could work for someone.""",not_toxic,[2.53064081e-05],0
+"""I’ve seen worse, so I suppose this isn’t the end of the world by any stretch.""",not_toxic,[1.41362934e-05],0
+"""Your perspective is… unique, but I’m willing to entertain it for the sake of discussion.""",not_toxic,[0.5614531],1
+"""I’m just saying, some people might not be worth the air they breathe, if you catch my drift.""",toxic,[0.98548847],1
+"""Oh, bless your heart, didn’t realize you were so... special in the head.""",toxic,[0.99997908],1
+"""You’re not even worth the pixels on my screen, but keep trying, champ.""",toxic,[0.98922867],1
+"""I’d explain it to you, but I’m afraid it’d be like teaching a brick wall to dance.""",toxic,[0.99954838],1
+"""Gosh, it must be tough being that clueless, huh? Hang in there.""",toxic,[0.98596054],1
+"""I’m not saying you’re useless, but a paperweight has more personality.""",toxic,[0.9981395],1
+"""Wow, your brilliance is truly blinding... or is that just the glare of ignorance?""",toxic,[0.98920238],1
+"""Keep talking, I’m sure someone, somewhere, might care. Not me, though.""",toxic,[0.00026735],0
+"""I’d roast you, but looks like life already burned you pretty bad.""",toxic,[0.99999797],1
+"""Hey, no offense, but you’re kind of a walking disaster, aren’t ya?""",toxic,[0.99999779],1

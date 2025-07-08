@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-08T06:51:58.478808",
+  "model_used": "mistralai/mistral-nemo",
+  "prompt_type": "training_data",
+  "class_label": "sarcasm",
+  "status": "success",
+  "prompt": "Generate diverse and realistic sentences that unmistakably convey sarcasm through subtle irony, exaggerated statements, or mocking undertones. Explore a broad spectrum of contexts including workplace banter, family discussions, online debates, pop culture references, and casual friend chats. Incorporate various sarcastic styles such as dry humor, over-the-top praise, backhanded compliments, or culturally specific jabs, ensuring the tone implies the opposite of the literal meaning. Vary sentence lengths from quick witty remarks to longer, layered comments, and reflect contemporary language trends and regional nuances. Examples might include understated digs, sarcastic apologies, or ironic observations about common frustrations.",
+  "response": "\"Oh, fantastic, it's raining again. Just what this Monday needed.\""
+}

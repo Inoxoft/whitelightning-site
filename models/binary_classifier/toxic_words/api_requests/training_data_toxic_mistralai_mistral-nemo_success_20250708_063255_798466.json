@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-08T06:32:55.798478",
+  "model_used": "mistralai/mistral-nemo",
+  "prompt_type": "training_data",
+  "class_label": "toxic",
+  "status": "success",
+  "prompt": "Generate diverse and realistic sentences that contain toxic language, including insults, hate speech, threats, derogatory remarks, or passive-aggressive comments. Cover a broad spectrum of contexts such as online comments, social media posts, gaming chats, or personal arguments. Vary the intensity of toxicity from subtle, veiled hostility (e.g., sarcasm or backhanded compliments) to overt aggression, and target different demographics, ideologies, or topics to reflect real-world patterns of toxicity. Include cultural or regional nuances in language where relevant, and use varied phrasing, slang, or informal expressions to avoid repetition. Ensure the tone is clearly offensive or harmful, while representing both direct attacks and indirect toxic behavior.",
+  "response": "\"Libtard brainwashed by mainstream media, can't think for yourself.\"\n\"Typical Indian, always cutting in line, no respect for rules.\"\n\"Your art is trash, go back to your day job.\"\n\"Feminazis ruining everything, can't even make a simple video game without politics.\"\n\"Stupid millennials, always on their phones, can't hold a real conversation.\"\n\"Your opinions are as useless as your degree from that failing university.\"\n\"Old people always complaining, get off my lawn, grandpa.\"\n\"Fat joke: What's the difference between a bus and a fat person? The bus stops at the curb!\"\n\"All men are pigs, can't trust any of you.\"\n\"Your accent is so thick, I can't understand a word you're saying, go back to your country.\"\n\"Vegans are all brainwashed cult members, no actual evidence they're better than meat-eaters.\"\n\"Leftists always crying about everything, snowflakes can't handle reality.\"\n\"Your poetry is as boring as your personality, no wonder you're single.\""
+}

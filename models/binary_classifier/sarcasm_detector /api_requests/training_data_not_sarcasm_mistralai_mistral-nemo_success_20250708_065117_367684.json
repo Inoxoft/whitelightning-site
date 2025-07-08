@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-08T06:51:17.367699",
+  "model_used": "mistralai/mistral-nemo",
+  "prompt_type": "training_data",
+  "class_label": "not_sarcasm",
+  "status": "success",
+  "prompt": "Generate diverse and realistic sentences that are sincere, straightforward, and completely free of sarcasm or irony. Include a wide range of contexts such as personal reflections, professional updates, casual conversations, cultural or regional expressions, and social media posts. Cover various emotional tones like enthusiasm, concern, neutrality, or gratitude, and ensure sentence lengths vary from short and direct to longer and descriptive. Reflect modern language styles, slang, and cultural diversity, while maintaining literal and unambiguous meaning. Examples might include heartfelt compliments, factual observations, supportive statements, or genuine inquiries.",
+  "response": "\"Just landed my dream job at TechStart, can't wait to dive in!\"\n\"Tornado warning issued for our area, please take shelter immediately.\"\n\"Finally finished painting the living room, it looks amazing!\"\n\"Just tried avocado toast for the first time, it's a game changer!\"\n\"Heard some great news today, my friend's cancer is in remission!\"\n\"Heading to the gym, who wants to join me?\"\n\"Sorry I'm late, the traffic was insane tonight.\"\n\"Just watched 'Parasite' and it's one of the best films I've seen in years.\"\n\"Can't believe it's already December, where did this year go?\"\n\"Thanks for your help with the report, it's greatly appreciated.\""
+}

@@ -4,8 +4,6 @@ const BINARY_MODELS = [
   { name: 'Clickbait News Titles', type: 'binary_classifier', prefix: 'clickbait_news', subClasses: [] },
   { name: 'Toxic Words', type: 'binary_classifier', prefix: 'toxic_words', subClasses: [] },
   { name: 'Sentiment sentences', type: 'binary_classifier', prefix: 'sentiment_sentences', subClasses: [] },
-  { name: 'Pirate Speech', type: 'binary_classifier', prefix: 'pirate_speech', subClasses: [] },
-  { name: 'SMS Urgency Detector', type: 'binary_classifier', prefix: 'sms_urgency', subClasses: [] },
   { name: 'Sarcasm Detector', type: 'binary_classifier', prefix: 'sarcasm_detector', subClasses: [] },
 ];
 const MULTICLASS_MODELS = [

@@ -1,0 +1,21 @@
+text,label,probability,predicted_label
+"""Don't you think it’s obvious that this decision was the best one, considering all the evidence?""",leading,[1.33331968e-08],0
+"""Wouldn’t you agree that most people in your position would have acted the same way?""",leading,[6.90789284e-06],0
+"""Isn’t it fair to say that you must have known about the issue before it escalated?""",leading,[6.57439045e-07],0
+"""You’d probably admit that this outcome was inevitable, right?""",leading,[1.46658631e-05],0
+"""Surely, someone with your expertise couldn’t have overlooked such a critical detail, could they?""",leading,[0.0003491],0
+"""I’m guessing you’d concur that this approach aligns perfectly with the goals, don’t you?""",leading,[1.08896911e-05],0
+"""It’s hard to argue against the fact that you played a key role in this success, wouldn’t you say?""",leading,[1.81729001e-06],0
+"""Can we not all see that this was the only logical conclusion to draw from the situation?""",leading,[4.95848838e-07],0
+"""You must have realized by now that this was the superior strategy, haven’t you?""",leading,[1.19774006e-06],0
+"""Isn’t it somewhat apparent that your actions contributed to the final result, in a way?""",leading,[4.57447322e-06],0
+"""Could you share your thoughts on what might have happened during the event last night, without focusing on any specific person or action?""",not_leading,[0.84412777],1
+"""I’m curious to hear your perspective on the project timeline—how do you think it’s progressing so far?""",not_leading,[0.21499059],0
+"""What are some factors, in your view, that could influence the outcome of this situation?""",not_leading,[0.99840504],1
+"""Can you describe the general atmosphere in the room at the time, based on what you noticed?""",not_leading,[0.99994397],1
+"""Without pointing to any particular decision, what’s your take on how things have unfolded recently?""",not_leading,[0.9751932],1
+"""I’d like to know more about your experience with the process—can you walk me through your observations?""",not_leading,[0.97878832],1
+"""In a broad sense, what do you reckon contributed to the current state of affairs?""",not_leading,[0.99948895],1
+"""Might you elaborate on the context surrounding the issue, keeping it as general as possible?""",not_leading,[0.08169707],0
+"""What’s your overall impression of the circumstances, without zeroing in on any one detail?""",not_leading,[0.96525806],1
+"""Could you reflect on the matter at hand in a way that captures the bigger picture?""",not_leading,[0.00021887],0

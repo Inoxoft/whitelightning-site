@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-08T06:23:11.693617",
+  "model_used": "mistralai/mistral-nemo",
+  "prompt_type": "training_data",
+  "class_label": "clickbait",
+  "status": "success",
+  "prompt": "Generate a short news headline and a brief introductory paragraph (3-5 sentences) that exemplifies clickbait, designed to attract clicks through psychological triggers. Use a variety of tactics such as sensationalist language ('Unbelievable!'), exaggerated claims, curiosity gaps ('You’ll never guess what happened next!'), urgency ('Act now before it’s too late!'), or personalized hooks ('This could change YOUR life!'). Incorporate diverse themes like health scams, celebrity gossip, conspiracy theories, lifestyle hacks, or viral internet trends, ensuring realism by mimicking plausible but over-hyped scenarios. Vary the emotional tone—ranging from fear and outrage to excitement and intrigue—and avoid overly fantastical claims that seem entirely implausible. Include subtle variations in format, such as listicles ('Top 5 Secrets'), quizzes, or direct challenges to the reader, to reflect the wide range of clickbait styles encountered online.",
+  "response": "**Headline:** \"Shocking: Your Favorite Cereal Linked to Deadly Disease!\"\n\n**Intro:** \"You won't believe what scientists just discovered about your favorite childhood cereal. It's not just high in sugar, it might be hiding a silent killer. Find out which brands to avoid now!\""
+}

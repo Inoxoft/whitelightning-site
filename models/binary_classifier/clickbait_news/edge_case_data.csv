@@ -1,0 +1,21 @@
+text,label
+"""You might not believe what happened next in this small town story... click to find out!""",clickbait
+"""Experts are quietly talking about a breakthrough that could change everything—details inside.""",clickbait
+"""This little-known fact about your daily routine could be a game-changer. Curious?""",clickbait
+"""A surprising trend is emerging among professionals, and it’s not what you’d expect. Read more.""",clickbait
+"""Something unusual was spotted in the latest report—can you guess what it is?""",clickbait
+"""Industry insiders hint at a major shift coming soon. Are you prepared for what’s next?""",clickbait
+"""A peculiar detail in this case has everyone puzzled. Dive into the full story now.""",clickbait
+"""This seemingly ordinary update hides a twist that could impact many. Find out how.""",clickbait
+"""Whispers of an astonishing discovery are circulating—see what the fuss is about.""",clickbait
+"""There’s a subtle clue in this news that could mean big changes. Want to know more?""",clickbait
+"""Local council approves new park development after months of deliberation, with plans to include sustainable features and community spaces over the next two years.""",not_clickbait
+"""Economic report highlights a 2.3% rise in quarterly GDP, attributing growth to manufacturing sectors despite ongoing trade uncertainties.""",not_clickbait
+"""Scientists publish detailed study on climate patterns, revealing incremental shifts in regional temperatures over a 50-year period—full data available in academic journals.""",not_clickbait
+"""City hall releases 2023 budget breakdown, allocating 15% to infrastructure repairs while balancing cuts in non-essential services amid resident feedback.""",not_clickbait
+"""Historical society uncovers archived letters from 19th-century settlers, offering nuanced insights into early regional trade practices for academic review.""",not_clickbait
+"""Tech conference keynote addresses evolving cybersecurity protocols with a focus on enterprise-level encryption standards—register for detailed whitepapers.""",not_clickbait
+"""Municipal water quality tests confirm compliance with federal standards, though minor sediment fluctuations noted in quarterly assessment report.""",not_clickbait
+"""Independent audit of school district funding reveals discrepancies in allocation, prompting a formal review process to ensure transparency in expenditures.""",not_clickbait
+"""Agricultural journal outlines new irrigation techniques for arid zones, presenting statistical outcomes from a five-year field trial in select regions.""",not_clickbait
+"""Policy update from state department clarifies amendments to zoning laws, impacting small business owners with complex compliance requirements detailed in official documentation.""",not_clickbait

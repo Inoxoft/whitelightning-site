@@ -1,0 +1,21 @@
+text,label,probability,predicted_label
+"""I genuinely think this new policy is a fantastic idea, even if it took forever to roll out.""",not_sarcasm,[0.99582154],1
+"""Wow, your presentation was surprisingly well done, I almost didn’t expect it.""",not_sarcasm,[0.99657869],1
+"""I’m honestly thrilled to be stuck in traffic again today, it’s just so refreshing.""",not_sarcasm,[0.97872704],1
+"""This is, without a doubt, the best undercooked meal I’ve had in weeks.""",not_sarcasm,[0.0004309],0
+"""I sincerely appreciate how you always manage to be late to every meeting.""",not_sarcasm,[0.01952827],0
+"""I’m totally fine with the fact that my project was ignored, it’s character-building.""",not_sarcasm,[0.93359512],1
+"""I must say, your knack for forgetting deadlines is almost impressive in its consistency.""",not_sarcasm,[0.99997479],1
+"""I’m absolutely delighted to redo this entire report because of a tiny typo.""",not_sarcasm,[0.99999803],1
+"""I truly value how this app crashes right when I need it most, keeps me on my toes.""",not_sarcasm,[0.18971612],0
+"""I’m earnestly grateful for the opportunity to fix everyone else’s mistakes today.""",not_sarcasm,[0.00034106],0
+"""Oh, sure, because staying up all night to fix a printer is exactly how I wanted to spend my weekend.""",sarcasm,[0.99999171],1
+"""Wow, thanks for the brilliant advice to 'just restart it'—I never would’ve thought of that gem on my own.""",sarcasm,[0.99995226],1
+"""I’m absolutely thrilled to hear your detailed play-by-play of a game I don’t even watch.""",sarcasm,[0.99979943],1
+"""Yeah, let’s all pretend this meeting couldn’t have been an email, that sounds super productive.""",sarcasm,[0.00246422],0
+"""Gosh, I just adore how you explain the most basic things as if I’ve never used a computer before.""",sarcasm,[0.99995548],1
+"""Oh, bless your heart for thinking I needed a lecture on something I’ve done a hundred times.""",sarcasm,[0.99999648],1
+"""I’m positively overjoyed to clean up everyone else’s mess in the break room again today.""",sarcasm,[0.99994129],1
+"""Sure, let’s schedule another hour-long discussion about a decision that’s already been made, why not?""",sarcasm,[0.99071819],1
+"""I’m so grateful for your unsolicited opinion on my outfit, truly a highlight of my day.""",sarcasm,[0.99988639],1
+"""Oh, fantastic, another software update right in the middle of my deadline, couldn’t be better timing.""",sarcasm,[0.99996507],1

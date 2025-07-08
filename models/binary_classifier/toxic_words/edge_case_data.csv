@@ -1,0 +1,21 @@
+text,label
+"""I’m not saying I agree with everything you’ve done, but I can see why you might have made those choices.""",not_toxic
+"""Your approach could use some refinement, though I suppose it’s not entirely without merit.""",not_toxic
+"""I wouldn’t personally go that route, but I guess it’s not the worst idea I’ve heard.""",not_toxic
+"""While some might call your work questionable, I’ll admit there’s a certain logic to it.""",not_toxic
+"""I’m not thrilled about how this turned out, but I can’t say it’s completely unreasonable.""",not_toxic
+"""You’ve got a peculiar way of handling things, yet it’s not something I’d outright dismiss.""",not_toxic
+"""I reckon there’s a sliver of sense in what you’re proposing, even if it’s buried deep.""",not_toxic
+"""Not my cup of tea, but I’ll concede there’s a chance it could work for someone.""",not_toxic
+"""I’ve seen worse, so I suppose this isn’t the end of the world by any stretch.""",not_toxic
+"""Your perspective is… unique, but I’m willing to entertain it for the sake of discussion.""",not_toxic
+"""I’m just saying, some people might not be worth the air they breathe, if you catch my drift.""",toxic
+"""Oh, bless your heart, didn’t realize you were so... special in the head.""",toxic
+"""You’re not even worth the pixels on my screen, but keep trying, champ.""",toxic
+"""I’d explain it to you, but I’m afraid it’d be like teaching a brick wall to dance.""",toxic
+"""Gosh, it must be tough being that clueless, huh? Hang in there.""",toxic
+"""I’m not saying you’re useless, but a paperweight has more personality.""",toxic
+"""Wow, your brilliance is truly blinding... or is that just the glare of ignorance?""",toxic
+"""Keep talking, I’m sure someone, somewhere, might care. Not me, though.""",toxic
+"""I’d roast you, but looks like life already burned you pretty bad.""",toxic
+"""Hey, no offense, but you’re kind of a walking disaster, aren’t ya?""",toxic

@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-08T06:30:15.863190",
+  "model_used": "mistralai/mistral-nemo",
+  "prompt_type": "training_data",
+  "class_label": "not_toxic",
+  "status": "success",
+  "prompt": "Generate diverse and realistic sentences that are neutral, positive, or constructive in tone, representing non-toxic language across a wide range of contexts such as online comments, social media posts, workplace discussions, or casual conversations. Include varied emotional tones like enthusiasm, curiosity, empathy, or mild frustration (without hostility), and cover topics such as daily life, hobbies, current events, or personal opinions. Ensure the content remains respectful and supportive, avoiding any trace of aggression, insults, or derogatory remarks. Incorporate different communication styles (formal, informal, questioning, encouraging) and complex interactions (e.g., debates or disagreements handled respectfully) to reflect real-world diversity and challenge the classifier.",
+  "response": "\"Stock market soars on positive earnings report.\"\n\"I'm loving this new book, can't wait to discuss it with friends.\"\n\"Let's collaborate on this project, I think it'll be a great success!\"\n\"Sorry to hear about your loss. If you need to talk, I'm here for you.\"\n\"I disagree, but let's keep an open mind and hear each other out.\"\n\"Just tried the new café downtown, highly recommend!\"\n\"I'm curious, what's your take on the latest policy change?\"\n\"Wow, that's impressive! Keep up the good work.\"\n\"We should organize another charity event, it was such a success last time.\"\n\"Frustrating day at work, but at least the weekend's coming up.\""
+}

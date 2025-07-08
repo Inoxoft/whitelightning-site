@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-08T06:29:14.303602",
+  "model_used": "mistralai/mistral-nemo",
+  "prompt_type": "training_data",
+  "class_label": "not_clickbait",
+  "status": "success",
+  "prompt": "Generate a short news headline and a brief introductory paragraph (3-5 sentences) that represents a legitimate, non-clickbait news article with a professional journalistic approach. Focus on factual, balanced reporting with a neutral or objective tone, providing specific details like dates, locations, or data to enhance credibility, without resorting to hype or emotional manipulation. Cover a broad spectrum of topics including global crises, scientific breakthroughs, economic updates, cultural events, or community stories, and vary the depth of coverage—some as breaking news summaries, others as in-depth analyses or human-interest features. Avoid vague statements, sensational hooks, or unresolved cliffhangers, ensuring the content feels complete and informative. Incorporate diverse journalistic styles, such as analytical pieces, interviews, or policy-focused reports, to reflect the range of authentic news content.",
+  "response": "1. **Headline:** NASA's Perseverance Rover Collects First Martian Rock Sample\n   **Intro:** On September 6, 2021, NASA's Perseverance rover successfully collected its first Martian rock sample, a significant milestone in humanity's quest to explore the Red Planet further. The sample, a core of rock collected from an outcrop in the Jezero crater, will be stored by the rover for future retrieval by another mission."
+}
