@@ -281,11 +281,27 @@ async function preprocessMulticlassSigmoidText(text, artifacts) {
       }
     }
     
-    console.log('🔍 TF-IDF vector stats:', {
+    // Step 4: Apply L2 normalization (sklearn's default)
+    // Calculate L2 norm (Euclidean norm)
+    let norm = 0;
+    for (let i = 0; i < vector.length; i++) {
+      norm += vector[i] * vector[i];
+    }
+    norm = Math.sqrt(norm);
+    
+    // Normalize the vector (avoid division by zero)
+    if (norm > 0) {
+      for (let i = 0; i < vector.length; i++) {
+        vector[i] = vector[i] / norm;
+      }
+    }
+    
+    console.log('🔍 TF-IDF vector stats (after normalization):', {
       shape: vector.length,
       nonZeroFeatures: vector.filter(v => v !== 0).length,
       maxValue: Math.max(...vector).toFixed(4),
-      minValue: Math.min(...vector).toFixed(4)
+      minValue: Math.min(...vector).toFixed(4),
+      l2Norm: norm.toFixed(4)
     });
 
     return vector;
