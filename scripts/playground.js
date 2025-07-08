@@ -228,99 +228,54 @@ async function preprocessBinaryText(text, artifacts) {
 async function preprocessMulticlassSigmoidText(text, artifacts) {
   try {
     // Validate artifacts
-    console.log('🔍 Validating multiclass sigmoid artifacts:', {
-      hasVectorizer: !!artifacts?.vectorizer,
-      hasClasses: !!artifacts?.classes,
-      vectorizerKeys: Object.keys(artifacts?.vectorizer || {}),
-      classesKeys: Object.keys(artifacts?.classes || {})
-    });
-
     if (!artifacts || !artifacts.vectorizer || !artifacts.classes) {
       throw new Error('INVALID_ARTIFACTS: Missing vectorizer or classes');
     }
 
     const { vectorizer } = artifacts;
     
-    // Validate vectorizer structure - handle both formats
+    // Handle both vocabulary formats
     const vocabulary = vectorizer.vocabulary || vectorizer.vocab;
     const idf = vectorizer.idf;
     const maxFeatures = vectorizer.max_features || 5000;
     
     if (!vocabulary || !idf) {
-      throw new Error('INVALID_ARTIFACTS: Vectorizer missing vocabulary/vocab or idf');
+      throw new Error('INVALID_ARTIFACTS: Vectorizer missing vocabulary or idf');
     }
 
-    console.log('🔍 Vectorizer info:', {
-      vocabSize: Object.keys(vocabulary).length,
-      maxFeatures: maxFeatures,
-      idfLength: idf.length
-    });
-
-    // Reconstruct TF-IDF vectorizer properly (like sklearn)
-    // Step 1: Tokenize text (simple whitespace tokenization like sklearn's default)
+    // Step 1: Tokenize text (simple whitespace tokenization like sklearn)
     const tokens = text.toLowerCase().split(/\s+/).filter(token => token.length > 0);
-    console.log('📝 Tokens:', tokens);
     
     // Step 2: Count term frequencies
     const termCounts = {};
     tokens.forEach(token => {
       termCounts[token] = (termCounts[token] || 0) + 1;
     });
-    console.log('📊 Term counts:', termCounts);
 
-    // Step 3: Create TF-IDF vector (exactly like sklearn)
+    // Step 3: Create TF-IDF vector
     const vector = new Float32Array(maxFeatures).fill(0);
     
-    // Calculate TF-IDF for each term in vocabulary
-    let foundTerms = 0;
+    // Apply TF-IDF: raw term frequency * IDF weight
     for (const [term, count] of Object.entries(termCounts)) {
-      if (vocabulary[term] !== undefined) {
-        const termIndex = vocabulary[term];
-        if (termIndex < maxFeatures) {
-          // TF-IDF = term_frequency * idf_weight
-          // Note: sklearn uses raw term frequency, not normalized
-          const tfidfValue = count * idf[termIndex];
-          vector[termIndex] = tfidfValue;
-          foundTerms++;
-          console.log(`📊 Term "${term}": index=${termIndex}, count=${count}, idf=${idf[termIndex]?.toFixed(4)}, tfidf=${tfidfValue.toFixed(4)}`);
-        }
+      const termIndex = vocabulary[term];
+      if (termIndex !== undefined && termIndex < maxFeatures) {
+        vector[termIndex] = count * idf[termIndex];
       }
     }
     
-    console.log(`📊 Found ${foundTerms} terms in vocabulary out of ${tokens.length} total tokens`);
-    
-    // Check vector before normalization
-    const nonZeroBeforeNorm = vector.filter(v => v !== 0).length;
-    const maxBeforeNorm = Math.max(...vector);
-    const minBeforeNorm = Math.min(...vector);
-    console.log('📊 Vector before normalization:', {
-      nonZeroFeatures: nonZeroBeforeNorm,
-      maxValue: maxBeforeNorm.toFixed(4),
-      minValue: minBeforeNorm.toFixed(4)
-    });
-    
-    // Step 4: Apply L2 normalization (sklearn's default)
-    // Calculate L2 norm (Euclidean norm)
+    // Step 4: L2 normalization (crucial for sklearn compatibility)
     let norm = 0;
     for (let i = 0; i < vector.length; i++) {
       norm += vector[i] * vector[i];
     }
     norm = Math.sqrt(norm);
     
-    // Normalize the vector (avoid division by zero)
+    // Normalize only if norm > 0
     if (norm > 0) {
       for (let i = 0; i < vector.length; i++) {
         vector[i] = vector[i] / norm;
       }
     }
-    
-    console.log('🔍 TF-IDF vector stats (after normalization):', {
-      shape: vector.length,
-      nonZeroFeatures: vector.filter(v => v !== 0).length,
-      maxValue: Math.max(...vector).toFixed(4),
-      minValue: Math.min(...vector).toFixed(4),
-      l2Norm: norm.toFixed(4)
-    });
 
     return vector;
   } catch (error) {
@@ -604,6 +559,8 @@ async function runMulticlassSigmoidInference(session, text, artifacts) {
         const results = await session.run(feeds);
         const outputTensor = results[Object.keys(results)[0]];
         const logits = outputTensor.data;
+        
+        console.log('📊 Raw logits from model:', Array.from(logits));
         
         // Apply sigmoid activation: 1 / (1 + exp(-x))
         const probabilities = Array.from(logits).map(x => 1 / (1 + Math.exp(-x)));
