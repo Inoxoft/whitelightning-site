@@ -109,8 +109,14 @@
             <span class="user-input short-text">as positive or negative sentiment"
             </span>
           </p>
-          
         </div>
+        <button class="copy-btn" onclick="copyDockerCommand()" title="Copy Docker command">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor" stroke-width="2" fill="none"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+          <span class="copy-text">Copy</span>
+        </button>
       </div>
       <div>
         
@@ -345,6 +351,53 @@
         terminalContent.scrollLeft = terminalContent.scrollWidth;
       }
     }
+    
+    function copyDockerCommand() {
+      // Get the full Docker command from the full-text spans
+      const fullTextSpans = document.querySelectorAll('.terminal-content .full-text');
+      let dockerCommand = '';
+      
+      fullTextSpans.forEach(span => {
+        dockerCommand += span.textContent;
+      });
+      
+      // Clean up the command (remove extra spaces and format properly)
+      dockerCommand = dockerCommand.trim().replace(/\s+/g, ' ');
+      
+      // Copy to clipboard
+      navigator.clipboard.writeText(dockerCommand).then(() => {
+        // Show success feedback
+        const btn = document.querySelector('.copy-btn');
+        const originalText = btn.querySelector('.copy-text').textContent;
+        
+        btn.classList.add('copied');
+        btn.querySelector('.copy-text').textContent = 'Copied!';
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.querySelector('.copy-text').textContent = originalText;
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = dockerCommand;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        // Show success feedback
+        const btn = document.querySelector('.copy-btn');
+        const originalText = btn.querySelector('.copy-text').textContent;
+        btn.querySelector('.copy-text').textContent = 'Copied!';
+        setTimeout(() => {
+          btn.querySelector('.copy-text').textContent = originalText;
+        }, 2000);
+      });
+    }
+    
     window.addEventListener('DOMContentLoaded', scrollTerminalToEnd);
   </script>
 </body>

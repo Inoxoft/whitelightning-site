@@ -1164,3 +1164,62 @@ header h1 {
 .mobile-nav .mobile-section-header:first-child {
   margin-top: 0;
 }  
+
+/* Copy button styles */
+.terminal-demo {
+  position: relative;
+}
+
+.copy-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #39ff14;
+  border-radius: 6px;
+  color: #39ff14;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+  z-index: 10;
+}
+
+.copy-btn:hover {
+  opacity: 1;
+  background: rgba(57, 255, 20, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(57, 255, 20, 0.2);
+}
+
+.copy-btn:active {
+  transform: translateY(0);
+}
+
+.copy-btn svg {
+  color: #39ff14;
+  transition: color 0.3s ease;
+}
+
+.copy-btn:hover svg {
+  color: #fff;
+}
+
+.copy-btn .copy-text {
+  font-weight: 500;
+}
+
+/* Success state for copy button */
+.copy-btn.copied {
+  background: rgba(57, 255, 20, 0.2);
+  border-color: #39ff14;
+}
+
+.copy-btn.copied .copy-text {
+  color: #fff;
+}  
