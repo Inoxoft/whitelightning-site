@@ -353,16 +353,9 @@
     }
     
     function copyDockerCommand() {
-      // Get the full Docker command from the full-text spans
-      const fullTextSpans = document.querySelectorAll('.terminal-content .full-text');
-      let dockerCommand = '';
-      
-      fullTextSpans.forEach(span => {
-        dockerCommand += span.textContent;
-      });
-      
-      // Clean up the command (remove extra spaces and format properly)
-      dockerCommand = dockerCommand.trim().replace(/\s+/g, ' ');
+      // Build the properly formatted Docker command with line breaks
+      const dockerCommand = `docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \\
+ghcr.io/inoxoft/whitelightning:latest -p="Classify customer reviews as positive or negative sentiment"`;
       
       // Copy to clipboard
       navigator.clipboard.writeText(dockerCommand).then(() => {
