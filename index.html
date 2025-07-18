@@ -360,8 +360,12 @@
     
     function copyDockerCommand() {
       // Build the properly formatted Docker command with line breaks
-      const dockerCommand = `docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \\
-ghcr.io/inoxoft/whitelightning:latest -p "Classify customer reviews as positive or negative sentiment"`;
+      const dockerCommand = `docker run --rm \\
+    -v "$(pwd)":/app/models \\
+    -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \\
+    ghcr.io/inoxoft/whitelightning:latest \\
+    python -m text_classifier.agent \\
+    -p "Classify news topics into categories: Politics, Business"`;
       
       // Copy to clipboard
       navigator.clipboard.writeText(dockerCommand).then(() => {
