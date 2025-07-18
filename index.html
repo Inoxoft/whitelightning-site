@@ -85,7 +85,7 @@
 
           <p>
             <!-- <span class="prompt">$</span> -->
-            <span class="user-input full-text"> ghcr.io/inoxoft/whitelightning:latest python -m text_classifier.agent \</span>
+            <span class="user-input full-text">-v "$(pwd)":/app/models \</span>
             <span class="user-input short-text">OPEN_ROUTER_API_KEY="YOUR_KEY_HERE"
             </span>
 
@@ -93,25 +93,25 @@
 
           <p>
             
-            <span class="user-input full-text"> -p "Classify customer reviews as positive or negative sentiment"</span>
+            <span class="user-input full-text">-e OPEN_ROUTER_API_KEY="sk-..." \</span>
             <span class="user-input short-text">ghcr.io/inoxoft/whitelightning:latest
             </span>
           </p>
           <p>
             
-            <!-- <span class="prompt">$</span> -->
+            <span class="user-input full-text">ghcr.io/inoxoft/whitelightning:latest \</span>
             <span class="user-input short-text">python -m text_classifier.agent
             </span>
           </p>
           <p>
             
-            <!-- <span class="prompt">$</span> -->
+            <span class="user-input full-text">python -m text_classifier.agent \</span>
             <span class="user-input short-text">-p "Classify customer reviews"
             </span>
           </p>
           <p>
             
-            <!-- <span class="prompt">$</span> -->
+            <span class="user-input full-text">-p "Classify news topics into categories: Politics, Business"</span>
             <span class="user-input short-text">as positive or negative sentiment"
             </span>
           </p>
