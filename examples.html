@@ -129,6 +129,7 @@
                         <pre class="code-block">
 $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/inoxoft/whitelightning:latest \
+    python -m text_classifier.agent \
     -p "Your prompt here" \
     --data-gen-model="openai/gpt-4" \
     --model-type="tensorflow"</pre>
@@ -145,6 +146,7 @@ $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER
                             <pre class="code-block">
 $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/inoxoft/whitelightning:latest \
+    python -m text_classifier.agent \
     -p "Detect political bias in articles" \
     --generate-edge-cases="true" \
     --edge-case-volume-per-class=30 \
@@ -171,6 +173,7 @@ $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER
                             <pre class="code-block">
 $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/inoxoft/whitelightning:latest \
+    python -m text_classifier.agent \
     -p "Classify news articles by topic" \
     --lang="spanish" \
     --model-type="pytorch" \
@@ -196,6 +199,7 @@ $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER
                             <pre class="code-block">
 $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/inoxoft/whitelightning:latest \
+    python -m text_classifier.agent \
     -p "Detect toxic content" \
     --generate-edge-cases="true" \
     --edge-case-volume-per-class=50 \
@@ -221,6 +225,7 @@ $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER
                             <pre class="code-block">
 $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/inoxoft/whitelightning:latest \
+    python -m text_classifier.agent \
     -p="Classify customer feedback" \
     -o="./custom_models/feedback" \
     --model-type="scikit" \
@@ -245,6 +250,7 @@ $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER
                             <pre class="code-block">
 $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/inoxoft/whitelightning:latest \
+    python -m text_classifier.agent \
     -p "Analyze product reviews" \
     --batch-size=10 \
     --data-gen-model="claude-3-sonnet" \
@@ -269,6 +275,7 @@ $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER
                             <pre class="code-block">
 $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/inoxoft/whitelightning:latest \
+    python -m text_classifier.agent \
     -p "Classify emails as spam/not spam" \
     --model-type="tensorflow" \
     --lang="english"</pre>

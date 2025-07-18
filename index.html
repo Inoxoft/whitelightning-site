@@ -77,7 +77,7 @@
         <div class="terminal-content">
           <p>
             <!-- <span class="prompt">$</span> -->
-            <span class="user-input full-text">docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \</span>
+            <span class="user-input full-text">docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY" \</span>
             <span class="user-input short-text">docker run --rm -v $(pwd):/app/models -e 
             </span>
             
@@ -85,7 +85,7 @@
 
           <p>
             <!-- <span class="prompt">$</span> -->
-            <span class="user-input full-text"> ghcr.io/inoxoft/whitelightning:latest -p "Classify customer reviews as positive or negative sentiment"</span>
+            <span class="user-input full-text"> ghcr.io/inoxoft/whitelightning:latest \ python -m text_classifier.agent \</span>
             <span class="user-input short-text">OPEN_ROUTER_API_KEY="YOUR_KEY_HERE"
             </span>
 
@@ -93,14 +93,20 @@
 
           <p>
             
-            <!-- <span class="prompt">$</span> -->
-            <span class="user-input short-text">ghcr.io/inoxoft/whitelightning:
+            <span class="user-input full-text"> -p "Classify customer reviews as positive or negative sentiment"</span>
+            <span class="user-input short-text">ghcr.io/inoxoft/whitelightning:latest
             </span>
           </p>
           <p>
             
             <!-- <span class="prompt">$</span> -->
-            <span class="user-input short-text">latest -p "Classify customer reviews
+            <span class="user-input short-text">python -m text_classifier.agent
+            </span>
+          </p>
+          <p>
+            
+            <!-- <span class="prompt">$</span> -->
+            <span class="user-input short-text">-p "Classify customer reviews"
             </span>
           </p>
           <p>
