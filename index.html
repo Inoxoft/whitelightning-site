@@ -77,15 +77,15 @@
         <div class="terminal-content">
           <p>
             <!-- <span class="prompt">$</span> -->
-            <span class="user-input full-text">docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY" \</span>
-            <span class="user-input short-text">docker run --rm -v $(pwd):/app/models -e 
+            <span class="user-input full-text">docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY" \</span>
+            <span class="user-input short-text">docker run --rm -v "$(pwd)"":/app/models -e 
             </span>
             
           </p>
 
           <p>
             <!-- <span class="prompt">$</span> -->
-            <span class="user-input full-text"> ghcr.io/inoxoft/whitelightning:latest \ python -m text_classifier.agent \</span>
+            <span class="user-input full-text"> ghcr.io/inoxoft/whitelightning:latest python -m text_classifier.agent \</span>
             <span class="user-input short-text">OPEN_ROUTER_API_KEY="YOUR_KEY_HERE"
             </span>
 
