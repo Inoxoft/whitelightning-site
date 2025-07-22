@@ -1262,16 +1262,14 @@ header h1 {
 /* Responsive styles for copy buttons */
 @media (max-width: 768px) {
   .copy-buttons {
-    flex-direction: column;
-    gap: 2px;
+    gap: 4px;
     top: 4px;
     right: 4px;
-    align-items: flex-end;
+    align-items: center;
   }
   
   .copy-label {
     font-size: 9px;
-    margin-bottom: 2px;
   }
   
   .copy-btn {
