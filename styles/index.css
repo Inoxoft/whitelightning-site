@@ -1213,7 +1213,7 @@ header h1 {
   right: 4px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   z-index: 15;
 }
 
@@ -1331,22 +1331,11 @@ header h1 {
   min-height: 20px;
 }
 
-/* Responsive styles for copy buttons and typewriter */
-@media (max-width: 768px) {
-  .copy-buttons {
-    gap: 4px;
-    top: 4px;
-    right: 4px;
-    align-items: center;
-  }
-  
-  .copy-label {
-    font-size: 9px;
-  }
-  
+/* Responsive styles for tablets */
+@media (max-width: 1024px) and (min-width: 769px) {
   .copy-btn {
     font-size: 9px;
-    padding: 3px 5px;
+    padding: 3px 4px;
     gap: 2px;
   }
   
@@ -1354,6 +1343,44 @@ header h1 {
     width: 10px;
     height: 10px;
   }
+  
+  .copy-label {
+    font-size: 9px;
+  }
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+  .copy-buttons {
+    gap: 2px;
+    top: 4px;
+    right: 4px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .copy-label {
+    font-size: 8px;
+    width: 100%;
+    text-align: right;
+    margin-bottom: 2px;
+  }
+  
+  .copy-btn {
+    font-size: 8px;
+    padding: 2px 4px;
+    gap: 2px;
+  }
+  
+  .copy-btn svg {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .copy-btn .copy-text {
+    display: none;
+  }
+}
   
   .typewriter {
     font-size: 12px;
@@ -1375,7 +1402,7 @@ header h1 {
   .cursor {
     font-size: 12px;
   }
-}
+
 
 @keyframes pulse-success {
   0% {

@@ -123,11 +123,17 @@
         </div>
         <div class="copy-buttons">
           <span class="copy-label">Copy:</span>
-          <button class="copy-btn" onclick="copyDockerCommand('unix')" title="Copy for Mac/Linux">
+          <button class="copy-btn" onclick="copyDockerCommand('mac')" title="Copy for macOS">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" fill="currentColor"/>
             </svg>
-            <span class="copy-text">Mac/Linux</span>
+            <span class="copy-text">Mac</span>
+          </button>
+          <button class="copy-btn" onclick="copyDockerCommand('linux')" title="Copy for Linux">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.824 6.425c-.055.039-.132.088-.132.175 0 .15.132.175.175.175.055 0 .088-.022.132-.044 0 0 .044-.022.044-.066 0-.044-.022-.088-.066-.11-.044-.022-.099-.044-.153-.13zM10.824 6.425c.055.039.132.088.132.175 0 .15-.132.175-.175.175-.055 0-.088-.022-.132-.044 0 0-.044-.022-.044-.066 0-.044.022-.088.066-.11.044-.022.099-.044.153-.13zM12 1.5C6.201 1.5 1.5 6.201 1.5 12S6.201 22.5 12 22.5 22.5 17.799 22.5 12 17.799 1.5 12 1.5zm6 12c0 3.314-2.686 6-6 6s-6-2.686-6-6 2.686-6 6-6 6 2.686 6 6z" fill="currentColor"/>
+            </svg>
+            <span class="copy-text">Linux</span>
           </button>
           <button class="copy-btn" onclick="copyDockerCommand('windows')" title="Copy for Windows">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -376,10 +382,13 @@
       let dockerCommand;
       
       if (platform === 'windows') {
-        // Windows PowerShell command - single line
+        // Windows PowerShell command
         dockerCommand = `docker run --rm -v "\${PWD}:/app/models" -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" ghcr.io/inoxoft/whitelightning:latest python -m text_classifier.agent -p "Classify news topics into categories: Politics, Business"`;
-      } else {
-        // Unix/Linux/Mac command - single line
+      } else if (platform === 'linux') {
+        // Linux command
+        dockerCommand = `docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" ghcr.io/inoxoft/whitelightning:latest python -m text_classifier.agent -p "Categorize customer reviews as positive, neutral, or negative"`;
+      } else if (platform === 'mac') {
+        // macOS command
         dockerCommand = `docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" ghcr.io/inoxoft/whitelightning:latest python -m text_classifier.agent -p "Categorize customer reviews as positive, neutral, or negative"`;
       }
       
