@@ -75,8 +75,13 @@
           <div class="terminal-circle green"></div>
         </div>
         <div class="terminal-content">
-          <p>
-            <!-- <span class="prompt">$</span> -->
+          <p class="typewriter-line">
+            <span class="prompt">$</span>
+            <span class="user-input typewriter" id="typewriter-command"></span>
+            <span class="cursor" id="typing-cursor">|</span>
+          </p>
+          <!-- <p>
+          
             <span class="user-input full-text">docker run --rm \</span>
             <span class="user-input short-text">docker run --rm -v "$(pwd)":/app/models -e 
             </span>
@@ -84,7 +89,7 @@
           </p>
 
           <p>
-            <!-- <span class="prompt">$</span> -->
+            
             <span class="user-input full-text">-v "$(pwd)":/app/models \</span>
             <span class="user-input short-text">OPEN_ROUTER_API_KEY="YOUR_KEY_HERE"
             </span>
@@ -114,7 +119,7 @@
             <span class="user-input full-text">-p "Categorize customer reviews as positive, neutral, or negative"</span>
             <span class="user-input short-text">as positive or negative sentiment"
             </span>
-          </p>
+          </p> -->
         </div>
         <div class="copy-buttons">
           <span class="copy-label">Copy:</span>
@@ -371,21 +376,11 @@
       let dockerCommand;
       
       if (platform === 'windows') {
-        // Windows PowerShell command with backticks
-        dockerCommand = `docker run --rm \`
-    -v "\${PWD}:/app/models" \`
-    -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \`
-    ghcr.io/inoxoft/whitelightning:latest \`
-    python -m text_classifier.agent \`
-    -p "Classify news topics into categories: Politics, Business"`;
+        // Windows PowerShell command - single line
+        dockerCommand = `docker run --rm -v "\${PWD}:/app/models" -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" ghcr.io/inoxoft/whitelightning:latest python -m text_classifier.agent -p "Classify news topics into categories: Politics, Business"`;
       } else {
-        // Unix/Linux/Mac command with backslashes
-        dockerCommand = `docker run --rm \\
-    -v "$(pwd)":/app/models \\
-    -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \\
-    ghcr.io/inoxoft/whitelightning:latest \\
-    python -m text_classifier.agent \\
-    -p "Categorize customer reviews as positive, neutral, or negative"`;
+        // Unix/Linux/Mac command - single line
+        dockerCommand = `docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" ghcr.io/inoxoft/whitelightning:latest python -m text_classifier.agent -p "Categorize customer reviews as positive, neutral, or negative"`;
       }
       
       // Find the specific button that was clicked
@@ -421,7 +416,81 @@
       });
     }
     
-    window.addEventListener('DOMContentLoaded', scrollTerminalToEnd);
+    // Typewriter effect
+    let isTyping = false;
+    
+    function typewriterEffect() {
+      const command = 'docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" ghcr.io/inoxoft/whitelightning:latest python -m text_classifier.agent -p "Categorize customer reviews as positive, neutral, or negative"';
+      const typewriterElement = document.getElementById('typewriter-command');
+      const cursor = document.getElementById('typing-cursor');
+      
+      if (!typewriterElement || isTyping) return;
+      
+      // Reset
+      typewriterElement.textContent = '';
+      cursor.style.display = 'inline';
+      isTyping = true;
+      
+      let i = 0;
+      const typingSpeed = 60; // milliseconds per character
+      
+      function type() {
+        if (i < command.length) {
+          typewriterElement.textContent += command.charAt(i);
+          i++;
+          
+          // Auto-scroll to keep the typing visible
+          const terminalContent = typewriterElement.closest('.terminal-content');
+          if (terminalContent) {
+            terminalContent.scrollLeft = terminalContent.scrollWidth;
+          }
+          
+          setTimeout(type, typingSpeed);
+        } else {
+          // Hide cursor after typing is complete
+          setTimeout(() => {
+            cursor.style.display = 'none';
+            isTyping = false;
+          }, 2000);
+        }
+      }
+      
+      // Start typing after a short delay
+      setTimeout(type, 500);
+    }
+    
+    // Restart animation when terminal comes into view
+    function setupIntersectionObserver() {
+      const terminal = document.querySelector('.terminal-demo');
+      if (!terminal) return;
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !isTyping) {
+            setTimeout(() => typewriterEffect(), 200);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      observer.observe(terminal);
+      
+      // Add click to restart animation
+      terminal.addEventListener('click', () => {
+        if (!isTyping) {
+          typewriterEffect();
+        }
+      });
+      
+      // Add visual hint that terminal is clickable
+      terminal.style.cursor = 'pointer';
+      terminal.title = 'Click to replay typing animation';
+    }
+    
+    window.addEventListener('DOMContentLoaded', () => {
+      scrollTerminalToEnd();
+      typewriterEffect();
+      setupIntersectionObserver();
+    });
   </script>
 </body>
 </html>
