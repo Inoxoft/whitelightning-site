@@ -1,10 +1,48 @@
 /* Command Generator Specific Styles */
+/* Import color variables */
+:root {
+  --main-green: #39ff14;
+  --neon-green: #39ff14;
+  --dark-green: #2db30d;
+  --dark-bg: #0a1014;
+  --card-bg: #101620;
+  --section-bg: #0a1418;
+  --text-color: #e6e6e6;
+  --text-secondary: #a0a0a0;
+}
+
+/* Ensure body has correct background */
+body {
+  background: var(--dark-bg) !important;
+  background-color: #0a1014 !important;
+}
 .tmuxai-container {
-  background: #0a1014 !important;
+  background: transparent !important;
+  background-color: transparent !important;
   text-align: center;
   padding: 3rem 2rem 2rem;
   max-width: 900px;
   margin: 0 auto;
+}
+
+.tmuxai-container header {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.tmuxai-container header h1 {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+body .tmuxai-container {
+  background: var(--dark-bg) !important;
+  background-color: #0a1014 !important;
+}
+
+div.tmuxai-container {
+  background: var(--dark-bg) !important;
+  background-color: #0a1014 !important;
 }
 
 .tmuxai-container header h1 {
