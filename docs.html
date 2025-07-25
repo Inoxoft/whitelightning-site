@@ -280,17 +280,17 @@
                         </div>
                         <div class="terminal-content">
                             <code class="full-text">docker run --rm \</code>
-                            <code class="full-text">    -v "$(pwd)":/app/models \</code>
-                            <code class="full-text">    -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \</code>
-                            <code class="full-text">    ghcr.io/inoxoft/whitelightning:latest \</code>
-                            <code class="full-text">    python -m text_classifier.agent \</code>
-                            <code class="full-text">    -p "Categorize customer reviews as positive, neutral, or negative"</code>
+                            <code class="full-text">-v "$(pwd)":/app/models \</code>
+                            <code class="full-text">-e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \</code>
+                            <code class="full-text">ghcr.io/inoxoft/whitelightning:latest \</code>
+                            <code class="full-text">python -m text_classifier.agent \</code>
+                            <code class="full-text">-p "Categorize customer reviews as positive, neutral, or negative"</code>
                             <code class="short-text">docker run --rm \</code>
-                            <code class="short-text">    -v "$(pwd)":/app/models \</code>
-                            <code class="short-text">    -e OPEN_ROUTER_API_KEY="..." \</code>
-                            <code class="short-text">    ghcr.io/inoxoft/whitelightning:latest \</code>
-                            <code class="short-text">    python -m text_classifier.agent \</code>
-                            <code class="short-text">    -p "Categorize customer reviews..."</code>
+                            <code class="short-text">-v "$(pwd)":/app/models \</code>
+                            <code class="short-text">-e OPEN_ROUTER_API_KEY="..." \</code>
+                            <code class="short-text">ghcr.io/inoxoft/whitelightning:latest \</code>
+                            <code class="short-text">python -m text_classifier.agent \</code>
+                            <code class="short-text">-p "Categorize customer reviews..."</code>
                         </div>
                     </div>
                 </div>
@@ -328,6 +328,10 @@ Parameter                   Description                                         
 
 --lang                      Primary language for the generated dataset           english
                             (e.g., english, german, spanish, etc.).
+
+--use-own-dataset           Path to user's own dataset file (CSV, JSON, or TXT). /app/models/own_data/
+                            When provided, skips LLM data generation and uses     your_dataset.csv
+                            this dataset instead.
 </code></pre>
             </div>
         </section>
