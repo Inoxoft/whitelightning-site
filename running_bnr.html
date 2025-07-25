@@ -90,14 +90,14 @@
                                 <span class="step-number">2</span>
                                 <div class="step-content">
                                     <h4>TF-IDF Magic</h4>
-                                    <p>Map words to a 5000-feature space using a pre-trained vocabulary and IDF weights (exported as <code>_vocab.json</code>).</p>
+                                    <p>Map words to a 5000-feature space using a pre-trained vocabulary and IDF weights (exported as <code>vocab.json</code>).</p>
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-number">3</span>
                                 <div class="step-content">
                                     <h4>Scaling</h4>
-                                    <p>Normalize the features with mean and scale values (from <code>_scaler.json</code>) to keep the brew balanced.</p>
+                                    <p>Normalize the features with mean and scale values (from <code>scaler.json</code>) to keep the brew balanced.</p>
                                 </div>
                             </div>
                             <div class="step">
@@ -266,8 +266,8 @@ cd whitelightning.ai</code></pre>
                                                 <li>Copy these files to your project's <code>src/main/resources</code> directory:
                                                     <ul>
                                                         <li><code>model.onnx</code></li>
-                                                        <li><code>model_vocab.json</code></li>
-                                                        <li><code>model_scaler.json</code></li>
+                                                        <li><code>vocab.json</code></li>
+                                                        <li><code>scaler.json</code></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -288,8 +288,8 @@ cd binary_classifier_demo</code></pre>
                                 <p>Folder structure:</p>
                                 <pre><code>binary_classifier_demo/
 ├── model.onnx
-├── model_vocab.json
-├── model_scaler.json
+├── vocab.json
+├── scaler.json
 └── run_onnx.py</code></pre>
 
                                 <h4>✅ 5. Install Required Python Libraries</h4>
@@ -298,7 +298,7 @@ cd binary_classifier_demo</code></pre>
 
                                 <h4>✅ 6. Prepare Supporting Files</h4>
                                 <div class="file-section">
-                                    <h5>🔹 model_vocab.json (TF-IDF vocabulary)</h5>
+                                    <h5>🔹 vocab.json (TF-IDF vocabulary)</h5>
                                     <pre><code>{
   "vocab": {
     "the": 0,
@@ -312,7 +312,7 @@ cd binary_classifier_demo</code></pre>
                                 </div>
 
                                 <div class="file-section">
-                                    <h5>🔹 model_scaler.json (normalization parameters)</h5>
+                                    <h5>🔹 scaler.json (normalization parameters)</h5>
                                     <pre><code>{
   "mean": [0.1, 0.2, 0.3, 0.4, 0.5],
   "scale": [1.1, 1.2, 1.3, 1.4, 1.5]
@@ -335,9 +335,9 @@ cd binary_classifier_demo</code></pre>
 <span class="comment"># --- Preprocessing: TF-IDF + Scaling ---</span>
 <span class="keyword">def</span> <span class="function">preprocess_text</span>(<span class="parameter">text</span>, <span class="parameter">vocab_file</span>, <span class="parameter">scaler_file</span>):
     <span class="comment"># Load vocabulary and IDF weights</span>
-    <span class="keyword">with</span> <span class="function">open</span>(<span class="string">'model_vocab.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:
+    <span class="keyword">with</span> <span class="function">open</span>(<span class="string">'vocab.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:
         vocab = <span class="module">json</span>.<span class="function">load</span>(f)
-    <span class="keyword">with</span> <span class="function">open</span>(<span class="string">'model_scaler.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:
+    <span class="keyword">with</span> <span class="function">open</span>(<span class="string">'scaler.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:
         scaler = <span class="module">json</span>.<span class="function">load</span>(f)
     idf = vocab[<span class="string">'idf'</span>]
     word2idx = vocab[<span class="string">'vocab'</span>]
@@ -469,8 +469,8 @@ cd whitelightning.ai</code></pre>
                                                 <li>Copy the binary classifier model files to your project:
                                                     <ul>
                                                         <li><code>model.onnx</code> - The ONNX model file</li>
-                                                        <li><code>model_vocab.json</code> - TF-IDF vocabulary</li>
-                                                        <li><code>model_scaler.json</code> - Feature scaling parameters</li>
+                                                        <li><code>vocab.json</code> - TF-IDF vocabulary</li>
+                                                        <li><code>scaler.json</code> - Feature scaling parameters</li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -493,10 +493,10 @@ cd binary_classifier_demo</code></pre>
 ├── index.html            # For browser use
 ├── run.js                # Main logic
 ├── model.onnx
-├── model_vocab.json
-└── model_scaler.json</code></pre>
+├── vocab.json
+└── scaler.json</code></pre>
 
-                                <h4>✅ 5. Sample model_vocab.json</h4>
+                                <h4>✅ 5. Sample vocab.json</h4>
                                 <pre><code>{
   "vocab": {
     "the": 0,
@@ -508,7 +508,7 @@ cd binary_classifier_demo</code></pre>
   "idf": [1.2, 2.1, 1.8, 1.5, 2.3]
 }</code></pre>
 
-                                <h4>✅ 6. Sample model_scaler.json</h4>
+                                <h4>✅ 6. Sample scaler.json</h4>
                                 <pre><code>{
   "mean": [0.1, 0.2, 0.3, 0.4, 0.5],
   "scale": [1.1, 1.2, 1.3, 1.4, 1.5]
@@ -547,7 +547,7 @@ words.<span class="function">forEach</span>(word => wordCounts[word] = (wordCoun
 
 <span class="keyword">async</span> <span class="keyword">function</span> <span class="function">runModel</span>(<span class="parameter">text</span>) {
 <span class="keyword">const</span> session = <span class="keyword">await</span> ort.<span class="class">InferenceSession</span>.<span class="function">create</span>(<span class="string">"model.onnx"</span>);
-<span class="keyword">const</span> vector = <span class="keyword">await</span> <span class="function">preprocessText</span>(text, <span class="string">"model_vocab.json"</span>, <span class="string">"model_scaler.json"</span>);
+<span class="keyword">const</span> vector = <span class="keyword">await</span> <span class="function">preprocessText</span>(text, <span class="string">"vocab.json"</span>, <span class="string">"scaler.json"</span>);
 <span class="keyword">const</span> tensor = <span class="keyword">new</span> ort.<span class="class">Tensor</span>(<span class="string">"float32"</span>, vector, [<span class="number">1</span>, <span class="number">5000</span>]);
 <span class="keyword">const</span> feeds = { input: tensor };
 <span class="keyword">const</span> output = <span class="keyword">await</span> session.<span class="function">run</span>(feeds);
@@ -663,8 +663,8 @@ cd whitelightning.ai</code></pre>
                                                 <li>Copy the multiclass classifier model files to your project:
                                                     <ul>
                                                         <li><code>model.onnx</code> - The ONNX model file</li>
-                                                        <li><code>model_vocab.json</code> - Tokenizer vocabulary</li>
-                                                        <li><code>model_labels.json</code> - Class labels mapping</li>
+                                                        <li><code>vocab.json</code> - Tokenizer vocabulary</li>
+                                                        <li><code>scaler.json</code> - Class labels mapping</li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -944,8 +944,8 @@ cd whitelightning.ai</code></pre>
                                                 <li>Copy the binary classifier model files to your project:
                                                     <ul>
                                                         <li><code>model.onnx</code> - The ONNX model file</li>
-                                                        <li><code>model_vocab.json</code> - TF-IDF vocabulary</li>
-                                                        <li><code>model_scaler.json</code> - Feature scaling parameters</li>
+                                                        <li><code>vocab.json</code> - TF-IDF vocabulary</li>
+                                                        <li><code>scaler.json</code> - Feature scaling parameters</li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -963,8 +963,8 @@ cd whitelightning.ai</code></pre>
                                 <h4>✅ 3. Folder Structure</h4>
                                 <pre><code>project/
 ├── main.cpp                ← your C++ code
-├── model_vocab.json        ← TF-IDF vocabulary
-├── model_scaler.json       ← scaling parameters
+├── vocab.json              ← TF-IDF vocabulary
+├── scaler.json             ← scaling parameters
 ├── model.onnx             ← ONNX model
 ├── onnxruntime-osx-universal2-1.22.0/
 │   ├── include/
@@ -1041,7 +1041,7 @@ cd whitelightning.ai</code></pre>
 
 <span class="keyword">int</span> <span class="function">main</span>() {
     <span class="class">std::string</span> text = <span class="string">"This is a positive test string"</span>;
-    auto vector = <span class="function">preprocess_text</span>(text, <span class="string">"model_vocab.json"</span>, <span class="string">"model_scaler.json"</span>);
+    auto vector = <span class="function">preprocess_text</span>(text, <span class="string">"vocab.json"</span>, <span class="string">"scaler.json"</span>);
     
     Ort::Env env(ORT_LOGGING_LEVEL_WARNING, <span class="string">"test"</span>);
     Ort::SessionOptions session_options;
@@ -1113,8 +1113,8 @@ cd whitelightning.ai</code></pre>
                                                 <li>Copy the binary classifier model files to your project:
                                                     <ul>
                                                         <li><code>model.onnx</code> - The ONNX model file</li>
-                                                        <li><code>model_vocab.json</code> - TF-IDF vocabulary</li>
-                                                        <li><code>model_scaler.json</code> - Feature scaling parameters</li>
+                                                        <li><code>vocab.json</code> - TF-IDF vocabulary</li>
+                                                        <li><code>scaler.json</code> - Feature scaling parameters</li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -1156,8 +1156,8 @@ ndarray = "0.15"</code></pre>
 │   └── main.rs
 ├── resources/
 │   ├── model.onnx
-│   ├── model_vocab.json
-│   └── model_scaler.json
+│   ├── vocab.json
+│   └── scaler.json
 └── Cargo.toml</code></pre>
 
                                 <h4>✅ 6. Rust Code Example</h4>
@@ -1426,8 +1426,8 @@ javac -version</code></pre>
 │   │   │           └── BinaryClassifier.java
 │   │   └── resources/
 │   │       ├── model.onnx
-│   │       ├── model_vocab.json
-│   │       └── model_scaler.json
+│   │       ├── vocab.json
+│   │       └── scaler.json
 │   └── test/
 └── pom.xml</code></pre>
 
@@ -1512,8 +1512,8 @@ javac -version</code></pre>
         <span class="keyword">try</span> {
             BinaryClassifier classifier = <span class="keyword">new</span> BinaryClassifier(
                 <span class="string">"src/main/resources/model.onnx"</span>,
-                <span class="string">"src/main/resources/model_vocab.json"</span>,
-                <span class="string">"src/main/resources/model_scaler.json"</span>
+                <span class="string">"src/main/resources/vocab.json"</span>,
+                <span class="string">"src/main/resources/scaler.json"</span>
             );
 
             String text = <span class="string">"This is a positive test string"</span>;
