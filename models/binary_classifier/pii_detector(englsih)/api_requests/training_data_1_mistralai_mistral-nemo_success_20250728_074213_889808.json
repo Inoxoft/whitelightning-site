@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-28T07:42:13.889845",
+  "model_used": "mistralai/mistral-nemo",
+  "prompt_type": "training_data",
+  "class_label": "1",
+  "status": "success",
+  "prompt": "Generate realistic text snippets that include personally identifiable information (PII) such as full names, addresses, phone numbers, credit card numbers, or social security numbers. Ensure diversity by varying the context (e.g., emails, online forms, chat messages, customer support tickets, or social media posts) and the type and format of PII included (e.g., partially obscured numbers like 'card ending in 1234', different phone number formats, or abbreviated addresses). Make the text natural and conversational where appropriate, mimicking real-world scenarios such as online transactions, account registrations, personal correspondence, or data breaches. Include both overt and subtle PII mentions to reflect realistic data leaks or user errors.",
+  "response": "\"John Smith just posted on Facebook: 'Hey Jane, I'll be home at 1234 Elm St. by 7 pm. See you there!'\"\n\"New customer support ticket from Alex Johnson: 'My card number 4111111111111111 isn't working for an online purchase.'\"\n\"Email from Sarah Lee: 'Hi, I've just updated my address to 5678 Maple Ave, Apt 2B, Anytown. Can you update my records? Thanks!'\"\n\"Tweet from Mark Davis: 'Just got an email saying my password for account ending in 1234 is compromised. Time to change it! #DataBreach'\"\n\"Chat message from Laura Martinez: 'Can you confirm my order for 2x Pizza, to be delivered to 9876 Oak St? My card is 5555 5555 5555 5555.'\""
+}

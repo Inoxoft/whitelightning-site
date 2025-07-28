@@ -5,6 +5,7 @@ const BINARY_MODELS = [
   { name: 'Toxic Words', type: 'binary_classifier', prefix: 'toxic_words', subClasses: [] },
   { name: 'Sentiment sentences', type: 'binary_classifier', prefix: 'sentiment_sentences', subClasses: [] },
   { name: 'Sarcasm Detector', type: 'binary_classifier', prefix: 'sarcasm_detector', subClasses: [] },
+  { name: 'PII detection', type: 'binary_classifier', prefix: 'pii_detector(englsih)', subClasses: [] },
 ];
 const MULTICLASS_MODELS = [
   { name: 'News Classifier', type: 'multiclass_classifier', prefix: 'news_classifier', subClasses: ['Arabic','Chinese','Deutch','English','French','Italian','Japanese','Russian','Spain'], subClassLabel: 'Language' },
