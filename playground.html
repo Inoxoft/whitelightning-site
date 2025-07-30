@@ -90,7 +90,7 @@
       <select id="modelSelect"></select>
       <select id="modelSubclassSelect" style="display:none"></select>
       <span id="modelStatus" class="chip">No model loaded</span>
-      <button id="uploadCustomBtn" class="button">Upload Custom</button>
+      <button id="uploadCustomBtn" class="button">Upload Own Model</button>
       <button id="downloadModelBtn" class="button" style="display:none">Download Model</button>
     </div>
 
@@ -108,6 +108,29 @@
               </select>
             </div>
           </div>
+        </div>
+        <div class="required-files-info">
+          <h4>Required Files:</h4>
+          <div class="files-list">
+            <div class="file-item">
+              <span class="file-icon">🔧</span>
+              <span class="file-name">model.onnx</span>
+              <span class="file-desc">- ONNX model file</span>
+            </div>
+            <div class="file-item">
+              <span class="file-icon">📚</span>
+              <span class="file-name">vocab.json</span>
+              <span class="file-desc">- Vocabulary/tokenizer data</span>
+            </div>
+            <div class="file-item">
+              <span class="file-icon">⚖️</span>
+              <span class="file-name">scaler.json</span>
+              <span class="file-desc">- Scaling/normalization parameters</span>
+            </div>
+          </div>
+          <p class="info-note">
+            ℹ️ The required files depend on the model type specified in <code>generation_config.json</code> under <code>"classification_type"</code>
+          </p>
         </div>
         <div class="upload-area">
           <div class="upload-icon">📁</div>
