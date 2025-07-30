@@ -131,7 +131,7 @@
                     <div class="model-usage">
                         <p>To use any OpenRouter model, simply specify it with the <code>--data-gen-model</code> parameter:</p>
                         <pre class="code-block">
-$ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
+$ docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/inoxoft/whitelightning:latest \
     python -m text_classifier.agent \
     -p "Your prompt here" \
@@ -148,7 +148,7 @@ $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER
                         <p>🚀 <strong>Run models directly from command line</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
+$ docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/inoxoft/whitelightning:latest \
     python -m text_classifier.agent \
     -p "Detect political bias in articles" \
@@ -175,7 +175,7 @@ $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER
                         <p>🌐 <strong>Train models in multiple languages</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
+$ docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/inoxoft/whitelightning:latest \
     python -m text_classifier.agent \
     -p "Classify news articles by topic" \
@@ -201,7 +201,7 @@ $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER
                         <p>📊 <strong>Generate and analyze edge cases</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
+$ docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/inoxoft/whitelightning:latest \
     python -m text_classifier.agent \
     -p "Detect toxic content" \
@@ -227,7 +227,7 @@ $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER
                         <p>📁 <strong>Specify custom output directory</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
+$ docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/inoxoft/whitelightning:latest \
     python -m text_classifier.agent \
     -p="Classify customer feedback" \
@@ -252,7 +252,7 @@ $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER
                         <p>⚡ <strong>Optimized for large datasets</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
+$ docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/inoxoft/whitelightning:latest \
     python -m text_classifier.agent \
     -p "Analyze product reviews" \
@@ -277,7 +277,7 @@ $ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER
                         <p>✨ <strong>Quick start with minimal setup</strong></p>
                         <div class="demo-container">
                             <pre class="code-block">
-$ docker run --rm -v $(pwd):/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
+$ docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \
     ghcr.io/inoxoft/whitelightning:latest \
     python -m text_classifier.agent \
     -p "Classify emails as spam/not spam" \
