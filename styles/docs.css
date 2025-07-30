@@ -781,7 +781,7 @@ footer {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .docs-container {
     grid-template-columns: 1fr;
     padding: 0;
@@ -895,7 +895,7 @@ footer {
   transform: translateY(-9px) rotate(-45deg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hamburger {
     display: flex;
   }
@@ -1360,7 +1360,7 @@ section#multiclass-onnx-demos h2 {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .desktop-nav {
     display: none;
   }
@@ -1431,7 +1431,7 @@ section#multiclass-onnx-demos h2 {
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
   .mobile-nav {
     display: none;
   }

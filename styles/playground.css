@@ -637,7 +637,7 @@ footer {
   border-radius: 0 0 8px 8px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hamburger {
     display: flex;
   }
@@ -1038,7 +1038,7 @@ footer {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .desktop-nav {
     display: none;
   }
@@ -1109,7 +1109,7 @@ footer {
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
   .mobile-nav {
     display: none;
   }

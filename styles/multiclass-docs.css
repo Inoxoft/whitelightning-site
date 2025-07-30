@@ -468,8 +468,8 @@
     }
   }
   
-  @media (max-width: 768px) {
-    .docs-container {
+  @media (max-width: 1024px) {
+  .docs-container {
       grid-template-columns: 1fr;
       padding: 0;
       margin: 0;
@@ -646,8 +646,8 @@
     transform: translateY(-9px) rotate(-45deg);
   }
   
-  @media (max-width: 768px) {
-    .hamburger {
+  @media (max-width: 1024px) {
+  .hamburger {
       display: flex;
     }
   
@@ -867,7 +867,7 @@
   
   
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .desktop-nav {
     display: none;
   }
@@ -938,7 +938,7 @@
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
   .mobile-nav {
     display: none;
   }

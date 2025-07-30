@@ -666,7 +666,7 @@ header h1 {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .split-pane {
       grid-template-columns: 1fr;
     }
@@ -895,7 +895,7 @@ header h1 {
   transform: translateY(-9px) rotate(-45deg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hamburger {
     display: flex;
   }
@@ -1169,7 +1169,7 @@ header h1 {
 .mobile-nav {
   display: none;
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .desktop-nav {
     display: none;
   }
@@ -1240,7 +1240,7 @@ header h1 {
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
   .mobile-nav {
     display: none;
   }
@@ -1359,7 +1359,7 @@ header h1 {
 }
 
 /* Responsive styles for copy buttons */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .copy-buttons {
     gap: 4px;
     top: 4px;
