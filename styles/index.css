@@ -26,6 +26,105 @@
     margin: 0;
     min-height: 100vh;
     padding-top: 60px; /* Add padding to account for fixed header */
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  /* Extra long green line segment that bounces along top edge once, slowly, then disappears */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    width: 150px; /* Approximately 4cm - extra long */
+    height: 4px; /* Slightly thicker too */
+    background: var(--main-green);
+    box-shadow: 
+      0 30px 60px rgba(57, 255, 20, 1),
+      0 25px 120px rgba(57, 255, 20, 0.9),
+      0 20px 180px rgba(57, 255, 20, 0.8),
+      0 15px 250px rgba(57, 255, 20, 0.7),
+      0 10px 320px rgba(57, 255, 20, 0.6),
+      0 5px 400px rgba(57, 255, 20, 0.5),
+      0 2px 500px rgba(57, 255, 20, 0.4),
+      0 0 600px rgba(57, 255, 20, 0.3),
+      0 0 750px rgba(57, 255, 20, 0.2),
+      0 0 900px rgba(57, 255, 20, 0.15),
+      0 0 1200px rgba(57, 255, 20, 0.1);
+    pointer-events: none;
+    z-index: 9999;
+    animation: bounceTopEdge 4s ease-in-out 1 forwards;
+  }
+  
+  @keyframes bounceTopEdge {
+    /* Single bounce cycle */
+    0% {
+      left: 0;
+      opacity: 1;
+      background: var(--main-green);
+      box-shadow: 
+        0 30px 60px rgba(57, 255, 20, 1),
+        0 25px 120px rgba(57, 255, 20, 0.9),
+        0 20px 180px rgba(57, 255, 20, 0.8),
+        0 15px 250px rgba(57, 255, 20, 0.7),
+        0 10px 320px rgba(57, 255, 20, 0.6),
+        0 5px 400px rgba(57, 255, 20, 0.5),
+        0 2px 500px rgba(57, 255, 20, 0.4),
+        0 0 600px rgba(57, 255, 20, 0.3),
+        0 0 750px rgba(57, 255, 20, 0.2),
+        0 0 900px rgba(57, 255, 20, 0.15),
+        0 0 1200px rgba(57, 255, 20, 0.1);
+    }
+    50% {
+      left: calc(100vw - 150px);
+      opacity: 1;
+      background: white;
+      box-shadow: 
+        0 30px 60px rgba(255, 255, 255, 1),
+        0 25px 120px rgba(255, 255, 255, 0.9),
+        0 20px 180px rgba(255, 255, 255, 0.8),
+        0 15px 250px rgba(255, 255, 255, 0.7),
+        0 10px 320px rgba(255, 255, 255, 0.6),
+        0 5px 400px rgba(255, 255, 255, 0.5),
+        0 2px 500px rgba(255, 255, 255, 0.4),
+        0 0 600px rgba(255, 255, 255, 0.3),
+        0 0 750px rgba(255, 255, 255, 0.2),
+        0 0 900px rgba(255, 255, 255, 0.15),
+        0 0 1200px rgba(255, 255, 255, 0.1);
+    }
+    90% {
+      left: 0;
+      opacity: 1;
+      background: var(--main-green);
+      box-shadow: 
+        0 30px 60px rgba(57, 255, 20, 1),
+        0 25px 120px rgba(57, 255, 20, 0.9),
+        0 20px 180px rgba(57, 255, 20, 0.8),
+        0 15px 250px rgba(57, 255, 20, 0.7),
+        0 10px 320px rgba(57, 255, 20, 0.6),
+        0 5px 400px rgba(57, 255, 20, 0.5),
+        0 2px 500px rgba(57, 255, 20, 0.4),
+        0 0 600px rgba(57, 255, 20, 0.3),
+        0 0 750px rgba(57, 255, 20, 0.2),
+        0 0 900px rgba(57, 255, 20, 0.15),
+        0 0 1200px rgba(57, 255, 20, 0.1);
+    }
+    100% {
+      left: 0;
+      opacity: 0;
+      background: var(--main-green);
+      box-shadow: 
+        0 30px 60px rgba(57, 255, 20, 1),
+        0 25px 120px rgba(57, 255, 20, 0.9),
+        0 20px 180px rgba(57, 255, 20, 0.8),
+        0 15px 250px rgba(57, 255, 20, 0.7),
+        0 10px 320px rgba(57, 255, 20, 0.6),
+        0 5px 400px rgba(57, 255, 20, 0.5),
+        0 2px 500px rgba(57, 255, 20, 0.4),
+        0 0 600px rgba(57, 255, 20, 0.3),
+        0 0 750px rgba(57, 255, 20, 0.2),
+        0 0 900px rgba(57, 255, 20, 0.15),
+        0 0 1200px rgba(57, 255, 20, 0.1);
+    }
   }
   
   .container {
@@ -320,32 +419,32 @@ header h1 {
     margin: 0;
     overflow: hidden;
     white-space: nowrap;
-    animation: typing 1s steps(40, end) forwards;
+    animation: typing 2.5s steps(40, end) forwards;
     opacity: 0;
   }
   
 
   .terminal-content p:nth-child(1) { animation-delay: 0s; }
-  .terminal-content p:nth-child(2) { animation-delay: 0.5s; }
-  .terminal-content p:nth-child(3) { animation-delay: 1s; }
-  .terminal-content p:nth-child(4) { animation-delay: 1.5s; }
-  .terminal-content p:nth-child(5) { animation-delay: 2s; }
-  .terminal-content p:nth-child(6) { animation-delay: 2.5s; }
-  .terminal-content p:nth-child(7) { animation-delay: 3s; }
-  .terminal-content p:nth-child(8) { animation-delay: 3.5s; }
-  .terminal-content p:nth-child(9) { animation-delay: 4s; }
-  .terminal-content p:nth-child(10) { animation-delay: 4.5s; }
-  .terminal-content p:nth-child(11) { animation-delay: 5s; }
-  .terminal-content p:nth-child(12) { animation-delay: 5.5s; }
-  .terminal-content p:nth-child(13) { animation-delay: 6s; }
-  .terminal-content p:nth-child(14) { animation-delay: 6.5s; }
-  .terminal-content p:nth-child(15) { animation-delay: 7s; }
-  .terminal-content p:nth-child(16) { animation-delay: 7.5s; }
-  .terminal-content p:nth-child(17) { animation-delay: 8s; }
-  .terminal-content p:nth-child(18) { animation-delay: 8.5s; }
-  .terminal-content p:nth-child(19) { animation-delay: 9s; }
-  .terminal-content p:nth-child(20) { animation-delay: 9.5s; }
-  .terminal-content p:nth-child(21) { animation-delay: 10s; }
+  .terminal-content p:nth-child(2) { animation-delay: 0.8s; }
+  .terminal-content p:nth-child(3) { animation-delay: 1.6s; }
+  .terminal-content p:nth-child(4) { animation-delay: 2.4s; }
+  .terminal-content p:nth-child(5) { animation-delay: 3.2s; }
+  .terminal-content p:nth-child(6) { animation-delay: 4s; }
+  .terminal-content p:nth-child(7) { animation-delay: 4.8s; }
+  .terminal-content p:nth-child(8) { animation-delay: 5.6s; }
+  .terminal-content p:nth-child(9) { animation-delay: 6.4s; }
+  .terminal-content p:nth-child(10) { animation-delay: 7.2s; }
+  .terminal-content p:nth-child(11) { animation-delay: 8s; }
+  .terminal-content p:nth-child(12) { animation-delay: 8.8s; }
+  .terminal-content p:nth-child(13) { animation-delay: 9.6s; }
+  .terminal-content p:nth-child(14) { animation-delay: 10.4s; }
+  .terminal-content p:nth-child(15) { animation-delay: 11.2s; }
+  .terminal-content p:nth-child(16) { animation-delay: 12s; }
+  .terminal-content p:nth-child(17) { animation-delay: 12.8s; }
+  .terminal-content p:nth-child(18) { animation-delay: 13.6s; }
+  .terminal-content p:nth-child(19) { animation-delay: 14.4s; }
+  .terminal-content p:nth-child(20) { animation-delay: 15.2s; }
+  .terminal-content p:nth-child(21) { animation-delay: 16s; }
 
   
   @keyframes typing {
