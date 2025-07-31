@@ -52,12 +52,18 @@
       0 0 1200px rgba(57, 255, 20, 0.1);
     pointer-events: none;
     z-index: 9999;
-    animation: bounceTopEdge 4s ease-in-out 1 forwards;
+    animation: bounceTopEdge 30s ease-in-out infinite;
   }
   
   @keyframes bounceTopEdge {
-    /* Single bounce cycle */
+    /* Stay invisible most of the time (0-13.33% = 0-4 seconds out of 30) */
     0% {
+      left: 0;
+      opacity: 0;
+    }
+    
+    /* Start the bounce animation */
+    13.33% {
       left: 0;
       opacity: 1;
       background: var(--main-green);
@@ -74,7 +80,7 @@
         0 0 900px rgba(57, 255, 20, 0.15),
         0 0 1200px rgba(57, 255, 20, 0.1);
     }
-    50% {
+    20% {
       left: calc(100vw - 150px);
       opacity: 1;
       background: white;
@@ -91,7 +97,7 @@
         0 0 900px rgba(255, 255, 255, 0.15),
         0 0 1200px rgba(255, 255, 255, 0.1);
     }
-    90% {
+    25.33% {
       left: 0;
       opacity: 1;
       background: var(--main-green);
@@ -108,22 +114,15 @@
         0 0 900px rgba(57, 255, 20, 0.15),
         0 0 1200px rgba(57, 255, 20, 0.1);
     }
+    26.67% {
+      left: 0;
+      opacity: 0;
+    }
+    
+    /* Stay invisible for the rest of the 30 seconds */
     100% {
       left: 0;
       opacity: 0;
-      background: var(--main-green);
-      box-shadow: 
-        0 30px 60px rgba(57, 255, 20, 1),
-        0 25px 120px rgba(57, 255, 20, 0.9),
-        0 20px 180px rgba(57, 255, 20, 0.8),
-        0 15px 250px rgba(57, 255, 20, 0.7),
-        0 10px 320px rgba(57, 255, 20, 0.6),
-        0 5px 400px rgba(57, 255, 20, 0.5),
-        0 2px 500px rgba(57, 255, 20, 0.4),
-        0 0 600px rgba(57, 255, 20, 0.3),
-        0 0 750px rgba(57, 255, 20, 0.2),
-        0 0 900px rgba(57, 255, 20, 0.15),
-        0 0 1200px rgba(57, 255, 20, 0.1);
     }
   }
   
@@ -632,29 +631,48 @@ header h1 {
     color: #121820;
   }
 
-  /* Random Earthquake Effect - only for specific buttons - 3 TIMES ONLY */
+  /* Random Earthquake Effect - 3 times, repeat every 1 minute */
   /* Get API Key button - shakes first */
   a[href="https://openrouter.ai/"] {
-    animation: randomEarthquake 5s ease-in-out 3;
+    animation: randomEarthquake 75s ease-in-out infinite;
   }
 
   /* Generate Command button - shakes 2.5 seconds later */
   a[href="/command-generator"] {
-    animation: randomEarthquake 5s ease-in-out 3 2.5s;
+    animation: randomEarthquake 75s ease-in-out infinite 2.5s;
   }
 
   @keyframes randomEarthquake {
+    /* First shake cycle (0-5 seconds = 0-6.67%) */
     0% { transform: translate(0); }
-    80% { transform: translate(0); } /* Stay normal for less time */
-    82% { transform: translate(-1px, -2px) rotate(-1deg); }
-    84% { transform: translate(-3px, 0px) rotate(1deg); }
-    86% { transform: translate(3px, 2px) rotate(0deg); }
-    88% { transform: translate(1px, -1px) rotate(1deg); }
-    90% { transform: translate(-1px, 2px) rotate(-1deg); }
-    92% { transform: translate(-3px, 1px) rotate(0deg); }
-    94% { transform: translate(3px, 1px) rotate(-1deg); }
-    96% { transform: translate(-1px, -1px) rotate(1deg); }
-    98% { transform: translate(1px, 2px) rotate(0deg); }
+    5.3% { transform: translate(0); }
+    5.5% { transform: translate(-1px, -2px) rotate(-1deg); }
+    5.7% { transform: translate(-3px, 0px) rotate(1deg); }
+    5.9% { transform: translate(3px, 2px) rotate(0deg); }
+    6.1% { transform: translate(1px, -1px) rotate(1deg); }
+    6.3% { transform: translate(-1px, 2px) rotate(-1deg); }
+    6.5% { transform: translate(0); }
+    
+    /* Second shake cycle (5-10 seconds = 6.67-13.33%) */
+    11.8% { transform: translate(0); }
+    12% { transform: translate(-3px, 1px) rotate(0deg); }
+    12.2% { transform: translate(3px, 1px) rotate(-1deg); }
+    12.4% { transform: translate(-1px, -1px) rotate(1deg); }
+    12.6% { transform: translate(1px, 2px) rotate(0deg); }
+    12.8% { transform: translate(-2px, 0px) rotate(-1deg); }
+    13% { transform: translate(0); }
+    
+    /* Third shake cycle (10-15 seconds = 13.33-20%) */
+    18.5% { transform: translate(0); }
+    18.7% { transform: translate(2px, -1px) rotate(1deg); }
+    18.9% { transform: translate(0px, 1px) rotate(0deg); }
+    19.1% { transform: translate(-1px, 0px) rotate(-1deg); }
+    19.3% { transform: translate(1px, -1px) rotate(1deg); }
+    19.5% { transform: translate(-1px, 1px) rotate(-1deg); }
+    19.7% { transform: translate(0); }
+    
+    /* Wait for rest of minute (15-75 seconds = 20-100%) */
+    20% { transform: translate(0); }
     100% { transform: translate(0); }
   }
   
