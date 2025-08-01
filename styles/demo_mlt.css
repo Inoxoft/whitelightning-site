@@ -1243,4 +1243,146 @@
 
 .feature-card.large-text strong {
   text-align: left;
+}
+
+/* Copy button styles */
+.demo-container {
+  position: relative;
+}
+
+.feature-card {
+  position: relative;
+}
+
+.copy-buttons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 15;
+}
+
+.copy-label {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: #39ff14;
+  text-shadow: 0 0 4px rgba(57, 255, 20, 0.3);
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+  margin-right: 3px;
+}
+
+.copy-btn {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 20, 0.9));
+  border: 1px solid #39ff14;
+  border-radius: 3px;
+  color: #39ff14;
+  padding: 4px 6px;
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.8;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  margin-left: 2px;
+}
+
+.copy-btn:hover {
+  opacity: 1;
+  background: linear-gradient(135deg, rgba(57, 255, 20, 0.15), rgba(57, 255, 20, 0.08));
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(57, 255, 20, 0.25);
+  border-color: #4dff28;
+}
+
+.copy-btn:active {
+  transform: translateY(-1px) scale(1.02);
+  transition: all 0.1s ease;
+}
+
+.copy-btn svg {
+  color: #39ff14;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 2px rgba(57, 255, 20, 0.3));
+}
+
+.copy-btn:hover svg {
+  color: #fff;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
+  transform: rotate(5deg);
+}
+
+.copy-btn .copy-text {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 4px rgba(57, 255, 20, 0.3);
+}
+
+/* Success state for copy button */
+.copy-btn.copied {
+  background: linear-gradient(135deg, rgba(57, 255, 20, 0.3), rgba(57, 255, 20, 0.15));
+  border-color: #4dff28;
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+  animation: pulse-success 0.6s ease-out;
+}
+
+.copy-btn.copied .copy-text {
+  color: #fff;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+.copy-btn.copied svg {
+  color: #fff;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+}
+
+/* Responsive styles for copy buttons */
+@media (max-width: 1024px) {
+  .copy-buttons {
+    gap: 3px;
+    top: 8px;
+    right: 8px;
+    align-items: center;
+  }
+  
+  .copy-label {
+    font-size: 9px;
+  }
+  
+  .copy-btn {
+    font-size: 9px;
+    padding: 3px 5px;
+    gap: 2px;
+  }
+  
+  .copy-btn svg {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .feature-icon {
+    display: none !important;
+  }
+}
+
+@keyframes pulse-success {
+  0% {
+    transform: translateY(-2px) scale(1.05);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 12px 30px rgba(57, 255, 20, 0.4);
+  }
+  100% {
+    transform: translateY(-2px) scale(1.05);
+  }
 }  

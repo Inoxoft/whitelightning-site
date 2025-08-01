@@ -143,7 +143,22 @@ $ docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUT
 
                 <div class="features-grid">
                     <div class="feature-card large-text">
-                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">⚡</span>
+                        <div class="copy-buttons">
+                            <span class="copy-label">Copy:</span>
+                            <button class="copy-btn" onclick="copyDockerCommand('unix', this)" title="Copy for Mac/Linux">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span class="copy-text">Mac/Linux</span>
+                            </button>
+                            <button class="copy-btn" onclick="copyDockerCommand('windows', this)" title="Copy for Windows">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6 .09v6.81l-6-1.15V13zm17 .25V22l-10-1.91V13.1l10 .15z" fill="currentColor"/>
+                                </svg>
+                                <span class="copy-text">Windows</span>
+                            </button>
+                        </div>
+                        <span class="feature-icon" style="position:absolute;top:3.5rem;right:1rem;">⚡</span>
                         <h3 class="neon-green">Command Line Usage</h3>
                         <p>🚀 <strong>Run models directly from command line</strong></p>
                         <div class="demo-container">
@@ -170,7 +185,22 @@ $ docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUT
                     </div>
 
                     <div class="feature-card large-text">
-                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🌍</span>
+                        <div class="copy-buttons">
+                            <span class="copy-label">Copy:</span>
+                            <button class="copy-btn" onclick="copyDockerCommand('unix', this)" title="Copy for Mac/Linux">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span class="copy-text">Mac/Linux</span>
+                            </button>
+                            <button class="copy-btn" onclick="copyDockerCommand('windows', this)" title="Copy for Windows">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6 .09v6.81l-6-1.15V13zm17 .25V22l-10-1.91V13.1l10 .15z" fill="currentColor"/>
+                                </svg>
+                                <span class="copy-text">Windows</span>
+                            </button>
+                        </div>
+                        <span class="feature-icon" style="position:absolute;top:3.5rem;right:1rem;">🌍</span>
                         <h3 class="neon-green">Multilingual Classification</h3>
                         <p>🌐 <strong>Train models in multiple languages</strong></p>
                         <div class="demo-container">
@@ -196,7 +226,22 @@ $ docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUT
                     </div>
 
                     <div class="feature-card large-text">
-                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🔍</span>
+                        <div class="copy-buttons">
+                            <span class="copy-label">Copy:</span>
+                            <button class="copy-btn" onclick="copyDockerCommand('unix', this)" title="Copy for Mac/Linux">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span class="copy-text">Mac/Linux</span>
+                            </button>
+                            <button class="copy-btn" onclick="copyDockerCommand('windows', this)" title="Copy for Windows">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6 .09v6.81l-6-1.15V13zm17 .25V22l-10-1.91V13.1l10 .15z" fill="currentColor"/>
+                                </svg>
+                                <span class="copy-text">Windows</span>
+                            </button>
+                        </div>
+                        <span class="feature-icon" style="position:absolute;top:3.5rem;right:1rem;">🔍</span>
                         <h3 class="neon-green">Edge Case Analysis</h3>
                         <p>📊 <strong>Generate and analyze edge cases</strong></p>
                         <div class="demo-container">
@@ -247,7 +292,22 @@ $ docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUT
                     </div> -->
 
                     <div class="feature-card large-text">
-                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🚀</span>
+                        <div class="copy-buttons">
+                            <span class="copy-label">Copy:</span>
+                            <button class="copy-btn" onclick="copyDockerCommand('unix', this)" title="Copy for Mac/Linux">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span class="copy-text">Mac/Linux</span>
+                            </button>
+                            <button class="copy-btn" onclick="copyDockerCommand('windows', this)" title="Copy for Windows">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6 .09v6.81l-6-1.15V13zm17 .25V22l-10-1.91V13.1l10 .15z" fill="currentColor"/>
+                                </svg>
+                                <span class="copy-text">Windows</span>
+                            </button>
+                        </div>
+                        <span class="feature-icon" style="position:absolute;top:3.5rem;right:1rem;">🚀</span>
                         <h3 class="neon-green">High-Performance Training</h3>
                         <p>⚡ <strong>Optimized for large datasets</strong></p>
                         <div class="demo-container">
@@ -272,7 +332,22 @@ $ docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUT
                     </div>
 
                     <div class="feature-card large-text">
-                        <span class="feature-icon" style="position:absolute;top:1rem;right:1rem;">🎯</span>
+                        <div class="copy-buttons">
+                            <span class="copy-label">Copy:</span>
+                            <button class="copy-btn" onclick="copyDockerCommand('unix', this)" title="Copy for Mac/Linux">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span class="copy-text">Mac/Linux</span>
+                            </button>
+                            <button class="copy-btn" onclick="copyDockerCommand('windows', this)" title="Copy for Windows">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6 .09v6.81l-6-1.15V13zm17 .25V22l-10-1.91V13.1l10 .15z" fill="currentColor"/>
+                                </svg>
+                                <span class="copy-text">Windows</span>
+                            </button>
+                        </div>
+                        <span class="feature-icon" style="position:absolute;top:3.5rem;right:1rem;">🎯</span>
                         <h3 class="neon-green">Minimal Configuration</h3>
                         <p>✨ <strong>Quick start with minimal setup</strong></p>
                         <div class="demo-container">
@@ -338,5 +413,125 @@ $ docker run --rm -v "$(pwd)":/app/models -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUT
 
     <script src="scripts/mobile-menu.js"></script>
   <script src="scripts/router.js"></script>
+  <script>
+    function copyDockerCommand(platform, button) {
+      // Find the code block in the same feature-card
+      const featureCard = button.closest('.feature-card');
+      const codeBlock = featureCard.querySelector('.code-block');
+      let commandText = codeBlock.textContent.trim();
+      
+      // Remove the $ prompt from the beginning if it exists
+      commandText = commandText.replace(/^\$\s+/, '');
+      
+      let dockerCommand;
+      
+      // Extract parameters from the Unix command to build proper Windows command
+      const promptMatch = commandText.match(/-p\s+"([^"]+)"/);
+      const langMatch = commandText.match(/--lang[=\s]+"?([^"\s]+)"?/);
+      const maxFeaturesMatch = commandText.match(/--max-features[=\s]+"?([^"\s]+)"?/);
+      const edgeCaseMatch = commandText.match(/--edge-case-volume-per-class[=\s]+"?([^"\s]+)"?/);
+      const generateEdgeCasesMatch = commandText.match(/--generate-edge-cases[=\s]+"?([^"\s]+)"?/);
+      const modelTypeMatch = commandText.match(/--model-type[=\s]+"?([^"\s]+)"?/);
+      const batchSizeMatch = commandText.match(/--batch-size[=\s]+"?([^"\s]+)"?/);
+      const dataGenModelMatch = commandText.match(/--data-gen-model[=\s]+"?([^"\s]+)"?/);
+      const refinementCyclesMatch = commandText.match(/--refinement-cycles[=\s]+"?([^"\s]+)"?/);
+      const configLlmModelMatch = commandText.match(/--config-llm-model[=\s]+"?([^"\s]+)"?/);
+      
+      if (platform === 'windows') {
+        // Build Windows PowerShell command like in index.html
+        dockerCommand = `docker run --rm \`
+    -v "\${PWD}:/app/models" \`
+    -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \`
+    ghcr.io/inoxoft/whitelightning:latest \`
+    python -m text_classifier.agent`;
+    
+        if (promptMatch) {
+          dockerCommand += ` \`
+    -p "${promptMatch[1]}"`;
+        }
+        
+        if (langMatch) {
+          dockerCommand += ` \`
+    --lang "${langMatch[1]}"`;
+        }
+        
+        if (maxFeaturesMatch) {
+          dockerCommand += ` \`
+    --max-features "${maxFeaturesMatch[1]}"`;
+        }
+        
+        if (edgeCaseMatch) {
+          dockerCommand += ` \`
+    --edge-case-volume-per-class "${edgeCaseMatch[1]}"`;
+        }
+        
+        if (generateEdgeCasesMatch) {
+          dockerCommand += ` \`
+    --generate-edge-cases "${generateEdgeCasesMatch[1]}"`;
+        }
+        
+        if (modelTypeMatch) {
+          dockerCommand += ` \`
+    --model-type "${modelTypeMatch[1]}"`;
+        }
+        
+        if (batchSizeMatch) {
+          dockerCommand += ` \`
+    --batch-size "${batchSizeMatch[1]}"`;
+        }
+        
+        if (dataGenModelMatch) {
+          dockerCommand += ` \`
+    --data-gen-model "${dataGenModelMatch[1]}"`;
+        }
+        
+        if (refinementCyclesMatch) {
+          dockerCommand += ` \`
+    --refinement-cycles "${refinementCyclesMatch[1]}"`;
+        }
+        
+        if (configLlmModelMatch) {
+          dockerCommand += ` \`
+    --config-llm-model "${configLlmModelMatch[1]}"`;
+        }
+        
+      } else {
+        // Use the command as-is for Unix/Linux/Mac
+        dockerCommand = commandText;
+      }
+      
+      const originalText = button.querySelector('.copy-text').textContent;
+      
+      // Copy to clipboard
+      navigator.clipboard.writeText(dockerCommand).then(() => {
+        // Show success feedback
+        button.classList.add('copied');
+        button.querySelector('.copy-text').textContent = 'Copied!';
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+          button.classList.remove('copied');
+          button.querySelector('.copy-text').textContent = originalText;
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = dockerCommand;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        // Show success feedback
+        button.classList.add('copied');
+        button.querySelector('.copy-text').textContent = 'Copied!';
+        setTimeout(() => {
+          button.classList.remove('copied');
+          button.querySelector('.copy-text').textContent = originalText;
+        }, 2000);
+      });
+    }
+  </script>
 </body>
 </html> 
