@@ -222,6 +222,124 @@ h3 {
 .terminal-circle.yellow { background-color: #ffbd2e; }
 .terminal-circle.green { background-color: #27c93f; }
 
+/* Copy button styles for terminal header */
+.terminal-header {
+  position: relative;
+}
+
+.terminal-header .copy-buttons {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 15;
+}
+
+.terminal-header .copy-label {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: #39ff14;
+  text-shadow: 0 0 4px rgba(57, 255, 20, 0.3);
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+  margin-right: 3px;
+}
+
+.terminal-header .copy-btn {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 20, 0.9));
+  border: 1px solid #39ff14;
+  border-radius: 3px;
+  color: #39ff14;
+  padding: 4px 6px;
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.8;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  margin-left: 2px;
+}
+
+.terminal-header .copy-btn:hover {
+  opacity: 1;
+  background: linear-gradient(135deg, rgba(57, 255, 20, 0.15), rgba(57, 255, 20, 0.08));
+  border-color: #57ff34;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+.terminal-header .copy-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.terminal-header .copy-btn svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.terminal-header .copy-btn:hover svg {
+  opacity: 1;
+  filter: drop-shadow(0 0 4px rgba(57, 255, 20, 0.6));
+}
+
+.terminal-header .copy-btn.copied {
+  background: linear-gradient(135deg, rgba(39, 201, 63, 0.2), rgba(39, 201, 63, 0.1));
+  border-color: #27c93f;
+  color: #fff;
+}
+
+.terminal-header .copy-btn.copied svg {
+  color: #fff;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+}
+
+/* Responsive styles for terminal copy buttons */
+@media (max-width: 1024px) {
+  .terminal-header .copy-buttons {
+    gap: 3px;
+    right: 0.5rem;
+  }
+  
+  .terminal-header .copy-label {
+    font-size: 9px;
+  }
+  
+  .terminal-header .copy-btn {
+    font-size: 9px;
+    padding: 3px 5px;
+    gap: 2px;
+  }
+  
+  .terminal-header .copy-btn svg {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .terminal-header .copy-label {
+    display: none;
+  }
+  
+  .terminal-header .copy-buttons {
+    gap: 2px;
+  }
+}
+
 .terminal-content {
   padding: 1rem;
   font-family: 'Menlo', 'Monaco', 'Courier New', monospace;

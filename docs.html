@@ -277,6 +277,21 @@
                             <div class="terminal-circle red"></div>
                             <div class="terminal-circle yellow"></div>
                             <div class="terminal-circle green"></div>
+                            <div class="copy-buttons">
+                                <span class="copy-label">Copy:</span>
+                                <button class="copy-btn" onclick="copyDockerCommand('unix', this)" title="Copy for Mac/Linux">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span class="copy-text">Mac/Linux</span>
+                                </button>
+                                <button class="copy-btn" onclick="copyDockerCommand('windows', this)" title="Copy for Windows">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6 .09v6.81l-6-1.15V13zm17 .25V22l-10-1.91V13.1l10 .15z" fill="currentColor"/>
+                                    </svg>
+                                    <span class="copy-text">Windows</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="terminal-content">
                             <code class="full-text">docker run --rm \</code>
@@ -450,5 +465,69 @@ Parameter                   Description
 </footer>
 <script src="scripts/mobile-menu.js"></script>
 <script src="scripts/router.js"></script>
+<script>
+function copyDockerCommand(platform, button) {
+  // Find the terminal content
+  const terminalHeader = button.closest('.terminal-header');
+  const codeBlock = terminalHeader.parentElement;
+  const terminalContent = codeBlock.querySelector('.terminal-content');
+  
+  // Extract the Docker command from the full-text elements
+  const fullTextElements = terminalContent.querySelectorAll('.full-text');
+  let commandText = '';
+  fullTextElements.forEach(el => {
+    commandText += el.textContent + '\n';
+  });
+  
+  // Clean up the command
+  commandText = commandText.trim();
+  
+  let dockerCommand;
+  
+  if (platform === 'windows') {
+    // Convert to Windows PowerShell format
+    dockerCommand = `docker run --rm \`
+    -v "\${PWD}:/app/models" \`
+    -e OPEN_ROUTER_API_KEY="YOUR_OPEN_ROUTER_KEY_HERE" \`
+    ghcr.io/inoxoft/whitelightning:latest \`
+    python -m text_classifier.agent \`
+    -p "Categorize customer reviews as positive, neutral, or negative"`;
+  } else {
+    // Use as-is for Unix/Linux/Mac (just clean the line breaks)
+    dockerCommand = commandText.replace(/\\\n/g, ' \\\n');
+  }
+  
+  // Copy to clipboard
+  navigator.clipboard.writeText(dockerCommand).then(() => {
+    // Visual feedback
+    const originalText = button.querySelector('.copy-text').textContent;
+    button.querySelector('.copy-text').textContent = 'Copied!';
+    button.classList.add('copied');
+    
+    setTimeout(() => {
+      button.querySelector('.copy-text').textContent = originalText;
+      button.classList.remove('copied');
+    }, 1500);
+  }).catch(err => {
+    console.error('Failed to copy: ', err);
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea');
+    textArea.value = dockerCommand;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+    
+    const originalText = button.querySelector('.copy-text').textContent;
+    button.querySelector('.copy-text').textContent = 'Copied!';
+    button.classList.add('copied');
+    
+    setTimeout(() => {
+      button.querySelector('.copy-text').textContent = originalText;
+      button.classList.remove('copied');
+    }, 1500);
+  });
+}
+</script>
 </body>
 </html> 
